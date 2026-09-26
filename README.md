@@ -1,4 +1,4 @@
-# Lore website (draft)
+# Kenner website (draft)
 
 Static site: one `index.html` plus `img/`, `logos/`, `audio/`. No build step, no backend, no dependencies beyond Google Fonts.
 
