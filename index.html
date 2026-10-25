@@ -329,9 +329,9 @@ a:focus-visible,button:focus-visible,[tabindex]:focus-visible{outline:2px solid 
 @media (max-width:1100px){.result{display:none}}
 @media (max-width:860px){
   .sc{grid-template-columns:minmax(0,1fr);padding:10px;border-radius:22px}
-  .sc-tabs{flex-direction:row;overflow-x:auto;scrollbar-width:none;gap:8px;padding-bottom:2px}
-  .sc-tabs::-webkit-scrollbar{display:none}
-  .tab{flex:none;padding:12px 16px;border-radius:999px}
+  .sc-tabs{flex-direction:row;flex-wrap:wrap;gap:8px;padding:6px 4px 4px}
+  .tab{flex:none;padding:10px 14px;border-radius:999px;background:var(--paper);border-color:var(--line);color:var(--ink)}
+  .tab[aria-selected="true"]{background:var(--ink);border-color:var(--ink);color:var(--paper);box-shadow:none}
   .tab .tt{font-family:var(--font-text);font-size:14px;font-weight:500;letter-spacing:0;white-space:nowrap}
   .tab .tt svg,.tab .td{display:none!important}
   .stage{min-height:0;padding:28px 12px}
@@ -391,7 +391,7 @@ a:focus-visible,button:focus-visible,[tabindex]:focus-visible{outline:2px solid 
 .am-photo:has(.kn){align-items:flex-end}
 .ac h3{font-family:var(--font-text);font-weight:500;font-size:18px;letter-spacing:-.01em;margin-top:4px}
 .ad{font-size:15.5px;line-height:1.55;color:var(--ink-muted)}
-@media (max-width:980px){.ac{grid-template-columns:minmax(0,1fr)}.am{aspect-ratio:4/3}.mhead{grid-template-columns:minmax(0,1fr)}}
+@media (max-width:980px){.ac{grid-template-columns:minmax(0,1fr);gap:40px}.ac article{gap:12px}.ac article+article{padding-top:40px;border-top:1px solid var(--line)}.am{aspect-ratio:4/3}.mhead{grid-template-columns:minmax(0,1fr)}}
 
 /* industries */
 .ind-head{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:clamp(32px,4vw,48px)}
@@ -519,7 +519,7 @@ footer{border-top:1px solid var(--line)}
         <h1>Field service has a new interface.</h1>
         <p class="sub">Technicians call or text Kenner like a colleague who’s been on every job. It briefs them before the job, helps on site, orders the part and writes the report into your FSM.</p>
         <div class="acts">
-          <a class="btn btn-white" href="https://calendar.app.google/fFpCL3WG3pJtqtC89" target="_blank" rel="noopener">Request a pilot</a>
+          <a class="btn btn-white" href="https://calendar.app.google/fFpCL3WG3pJtqtC89" target="_blank" rel="noopener">Request a demo</a>
           <a class="btn glass" href="#showcase">See what it does</a>
         </div>
       </div>
@@ -723,7 +723,7 @@ footer{border-top:1px solid var(--line)}
         <article class="ic"><figure><img src="photos/elevator.jpg" alt="Hands on an elevator drive"><div class="ntf"><img src="brand/logo-avatar.svg" alt=""><b>Kenner<small>now</small></b><span>Third callback on lift B this month. In June it was the door belt, there is one on your van.</span></div></figure><figcaption><h3>Elevators</h3><p>Full-service contracts, where every callback costs margin.</p></figcaption></article>
         <article class="ic"><figure><img src="photos/medical.jpg" alt="Technician kneeling with a laptop beside a medical scanner"><div class="ntf"><img src="brand/logo-avatar.svg" alt=""><b>Kenner<small>now</small></b><span>Coil error E-412. Both earlier cases were fixed by reseating the head coil connector.</span></div></figure><figcaption><h3>Medical devices</h3><p>Uptime is patient care, and every engineer covers dozens of models.</p></figcaption></article>
         <article class="ic"><figure><img src="photos/industrial.jpg" alt="Technician with ear protection beside a machine"><div class="ntf"><img src="brand/logo-avatar.svg" alt=""><b>Kenner<small>now</small></b><span>Only Klaus has heard this bearing noise before. He is free at 2, want me to call him in?</span></div></figure><figcaption><h3>Industrial equipment</h3><p>Rare faults, and the few people who have seen them before.</p></figcaption></article>
-        <a class="ic go" href="https://calendar.app.google/fFpCL3WG3pJtqtC89" target="_blank" rel="noopener"><figure><span>Start with one team.</span><i>Request a pilot <svg viewBox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></i></figure></a>
+        <a class="ic go" href="https://calendar.app.google/fFpCL3WG3pJtqtC89" target="_blank" rel="noopener"><figure><span>Start with one team.</span><i>Request a demo <svg viewBox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></i></figure></a>
       </div>
       <div class="cfoot" aria-hidden="true"><div class="ctrack"><i id="cbar"></i></div></div>
     </div>
@@ -734,7 +734,7 @@ footer{border-top:1px solid var(--line)}
     <div class="wrap demo-in">
       <h2>Start with one team.</h2>
       <p>Two weeks with five to ten of your technicians, measured against your own baseline. Live in about a week.</p>
-      <div class="acts"><a class="btn btn-white" href="https://calendar.app.google/fFpCL3WG3pJtqtC89" target="_blank" rel="noopener">Request a pilot</a></div>
+      <div class="acts"><a class="btn btn-white" href="https://calendar.app.google/fFpCL3WG3pJtqtC89" target="_blank" rel="noopener">Request a demo</a></div>
       <div class="bars" id="bars" role="tablist" aria-label="Product screens">
         <button type="button" role="tab" aria-selected="true"><i><b></b></i><span>Work orders</span></button>
         <button type="button" role="tab" aria-selected="false"><i><b></b></i><span>Briefings</span></button>
