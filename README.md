@@ -13,7 +13,7 @@ Static site served by GitHub Pages from `main` (custom domain in `CNAME`, keep t
 - `photos/`: industry photos
 - `media/`, `demo/`, `light/`: chat media, demo app screenshots and light backgrounds
 - `logos/`: integration and team logos
-- `favicon.svg`, `favicon-32.png`, `apple-touch-icon.png`
+- `favicon.svg`, `favicon-32.png`, `apple-touch-icon.png`, `og-image.jpg` (link preview, 1200x630)
 
 ## Notes
 - Booking links point to https://calendar.app.google/fFpCL3WG3pJtqtC89 (kenner.work Google Workspace).
