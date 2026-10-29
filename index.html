@@ -745,9 +745,9 @@ footer{border-top:1px solid var(--line)}
       <div class="laptop">
         <div class="lscr" id="lscr">
           <img class="on" src="demo/app-1.jpg" alt="kenner web app: work orders with technician, schedule and status">
-          <img src="demo/app-2.jpg" alt="kenner web app: a job briefing with first checks, likely parts and history" loading="lazy">
-          <img src="demo/app-3.jpg" alt="kenner web app: knowledge base with models, fault codes and parts" loading="lazy">
-          <img src="demo/app-4.jpg" alt="kenner web app: team view with each technician’s briefings and reports" loading="lazy">
+          <img src="demo/app-2.jpg" alt="kenner web app: a job briefing with first checks, likely parts and history" fetchpriority="low" decoding="async">
+          <img src="demo/app-3.jpg" alt="kenner web app: knowledge base with models, fault codes and parts" fetchpriority="low" decoding="async">
+          <img src="demo/app-4.jpg" alt="kenner web app: team view with each technician’s briefings and reports" fetchpriority="low" decoding="async">
         </div>
       </div>
     </div>
@@ -1014,7 +1014,10 @@ footer{border-top:1px solid var(--line)}
   function screen(k){
     bi = k;
     bars.querySelectorAll('button').forEach(function(b, j){ b.setAttribute('aria-selected', j === k ? 'true' : 'false'); var x = b.querySelector('b'); x.style.animation = 'none'; void x.offsetWidth; x.style.animation = ''; });
-    shots.forEach(function(im, j){ im.classList.toggle('on', j === k); });
+    var im = shots[k];
+    (im.decode ? im.decode() : Promise.resolve()).catch(function(){}).then(function(){
+      if (bi === k && im.naturalWidth) shots.forEach(function(s, j){ s.classList.toggle('on', j === k); });
+    });
   }
   bars.querySelectorAll('button').forEach(function(b, j){ b.addEventListener('click', function(){ screen(j); restart(); }); });
   function restart(){ clearInterval(bt); if (!still) bt = setInterval(function(){ screen((bi + 1) % shots.length); }, 5500); }
