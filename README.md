@@ -1,4 +1,4 @@
-# kenner.work
+# getkenner.com
 
 Static site served by GitHub Pages from `main` (custom domain in `CNAME`, keep that file). No build step, no backend, no cookies or analytics; fonts load from Google Fonts.
 
@@ -16,6 +16,6 @@ Static site served by GitHub Pages from `main` (custom domain in `CNAME`, keep t
 - `favicon.svg`, `favicon-32.png`, `apple-touch-icon.png`, `og-image.jpg` (link preview, 1200x630)
 
 ## Notes
-- Booking links point to https://calendar.app.google/fFpCL3WG3pJtqtC89 (kenner.work Google Workspace).
+- Booking links point to https://calendar.app.google/fFpCL3WG3pJtqtC89 (existing Google Workspace booking page).
 - `legal.html` must change whenever the site adds tracking, a form, new hosting or new service providers.
 - Customer names, work orders and figures in the chats and demo screenshots are example data. Photos are AI-generated (Higgsfield).
