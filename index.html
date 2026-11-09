@@ -468,19 +468,27 @@ a:focus-visible,button:focus-visible,[tabindex]:focus-visible{outline:2px solid 
 
 /* Microsoft Teams, on a phone */
 .scr.tm{background:#fff}
-.tm-head{flex:none;display:flex;align-items:center;gap:10px;height:44px;padding:0 14px 0 8px;color:#242424}
+.tm-head{flex:none;display:flex;align-items:center;gap:10px;height:54px;padding:0 14px 0 8px;color:#242424;border-bottom:1px solid #E0E0E0}
 .tm-head>svg{width:22px;height:22px;flex:none}
-.tm-head img{width:30px;height:30px;border-radius:8px;display:block;flex:none}
-.tm-head b{flex:1;min-width:0;font-size:15.5px;font-weight:600}
-.tm-tabs{flex:none;display:flex;gap:20px;padding:0 16px;border-bottom:1px solid #E0E0E0;font-size:12.5px;color:#616161}
-.tm-tabs span{padding:7px 0 8px}
-.tm-tabs span:first-child{color:#242424;font-weight:600;box-shadow:inset 0 -2px #5B5FC7}
+.tm-tile{width:32px;height:32px;flex:none;border-radius:8px;background:#fff;box-shadow:0 0 0 1px #E0E0E0;display:grid;place-items:center}
+.tm-tile img{width:24px;height:24px;display:block}
+.tm-name{flex:1;min-width:0;display:flex;flex-direction:column;line-height:1.2}
+.tm-name small{display:inline-flex;align-items:center;gap:2px;font-size:11.5px;color:#616161}
+.tm-name small svg{width:11px;height:11px}
+.tm-head>svg.r{width:18px;height:18px;color:#424242}
+.tm-name b{font-size:15px;font-weight:600}
 .tm-body{flex:1;min-height:0;overflow-y:auto;scrollbar-width:none;padding:6px 10px 12px;background:#F5F5F5;display:flex;flex-direction:column}
 .tm-body::-webkit-scrollbar{display:none}
 .tm-body>:first-child{margin-top:auto}
 .tm-day{align-self:center;margin:4px 0 2px;font-size:11px;color:#616161}
 .tm-meta{display:flex;align-items:center;gap:8px;margin:12px 0 4px;font-size:11px;color:#616161}
-.tm-meta img{width:26px;height:26px;border-radius:7px;display:block}
+.tm-meta.in{margin-left:34px}
+.tb.in .tm-tile{position:absolute;left:-34px;top:0;width:26px;height:26px;border-radius:7px}
+.tb.in .tm-tile img{width:19px;height:19px}
+.tb.card{display:flex;flex-direction:column;gap:6px;padding:10px 12px 12px}
+.tb.card .im2{width:100%;margin:0}
+.tb.card b{font-weight:600}
+.tm-btn{align-self:flex-start;margin-top:2px;padding:5px 12px;border-radius:4px;box-shadow:inset 0 0 0 1px #8A8A8A;font-weight:600;font-size:12.5px}
 .tm-meta b{font-weight:600;color:#424242}
 .tm-meta.out{justify-content:flex-end;margin-right:2px}
 .tb{position:relative;max-width:84%;margin-top:3px;padding:7px 10px 8px;border-radius:6px;font-size:13px;line-height:1.42;color:#242424;overflow-wrap:anywhere}
@@ -497,44 +505,57 @@ a:focus-visible,button:focus-visible,[tabindex]:focus-visible{outline:2px solid 
 .tm-in .snd{display:flex;margin-bottom:6px;color:#5B5FC7}
 .tm-in .snd svg{width:20px;height:20px}
 
-/* Kenner's own web chat, on a phone */
-.scr.kw{background:#fff}
-.kw-head{flex:none;display:flex;align-items:center;justify-content:space-between;gap:10px;height:44px;padding:0 16px;border-bottom:1px solid var(--line)}
-.kw-head img{height:16px;width:auto;display:block}
-.kw-head span{padding:3px 7px;border-radius:6px;background:var(--mist);font:400 11px/1.2 var(--font-mono);color:var(--ink-muted)}
-.kw-body{flex:1;min-height:0;overflow-y:auto;scrollbar-width:none;padding:10px 16px 12px;display:flex;flex-direction:column}
+/* Kenner's own chat, as the web app's Thread and composer draw it (web/src/chat), on a phone */
+.scr.kw{background:var(--paper)}
+.kw-head{flex:none;display:flex;align-items:center;gap:8px;height:50px;padding:0 10px 0 14px;border-bottom:1px solid #EEF0F4}
+.kw-head>img{width:28px;height:28px;border-radius:50%;display:block;flex:none}
+.kw-head>b{flex:1;font-size:15px;font-weight:500}
+.kw-job{display:inline-flex;align-items:center;gap:3px;font-size:13px;color:var(--ink)}
+.kw-job svg{width:14px;height:14px;color:var(--ink-subtle)}
+.kw-head>svg{width:18px;height:18px;flex:none;color:var(--ink-subtle)}
+.kw-head>svg.kw-call{color:var(--ultramarine)}
+.kw-body{flex:1;min-height:0;overflow-y:auto;scrollbar-width:none;padding:8px 12px 12px;display:flex;flex-direction:column;background:var(--paper)}
 .kw-body::-webkit-scrollbar{display:none}
 .kw-body>*{flex:none}
 .kw-body>:first-child{margin-top:auto}
-.kb{font-size:13.5px;line-height:1.5;color:var(--ink);overflow-wrap:anywhere}
-.kb b{font-weight:600}
-.kb.out{align-self:flex-end;max-width:84%;margin-top:14px;padding:8px 12px;border-radius:14px;background:#EEF2FD}
-.kb.in{margin-top:6px}
-.kb.in.gf{margin-top:14px}
-.kb-who{display:flex;align-items:center;gap:6px;margin-bottom:4px;font-size:11.5px;color:var(--ink-subtle)}
-.kb-who img{width:18px;height:18px;border-radius:50%;display:block}
-.kb .src{display:block;margin-top:5px;font-size:12px;color:var(--ink-subtle)}
+.kw-day{align-self:center;margin:6px 0 10px;font-size:11.5px;color:var(--ink-subtle)}
+.kt{display:flex;flex-direction:column;gap:4px;min-width:0}
+.kt.out{align-self:flex-end;align-items:flex-end;max-width:85%}
+.kt.in{align-self:flex-start;flex-direction:row;align-items:flex-start;gap:7px;max-width:94%}
+.kt.in>img,.kt.in>i{width:22px;height:22px;flex:none;margin-top:2px;border-radius:50%;display:block}
+.kt.in>div{display:flex;flex-direction:column;align-items:flex-start;gap:4px;min-width:0}
+.kt.gf{margin-top:14px}
+.kt+.kt:not(.gf){margin-top:4px}
+.kbub{max-width:100%;padding:7px 11px;border-radius:13px 13px 13px 4px;background:var(--paper);box-shadow:0 0 0 1px var(--line);font-size:13px;line-height:1.5;color:var(--ink);overflow-wrap:anywhere}
+.kbub b{font-weight:600}
+.kt.out .kbub{border-radius:13px 13px 4px 13px;background:#E8EEFC;box-shadow:none}
+.kmeta{padding:0 3px;font-size:11px;color:var(--ink-subtle)}
+.kchips{display:flex;flex-wrap:wrap;gap:5px;max-width:100%}
+.kch{appearance:none;border:0;display:inline-flex;align-items:center;gap:5px;max-width:100%;height:22px;padding:0 9px;border-radius:999px;background:#EEF2FD;color:var(--ultramarine);font:400 11.5px/1 var(--font-text);white-space:nowrap;cursor:pointer}
+.kch svg,.kch img{width:13px;height:13px;flex:none}
+.kch span{min-width:0;overflow:hidden;text-overflow:ellipsis}
+.kch.k{max-width:13rem}
 .kw .cite{color:var(--ultramarine)}
-.kb .im2{display:block;width:70%;margin:2px 0 8px;border-radius:10px;aspect-ratio:560/709;background:#DDE1E5 url(media/curtain-switch.webp) center/cover no-repeat}
-.kb.typ{display:flex;align-items:center;gap:4px;margin-top:14px}
-.kb.typ img{width:18px;height:18px;border-radius:50%;margin-right:4px;display:block}
-.kb.typ i{width:6px;height:6px;border-radius:50%;background:#8E8E93;animation:dot 1.1s infinite ease-in-out}
-.kb.typ i:nth-of-type(2){animation-delay:.15s}.kb.typ i:nth-of-type(3){animation-delay:.3s}
-.kb .vrow{display:flex;align-items:center;gap:8px;height:22px}
-.kb .vrow .vw{flex:1;height:20px}
-.kb .vrow .vw i{background:#8FA3E8}
-.kb .vrow svg{width:12px;height:12px;flex:none;color:var(--ultramarine)}
-.kb .vrow em{font-style:normal;font-size:12px;font-variant-numeric:tabular-nums;color:var(--ink-muted)}
-.kb .trs{display:block;margin-top:6px;padding-top:6px;border-top:1px solid rgba(10,11,30,.08)}
-.kw-in{flex:none;display:flex;align-items:flex-end;gap:8px;margin:0 10px 24px;padding:8px 8px 8px 12px;border-radius:14px;box-shadow:0 0 0 1px var(--line),0 2px 8px rgba(10,11,30,.05)}
-.kw-in .fld{flex:1;min-width:0;min-height:28px;display:flex;align-items:center;font-size:13px;line-height:18px}
+.kpic{display:block;width:190px;max-width:100%;border-radius:12px;box-shadow:0 0 0 1px var(--line);aspect-ratio:560/709;background:#DDE1E5 url(media/curtain-switch.webp) center/cover no-repeat}
+.ktyp{display:flex;align-items:center;gap:7px;margin-top:14px;font-size:11.5px;color:var(--ink-subtle)}
+.ktyp img{width:22px;height:22px;border-radius:50%;display:block}
+/* the app's VoiceNote: a round play button, the recording's waveform and its length */
+.kvn{display:flex;align-items:center;gap:7px;min-width:180px;margin-bottom:6px}
+.kvn .pb{width:28px;height:28px;flex:none;border-radius:50%;background:var(--paper);box-shadow:0 0 0 1px var(--line);display:grid;place-items:center;color:var(--ink)}
+.kvn .pb svg{width:11px;height:11px}
+.kvn .vw{flex:1;height:22px;gap:2px}
+.kvn .vw i{width:2px;background:#5A5F73;opacity:.75}
+.kvn em{font-style:normal;font:400 11px/1 var(--font-mono);color:var(--ink-muted)}
+.kw-in{flex:none;padding:10px 10px 26px;border-top:1px solid #EEF0F4;background:var(--paper)}
+.kw-in .fld{display:flex;align-items:center;gap:4px;min-height:38px;padding:4px;border-radius:12px;background:var(--paper);box-shadow:0 0 0 1px var(--line),0 1px 2px rgba(10,11,30,.06)}
+.kw-in .ib2{width:28px;height:28px;flex:none;display:grid;place-items:center;color:var(--ink-muted)}
+.kw-in .ib2 svg{width:17px;height:17px}
+.kw-in .ph,.kw-in .tx{flex:1;min-width:0;padding:0 2px;font-size:13.5px;line-height:19px}
 .kw-in .ph{color:var(--ink-subtle)}
-.kw-in .tx{font-size:13px;line-height:18px;color:var(--ink)}
-.kw-in .snd{--cue:var(--ultramarine);width:28px;height:28px;flex:none;border-radius:50%;background:var(--ultramarine);color:#fff;display:flex;align-items:center;justify-content:center}
+.kw-in .tx{color:var(--ink)}
+.kw-in .kvn{flex:1;min-width:0;margin:0}
+.kw-in .snd{--cue:var(--night);width:28px;height:28px;flex:none;border-radius:7px;background:var(--night);color:#fff;display:grid;place-items:center}
 .kw-in .snd svg{width:15px;height:15px;stroke-width:2.4}
-.kw-in .snd.off{background:#C9D2F4}
-.kw .vdraft .vw i{background:var(--ultramarine)}
-.kw .vdraft em{color:var(--ultramarine)}
 
 /* the service report as the web app shows it, filling in as the technician talks; what Kenner wrote stays editable */
 .rep{display:flex;flex-direction:column;min-width:0;min-height:0}
@@ -1111,6 +1132,7 @@ footer{border-top:1px solid var(--line)}
     's-hist': S('<path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5M12 7v5l4 2"/>'),
     's-cap': S('<path d="M21.42 10.92a1 1 0 0 0-.02-1.84L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.83l8.57 3.91a2 2 0 0 0 1.66 0z"/><path d="M22 10v6M6 12.5V16a6 3 0 0 0 12 0v-3.5"/>'),
     's-page': S('<path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7z"/><path d="M14 2v4a2 2 0 0 0 2 2h4M10 9H8M16 13H8M16 17H8"/>'),
+    's-trash': S('<path d="M3 6h18M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2M10 11v6M14 11v6"/>'),
     's-act': S('<path d="M22 12h-2.48a2 2 0 0 0-1.93 1.46l-2.35 8.36a.25.25 0 0 1-.48 0L9.24 2.18a.25.25 0 0 0-.48 0l-2.35 8.36A2 2 0 0 1 4.49 12H2"/>'),
     's-keep': S('<path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2zM12 7v6M15 10H9"/>'),
     's-eye': S('<path d="M2.06 12.35a1 1 0 0 1 0-.7 10.75 10.75 0 0 1 19.88 0 1 1 0 0 1 0 .7 10.75 10.75 0 0 1-19.88 0"/><circle cx="12" cy="12" r="3"/>'),
@@ -1207,6 +1229,8 @@ footer{border-top:1px solid var(--line)}
   };
   var IMG_LABEL = 'Photo from the manual, page 46: the curtain switch, circled';
   /* a send button for what the technician has ready: the visitor sends it */
+  var TILE = '<span class="tm-tile"><img src="'+AV+'" alt=""></span>';
+  var KVN = function(d){ return '<div class="kvn"><span class="pb">'+ICONS.play+'</span>'+waveBars(30)+'<em>'+d+'</em></div>'; };
   var SEND = function(icon){ return '<button type="button" class="snd cue" aria-label="Send">'+ICONS[icon]+'</button>'; };
   var APPS = {
     wa: { cls:'wa', body:'wa-body',
@@ -1240,30 +1264,33 @@ footer{border-top:1px solid var(--line)}
         return '<div class="im-in" id="ask-cmp"><span class="pl">'+ICONS.plus+'</span><span class="fld">'+inner+'</span></div>';
       } },
     tm: { cls:'tm', body:'tm-body',
-      head: function(){ return '<div class="tm-head">'+ICONS.back+'<img src="'+AV+'" alt=""><b>Kenner</b></div><div class="tm-tabs"><span>Chat</span><span>About</span></div>'; },
+      head: function(){ return '<div class="tm-head">'+ICONS.back+TILE+'<span class="tm-name"><b>Kenner</b><small>Chat'+ICONS['s-down']+'</small></span>'+ICONS.search.replace('class="i"','class="i r"')+ICONS.more.replace('class="i"','class="i r"')+'</div>'; },
       day: function(){ return '<span class="tm-day">Today</span>'; },
       bubble: function(m, gf){
-        var meta = !gf ? '' : m.f === 'in' ? '<div class="tm-meta"><img src="'+AV+'" alt=""><b>Kenner</b>'+(m.t||'')+'</div>' : '<div class="tm-meta out">'+m.t+'</div>';
-        if (m.typ) return meta+'<div class="tb in typ" aria-label="Kenner is typing"><i></i><i></i><i></i></div>';
+        var meta = !gf ? '' : m.f === 'in' ? '<div class="tm-meta in"><b>Kenner</b>'+(m.t||'')+'</div>' : '<div class="tm-meta out">'+m.t+'</div>', tile = gf && m.f === 'in' ? TILE : '';
+        if (m.typ) return meta+'<div class="tb in typ" aria-label="Kenner is typing">'+tile+'<i></i><i></i><i></i></div>';
         if (m.voice) return meta+'<div class="tb '+m.f+' voice"><span class="vrow">'+ICONS.play+waveBars(24)+'<em>'+m.voice+'</em></span><span class="trs">'+m.h+'</span></div>';
-        return meta+'<div class="tb '+m.f+'">'+(m.img?'<span class="im2" role="img" aria-label="'+IMG_LABEL+'"></span>':'')+m.h+SRC(m)+'</div>';
+        /* Teams shows a photo Kenner sends as a card that opens it in Kenner */
+        if (m.img) return meta+'<div class="tb in card">'+tile+'<span class="im2" role="img" aria-label="'+IMG_LABEL+'"></span><b>Curtain switch · Prodigy Elite p. 46</b><span>'+m.h+'</span><span class="tm-btn">Open in Kenner</span></div>';
+        return meta+'<div class="tb '+m.f+'">'+tile+m.h+SRC(m)+'</div>';
       },
       composer: function(d){
         var inner = !d ? '<span class="ph">Type a message</span>' : d.voice ? '<span class="vdraft">'+waveBars(20)+'<em>'+d.voice+'</em></span>' : '<span class="tx">'+d.shown+'</span>';
         return '<div class="tm-in" id="ask-cmp">'+ICONS.plus+'<span class="fld">'+inner+'</span>'+(d && d.ready ? SEND('s-send') : d ? '' : ICONS.mic)+'</div>';
       } },
-    /* Kenner's own web chat: the technician's words in a bubble, Kenner's as text with its sources under it */
+    /* Kenner's own chat, as the web app's Thread draws it: Kenner's turns beside its picture with their sources as chips */
     kw: { cls:'kw', body:'kw-body',
-      head: function(){ return '<div class="kw-head"><img src="brand/lockup-ink.svg" alt="kenner"><span>WO-RF-'+(flow === 'fix' ? '2046' : '2047')+'</span></div>'; },
-      day: function(){ return ''; },
-      bubble: function(m, gf){
-        if (m.typ) return '<div class="kb in typ" aria-label="Kenner is thinking"><img src="'+AV+'" alt=""><i></i><i></i><i></i></div>';
-        if (m.f === 'out') return '<div class="kb out'+(gf?' gf':'')+'">'+(m.voice ? '<span class="vrow">'+ICONS.play+waveBars(20)+'<em>'+m.voice+'</em></span><span class="trs">'+m.h+'</span>' : m.h)+'</div>';
-        return '<div class="kb in'+(gf?' gf':'')+'">'+(gf ? '<p class="kb-who"><img src="'+AV+'" alt="">Kenner · '+m.t+'</p>' : '')+(m.img?'<span class="im2" role="img" aria-label="'+IMG_LABEL+'"></span>':'')+'<div>'+m.h+'</div>'+SRC(m)+'</div>';
+      head: function(){ return '<div class="kw-head"><img src="'+AV+'" alt=""><b>Kenner</b><span class="kw-job">WO-RF-'+(flow === 'fix' ? '2046' : '2047')+ICONS['s-down']+'</span>'+ICONS.phone.replace('class="i"','class="i kw-call"')+ICONS['s-chev']+'</div>'; },
+      day: function(){ return '<p class="kw-day">8 Nov</p>'; },
+      bubble: function(m, gf, tl){
+        if (m.typ) return '<div class="ktyp" role="status"><img src="'+AV+'" alt="">Kenner is typing…</div>';
+        if (m.f === 'out') return '<div class="kt out'+(gf?' gf':'')+'"><div class="kbub">'+(m.voice ? KVN(m.voice) : '')+m.h+'</div>'+(tl ? '<span class="kmeta">'+m.t+' · Sent</span>' : '')+'</div>';
+        var chips = m.src ? '<div class="kchips">'+m.src.map(function(x){ var c = CH[x[0]]; return '<button type="button" class="cite kch'+(c.g === 'kw' ? ' k' : '')+'" data-k="'+x[0]+'">'+(c.teams ? '<img src="'+TEAMS+'" alt="">' : ICONS[c.i])+'<span>'+c.l+'</span></button>'; }).join('')+'</div>' : '';
+        return '<div class="kt in'+(gf?' gf':'')+'">'+(gf ? '<img src="'+AV+'" alt="">' : '<i></i>')+'<div>'+(m.img ? '<span class="kpic" role="img" aria-label="'+IMG_LABEL+'"></span>' : '')+'<div class="kbub">'+m.h+'</div>'+chips+(tl ? '<span class="kmeta">'+m.t+'</span>' : '')+'</div></div>';
       },
       composer: function(d){
-        var inner = !d ? '<span class="ph">Ask about your jobs, equipment or manuals…</span>' : d.voice ? '<span class="vdraft">'+waveBars(22)+'<em>'+d.voice+'</em></span>' : '<span class="tx">'+d.shown+'</span>';
-        return '<div class="kw-in" id="ask-cmp"><span class="fld">'+inner+'</span>'+(d && d.ready ? SEND('s-up') : '<span class="snd off">'+ICONS['s-up']+'</span>')+'</div>';
+        var inner = d && d.voice ? '<span class="ib2">'+ICONS['s-trash']+'</span>'+KVN(d.voice) : '<span class="ib2">'+ICONS.camera+'</span>'+(d ? '<span class="tx">'+d.shown+'</span>' : '<span class="ph">Message Kenner</span>');
+        return '<div class="kw-in" id="ask-cmp"><div class="fld">'+inner+(d && d.ready ? SEND('s-up') : d ? '' : '<span class="ib2">'+ICONS.mic+'</span>')+'</div></div>';
       } }
   };
 
@@ -1285,7 +1312,7 @@ footer{border-top:1px solid var(--line)}
     items.forEach(function(m, i){
       var gf = i === 0 || items[i-1].f !== m.f, tl = i === items.length-1 || items[i+1].f !== m.f;
       var b = A.bubble(m, gf, tl);
-      html += i >= fresh && smooth ? b.replace(/class="(b|ib|tb|kb) /g, 'class="$1 m-in ') : b;
+      html += i >= fresh && smooth ? b.replace(/class="(b|ib|tb|kt) /g, 'class="$1 m-in ') : b;
     });
     if (app === 'im' && items.length && items[items.length-1].f === 'out') html += '<div class="im-rc">Delivered</div>';
     askBody.innerHTML = html;
