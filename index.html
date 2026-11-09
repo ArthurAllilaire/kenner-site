@@ -281,14 +281,8 @@ a:focus-visible,button:focus-visible,[tabindex]:focus-visible{outline:2px solid 
 /* the office's screen: the same job in Kenner's web app, partly behind the phone */
 .lap{flex:1;min-width:0;height:620px;margin-left:-150px;display:flex;padding:10px 10px 0;border-radius:18px 18px 0 0;background:#0D0F1F;box-shadow:0 -10px 60px rgba(0,0,0,.35),inset 0 0 0 1px rgba(255,255,255,.12)}
 .lap-s{flex:1;min-width:0;display:flex;flex-direction:column;border-radius:9px 9px 0 0;background:var(--paper);overflow:hidden}
-.lap-bar{flex:none;display:flex;align-items:center;gap:10px;min-height:46px;padding:8px 10px 8px 166px;border-bottom:1px solid var(--line);font-size:13px;color:var(--ink-muted);white-space:nowrap}
-.lap-bar img{height:15px;width:auto;display:block;flex:none}
-.lap-bar span{min-width:0;overflow:hidden;text-overflow:ellipsis}
-.lap-bar button{appearance:none;border:0;margin-left:auto;flex:none;display:inline-flex;align-items:center;gap:6px;height:30px;padding:0 10px;border-radius:8px;background:none;font:500 13px/1 var(--font-text);color:var(--ink-muted);cursor:pointer;transition:background .2s,color .2s,opacity .3s}
-.lap-bar button:hover{background:var(--mist);color:var(--ink)}
-.lap-bar button svg{width:14px;height:14px}
-.lap-bar button[hidden]{display:inline-flex!important;opacity:0;pointer-events:none}
 .lap-p{flex:1;min-height:0;display:flex;flex-direction:column;padding-left:146px}
+.lap-p .look-h{padding-top:18px}
 .lap-p>*{flex:1;min-height:0}
 /* the send button, once the technician's next message is typed: the visitor sends it */
 .snd{appearance:none;border:0;padding:0;cursor:pointer;font:inherit}
@@ -557,44 +551,8 @@ a:focus-visible,button:focus-visible,[tabindex]:focus-visible{outline:2px solid 
 .kw-in .snd{--cue:var(--night);width:28px;height:28px;flex:none;border-radius:7px;background:var(--night);color:#fff;display:grid;place-items:center}
 .kw-in .snd svg{width:15px;height:15px;stroke-width:2.4}
 
-/* the service report as the web app shows it, filling in as the technician talks; what Kenner wrote stays editable */
-.rep{display:flex;flex-direction:column;min-width:0;min-height:0}
-.rep-h{flex:none;display:flex;align-items:center;gap:10px;margin:0 20px;padding:16px 0;border-bottom:1px solid var(--line)}
-.rep-h img{width:26px;height:26px;border-radius:50%;display:block;flex:none}
-.rep-h h3{flex:1;min-width:0;font:500 16px/1.3 var(--font-text);letter-spacing:-.01em}
-.rep-st{flex:none;display:inline-flex;align-items:center;gap:7px;font-size:13px;color:var(--ink-muted);font-variant-numeric:tabular-nums}
-.rep-st i{width:8px;height:8px;border-radius:50%;background:#C27C0E;transition:background .4s}
-.rep-st.ready i{background:var(--ultramarine)}
-.rep-st.filed i{background:#1F8A4C}
-.rep-b{flex:1;min-height:0;overflow-y:auto;padding:4px 20px 24px;scrollbar-width:thin;scrollbar-color:var(--line) transparent}
-.rep-meta{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:4px 16px;margin:12px 0 2px;font-size:13.5px}
-.rep-meta div{display:flex;flex-direction:column;gap:1px;min-width:0}
-.rep-meta dt{font-size:12px;color:var(--ink-subtle)}
-.rep-meta dd{margin:0}
-.rep-sec{padding-top:14px}
-.rep-sec h4{margin:0 0 5px;font:500 13.5px/1.3 var(--font-text)}
-.rep-f{margin:0 -6px;padding:3px 6px;border-radius:6px;transition:background 1.4s var(--ease)}
-.rep-f.fresh{background:color-mix(in oklab,var(--ultramarine) 9%,transparent);transition:none}
-.rep-f p{font-size:14px;line-height:1.5;color:var(--ink);border-radius:4px;outline:none;transition:box-shadow .2s}
-.rep-f p[contenteditable]:hover{box-shadow:0 0 0 1px var(--line);cursor:text}
-.rep-f p[contenteditable]:focus{box-shadow:0 0 0 1.5px var(--ultramarine)}
-.rep-f label{display:block;margin-bottom:4px;font-size:12px;color:var(--ink-subtle)}
-.gap{display:inline-flex;align-items:center;gap:6px;height:26px;padding:0 10px;border-radius:999px;background:#FDF3E1;color:#7A4C05;font-size:12.5px}
-.rep-f .wait{font-size:13.5px;color:var(--ink-subtle)}
-.amt{display:flex;flex-wrap:wrap;align-items:center;gap:6px}
-.amt input{width:96px;height:32px;padding:0 10px;border-radius:8px;border:1px solid var(--line);background:var(--paper);font:400 14px/1 var(--font-mono);color:var(--ink)}
-.amt select{appearance:none;height:32px;padding:0 30px 0 10px;border-radius:8px;border:1px solid var(--line);background:var(--paper) url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%235A5F73' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E") right 9px center/14px no-repeat;font:400 14px/1 var(--font-text);color:var(--ink);cursor:pointer}
-.amt input:focus,.amt select:focus{outline:none;border-color:transparent;box-shadow:0 0 0 1.5px var(--ultramarine)}
-.amt span{font-size:13px;color:var(--ink-subtle)}
-.rtab{width:100%;border-collapse:collapse;font-size:13px}
-.rtab th{padding:6px 8px;border-bottom:1px solid var(--line);text-align:left;font-weight:400;font-size:12px;color:var(--ink-subtle)}
-.rtab td{padding:8px;border-bottom:1px solid var(--line);vertical-align:top}
-.rtab th:first-child,.rtab td:first-child{padding-left:0}
-.rtab .v{font-family:var(--font-mono);font-size:12.5px;white-space:nowrap}
-.rtab .ok{font-weight:500;color:#1F7A45}
-.receipt{display:flex;align-items:center;gap:10px;margin-top:18px;padding:10px 12px;border-radius:10px;background:#EAF6EE;font-size:13px;color:#14532D}
-.receipt img{width:20px;height:20px;border-radius:50%;flex:none;background:#fff;box-shadow:0 0 0 1px rgba(10,11,30,.08)}
-.receipt.in{animation:min .5s var(--ease) both}
+/* the report agent's laptop: Kenner's own work order page for the job, captured from the web app (app/work-order.html) */
+.lap-p .wo{width:100%;height:100%;border:0;display:block;background:var(--paper)}
 
 /* the other agents, one square each */
 .squares{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-top:14px}
@@ -612,7 +570,6 @@ a:focus-visible,button:focus-visible,[tabindex]:focus-visible{outline:2px solid 
   .work{min-height:700px;padding:44px 28px 0 20px}
   .work .phone{width:292px;height:610px}
   .lap{height:570px;margin-left:-120px}
-  .lap-bar{padding-left:132px}
   .lap-p{padding-left:116px}
   .squares{grid-template-columns:repeat(2,minmax(0,1fr))}
   .sq{aspect-ratio:auto;min-height:230px}
@@ -624,15 +581,13 @@ a:focus-visible,button:focus-visible,[tabindex]:focus-visible{outline:2px solid 
   .dock button[aria-pressed="true"]::after{left:50%;top:auto;bottom:-10px;width:20px;height:4px;margin:0 0 0 -10px}
   .work .phone{width:min(300px,100%);height:620px;margin:0}
   .lap{flex:none;align-self:stretch;height:540px;margin:20px 0 0}
-  .lap-bar{padding-left:12px}
   .lap-p{padding-left:0}
 }
 @media (max-width:640px){
   .agents{width:100%}
   .agents button{flex:1;padding:0 12px}
-  .look-h,.rep-h{margin:0 16px}
-  .look-b,.rep-b{padding-left:16px;padding-right:16px}
-  .rep-meta{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .look-h{margin:0 16px}
+  .look-b{padding-left:16px;padding-right:16px}
   .squares{grid-template-columns:minmax(0,1fr)}
   .sq{min-height:0}
 }
@@ -962,16 +917,12 @@ footer{border-top:1px solid var(--line)}
         <div class="phone"><div class="scr" id="ask-scr"></div></div>
         <div class="lap">
           <div class="lap-s">
-            <div class="lap-bar"><img src="brand/lockup-ink.svg" alt="kenner"><span id="lap-job"></span><button type="button" id="again" hidden><i data-i="s-again"></i>Start over</button></div>
             <div class="lap-p">
               <section class="look" id="look" aria-labelledby="look-t">
                 <div class="look-h"><img src="brand/logo-avatar.svg" alt=""><h3 id="look-t">What Kenner looked up</h3></div>
                 <div class="look-b" id="look-b"><ol class="trail" id="trail"></ol></div>
               </section>
-              <section class="rep" id="rep" aria-labelledby="rep-t" hidden>
-                <div class="rep-h"><img src="brand/logo-avatar.svg" alt=""><h3 id="rep-t">Service report</h3><span class="rep-st" id="rep-st"><i></i><span></span></span></div>
-                <div class="rep-b" id="rep-b"></div>
-              </section>
+              <iframe class="wo" id="wo" src="app/work-order.html#0" title="The walk-in cooler’s work order in Kenner" loading="lazy" hidden></iframe>
             </div>
           </div>
         </div>
@@ -1144,7 +1095,6 @@ footer{border-top:1px solid var(--line)}
     's-chev': S('<path d="m9 18 6-6-6-6"/>'),
     's-x': S('<path d="M18 6 6 18M6 6l12 12"/>'),
     's-up': S('<path d="m5 12 7-7 7 7M12 19V5"/>'),
-    's-again': S('<path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/>'),
     's-plane': S('<path d="M3.4 20.4l17.45-7.48a1 1 0 0 0 0-1.84L3.4 3.6a1 1 0 0 0-1.39.91L2 9.12c0 .5.37.93.87.99L17 12 2.87 13.88c-.5.07-.87.5-.87 1l.01 4.61c0 .71.73 1.2 1.39.91z"/>', true),
     's-send': S('<path d="M14.54 21.69a.5.5 0 0 0 .94-.03l6.5-19a.5.5 0 0 0-.64-.63l-19 6.5a.5.5 0 0 0-.02.93l7.93 3.18a2 2 0 0 1 1.11 1.11z"/><path d="m21.85 2.15-10.94 10.94"/>'),
     person: '<svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="15.5" r="7.5" fill="#fff"/><path d="M5 40c1-9.5 7.5-14 15-14s14 4.5 15 14z" fill="#fff"/></svg>'
@@ -1173,7 +1123,7 @@ footer{border-top:1px solid var(--line)}
   navState(); window.addEventListener('scroll', navState, {passive:true});
 
   /* ---------- watch Kenner work: a technician's messages to one agent, and what the office sees of the same job ---------- */
-  var askScr = $('ask-scr'), trail = $('trail'), lookB = $('look-b'), refc = $('refc'), look = $('look'), rep = $('rep'), repB = $('rep-b'), repSt = $('rep-st'), again = $('again');
+  var askScr = $('ask-scr'), trail = $('trail'), lookB = $('look-b'), refc = $('refc'), look = $('look'), wo = $('wo');
   var AV = 'brand/logo-avatar.svg', ST = 'logos/avatar/servicetitan.svg', TEAMS = 'logos/tiles/teams.svg';
   var C = function(k, s){ return '<button type="button" class="cite" data-k="'+k+'">'+s+'</button>'; };
   var SRC = function(m){ return m.src ? '<span class="src">'+m.src.map(function(x){ return C(x[0], x[1]); }).join(' · ')+'</span>' : ''; };
@@ -1184,41 +1134,41 @@ footer{border-top:1px solid var(--line)}
      records; the Scotsman manual and its pages are real. A step: its icon, what it is doing, what it did, what it asked,
      what came back, and the sources it cited. */
   var FLOWS = {
-    fix: { job:'WO-RF-2046 · Harbor Kitchen · Ice machine stops during harvest', start:'9:37 AM', pre:[],
-      briefing:{ t:'9:02 AM', done:'Wrote the briefing', steps:[
+    fix: { start:'09:37', pre:[],
+      briefing:{ t:'09:02', done:'Wrote the briefing', steps:[
         ['s-clip','Reading the work order','Read the work order','WO-RF-2046','Two harvest stops this morning. Bin running low before lunch.',['wo']],
         ['s-act','Reading IM-01’s data','Read IM-01’s data','','Both stops hit the harvest time limit.',['data']],
         ['s-hist','Looking up IM-01’s history','Looked up IM-01’s history','','Cleaned on 25 Oct. Water filter changed on 9 Sep.',['r2038','r2011']],
         ['s-cap','Checking company knowledge','Checked company knowledge','','After a clean, check the curtain first.',['kcurtain']] ] },
       turns:[
-        { out:{h:'IM-01 stopped on max harvest time. What should I check?'}, t:'9:38 AM', done:'Answered', steps:[
+        { out:{h:'IM-01 stopped on max harvest time. What should I check?'}, t:'09:38', done:'Answered', steps:[
             ['s-act','Reading IM-01’s data','Read IM-01’s data','','Two harvests hit the time limit, at 6:12 and 7:48. Freeze cycles normal.',['data']],
             ['s-cap','Checking company knowledge','Checked company knowledge','','After a clean, swing the curtain first. Morgan cleaned it on 25 Oct.',['kcurtain','r2038']],
             ['s-book','Reading the manual','Read the manual','“maximum harvest time”','Curtain out of position comes first on p. 38. Switch test on p. 46.',['p38','p46']] ],
           a:[ {h:'<b>Check the curtain first.</b> Morgan cleaned IM-01 on 25 Oct, and after a clean Lee has seen curtains catch on the surround and never open.', src:[['r2038','WO-RF-2038'],['kcurtain','Lee in Teams']]},
               {h:'1. Swing it by hand. It should move freely.<br>2. Watch its light on the controller: on when the curtain opens, out as it closes. '+C('p46','p. 46')+'<br>3. Still stopping? Power off and meter the switch: 5 Ω or less closed. '+C('p46','p. 46')} ] },
-        { out:{h:'Where’s the switch?'}, t:'9:44 AM', done:'Answered', steps:[
+        { out:{h:'Where’s the switch?'}, t:'09:44', done:'Answered', steps:[
             ['s-eye','Looking at a manual page','Looked at a manual page','p. 46','The photo on p. 46 circles the curtain switch.',['p46','photo']] ],
           a:[ {img:true, h:'Circled. Its light on the controller is on while the curtain is open.', src:[['p46','p. 46']]} ] },
-        { out:{h:'Curtain was caught on the surround. Reseated it, 3 cycles clean.'}, t:'10:21 AM', done:'Answered', steps:[
+        { out:{h:'Curtain was caught on the surround. Reseated it, 3 cycles clean.'}, t:'10:21', done:'Answered', steps:[
             ['s-act','Reading IM-01’s data','Read IM-01’s data','','Three harvests since 10:04, all inside the limit.',['data']],
             ['s-cap','Checking company knowledge','Checked company knowledge','','Nothing yet for cleaning visits on the Prodigy.',[]],
             ['s-keep','Saving company knowledge','Saved company knowledge','','After cleaning a Prodigy, swing each curtain before restarting.',['knew']] ],
           a:[ {h:'Good fix. Saved for the team: after cleaning a Prodigy, swing each curtain before restarting. Once Lee approves it, it’s in every cleaning briefing.', src:[['knew','Team knowledge']]} ] } ] },
-    report: { job:'WO-RF-2047 · Harbor Kitchen · Walk-in cooler running warm', start:'1:46 PM',
-      pre:[ {f:'in', h:'For WC-01’s report: findings, work, parts, refrigerant, tests, handover. Give readings with units, or say what you didn’t test.', t:'1:41 PM'} ],
+    report: { start:'13:46',
+      pre:[ {f:'in', h:'For WC-01’s report: findings, work, parts, refrigerant, tests, handover. Give readings with units, or say what you didn’t test.', t:'13:41'} ],
       turns:[
-        { out:{voice:'0:25', h:'WC-01 at Harbor Kitchen. Fixed the leak at the liquid-line service valve stem packing. Pumped down into the receiver, adjusted the packing, pressure-tested and pulled a vacuum. No parts, nothing recovered. Added R-448A and the cooler’s back down to temperature.'}, t:'1:48 PM',
-          fill:['findings','work','refrigerant','asks'], a:[ {h:'Drafted. How much R-448A went in? And your test readings?'} ] },
-        { out:{voice:'0:43', h:'Three pounds, six ounces. Nitrogen at 150 psig for 15 minutes, no bubbles at the stem. Vacuum 450 microns. Detector at the stem after restart, nothing. Cooler air 37 after 30 minutes, didn’t probe the food. I’ll check in with Maya by 10 tomorrow.'}, t:'1:52 PM',
-          fill:['amount','tests','handover'], a:[ {h:'All in. Reply OK to file it.'} ] },
-        { out:{h:'OK'}, t:'1:53 PM', fill:['filed'], a:[ {h:'Filed to WO-RF-2047. Maya has a copy.'} ] } ] }
+        { out:{voice:'0:25', h:'WC-01 at Harbor Kitchen. Fixed the leak at the liquid-line service valve stem packing. Pumped down into the receiver, adjusted the packing, pressure-tested and pulled a vacuum. No parts, nothing recovered. Added R-448A and the cooler’s back down to temperature. Floor in front gets wet during pump-down, I’ve dried it.'}, t:'13:48',
+          a:[ {h:'Drafted. How much R-448A went in? And your test readings?'} ] },
+        { out:{voice:'0:43', h:'Three pounds, six ounces. Nitrogen at 150 psig for 15 minutes, no bubbles at the stem. Vacuum 450 microns. Detector at the stem after restart, nothing. Cooler air 37 after 30 minutes, didn’t probe the food. I’ll check in with Maya by 10 tomorrow. Maya also wants a price for new door gaskets.'}, t:'13:52',
+          a:[ {h:'All in. Reply OK to file it.'} ] },
+        { out:{h:'OK'}, t:'13:53', a:[ {h:'Filed to WO-RF-2047. Maya has a copy.'} ] } ] }
   };
-  var LEE = '<div class="said"><figure><figcaption><b>Jamie Patel</b> asked · 4:12 PM</figcaption><blockquote>Another 0530 stopping on max harvest the day after a clean. Switch again?</blockquote></figure><figure><figcaption><b>Lee Carter</b> answered · 4:20 PM</figcaption><blockquote>Swing the curtain before you meter anything. If it went back out of position it catches on the surround and never opens far enough.</blockquote></figure></div>';
+  var LEE = '<div class="said"><figure><figcaption><b>Jamie Patel</b> asked · 16:12</figcaption><blockquote>Another 0530 stopping on max harvest the day after a clean. Switch again?</blockquote></figure><figure><figcaption><b>Lee Carter</b> answered · 16:20</figcaption><blockquote>Swing the curtain before you meter anything. If it went back out of position it catches on the surround and never opens far enough.</blockquote></figure></div>';
   /* each source a chip can name, and its card: g, the source it reads as (work orders, unit data or Kenner's knowledge), else Kenner's blue */
   var CH = {
     wo:{i:'s-page', g:'fsm', l:'WO-RF-2046', av:ST, t:'Harbor Kitchen · Ice machine stops during harvest', s:'WO-RF-2046 · IM-01 · Scotsman MC0530SA-1A', x:'<span>Stopped twice during harvest this morning. Bin running low before lunch.</span>', f:'ServiceTitan'},
-    data:{i:'s-act', g:'tel', l:'IM-01 data', av:AV, t:'IM-01 data', s:'Today · from the unit’s controller', x:'<dl><dt>6:12 AM</dt><dd>Harvest hit the time limit</dd><dt>7:48 AM</dt><dd>Harvest hit the time limit</dd><dt>From 10:04</dt><dd>Three harvests inside the limit</dd></dl>', f:'Unit data'},
+    data:{i:'s-act', g:'tel', l:'IM-01 data', av:AV, t:'IM-01 data', s:'Today · from the unit’s controller', x:'<dl><dt>06:12</dt><dd>Harvest hit the time limit</dd><dt>07:48</dt><dd>Harvest hit the time limit</dd><dt>From 10:04</dt><dd>Three harvests inside the limit</dd></dl>', f:'Unit data'},
     r2038:{i:'s-page', g:'fsm', l:'WO-RF-2038 report', av:ST, t:'WO-RF-2038 report', s:'25 Oct · Morgan Ellis · Planned cleaning', x:'<dl><dt>Found</dt><dd>Dust on the air filter, scale in the water system. No harvest shutdown seen.</dd><dt>Work</dt><dd>Cleaned the air filter and water system, including the water-level sensor.</dd><dt>Tests</dt><dd>Two complete cycles watched.</dd></dl>', f:'ServiceTitan'},
     r2011:{i:'s-page', g:'fsm', l:'WO-RF-2011 report', av:ST, t:'WO-RF-2011 report', s:'9 Sep · Jamie Patel · Water-filter service', x:'<dl><dt>Work</dt><dd>Replaced the cartridge and checked the connections.</dd><dt>Tests</dt><dd>No leaks.</dd></dl>', f:'ServiceTitan'},
     kcurtain:{teams:true, g:'kw', l:'Harvest stop after a clean: check the curtain first', av:AV, t:'Harvest stop after a clean: check the curtain first', s:'Company knowledge · approved by Lee Carter, service supervisor', x:LEE, f:'From Microsoft Teams · 28 Oct'},
@@ -1297,7 +1247,7 @@ footer{border-top:1px solid var(--line)}
   var flow = 'fix', app = 'wa', F = FLOWS.fix, log = [], turn = 0, busy = false, typing = false, draft = null, fresh = 0, askTimers = [], askBody = null;
   function at(fn, ms){ askTimers.push(setTimeout(fn, ms)); }
   function halt(){ askTimers.forEach(clearTimeout); askTimers = []; }
-  function clockNow(){ var m = log[log.length-1]; return (m ? m.t : F.start).replace(/ [AP]M$/, ''); }
+  function clockNow(){ var m = log[log.length-1]; return (m ? m.t : F.start).replace(/^0/, ''); }
 
   function paint(){
     var A = APPS[app];
@@ -1397,60 +1347,21 @@ footer{border-top:1px solid var(--line)}
     if (b){ var grp = b.parentNode.nextSibling; foldRun(grp, !grp.classList.contains('open')); }
   });
 
-  /* the report: its sections wait, fill in as the technician talks, name what is still missing, and stay editable */
-  var lb = 3.375, PER = {lb:1, kg:0.45359237, g:453.59237};
-  var SEC = [['findings','Findings'],['work','Work'],['refrigerant','Refrigerant'],['tests','Tests'],['handover','Handover']];
-  var FILL = {
-    findings: function(){ return '<p contenteditable="true" spellcheck="false">Leak at the liquid-line service valve stem packing.</p>'; },
-    work: function(){ return '<p contenteditable="true" spellcheck="false">Pumped down into the receiver and adjusted the existing stem packing. Pressure-tested the isolated section and pulled a vacuum before reopening. No parts used.</p>'; },
-    refrigerant: function(){ return '<p contenteditable="true" spellcheck="false">R-448A added. None recovered into a cylinder.</p><div class="rep-f" data-f="amount"><label>Amount added</label><span class="gap">How much went in?</span></div>'; },
-    amount: function(){ return '<label for="amt">Amount added</label><div class="amt"><input id="amt" inputmode="decimal" value="3.375"><select aria-label="Unit"><option value="lb">lb</option><option value="kg">kg</option><option value="g">g</option></select><span>of a 24 lb full charge</span></div>'; },
-    tests: function(){ return '<table class="rtab"><thead><tr><th>Measured</th><th>Value</th><th>Result</th></tr></thead><tbody><tr><td>Nitrogen pressure test, 15 min</td><td class="v">150 psig</td><td class="ok">No bubbles</td></tr><tr><td>Vacuum before reopening</td><td class="v">450 microns</td><td>Recorded</td></tr><tr><td>Electronic detector after restart</td><td class="v">–</td><td class="ok">No indication</td></tr></tbody></table>'; },
-    handover: function(){ return '<p contenteditable="true" spellcheck="false">Cooler air 37 °F after 30 minutes; food temperature not measured. Jamie checks overnight temperature with Maya by 10:00 tomorrow.</p>'; }
-  };
-  var DONE = {0:'0 of 5 done', 1:'2 of 5 done', 2:'Ready to file', 3:'Filed · 1:53 PM'};
-  function resetReport(){
-    lb = 3.375;
-    repB.innerHTML = '<dl class="rep-meta"><div><dt>Equipment</dt><dd>WC-01 walk-in cooler</dd></div><div><dt>Refrigerant</dt><dd>R-448A, 24 lb charge</dd></div><div><dt>Technician</dt><dd>Jamie Patel</dd></div></dl>'
-      + SEC.map(function(x){ return '<section class="rep-sec"><h4>'+x[1]+'</h4><div class="rep-f" data-f="'+x[0]+'"><p class="wait">Not given yet</p></div></section>'; }).join('');
-    status(0);
+  /* the report agent's laptop: the captured work order page, moved on a stage as each message lands */
+  var woStage = 0;
+  function report(n, animate){
+    woStage = n;
+    var w = wo.contentWindow;
+    if (w && w.show) w.show(n, animate);
   }
-  function status(n){ repSt.className = 'rep-st' + (n === 2 ? ' ready' : n === 3 ? ' filed' : ''); repSt.lastChild.textContent = DONE[n]; }
-  function put(key, glow){
-    var el;
-    if (key === 'asks'){
-      ['tests','handover'].forEach(function(k){ repB.querySelector('[data-f="'+k+'"]').innerHTML = '<span class="gap">'+(k === 'tests' ? 'Readings and results?' : 'Who follows up, and by when?')+'</span>'; });
-      return;
-    }
-    if (key === 'filed'){
-      var r = document.createElement('p'); r.className = 'receipt' + (glow ? ' in' : '');
-      r.innerHTML = '<img src="'+ST+'" alt="">Filed to ServiceTitan · WO-RF-2047 · 1:53 PM'; repB.appendChild(r);
-      return;
-    }
-    el = repB.querySelector('[data-f="'+key+'"]');
-    el.innerHTML = FILL[key]();
-    if (glow && !still){ el.classList.add('fresh'); void el.offsetWidth; setTimeout(function(){ el.classList.remove('fresh'); }, 900); }
-    if (glow) setTimeout(function(){ el.scrollIntoView({block:'nearest', behavior: still ? 'auto' : 'smooth'}); }, 60);
-  }
-  function paintReport(upTo){
-    resetReport();
-    for (var i = 0; i < upTo; i++) F.turns[i].fill.forEach(function(k){ put(k, false); });
-    status(upTo);
-  }
-  repB.addEventListener('change', function(e){
-    if (e.target.matches('.amt select')){ var input = repB.querySelector('#amt'); input.value = +(lb * PER[e.target.value]).toFixed(e.target.value === 'g' ? 0 : 3); }
-  });
-  repB.addEventListener('input', function(e){
-    if (e.target.id === 'amt'){ var v = parseFloat(e.target.value.replace(',', '.')); if (!isNaN(v)) lb = v / PER[repB.querySelector('.amt select').value]; }
-  });
+  wo.addEventListener('load', function(){ wo.contentWindow.show(woStage, false); });
 
   function settle(i){
     halt(); typing = false; log = F.pre.slice();
     F.turns.slice(0, i+1).forEach(function(T){ log.push(message(T.out, T.t)); T.a.forEach(function(m){ log.push({f:'in', h:m.h, img:m.img, src:m.src, t:T.t}); }); });
     turn = i+1; busy = false;
-    if (flow === 'fix') paintLook(i+1); else paintReport(i+1);
+    if (flow === 'fix') paintLook(i+1); else report(i+1, true);
     draft = null; paint(); offer(turn, true);
-    again.hidden = turn < F.turns.length;
   }
   /* a message sent: the troubleshooter's run joins the timeline and its steps come in one at a time, each turning from
      what it is doing to what it found, before the answer; the report fills in what the technician said */
@@ -1476,9 +1387,9 @@ footer{border-top:1px solid var(--line)}
         t += 1150;
       });
     } else {
-      t += 700;
-      T.fill.forEach(function(k){ at(function(){ put(k, true); }, t); t += 650; });
-      at(function(){ status(i+1); }, t - 300);
+      t += 900;
+      at(function(){ report(i+1, true); }, t);
+      t += 1600;
     }
     T.a.forEach(function(m, j){
       if (j){ at(function(){ setTyping(true); }, t); t += 900; }
@@ -1486,20 +1397,17 @@ footer{border-top:1px solid var(--line)}
       if (!j && flow === 'fix') at(function(){ var li = doneEl(i+1); li.classList.add('in'); trail.querySelector('.grp:last-child ol').appendChild(li); markEnd(); toEnd(lookB); }, t);
       t += 1000;
     });
-    at(function(){ turn = i+1; busy = false; again.hidden = turn < F.turns.length; offer(turn); }, t - 400);
+    at(function(){ turn = i+1; busy = false; offer(turn); }, t - 400);
   }
   function start(key){
     halt(); hideCard();
     flow = key; F = FLOWS[key]; turn = 0; busy = false; typing = false; log = F.pre.slice(); draft = null;
-    $('lap-job').textContent = F.job;
-    look.hidden = key !== 'fix'; rep.hidden = key === 'fix';
-    if (key === 'fix') paintLook(0); else paintReport(0);
-    again.hidden = true;
+    look.hidden = key !== 'fix'; wo.hidden = key === 'fix';
+    if (key === 'fix') paintLook(0); else report(0, false);
     paint(); offer(0, true);
   }
 
   askScr.addEventListener('click', function(e){ if (e.target.closest('.snd.cue') && !busy && draft && draft.ready) run(turn); });
-  again.addEventListener('click', function(){ start(flow); });
   $('agents').querySelectorAll('button').forEach(function(b){
     b.addEventListener('click', function(){
       if (b.dataset.flow === flow) return;
