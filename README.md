@@ -19,3 +19,4 @@ Static site served by GitHub Pages from `main` (custom domain in `CNAME`, keep t
 - Booking links point to https://calendar.app.google/fFpCL3WG3pJtqtC89 (existing Google Workspace booking page).
 - `legal.html` must change whenever the site adds tracking, a form, new hosting or new service providers.
 - Customer names, work orders and figures in the chats and demo screenshots are example data. Photos are AI-generated (Higgsfield).
+- The sources demo (`#answers`) replays the fictional Bayline Refrigeration callout from the Kenner demo's commercial refrigeration scenario. Its manual pages and curtain switch photo come from Scotsman's public Prodigy Elite service manual (pages 38 and 46).
