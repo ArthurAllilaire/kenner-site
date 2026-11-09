@@ -354,71 +354,86 @@ a:focus-visible,button:focus-visible,[tabindex]:focus-visible{outline:2px solid 
 .ask-next .go svg{width:17px;height:17px}
 .ask-next[disabled]{opacity:0;transform:translateY(8px);pointer-events:none}
 
-/* the sources: the job's systems as the web app's sources view shows them, each record lit while this answer uses it */
-.board{border-radius:20px;background:var(--mist);padding:14px;display:flex;flex-direction:column;gap:12px;min-width:0}
-.bd-head{display:flex;align-items:center;gap:10px;min-height:40px;padding:2px 4px 0}
-.bd-head>img{width:30px;height:30px;border-radius:50%;flex:none;display:block}
-.bd-status{flex:1;min-width:0;font-size:15.5px;font-weight:500;letter-spacing:-.01em;line-height:1.3;text-wrap:balance}
-.trace{display:flex;gap:6px;flex:none}
-.trace i{width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:var(--paper);color:var(--ink-subtle);box-shadow:0 0 0 1px var(--line);transition:background .35s,color .35s,box-shadow .35s}
-.trace i svg{width:15px;height:15px}
-.trace i.now{color:var(--ultramarine);box-shadow:0 0 0 1.5px var(--ultramarine)}
-.trace i.done{background:color-mix(in oklab,var(--ultramarine) 10%,var(--paper));color:var(--ultramarine);box-shadow:none}
-.bd-cols{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;align-items:start}
-.bd-col{display:grid;gap:12px;min-width:0}
-.pn{background:var(--paper);border-radius:14px;padding:14px 14px 8px;box-shadow:0 0 0 1px var(--line),0 1px 2px rgba(10,11,30,.04);min-width:0}
-.pn-h{display:flex;align-items:center;gap:10px;margin-bottom:8px}
-.pn-h h3{font:500 15px/1.3 var(--font-text);letter-spacing:-.01em}
-.pn-h small{font-size:12.5px;color:var(--ink-subtle)}
-.pn h4{margin:12px 0 2px;font-size:12.5px;font-weight:500;color:var(--ink-muted)}
-.pn p{font-size:14px;line-height:1.45}
-.pn .ref{font-family:var(--font-mono);font-size:11.5px;color:var(--ink-muted);letter-spacing:0}
-.cap{display:flex;flex-wrap:wrap;align-items:center;gap:2px 8px;font-size:12.5px;line-height:1.4;color:var(--ink-subtle)}
-/* a source's avatar: who holds it, with its kind on a badge */
-.sav{--s:26px;position:relative;flex:none;width:var(--s);height:var(--s);border-radius:50%;background:#F4F5F8;display:grid;place-items:center;box-shadow:0 0 0 2px var(--paper),inset 0 0 0 1px rgba(10,11,30,.08)}
-.sav>img{display:block;width:100%;height:100%;border-radius:50%}
-.sav.v>img{width:66%;height:62%;border-radius:0;object-fit:contain}
-.sav>span{position:absolute;right:-4px;bottom:-4px;width:15px;height:15px;border-radius:50%;background:var(--paper);color:var(--ink-muted);box-shadow:0 0 0 1.5px var(--paper),inset 0 0 0 1px var(--line);display:grid;place-items:center}
-.sav>span svg{width:10px;height:10px;stroke-width:2.4}
-/* a record: what a service leader checks first, folding open in place for the rest */
-.rec{margin:0 -8px;padding:8px;border-radius:10px;transition:background .5s var(--ease),box-shadow .5s var(--ease)}
-.rec+.rec{margin-top:2px}
-.rec>button{appearance:none;border:0;background:none;padding:0;width:100%;display:flex;align-items:flex-start;gap:8px;text-align:left;font:inherit;color:inherit;cursor:pointer}
-.rec>button>span{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}
-.rec>button>svg{width:16px;height:16px;flex:none;margin-top:1px;color:var(--ink-subtle);transition:transform .35s var(--ease)}
-.rec.open>button>svg{transform:rotate(90deg)}
-.rec .t{font-size:14px;line-height:1.45;color:var(--ink)}
-.rec-d{display:grid;grid-template-rows:0fr;transition:grid-template-rows .4s var(--ease)}
-.rec.open .rec-d{grid-template-rows:1fr}
-.rec-d>div{overflow:hidden;min-height:0}
-.rec-in{padding:8px 24px 2px 0;display:flex;flex-direction:column;gap:8px;font-size:13.5px;line-height:1.5;color:var(--ink-muted)}
-.rec-in dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:4px 12px}
-.rec-in dt{color:var(--ink);font-weight:500}
-.rec-in dd{margin:0}
+/* what Kenner looked up, as the web app shows it: each question a node on one line, unfolding to the steps Kenner took */
+.look{display:flex;flex-direction:column;min-width:0;border-radius:20px;background:var(--paper);box-shadow:inset 0 0 0 1px var(--line);overflow:hidden;contain:size}
+.look-h{display:flex;align-items:center;gap:10px;flex:none;margin:0 20px;padding:16px 0;border-bottom:1px solid var(--line)}
+.look-h img{width:26px;height:26px;border-radius:50%;display:block;flex:none}
+.look-h h3{font:500 16px/1.3 var(--font-text);letter-spacing:-.01em}
+.look-b{flex:1;min-height:0;overflow-y:auto;overscroll-behavior:contain;padding:18px 20px 28px;scrollbar-width:thin;scrollbar-color:var(--line) transparent}
+.trail,.trail ol{list-style:none;margin:0;padding:0}
+.trail li{position:relative;display:grid;grid-template-columns:28px minmax(0,1fr);column-gap:12px;padding-bottom:16px}
+.trail li::after{content:"";position:absolute;left:13.5px;bottom:4px;width:1px;background:var(--line)}
+.trail .run::after{top:32px}
+.trail .st::after{top:26px}
+.trail li.end{padding-bottom:0}
+.trail li.end::after,.trail .grp::after{display:none}
+.trail .grp{display:grid;grid-template-columns:minmax(0,1fr);grid-template-rows:0fr;padding:0;transition:grid-template-rows .5s var(--ease)}
+.trail .grp.open{grid-template-rows:1fr}
+.grp>ol{min-height:0;overflow:hidden;visibility:hidden;transition:visibility 0s .5s}
+.grp.open>ol{visibility:visible;transition:none}
+.trail .in{animation:min .5s var(--ease) both}
+.run-i{width:28px;height:28px;border-radius:50%;background:var(--paper);box-shadow:0 0 0 1px var(--line);display:grid;place-items:center;color:var(--ink)}
+.run-i svg{width:15px;height:15px}
+.run>button{appearance:none;border:0;background:none;padding:4px 0 0;display:flex;align-items:center;gap:6px;min-width:0;font:inherit;font-size:14.5px;line-height:1.4;color:var(--ink);text-align:left;cursor:pointer;border-radius:6px}
+.run>button b{min-width:0;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.run>button span{flex:none;color:var(--ink-subtle);white-space:nowrap}
+.run>button svg{width:16px;height:16px;flex:none;margin-left:auto;color:var(--ink-subtle);transition:transform .35s var(--ease),color .2s}
+.run>button:hover svg{color:var(--ink)}
+.run>button[aria-expanded="true"] svg{transform:rotate(180deg)}
+.st-i{position:relative;width:22px;height:22px;justify-self:center;border-radius:50%;background:var(--mist);color:var(--ink-muted);display:grid;place-items:center}
+.st-i svg{width:13px;height:13px}
+.st-i img{width:22px;height:22px;border-radius:50%;display:block}
+.st.ing .st-i::after{content:"";position:absolute;inset:-3px;border-radius:50%;border:1.5px solid transparent;border-top-color:var(--ultramarine);animation:spin .8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.st-t{padding-top:1px;font-size:14px;line-height:1.45}
+.st-t b{font-weight:500;transition:color .3s}
+.st.ing .st-t b{color:var(--ink-muted)}
+.st-t span{color:var(--ink-subtle)}
+.trail .nw{white-space:nowrap}
+.st-d{display:grid;grid-template-rows:0fr;transition:grid-template-rows .5s var(--ease),opacity .5s var(--ease);opacity:0}
+.st.done .st-d{grid-template-rows:1fr;opacity:1}
+.st-d>div{min-height:0;overflow:hidden}
+.st-d p{margin-top:3px;font-size:13px;line-height:1.5;color:var(--ink-muted)}
+.chs{display:flex;flex-wrap:wrap;gap:6px;padding:8px 2px 2px}
+/* a source chip: the record it names, one tap away, with its card on hover */
+.ch{--src:var(--ultramarine);appearance:none;border:0;display:inline-flex;align-items:center;gap:6px;max-width:100%;height:26px;padding:0 10px;border-radius:999px;background:#EEF2FD;color:var(--ultramarine);font:400 12.5px/1 var(--font-text);white-space:nowrap;cursor:pointer;transition:filter .12s,box-shadow .3s}
+.ch:hover{filter:brightness(.97)}
+.ch svg,.ch img{width:14px;height:14px;flex:none}
+.ch img{border-radius:3px}
+.ch span{min-width:0;overflow:hidden;text-overflow:ellipsis}
+.ch.g{background:color-mix(in oklab,var(--src) 12%,var(--paper));color:var(--ink)}
+.ch.g svg{color:var(--src)}
+.ch.fsm{--src:#0F1340}
+.ch.kw{--src:#5A5F73;max-width:17rem}
+.ch.hl{box-shadow:0 0 0 1.5px var(--ultramarine)}
+.ch.ping{animation:chping 1.2s var(--ease)}
+@keyframes chping{from{box-shadow:0 0 0 2px var(--ultramarine),0 0 0 6px color-mix(in oklab,var(--ultramarine) 22%,transparent)}}
+/* a chip's card: a picture where there is one, who holds it, what is known about it */
+.refc{position:fixed;z-index:40;left:0;top:0;width:min(360px,calc(100vw - 32px));border-radius:14px;background:var(--paper);color:var(--ink);box-shadow:0 0 0 1px var(--line),0 14px 36px rgba(10,11,30,.16);overflow:hidden;opacity:0;visibility:hidden;transform:translateY(4px);transition:opacity .18s var(--ease),transform .18s var(--ease),visibility 0s .18s}
+.refc.on{opacity:1;visibility:visible;transform:none;transition:opacity .18s var(--ease),transform .18s var(--ease)}
+.refc-b{display:flex;gap:12px;padding:12px}
+.refc-m{width:96px;flex:none;align-self:flex-start;border-radius:8px;overflow:hidden;box-shadow:0 0 0 1px var(--line)}
+.refc-m img{display:block;width:100%;aspect-ratio:3/4;object-fit:cover;object-position:50% 0}
+.refc-c{flex:1;min-width:0;display:flex;flex-direction:column;gap:3px}
+.refc-t{display:flex;align-items:flex-start;gap:8px;font-size:14px;font-weight:500;line-height:1.35}
+.refc-av{width:20px;height:20px;flex:none;margin-top:1px;border-radius:50%;background:#F4F5F8;box-shadow:inset 0 0 0 1px rgba(10,11,30,.08);display:grid;place-items:center;overflow:hidden}
+.refc-av img{width:100%;height:100%;display:block}
+.refc-av.v img{width:66%;height:62%;object-fit:contain}
+.refc-s{font-size:12.5px;line-height:1.4;color:var(--ink-subtle)}
+.refc-x{margin-top:6px;display:flex;flex-direction:column;gap:8px;font-size:13px;line-height:1.5;color:var(--ink-muted)}
+.refc-x dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:4px 12px}
+.refc-x dt{font-weight:500;color:var(--ink)}
+.refc-x dd{margin:0}
+.refc-f{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:38px;padding:6px 12px;border-top:1px solid var(--line);font-size:12.5px;color:var(--ink-subtle)}
+.refc-f>span{display:inline-flex;align-items:center;gap:6px}
+.refc-f img{width:14px;height:14px;border-radius:3px;display:block}
+.refc-f button{appearance:none;border:0;background:none;padding:2px 0;font:inherit;font-weight:500;color:var(--ultramarine);cursor:pointer;display:inline-flex;align-items:center;gap:2px}
+.refc-f button svg{width:14px;height:14px}
 .said{display:flex;flex-direction:column;gap:6px;padding:10px 12px;border-radius:10px;background:var(--mist)}
 .said figure{margin:0;display:flex;flex-direction:column;gap:2px}
 .said figcaption{font-size:12px;color:var(--ink-subtle)}
 .said figcaption b{font-weight:500;color:var(--ink)}
 .said blockquote{margin:0;color:var(--ink)}
-.from{display:inline-flex;align-items:center;gap:5px}
-.from img{width:14px;height:14px;border-radius:4px;display:block}
-.lit{background:color-mix(in oklab,var(--ultramarine) 7%,transparent)}
-.board .hl{box-shadow:inset 0 0 0 1.5px var(--ultramarine)}
-.ping{animation:ping 1.1s var(--ease)}
-@keyframes ping{from{background:color-mix(in oklab,var(--ultramarine) 16%,transparent);box-shadow:inset 0 0 0 1.5px var(--ultramarine)}}
-/* the manual pages it cites, as the pages themselves */
-.mchip{display:inline-flex;align-items:center;gap:6px;max-width:100%;height:24px;padding:0 9px 0 7px;border-radius:7px;background:var(--mist);font-size:12.5px;font-weight:500;color:var(--ink-muted);margin-bottom:8px}
-.mchip svg{width:13px;height:13px;flex:none}
-.mchip span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.pages{display:grid;grid-template-columns:repeat(2,minmax(0,200px));gap:6px;margin:0 -4px 4px}
-.pg{appearance:none;border:0;background:none;padding:4px;border-radius:12px;text-align:left;font:inherit;color:inherit;cursor:zoom-in;transition:background .5s var(--ease),box-shadow .5s var(--ease)}
-.pg>span{display:block;border-radius:9px;overflow:hidden;background:var(--paper);box-shadow:0 0 0 1px var(--line)}
-.pg img{display:block;width:100%;aspect-ratio:4/3;object-fit:cover;object-position:50% 0}
-.pg em{display:block;font-style:normal;padding:6px 8px;border-top:1px solid var(--line);font-size:12.5px;color:var(--ink-subtle);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.pg em b{font-weight:500;color:var(--ink)}
-.pg:hover em b{text-decoration:underline;text-underline-offset:3px}
-.pg.lit>span{box-shadow:0 0 0 1.5px var(--ultramarine)}
-.pg.lit em b{color:var(--ultramarine)}
 .pgv{width:min(760px,calc(100vw - 32px));max-height:calc(100vh - 32px);padding:0;border:0;border-radius:18px;background:var(--paper);color:var(--ink);box-shadow:var(--shadow-float);overflow:auto}
 .pgv::backdrop{background:rgba(10,11,30,.6);-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px)}
 .pgv-h{position:sticky;top:0;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px 12px 12px 20px;background:rgba(255,255,255,.94);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);border-bottom:1px solid var(--line);font-size:14px;color:var(--ink-muted)}
@@ -426,7 +441,7 @@ a:focus-visible,button:focus-visible,[tabindex]:focus-visible{outline:2px solid 
 .pgv-h button svg{width:16px;height:16px}
 .pgv img{display:block;width:100%;height:auto}
 
-/* citations inside a chat bubble: the app's own link, which points at the record it names */
+/* citations inside a chat bubble: the app's own link, which points at the source chip it names */
 .cite{appearance:none;border:0;background:none;padding:0;margin:0;font:inherit;letter-spacing:inherit;color:inherit;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:2px;cursor:pointer;border-radius:3px;white-space:nowrap}
 .wa .cite{color:#027EB5}
 .im .ib.in .cite{color:#007AFF}
@@ -518,15 +533,14 @@ a:focus-visible,button:focus-visible,[tabindex]:focus-visible{outline:2px solid 
 .tm-in .snd{display:flex;margin-bottom:6px;color:#5B5FC7}
 .tm-in .snd svg{width:20px;height:20px}
 
-/* narrower screens keep the phone beside its sources, in one column of panels, with the phone held in view */
+/* narrower screens keep the phone beside the timeline; phones stack them */
 @media (max-width:1100px){
   .ask{grid-template-columns:minmax(0,350px) minmax(0,1fr)}
-  .ask-stage{position:sticky;top:88px;align-self:start;min-height:0;padding:24px 16px 20px}
-  .bd-cols{grid-template-columns:minmax(0,1fr)}
+  .ask-stage{min-height:0;padding:24px 16px 20px}
 }
 @media (max-width:760px){
   .ask{grid-template-columns:minmax(0,1fr)}
-  .ask-stage{position:relative;top:auto}
+  .look{contain:none;height:560px}
 }
 @media (max-width:640px){
   .ask{padding:10px;border-radius:22px}
@@ -535,10 +549,8 @@ a:focus-visible,button:focus-visible,[tabindex]:focus-visible{outline:2px solid 
   .ask-apps button img{width:24px;height:24px;border-radius:6px}
   .ask-stage{padding:24px 10px 18px}
   .ask-stage .phone{width:min(300px,100%);height:630px}
-  .bd-cols{grid-template-columns:minmax(0,1fr)}
-  .board{padding:10px}
-  .bd-head{flex-wrap:wrap}
-  .trace{width:100%;order:3;padding-left:40px}
+  .look-h{margin:0 16px}
+  .look-b{padding:16px 16px 24px}
 }
 
 /* ---------- integrations (dark tile grid) ---------- */
@@ -862,66 +874,13 @@ footer{border-top:1px solid var(--line)}
           <div class="phone"><div class="scr" id="ask-scr"></div></div>
           <button type="button" class="ask-next glass" id="ask-next"></button>
         </div>
-        <section class="board" id="board" aria-label="Sources Kenner read">
-          <div class="bd-head">
-            <img src="brand/logo-avatar.svg" alt="">
-            <p class="bd-status" id="bd-status" aria-live="polite">What Kenner can read for this job</p>
-            <span class="trace" id="trace" aria-hidden="true"></span>
-          </div>
-          <div class="bd-cols">
-            <div class="bd-col">
-              <section class="pn">
-                <div class="pn-h"><span class="sav v"><img src="logos/avatar/servicetitan.svg" alt=""><span data-i="s-clip"></span></span><h3>ServiceTitan</h3><small>1 job, 2 visits</small></div>
-                <div class="rec" data-k="job">
-                  <span class="cap"><span class="ref">WO-RF-2046</span>Harbor Kitchen · IM-01 · Scotsman MC0530SA-1A</span>
-                  <p class="t">Ice machine stopped twice during harvest this morning. Bin running low before lunch.</p>
-                </div>
-                <h4>Earlier visits</h4>
-                <div class="rec" data-k="v2038">
-                  <button type="button" aria-expanded="false"><span><span class="cap"><time>25 Oct</time><span class="ref">WO-RF-2038</span>Morgan Ellis</span><span class="t">Cleaning. Dust on the air filter, scale in the water system.</span></span><i data-i="s-chev"></i></button>
-                  <div class="rec-d"><div><div class="rec-in"><dl><dt>Work</dt><dd>Cleaned the air filter and water system, including the water-level sensor.</dd><dt>Tests</dt><dd>Two complete cycles watched. No shutdown seen.</dd><dt>Parts</dt><dd>None</dd></dl></div></div></div>
-                </div>
-                <div class="rec" data-k="v2011">
-                  <button type="button" aria-expanded="false"><span><span class="cap"><time>9 Sep</time><span class="ref">WO-RF-2011</span>Jamie Patel</span><span class="t">Water-filter service.</span></span><i data-i="s-chev"></i></button>
-                  <div class="rec-d"><div><div class="rec-in"><dl><dt>Work</dt><dd>Replaced the cartridge and checked the connections.</dd><dt>Tests</dt><dd>No leaks.</dd></dl></div></div></div>
-                </div>
-                <h4>Site note</h4>
-                <div class="rec" data-k="note">
-                  <p class="t">Maya Chen, duty manager, is the contact for IM-01. Rear delivery entrance. Lunch prep starts 11:30.</p>
-                </div>
-              </section>
-            </div>
-            <div class="bd-col">
-              <section class="pn">
-                <div class="pn-h"><span class="sav"><img src="brand/logo-avatar.svg" alt=""><span data-i="s-cap"></span></span><h3>Company knowledge</h3><small>2 items</small></div>
-                <div class="rec" data-k="kcurtain">
-                  <button type="button" aria-expanded="false"><span><span class="t">Harvest stop after a clean: check the curtain first</span><span class="cap"><span class="from"><img src="logos/tiles/teams.svg" alt="">Lee Carter in Teams</span>28 Oct</span></span><i data-i="s-chev"></i></button>
-                  <div class="rec-d"><div><div class="rec-in">
-                    <div class="said">
-                      <figure><figcaption><b>Jamie Patel</b> asked · 4:12 PM</figcaption><blockquote>Another 0530 stopping on max harvest the day after a clean. Switch again?</blockquote></figure>
-                      <figure><figcaption><b>Lee Carter</b> answered · 4:20 PM</figcaption><blockquote>Swing the curtain before you meter anything. If it went back out of position it catches on the surround and never opens far enough.</blockquote></figure>
-                    </div>
-                    <span>Approved: Lee Carter is the service supervisor.</span>
-                  </div></div></div>
-                </div>
-                <div class="rec" data-k="kfloor">
-                  <button type="button" aria-expanded="false"><span><span class="t">IM-01: keep the beverage-prep floor dry</span><span class="cap">From <span class="ref">WO-RF-2038</span></span></span><i data-i="s-chev"></i></button>
-                  <div class="rec-d"><div><div class="rec-in"><span>Meltwater collects in front of the bin. Barrier the area and dry the floor before handing back.</span></div></div></div>
-                </div>
-              </section>
-              <section class="pn">
-                <div class="pn-h"><span class="sav"><img src="brand/logo-avatar.svg" alt=""><span data-i="s-book"></span></span><h3>Manual</h3><small>2 pages</small></div>
-                <span class="mchip"><i data-i="s-book"></i><span>Scotsman Prodigy Elite service manual</span></span>
-                <div class="pages">
-                  <button type="button" class="pg" data-k="p38" data-cap="Scotsman Prodigy Elite service manual, page 38: diagnostics, air cooled"><span><img src="media/scotsman-p38.webp" alt="Manual page 38: the air-cooled diagnostics table for a shut down on maximum harvest time" loading="lazy" decoding="async"><em><b>p. 38</b> · Diagnostics</em></span></button>
-                  <button type="button" class="pg" data-k="p46" data-cap="Scotsman Prodigy Elite service manual, page 46: curtain switch test procedures"><span><img src="media/scotsman-p46.webp" alt="Manual page 46: curtain switch test procedures with photos of the controller lights and the switch" loading="lazy" decoding="async"><em><b>p. 46</b> · Curtain switch</em></span></button>
-                </div>
-              </section>
-            </div>
-          </div>
+        <section class="look" aria-labelledby="look-t">
+          <div class="look-h"><img src="brand/logo-avatar.svg" alt=""><h3 id="look-t">What Kenner looked up</h3></div>
+          <div class="look-b" id="look-b"><ol class="trail" id="trail"></ol></div>
         </section>
       </div>
     </div>
+    <div class="refc" id="refc" aria-hidden="true"></div>
     <dialog class="pgv" id="pgv" aria-label="Manual page"><div class="pgv-h"><span id="pgv-cap"></span><button type="button" id="pgv-x" aria-label="Close"><i data-i="s-x"></i></button></div><img id="pgv-img" src="media/scotsman-p38.webp" alt="" loading="lazy" decoding="async"></dialog>
   </section>
 
@@ -1095,7 +1054,13 @@ footer{border-top:1px solid var(--line)}
     's-cap': S('<path d="M21.42 10.92a1 1 0 0 0-.02-1.84L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.83l8.57 3.91a2 2 0 0 0 1.66 0z"/><path d="M22 10v6M6 12.5V16a6 3 0 0 0 12 0v-3.5"/>'),
     's-search': S('<circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/>'),
     's-page': S('<path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7z"/><path d="M14 2v4a2 2 0 0 0 2 2h4M10 9H8M16 13H8M16 17H8"/>'),
-    's-pin': S('<path d="M20 10c0 5-5.54 10.19-7.4 11.8a1 1 0 0 1-1.2 0C9.54 20.19 4 15 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/>'),
+    's-bldg': S('<path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18zM6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2M10 6h4M10 10h4M10 14h4M10 18h4"/>'),
+    's-eye': S('<path d="M2.06 12.35a1 1 0 0 1 0-.7 10.75 10.75 0 0 1 19.88 0 1 1 0 0 1 0 .7 10.75 10.75 0 0 1-19.88 0"/><circle cx="12" cy="12" r="3"/>'),
+    's-saved': S('<rect width="8" height="4" x="8" y="2" rx="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2M9 14l2 2 4-4"/>'),
+    's-img': S('<rect width="18" height="18" x="3" y="3" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.09-3.09a2 2 0 0 0-2.82 0L6 21"/>'),
+    's-msg': S('<path d="M7.9 20A9 9 0 1 0 4 16.1L2 22z"/>'),
+    's-scroll': S('<path d="M15 12h-5M15 8h-5M19 17V5a2 2 0 0 0-2-2H4"/><path d="M8 21h12a2 2 0 0 0 2-2v-1a1 1 0 0 0-1-1H11a1 1 0 0 0-1 1v1a2 2 0 1 1-4 0V5a2 2 0 1 0-4 0v2a1 1 0 0 0 1 1h3"/>'),
+    's-down': S('<path d="m6 9 6 6 6-6"/>'),
     's-book': S('<path d="M12 7v14M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/>'),
     's-chev': S('<path d="m9 18 6-6-6-6"/>'),
     's-x': S('<path d="M18 6 6 18M6 6l12 12"/>'),
@@ -1281,29 +1246,59 @@ footer{border-top:1px solid var(--line)}
     }, {threshold:.35}).observe($('stage'));
   }
 
-  /* ---------- ask: a technician's questions in their own app, and the sources Kenner read for each answer ---------- */
-  var askScr = $('ask-scr'), askNext = $('ask-next'), bdStatus = $('bd-status'), trace = $('trace'), board = $('board');
-  var AV = 'brand/logo-avatar.svg';
+  /* ---------- ask: a technician's questions in their own app, and what Kenner looked up to answer each ---------- */
+  var askScr = $('ask-scr'), askNext = $('ask-next'), trail = $('trail'), lookB = $('look-b'), refc = $('refc');
+  var AV = 'brand/logo-avatar.svg', ST = 'logos/avatar/servicetitan.svg', TEAMS = 'logos/tiles/teams.svg';
   var C = function(k, s){ return '<button type="button" class="cite" data-k="'+k+'">'+s+'</button>'; };
   var SRC = function(m){ return m.src ? '<span class="src">'+m.src.map(function(x){ return C(x[0], x[1]); }).join(' · ')+'</span>' : ''; };
   /* Bayline Refrigeration's Harbor Kitchen callout from the commercial refrigeration demo: fictional contractor, people and
      records; the Scotsman manual and its pages are real. */
   var TURNS = [
     { q:'IM-01 stopped on max harvest time. What should I check?', t:'9:38 AM',
-      steps:[['s-clip','Reading WO-RF-2046 in ServiceTitan',['job']],['s-hist','Checking the 2 earlier visits',['v2038','v2011']],['s-cap','Checking company knowledge',['kcurtain']],['s-search','Searching the manual for max harvest time',['p38']],['s-page','Reading p. 46, the curtain switch',['p46']]],
-      end:'Read ServiceTitan, company knowledge and the manual', open:['v2038','kcurtain'],
-      a:[ {h:'<b>Check the curtain first.</b> Morgan cleaned IM-01 on 25 Oct, and after a clean Lee has seen curtains catch on the surround and never open.', src:[['v2038','WO-RF-2038'],['kcurtain','Lee in Teams']]},
+      a:[ {h:'<b>Check the curtain first.</b> Morgan cleaned IM-01 on 25 Oct, and after a clean Lee has seen curtains catch on the surround and never open.', src:[['r2038','WO-RF-2038'],['kcurtain','Lee in Teams']]},
           {h:'1. Swing it by hand. It should move freely.<br>2. Watch its light on the controller: on when the curtain opens, out within half an inch of closing. '+C('p46','p. 46')+'<br>3. Still stopping? Power off, unplug the switch lead and meter it: 5 Ω or less closed, open circuit when open. '+C('p46','p. 46')},
           {h:'If both pass, the rest of the list is on '+C('p38','p. 38')+': ice bridge thickness, purge valve, hot gas valve.'} ] },
     { q:'Where’s the switch?', t:'9:44 AM',
-      steps:[['s-page','Finding the curtain switch on p. 46',['p46']]],
-      end:'Sent the photo from p. 46', open:[],
       a:[ {img:true, h:'Circled. Its light on the controller is on while the curtain is open and goes out as it closes.', src:[['p46','p. 46']]} ] },
     { q:'Curtain was out of position, catching on the surround. Reseated it, 3 cycles clean.', t:'10:02 AM',
-      steps:[['s-clip','Saving your findings to WO-RF-2046',['job']],['s-pin','Checking the site note',['note']],['s-cap','Checking company knowledge',['kfloor']]],
-      end:'Saved to WO-RF-2046 and checked the site', open:['kfloor'],
-      a:[ {h:'Saved to the work order. Hand back to Maya Chen, the duty manager. Dry the floor in front of the bin first: meltwater collects there.', src:[['job','WO-RF-2046'],['note','Site note'],['kfloor','Team note']]} ] }
+      a:[ {h:'Saved to the work order. Hand back to Maya Chen, the duty manager. Dry the floor in front of the bin first: meltwater collects there.', src:[['wo','WO-RF-2046'],['site','Site note'],['kfloor','Team note']]} ] }
   ];
+  /* What Kenner looked up, as the web app's timeline names it: the briefing it prepared before the visit, then a run for each
+     question. A step: its icon, what it is doing, what it did, what it asked, what came back, and the sources it cited. */
+  var RUNS = [
+    { t:'9:02 AM', done:'Wrote the briefing', steps:[
+      ['s-clip','Reading the work order','Read the work order','WO-RF-2046','Two harvest stops this morning. Bin running low before lunch.',['wo']],
+      ['s-hist','Looking up IM-01’s history','Looked up IM-01’s history','','Cleaning two weeks ago, two cycles watched. Water-filter service two months ago.',['r2038','r2011']],
+      ['s-bldg','Reading the site’s notes in ServiceTitan','Read the site’s notes in ServiceTitan','','Maya Chen is the duty manager. Lunch prep starts 11:30.',['site']],
+      ['s-cap','Checking company knowledge','Checked company knowledge','','Rear entrance before lunch. Keep the beverage-prep floor dry.',['kentry','kfloor']],
+      ['s-search','Searching the manuals','Searched the manuals','“maximum harvest time air cooled”','The air-cooled harvest diagnostics on p. 38.',['p38']],
+      ['s-page','Reading a page','Read a page','p. 46','Curtain switch checks. Movement first, then the switch.',['p46']] ] },
+    { done:'Answered', steps:[
+      ['s-hist','Looking up IM-01’s history','Looked up IM-01’s history','','2 earlier visits: WO-RF-2038 on 25 Oct, Morgan Ellis, cleaning. WO-RF-2011 on 9 Sep, Jamie Patel, water filter.',['r2038','r2011']],
+      ['s-cap','Searching company knowledge','Searched company knowledge','“harvest stop after cleaning”','Lee Carter in Teams: swing the curtain before you meter anything.',['kcurtain']],
+      ['s-search','Searching the manuals','Searched the manuals','“maximum harvest time”','Shut down on maximum harvest time: curtain, curtain switch, ice bridge, purge and hot gas valves.',['p38']],
+      ['s-page','Reading a page','Read a page','p. 46','Curtain switch tests: watch its light, then meter it. 5 Ω or less closed.',['p46']] ] },
+    { done:'Answered', steps:[
+      ['s-eye','Looking at a manual page','Looked at a manual page','p. 46','The photo on p. 46 circles the curtain switch.',['p46','photo']] ] },
+    { done:'Answered', steps:[
+      ['s-saved','Saving a note to the work order','Saved a note to the work order','WO-RF-2046','Curtain out of position, catching on the surround. Reseated, 3 cycles clean.',['wo']],
+      ['s-bldg','Reading the site’s notes in ServiceTitan','Read the site’s notes in ServiceTitan','','Maya Chen, duty manager, takes the hand-back.',['site']],
+      ['s-cap','Checking company knowledge','Checked company knowledge','','Meltwater collects in front of the bin. Dry the floor before handing back.',['kfloor']] ] }
+  ];
+  var LEE = '<div class="said"><figure><figcaption><b>Jamie Patel</b> asked · 4:12 PM</figcaption><blockquote>Another 0530 stopping on max harvest the day after a clean. Switch again?</blockquote></figure><figure><figcaption><b>Lee Carter</b> answered · 4:20 PM</figcaption><blockquote>Swing the curtain before you meter anything. If it went back out of position it catches on the surround and never opens far enough.</blockquote></figure></div>';
+  /* each source a chip can name, and its card: g, the source it reads as (work orders or Kenner's knowledge), else Kenner's blue */
+  var CH = {
+    wo:{i:'s-page', g:'fsm', l:'WO-RF-2046', av:ST, t:'Harbor Kitchen · Ice machine stops during harvest', s:'WO-RF-2046 · IM-01 · Scotsman MC0530SA-1A', x:'<span>Stopped twice during harvest this morning. Bin running low before lunch.</span>', f:'ServiceTitan'},
+    r2038:{i:'s-page', g:'fsm', l:'WO-RF-2038 report', av:ST, t:'WO-RF-2038 report', s:'25 Oct · Morgan Ellis · Planned cleaning', x:'<dl><dt>Found</dt><dd>Dust on the air filter, scale in the water system. No harvest shutdown seen.</dd><dt>Work</dt><dd>Cleaned the air filter and water system, including the water-level sensor.</dd><dt>Tests</dt><dd>Two complete cycles watched.</dd></dl>', f:'ServiceTitan'},
+    r2011:{i:'s-page', g:'fsm', l:'WO-RF-2011 report', av:ST, t:'WO-RF-2011 report', s:'9 Sep · Jamie Patel · Water-filter service', x:'<dl><dt>Work</dt><dd>Replaced the cartridge and checked the connections.</dd><dt>Tests</dt><dd>No leaks.</dd></dl>', f:'ServiceTitan'},
+    site:{i:'s-bldg', g:'fsm', l:'Harbor Kitchen site note', av:ST, t:'Harbor Kitchen site note', s:'Harbor Hospitality', x:'<span>Maya Chen, duty manager, is the contact for IM-01. Rear delivery entrance. Lunch prep starts 11:30.</span>', f:'ServiceTitan'},
+    kcurtain:{teams:true, g:'kw', l:'Harvest stop after a clean: check the curtain first', av:AV, t:'Harvest stop after a clean: check the curtain first', s:'Company knowledge · approved by Lee Carter, service supervisor', x:LEE, f:'From Microsoft Teams · 28 Oct'},
+    kfloor:{i:'s-cap', g:'kw', l:'IM-01: keep the beverage-prep floor dry', av:AV, t:'IM-01: keep the beverage-prep floor dry', s:'Company knowledge · from WO-RF-2038', x:'<span>Meltwater collects in front of the bin. Barrier the area and dry the floor before handing back.</span>'},
+    kentry:{i:'s-cap', g:'kw', l:'Harbor Kitchen: rear delivery entrance before lunch', av:AV, t:'Harbor Kitchen: rear delivery entrance before lunch', s:'Company knowledge · from WO-RF-2038', x:'<span>Maya opens the rear delivery entrance. Keep the kitchen route clear ahead of 11:30 lunch prep.</span>'},
+    p38:{i:'s-book', g:'kw', l:'Prodigy Elite p. 38', av:AV, t:'Scotsman Prodigy Elite service manual, p. 38', s:'Diagnostics, air cooled', m:'media/scotsman-p38.webp', open:'Scotsman Prodigy Elite service manual, page 38: diagnostics, air cooled', f:'Manual'},
+    p46:{i:'s-book', g:'kw', l:'Prodigy Elite p. 46', av:AV, t:'Scotsman Prodigy Elite service manual, p. 46', s:'Test procedures: curtain switch', m:'media/scotsman-p46.webp', open:'Scotsman Prodigy Elite service manual, page 46: curtain switch test procedures', f:'Manual'},
+    photo:{i:'s-img', l:'Photo', av:AV, t:'Curtain switch, circled', s:'From the manual, p. 46', m:'media/curtain-switch.webp', open:'Photo from the manual, page 46: the curtain switch, circled', f:'Sent in the chat'}
+  };
   var IMG_LABEL = 'Photo from the manual, page 46: the curtain switch, circled';
   var APPS = {
     wa: { cls:'wa', body:'wa-body',
@@ -1339,7 +1334,7 @@ footer{border-top:1px solid var(--line)}
       composer: function(d){ return '<div class="tm-in" id="ask-cmp">'+ICONS.plus+'<span class="fld">'+(d ? '<span class="tx">'+d+'</span>' : '<span class="ph">Type a message</span>')+'</span>'+(d ? '<span class="snd">'+ICONS['s-send']+'</span>' : ICONS.mic)+'</div>'; } }
   };
 
-  var app = 'wa', log = [], turn = 0, busy = false, typing = false, draft = '', fresh = 0, askTimers = [], askBody = null, auto = [];
+  var app = 'wa', log = [], turn = 0, busy = false, typing = false, draft = '', fresh = 0, askTimers = [], askBody = null;
   function at(fn, ms){ askTimers.push(setTimeout(fn, ms)); }
   function halt(){ askTimers.forEach(clearTimeout); askTimers = []; }
   function clockNow(){ var m = log[log.length-1]; return (m ? m.t : '9:37 AM').replace(/ [AP]M$/, ''); }
@@ -1370,27 +1365,67 @@ footer{border-top:1px solid var(--line)}
   function say(m){ typing = false; fresh = log.length; log.push(m); paintBody(true); }
   function setTyping(on){ typing = on; fresh = log.length; paintBody(true); }
 
-  /* the board: each record the answer used lights up as Kenner reads it, and opens where it carries the detail */
-  var recs = {};
-  board.querySelectorAll('[data-k]').forEach(function(r){ recs[r.dataset.k] = r; });
-  function fold(r, open){ var b = r.querySelector(':scope > button'); if (!b) return; r.classList.toggle('open', open); b.setAttribute('aria-expanded', open ? 'true' : 'false'); }
-  function ping(r){ r.classList.remove('ping'); void r.offsetWidth; if (!still) r.classList.add('ping'); }
-  function traceIcons(T, upTo, now){ trace.innerHTML = T.steps.map(function(s, j){ return '<i title="'+s[1]+'" class="'+(j < upTo ? 'done' : j === now ? 'now' : '')+'">'+ICONS[s[0]]+'</i>'; }).join(''); }
-  function boardReset(){
-    Object.keys(recs).forEach(function(k){ recs[k].classList.remove('lit','ping','hl'); });
-    auto.forEach(function(k){ fold(recs[k], false); }); auto = [];
-    trace.innerHTML = ''; bdStatus.textContent = 'What Kenner can read for this job';
+  /* the timeline: a node for the briefing and for each question, the latest unfolded to its steps */
+  function chip(k){
+    var c = CH[k], lead = c.teams ? '<img src="'+TEAMS+'" alt="">' : ICONS[c.i];
+    return '<button type="button" class="ch'+(c.g ? ' g '+c.g : '')+'" data-k="'+k+'">'+lead+'<span>'+c.l+'</span></button>';
   }
-  function boardStart(T){ boardReset(); traceIcons(T, 0, 0); bdStatus.textContent = T.steps[0][1]; }
-  function boardStep(T, j){
-    traceIcons(T, j, j); bdStatus.textContent = T.steps[j][1];
-    T.steps[j][2].forEach(function(k){ recs[k].classList.add('lit'); ping(recs[k]); });
+  function stepEl(s, done){
+    var li = document.createElement('li');
+    li.className = 'st' + (done ? ' done' : ' ing');
+    li.innerHTML = '<span class="st-i">'+ICONS[s[0]]+'</span><div><p class="st-t"><b>'+(done ? s[2] : s[1])+'</b>'+(s[3] ? '<span'+(s[3].charAt(0) === '“' ? '' : ' class="nw"')+'> · '+s[3]+'</span>' : '')+'</p>'
+      +'<div class="st-d"><div><p>'+s[4].replace(/WO-RF-\d+/g, '<span class="nw">$&</span>')+'</p><div class="chs">'+s[5].map(chip).join('')+'</div></div></div></div>';
+    return li;
   }
-  function boardEnd(T){
-    traceIcons(T, T.steps.length, -1); bdStatus.textContent = T.end;
-    T.steps.forEach(function(s){ s[2].forEach(function(k){ recs[k].classList.add('lit'); }); });
-    T.open.forEach(function(k){ if (!recs[k].classList.contains('open')){ fold(recs[k], true); auto.push(k); } });
+  function finish(li, s){ li.classList.remove('ing'); li.classList.add('done'); li.querySelector('.st-t b').textContent = s[2]; }
+  function doneEl(r, t){
+    var li = document.createElement('li');
+    li.className = 'st done';
+    li.innerHTML = '<span class="st-i"><img src="'+AV+'" alt=""></span><div><p class="st-t"><b>'+RUNS[r].done+'</b><span> · 8 Nov · '+t+'</span></p></div>';
+    return li;
   }
+  function runEls(r, open){
+    var T = r ? TURNS[r-1] : null, t = r ? T.t : RUNS[0].t;
+    var node = document.createElement('li'), grp = document.createElement('li');
+    node.className = 'run';
+    node.innerHTML = '<span class="run-i">'+ICONS[r ? 's-msg' : 's-scroll']+'</span><button type="button" aria-expanded="'+open+'" title="'+(r ? '“'+T.q+'”' : 'Briefing')+'"><b>'+(r ? '“'+T.q+'”' : 'Briefing')+'</b><span>· '+t+'</span>'+ICONS['s-down']+'</button>';
+    grp.className = 'grp' + (open ? ' open' : '');
+    grp.dataset.run = r;
+    grp.innerHTML = '<ol></ol>';
+    return [node, grp];
+  }
+  function fillRun(grp, r){
+    var ol = grp.firstChild;
+    RUNS[r].steps.forEach(function(s){ ol.appendChild(stepEl(s, true)); });
+    ol.appendChild(doneEl(r, r ? TURNS[r-1].t : RUNS[0].t));
+  }
+  /* the line runs on from each node and step to the next; the last one shown ends it */
+  function markEnd(){
+    trail.querySelectorAll('.end').forEach(function(x){ x.classList.remove('end'); });
+    var grps = trail.querySelectorAll('.grp'), last = grps[grps.length-1];
+    var end = last && last.classList.contains('open') && last.firstChild.lastChild ? last.firstChild.lastChild : last && last.previousSibling;
+    if (end) end.classList.add('end');
+  }
+  function foldRun(grp, open){
+    grp.classList.toggle('open', open);
+    grp.previousSibling.querySelector('button').setAttribute('aria-expanded', open ? 'true' : 'false');
+    markEnd();
+  }
+  function toEnd(){ lookB.scrollTo({top: lookB.scrollHeight, behavior: still ? 'auto' : 'smooth'}); }
+  function paintLook(upTo){
+    trail.innerHTML = '';
+    for (var r = 0; r <= upTo; r++){
+      var els = runEls(r, r === upTo && r > 0);
+      fillRun(els[1], r);
+      trail.appendChild(els[0]); trail.appendChild(els[1]);
+    }
+    markEnd();
+    lookB.scrollTop = lookB.scrollHeight;
+  }
+  trail.addEventListener('click', function(e){
+    var b = e.target.closest('.run > button');
+    if (b){ var grp = b.parentNode.nextSibling; foldRun(grp, !grp.classList.contains('open')); }
+  });
 
   function setNext(){
     askNext.disabled = busy;
@@ -1405,29 +1440,42 @@ footer{border-top:1px solid var(--line)}
   function settle(i){
     halt(); typing = false; draft = ''; log = [];
     TURNS.slice(0, i+1).forEach(function(T){ log.push({f:'out', h:T.q, t:T.t}); T.a.forEach(function(m){ log.push({f:'in', h:m.h, img:m.img, src:m.src, t:T.t}); }); });
-    boardReset(); boardEnd(TURNS[i]);
-    turn = i+1; busy = false; paint(); setNext();
+    turn = i+1; busy = false; paint(); paintLook(i+1); setNext();
   }
+  /* a question: typed and sent, then its run joins the timeline and Kenner's steps come in one at a time, each turning from
+     what it is doing to what it found, before the answer arrives */
   function run(i){
-    var T = TURNS[i];
+    var T = TURNS[i], R = RUNS[i+1];
     if (still){ settle(i); return; }
-    busy = true; setNext();
-    var n = T.q.length, typeFor = Math.min(1000, n*20), ticks = Math.max(4, Math.round(typeFor/45)), t = 0;
+    busy = true; setNext(); hideCard();
+    var n = T.q.length, typeFor = Math.min(1000, n*20), ticks = Math.max(4, Math.round(typeFor/45)), t = 0, grp = null, ol = null;
     for (var k = 1; k <= ticks; k++) (function(k){ at(function(){ draft = T.q.slice(0, Math.round(n*k/ticks)); paintComposer(); }, k*typeFor/ticks); })(k);
     t = typeFor + 400;
-    at(function(){ draft = ''; paintComposer(); say({f:'out', h:T.q, t:T.t}); boardStart(T); }, t);
+    at(function(){
+      draft = ''; paintComposer(); say({f:'out', h:T.q, t:T.t});
+      trail.querySelectorAll('.grp.open').forEach(function(g){ foldRun(g, false); });
+      var els = runEls(i+1, true);
+      els[0].classList.add('in');
+      grp = els[1]; ol = grp.firstChild;
+      trail.appendChild(els[0]); trail.appendChild(grp); markEnd(); toEnd();
+    }, t);
     t += 650;
     at(function(){ setTyping(true); }, t);
-    T.steps.forEach(function(s, j){ at(function(){ boardStep(T, j); }, t + 250 + j*720); });
-    t += 250 + T.steps.length*720;
+    R.steps.forEach(function(s){
+      var li;
+      at(function(){ li = stepEl(s, false); li.classList.add('in'); ol.appendChild(li); markEnd(); toEnd(); }, t);
+      at(function(){ finish(li, s); setTimeout(toEnd, 120); }, t + 850);
+      t += 1150;
+    });
     T.a.forEach(function(m, j){
       if (j){ at(function(){ setTyping(true); }, t); t += 900; }
       at(function(){ say({f:'in', h:m.h, img:m.img, src:m.src, t:T.t}); }, t);
+      if (!j) at(function(){ var li = doneEl(i+1, T.t); li.classList.add('in'); ol.appendChild(li); markEnd(); toEnd(); }, t);
       t += 1000;
     });
-    at(function(){ boardEnd(T); turn = i+1; busy = false; setNext(); }, t - 600);
+    at(function(){ turn = i+1; busy = false; setNext(); }, t - 600);
   }
-  function restart(){ halt(); log = []; typing = false; draft = ''; turn = 0; busy = false; boardReset(); paint(); run(0); }
+  function restart(){ halt(); log = []; typing = false; draft = ''; turn = 0; busy = false; paint(); paintLook(0); run(0); }
 
   askNext.addEventListener('click', function(){ if (busy) return; if (turn >= TURNS.length) restart(); else run(turn); });
   $('ask-apps').querySelectorAll('button').forEach(function(b){
@@ -1440,38 +1488,68 @@ footer{border-top:1px solid var(--line)}
     });
   });
 
-  /* a citation points at its record: resting on it rings the record, choosing it opens and brings it into view */
-  function cites(k, on){ askScr.querySelectorAll('.cite[data-k="'+k+'"]').forEach(function(c){ c.classList.toggle('hl', on); }); }
-  function point(e, on){ var c = e.target.closest && e.target.closest('.cite'); if (c && recs[c.dataset.k]) recs[c.dataset.k].classList.toggle('hl', on); }
+  /* a chip's card: what the source holds, on hover or focus, or on a tap where nothing hovers */
+  var cardFor = null, cardTimer = null;
+  function showCard(ch){
+    var c = CH[ch.dataset.k];
+    refc.innerHTML = '<div class="refc-b">'+(c.m ? '<span class="refc-m"><img src="'+c.m+'" alt=""></span>' : '')
+      +'<div class="refc-c"><p class="refc-t"><span class="refc-av'+(c.av === ST ? ' v' : '')+'"><img src="'+c.av+'" alt=""></span>'+c.t+'</p><p class="refc-s">'+c.s+'</p>'+(c.x ? '<div class="refc-x">'+c.x+'</div>' : '')+'</div></div>'
+      +'<div class="refc-f"><span>'+(c.teams ? '<img src="'+TEAMS+'" alt="">' : '')+(c.f || 'Company knowledge')+'</span>'+(c.open ? '<button type="button" data-open="'+ch.dataset.k+'">Open'+ICONS['s-chev']+'</button>' : '')+'</div>';
+    var r = ch.getBoundingClientRect(), w = refc.offsetWidth, h = refc.offsetHeight;
+    var left = Math.max(16, Math.min(r.left, innerWidth - w - 16)), top = r.bottom + 8;
+    if (top + h > innerHeight - 16) top = Math.max(16, r.top - h - 8);
+    refc.style.transform = ''; refc.style.left = left + 'px'; refc.style.top = top + 'px';
+    refc.classList.add('on'); refc.setAttribute('aria-hidden', 'false'); cardFor = ch;
+  }
+  function hideCard(){ clearTimeout(cardTimer); refc.classList.remove('on'); refc.setAttribute('aria-hidden', 'true'); cardFor = null; }
+  function later2(fn, ms){ clearTimeout(cardTimer); cardTimer = setTimeout(fn, ms); }
+  trail.addEventListener('mouseover', function(e){ var ch = e.target.closest('.ch'); if (ch && ch !== cardFor) later2(function(){ showCard(ch); }, 250); });
+  trail.addEventListener('mouseout', function(e){ if (e.target.closest('.ch')) later2(hideCard, 160); });
+  trail.addEventListener('focusin', function(e){ var ch = e.target.closest('.ch'); if (ch) showCard(ch); });
+  trail.addEventListener('focusout', function(e){ if (e.target.closest('.ch') && !refc.contains(e.relatedTarget)) later2(hideCard, 160); });
+  refc.addEventListener('mouseover', function(){ clearTimeout(cardTimer); });
+  refc.addEventListener('mouseout', function(e){ if (!refc.contains(e.relatedTarget)) later2(hideCard, 160); });
+  refc.addEventListener('click', function(e){ var b = e.target.closest('[data-open]'); if (b){ var k = b.dataset.open; hideCard(); openPage(k); } });
+  trail.addEventListener('click', function(e){
+    var ch = e.target.closest('.ch'); if (!ch) return;
+    if (CH[ch.dataset.k].open && !matchMedia('(hover: none)').matches){ hideCard(); openPage(ch.dataset.k); }
+    else if (cardFor === ch) hideCard(); else showCard(ch);
+  });
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') hideCard(); });
+  document.addEventListener('click', function(e){ if (cardFor && !e.target.closest('.ch, .refc, .cite')) hideCard(); });
+  window.addEventListener('scroll', function(){ if (cardFor) hideCard(); }, {passive:true});
+  lookB.addEventListener('scroll', function(){ if (cardFor && !cardFor.matches(':focus')) hideCard(); }, {passive:true});
+
+  /* a citation in the chat points at its chip in the latest run that cited it: resting on it rings the chip, choosing it
+     unfolds that run, brings the chip into view and opens its card */
+  function chipFor(k){ var all = trail.querySelectorAll('.ch[data-k="'+k+'"]'); return all[all.length-1]; }
+  function point(e, on){ var c = e.target.closest && e.target.closest('.cite'), ch = c && chipFor(c.dataset.k); if (ch) ch.classList.toggle('hl', on); }
   askScr.addEventListener('mouseover', function(e){ point(e, true); });
   askScr.addEventListener('mouseout', function(e){ point(e, false); });
   askScr.addEventListener('focusin', function(e){ point(e, true); });
   askScr.addEventListener('focusout', function(e){ point(e, false); });
   askScr.addEventListener('click', function(e){
     var c = e.target.closest('.cite'); if (!c) return;
-    var r = recs[c.dataset.k]; if (!r) return;
-    fold(r, true); ping(r);
-    var box = r.getBoundingClientRect();
-    if (box.top < 72 || box.bottom > window.innerHeight) r.scrollIntoView({block:'center', behavior: still ? 'auto' : 'smooth'});
-  });
-  board.addEventListener('mouseover', function(e){ var r = e.target.closest('[data-k]'); if (r) cites(r.dataset.k, true); });
-  board.addEventListener('mouseout', function(e){ var r = e.target.closest('[data-k]'); if (r) cites(r.dataset.k, false); });
-  board.addEventListener('click', function(e){
-    var b = e.target.closest('.rec > button'); if (b){ var r = b.parentNode; fold(r, !r.classList.contains('open')); return; }
-    var pg = e.target.closest('.pg'); if (pg) openPage(pg);
+    var ch = chipFor(c.dataset.k); if (!ch) return;
+    var grp = ch.closest('.grp');
+    if (!grp.classList.contains('open')) foldRun(grp, true);
+    ch.classList.remove('ping'); void ch.offsetWidth; if (!still) ch.classList.add('ping');
+    setTimeout(function(){ ch.scrollIntoView({block:'nearest', behavior: still ? 'auto' : 'smooth'}); }, still ? 0 : 420);
+    setTimeout(function(){ showCard(ch); }, still ? 0 : 900);
   });
 
-  /* a cited page opens at a size that can be read */
+  /* a cited page or photo opens at a size that can be read */
   var pgv = $('pgv'), pgvImg = $('pgv-img');
-  function openPage(pg){
-    pgvImg.src = pg.querySelector('img').src; pgvImg.alt = pg.querySelector('img').alt;
-    $('pgv-cap').textContent = pg.dataset.cap;
-    if (pgv.showModal) pgv.showModal(); else window.open(pgvImg.src, '_blank', 'noopener');
+  function openPage(k){
+    var c = CH[k];
+    pgvImg.src = c.m; pgvImg.alt = c.open;
+    $('pgv-cap').textContent = c.open;
+    if (pgv.showModal) pgv.showModal(); else window.open(c.m, '_blank', 'noopener');
   }
   $('pgv-x').addEventListener('click', function(){ pgv.close(); });
   pgv.addEventListener('click', function(e){ if (e.target === pgv) pgv.close(); });
 
-  paint(); setNext();
+  paint(); paintLook(0); setNext();
   if (still) settle(0);
   else if ('IntersectionObserver' in window){
     new IntersectionObserver(function(es, o){
