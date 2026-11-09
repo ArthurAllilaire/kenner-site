@@ -54,6 +54,10 @@ templates = ''.join(f'<template id="s{i}">{page(h["open"])}</template>\n<templat
 html,body{margin:0;background:var(--surface-page)}
 main a,main button,main label,main summary,main input,main select,main textarea,main [role="button"]{pointer-events:none}
 main section[id^="job-"] h2>button[aria-controls]{pointer-events:auto}
+/* without hover the app shows each field's pencil; nothing here edits, so none shows */
+main button[aria-label^="Edit "]{visibility:hidden}
+/* on a phone the laptop is narrower than any phone the app is made for: it shows at a phone's width, a little smaller */
+@media (max-width:330px){html{zoom:.86}}
 .fresh{animation:fresh 2.6s cubic-bezier(.16,1,.3,1)}
 @keyframes fresh{from{background:color-mix(in oklab,#1438CA 12%,transparent);box-shadow:0 0 0 8px color-mix(in oklab,#1438CA 12%,transparent);border-radius:6px}}
 @media (prefers-reduced-motion:reduce){.fresh{animation:none}}
