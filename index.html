@@ -22,7 +22,7 @@
 <style>:root{color-scheme:light}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Instrument+Sans:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400&family=Instrument+Sans:wght@400;500&display=swap">
 <style>
 /* Layout: one light at the top, paper sections, one night chapter, a closing light. Tokens from the Kenner Design System (brand guide v2). Single light look by design. Phone screens copy the real apps, not the brand. */
 :root{
@@ -37,6 +37,7 @@
   --shadow-float:0 30px 70px rgba(0,0,0,.35);
   --font-display:"Instrument Sans","Geist",system-ui,sans-serif;
   --font-text:"Geist",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --font-mono:"Geist Mono",ui-monospace,"SF Mono",Menlo,monospace;
   --font-app:-apple-system,BlinkMacSystemFont,"SF Pro Text","Helvetica Neue","Geist",sans-serif;
   /* the apps' own colours, used only inside phone screens */
   --wa-green:#25D366; --wa-wall:#EFEAE2; --wa-out:#D9FDD3; --wa-meta:#667781; --wa-ink:#111B21; --wa-bar:#F6F5F3; --wa-tick:#53BDEB;
@@ -146,7 +147,7 @@ a:focus-visible,button:focus-visible,[tabindex]:focus-visible{outline:2px solid 
 .wa-head .n span:empty{display:none}
 .wa-head .hic{display:flex;align-items:center;gap:16px;height:36px;padding:0 12px;border-radius:18px;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.1)}
 .wa-head .hic svg{width:20px;height:20px}
-.wa-body{flex:1;min-height:0;overflow-y:auto;overscroll-behavior:contain;scrollbar-width:none;padding:10px 12px 12px;display:flex;flex-direction:column;gap:3px;background:var(--wa-wall) url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='170' height='170' fill='none' stroke='%23000' stroke-opacity='.075' stroke-width='1.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='18' cy='18' r='7'/%3E%3Cpath d='M15 18h6M18 15v6'/%3E%3Cpath d='M48 10l6 10H42z'/%3E%3Crect x='72' y='8' width='16' height='22' rx='3'/%3E%3Cpath d='M76 26h8'/%3E%3Cpath d='M108 12c4-6 12-1 8 4l-8 8-8-8c-4-5 4-10 8-4'/%3E%3Cpath d='M140 10v14a4 4 0 1 1-3-4V12l12-3v12a4 4 0 1 1-3-4'/%3E%3Cpath d='M12 52c6-8 18-8 24 0'/%3E%3Ccircle cx='24' cy='60' r='2'/%3E%3Crect x='46' y='46' width='22' height='16' rx='4'/%3E%3Ccircle cx='57' cy='54' r='4'/%3E%3Cpath d='M86 44l4 8 9 1-7 6 2 9-8-5-8 5 2-9-7-6 9-1z'/%3E%3Cpath d='M118 48h22v14h-22zM122 48v-4h14v4'/%3E%3Cpath d='M152 46c8 0 8 12 0 12s-8 12 0 12'/%3E%3Cpath d='M10 92l10-10 10 10-10 10z'/%3E%3Cpath d='M44 84c10 0 14 8 10 14-4 6-14 4-14-2'/%3E%3Ccircle cx='80' cy='92' r='9'/%3E%3Cpath d='M75 90h2M83 90h2M76 96c2 2 6 2 8 0'/%3E%3Cpath d='M108 86h24M108 94h18M108 102h22'/%3E%3Cpath d='M148 84l12 12M160 84l-12 12'/%3E%3Cpath d='M14 128h20l-4 16H18z'/%3E%3Cpath d='M18 128c0-6 12-6 12 0'/%3E%3Cpath d='M48 124a10 10 0 1 0 14 14'/%3E%3Crect x='76' y='122' width='20' height='20' rx='10'/%3E%3Cpath d='M110 140l8-16 8 16M113 134h10'/%3E%3Cpath d='M142 122c6 4 12 4 18 0M142 132c6 4 12 4 18 0M142 142c6 4 12 4 18 0'/%3E%3Ccircle cx='60' cy='160' r='2'/%3E%3Ccircle cx='120' cy='160' r='2'/%3E%3C/svg%3E")}
+.wa-body{flex:1;min-height:0;overflow-y:auto;scrollbar-width:none;padding:10px 12px 12px;display:flex;flex-direction:column;gap:3px;background:var(--wa-wall) url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='170' height='170' fill='none' stroke='%23000' stroke-opacity='.075' stroke-width='1.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='18' cy='18' r='7'/%3E%3Cpath d='M15 18h6M18 15v6'/%3E%3Cpath d='M48 10l6 10H42z'/%3E%3Crect x='72' y='8' width='16' height='22' rx='3'/%3E%3Cpath d='M76 26h8'/%3E%3Cpath d='M108 12c4-6 12-1 8 4l-8 8-8-8c-4-5 4-10 8-4'/%3E%3Cpath d='M140 10v14a4 4 0 1 1-3-4V12l12-3v12a4 4 0 1 1-3-4'/%3E%3Cpath d='M12 52c6-8 18-8 24 0'/%3E%3Ccircle cx='24' cy='60' r='2'/%3E%3Crect x='46' y='46' width='22' height='16' rx='4'/%3E%3Ccircle cx='57' cy='54' r='4'/%3E%3Cpath d='M86 44l4 8 9 1-7 6 2 9-8-5-8 5 2-9-7-6 9-1z'/%3E%3Cpath d='M118 48h22v14h-22zM122 48v-4h14v4'/%3E%3Cpath d='M152 46c8 0 8 12 0 12s-8 12 0 12'/%3E%3Cpath d='M10 92l10-10 10 10-10 10z'/%3E%3Cpath d='M44 84c10 0 14 8 10 14-4 6-14 4-14-2'/%3E%3Ccircle cx='80' cy='92' r='9'/%3E%3Cpath d='M75 90h2M83 90h2M76 96c2 2 6 2 8 0'/%3E%3Cpath d='M108 86h24M108 94h18M108 102h22'/%3E%3Cpath d='M148 84l12 12M160 84l-12 12'/%3E%3Cpath d='M14 128h20l-4 16H18z'/%3E%3Cpath d='M18 128c0-6 12-6 12 0'/%3E%3Cpath d='M48 124a10 10 0 1 0 14 14'/%3E%3Crect x='76' y='122' width='20' height='20' rx='10'/%3E%3Cpath d='M110 140l8-16 8 16M113 134h10'/%3E%3Cpath d='M142 122c6 4 12 4 18 0M142 132c6 4 12 4 18 0M142 142c6 4 12 4 18 0'/%3E%3Ccircle cx='60' cy='160' r='2'/%3E%3Ccircle cx='120' cy='160' r='2'/%3E%3C/svg%3E")}
 .wa-day{align-self:center;margin:2px 0 6px;padding:4px 10px;border-radius:8px;background:#fff;color:#54656F;font-size:12px;box-shadow:0 1px .5px rgba(11,20,26,.13)}
 .b{position:relative;max-width:82%;padding:7px 10px 7px 11px;border-radius:17px;font-size:14.5px;line-height:1.36;color:var(--wa-ink);box-shadow:0 1px .5px rgba(11,20,26,.13);overflow-wrap:anywhere}
 .b.in{align-self:flex-start;background:#fff}
@@ -164,12 +165,6 @@ a:focus-visible,button:focus-visible,[tabindex]:focus-visible{outline:2px solid 
 .b.pic{padding:0 0 7px;width:76%;max-width:76%}
 .b.pic .ph{display:block;width:100%;aspect-ratio:3/4;border-radius:17px 17px 0 0;background:#DDE1E5 center/cover no-repeat}
 .b.pic .cap{display:block;padding:7px 10px 0 11px}
-.b.pic.nocap{padding:0;background:transparent;box-shadow:none}
-.b.pic.nocap::before{display:none}
-.b.pic.nocap .ph{border-radius:17px;box-shadow:0 1px .5px rgba(11,20,26,.13)}
-.b.pic.nocap .cap{position:absolute;right:9px;bottom:6px;padding:0}
-.b.pic.nocap .meta{margin:0;color:#fff;text-shadow:0 1px 2px rgba(0,0,0,.6)}
-.b.pic.nocap .meta svg{color:#fff}
 .vn{display:flex;align-items:center;gap:9px;min-width:200px;padding:2px 0}
 .vn .pl{width:14px;height:16px;color:#54656F;flex:none}
 .vw{position:relative;display:flex;align-items:center;gap:2px;height:22px;flex:1}
@@ -186,31 +181,9 @@ a:focus-visible,button:focus-visible,[tabindex]:focus-visible{outline:2px solid 
 .wa-in .micb svg{width:20px;height:20px}
 .wa-in{gap:10px}
 .bkn{font-style:normal;font-size:16px;margin-left:-3px}
-/* media inside bubbles */
-.ph.dia{background:#fff;border:1px solid #E9EDEF}
-.b.pic .ph.man{background:#fff url(media/manual-p82.png) 50% 50%/88% no-repeat;aspect-ratio:688/848}
-.b.pic .ph.vessel{background-image:url(media/vessel.jpg);background-position:62% 50%;background-size:cover}
-.ph.dia svg{display:block;width:100%;height:100%}
-.b.pic .ph.plate{position:relative;background:url(media/vessel.jpg) 2% 30%/400% no-repeat;display:flex!important;align-items:center;justify-content:center;overflow:hidden}
-.ph.plate::after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 40% 35%,rgba(255,255,255,.12),rgba(0,0,0,.28));pointer-events:none}
-.plate .pl{position:relative;transform:perspective(500px) rotateY(-14deg) rotate(-4deg);background:#FBFBF8;border-radius:3px;padding:9px 12px 8px;font:500 8.5px/1.55 var(--font-app);color:#1D2027;box-shadow:0 2px 5px rgba(0,0,0,.3);filter:blur(.25px)}
-.plate .pl b{display:block;font:700 11px/1.3 var(--font-app);margin-bottom:2px}
-.plate .bc{display:block;height:16px;margin-top:5px;background:repeating-linear-gradient(90deg,#1D2027 0 1px,transparent 1px 3px,#1D2027 3px 5px,transparent 5px 6px,#1D2027 6px 7px,transparent 7px 9px)}
-.b.doc{padding:5px 5px 7px;width:82%;max-width:82%}
-.drow{display:flex;align-items:center;gap:10px;padding:11px 12px;background:#F0F2F5;border-radius:12px}
-.dic{width:26px;height:32px;flex:none;display:block}
-.dn{display:flex;flex-direction:column;gap:2px;min-width:0}
-.dn b{font-size:15px;font-weight:400;line-height:1.25;overflow-wrap:anywhere}
-.dn small{font-size:12px;color:var(--wa-meta)}
-.b.doc .cap{display:block;padding:8px 6px 0}
 .wa-body::-webkit-scrollbar{display:none}
 .wa-body>.wa-day:first-child{margin-top:auto}
 .b .lk{color:#027EB5;text-decoration:underline;text-underline-offset:2px}
-.b.rx{margin-bottom:15px}
-.rxn{position:absolute;bottom:-15px;display:inline-flex;align-items:center;justify-content:center;height:22px;min-width:26px;padding:0 5px;border-radius:999px;background:#fff;box-shadow:0 1px 3px rgba(11,20,26,.2);font:14px/1 "Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif}
-.b.out .rxn{right:10px}.b.in .rxn{left:10px}
-.rxn.pop{animation:pop .45s var(--ease) both}
-@keyframes pop{from{transform:scale(.3);opacity:0}to{transform:none;opacity:1}}
 .b.typ{display:flex;gap:4px;align-items:center;padding:12px 13px}
 .b.typ i{width:7px;height:7px;border-radius:50%;background:#8696A0;animation:dot 1.1s infinite ease-in-out}
 .b.typ i:nth-child(2){animation-delay:.15s}.b.typ i:nth-child(3){animation-delay:.3s}
@@ -225,8 +198,6 @@ a:focus-visible,button:focus-visible,[tabindex]:focus-visible{outline:2px solid 
 .wa-day{font-size:11px;padding:3px 9px}
 .wa-body{gap:2.5px;padding:8px 10px 10px}
 .b.gf{margin-top:6px}
-.b.rx{margin-bottom:14px}
-.rxn{height:20px;min-width:24px;font-size:12.5px;bottom:-14px}
 .wa-head{padding:0 10px 7px;gap:7px}
 .wa-head .bk{height:32px;font-size:15px;padding:0 10px 0 3px}
 .wa-head .bk svg{width:21px;height:21px}
@@ -242,8 +213,6 @@ a:focus-visible,button:focus-visible,[tabindex]:focus-visible{outline:2px solid 
 .wa-in .fld svg{width:18px;height:18px}
 .wa-in .micb{width:30px;height:30px}
 .wa-in .micb svg{width:17px;height:17px}
-.dn b{font-size:13.5px}
-.dn small{font-size:11px}
 .b.pic .cap{padding:6px 9px 0 10px}
 
 /* hero call screen (first version) */
@@ -295,47 +264,349 @@ a:focus-visible,button:focus-visible,[tabindex]:focus-visible{outline:2px solid 
 .cr:last-child{padding-bottom:16px}
 @media (max-width:860px){.meet-grid{grid-template-columns:minmax(0,1fr)}.meet-card{padding:32px 16px}}
 
-/* ---------- showcase ---------- */
-.sc{border:1px solid var(--line);border-radius:28px;padding:14px;display:grid;grid-template-columns:minmax(0,340px) minmax(0,1fr);gap:14px;background:var(--paper)}
-.sc-tabs{display:flex;flex-direction:column;gap:10px;min-height:0}
-.tab{appearance:none;border:1px solid transparent;background:var(--mist);border-radius:16px;padding:18px 20px;min-height:0;text-align:left;cursor:pointer;display:flex;flex-direction:column;gap:8px;flex:1;font:inherit;color:var(--ink-muted);transition:background .25s,border-color .25s,color .25s}
-.tab:hover{color:var(--ink)}
-.tab .tt{display:flex;align-items:center;justify-content:space-between;gap:12px;font-family:var(--font-display);font-size:20px;line-height:1.1;letter-spacing:-.02em}
-.tab .tt svg{width:16px;height:16px;flex:none;transition:transform .35s var(--ease)}
-.tab .td{font-size:15px;line-height:1.5;color:var(--ink-muted);display:none;text-wrap:pretty}
-.tab[aria-selected="true"]{background:var(--paper);border-color:var(--line);color:var(--ink);box-shadow:var(--shadow-card)}
-.tab[aria-selected="true"] .tt svg{transform:rotate(90deg)}
-.tab[aria-selected="true"] .td{display:block}
-.stage{position:relative;border-radius:20px;overflow:hidden;background:var(--night) url(light/window.jpg) 30% 35%/cover no-repeat;min-height:740px;display:flex;align-items:center;justify-content:center;gap:clamp(20px,3vw,40px);padding:40px clamp(20px,3vw,40px)}
-.stage .phone{width:318px;height:670px;flex:none;box-shadow:0 30px 70px rgba(0,0,0,.45)}
-.result{width:300px;flex:none;border-radius:16px;padding:16px 18px;display:flex;flex-direction:column;gap:12px;align-self:flex-end;margin-bottom:54px;transition:opacity .5s var(--ease),transform .5s var(--ease)}
-.result.off{opacity:0;transform:translateY(12px)}
-.result .rh{display:flex;align-items:center;gap:10px;font-size:12px;color:var(--on-light-muted)}
-.result .rh img{width:24px;height:24px;border-radius:50%;display:block}
-.result h3{font-size:24px;line-height:1.1;letter-spacing:-.02em}
-.result dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:7px 14px;font-size:13.5px;line-height:1.4}
-.result dt{color:var(--on-light-muted)}
-.result dd{margin:0}
-.chips{display:flex;flex-wrap:wrap;gap:6px}
-.chip{display:inline-flex;align-items:center;gap:6px;height:24px;padding:0 10px;border-radius:999px;font-size:12px;white-space:nowrap;background:var(--chip-image);color:var(--on-night);box-shadow:inset 0 0 0 1px var(--chip-image-line)}
-.chip b{font-weight:600}
-.chip span{opacity:.8}
-@media (min-width:861px){
-  .sc{height:clamp(600px,calc(100vh - 104px),780px)}
-  .stage{min-height:0;height:100%;padding:24px clamp(20px,3vw,40px)}
-  .stage .phone{height:100%;width:auto;aspect-ratio:330/700}
-  .result{margin-bottom:40px}
+/* ---------- watch Kenner work: an agent's conversation on the technician's phone, over the office's view of the same job ---------- */
+.agents{display:flex;gap:4px;width:max-content;max-width:100%;margin:0 auto clamp(20px,2.4vw,28px);padding:4px;border-radius:999px;background:var(--mist);box-shadow:inset 0 0 0 1px var(--line)}
+.agents button{appearance:none;border:0;background:transparent;height:44px;padding:0 20px;border-radius:999px;font:500 15px/1 var(--font-text);color:var(--ink-muted);cursor:pointer;transition:background .25s,color .25s,box-shadow .25s}
+.agents button:hover{color:var(--ink)}
+.agents button[aria-pressed="true"]{background:var(--paper);color:var(--ink);box-shadow:0 1px 2px rgba(10,11,30,.08),0 0 0 1px var(--line)}
+.work{position:relative;display:flex;align-items:flex-end;min-height:760px;padding:56px 44px 0 32px;border-radius:28px;overflow:hidden;background:var(--night) url(light/horizon.jpg) 70% 100%/cover no-repeat}
+.dock{align-self:center;display:flex;flex-direction:column;gap:12px;flex:none;margin:0 24px 0 0}
+.dock button{appearance:none;border:0;padding:0;width:46px;height:46px;border-radius:12px;background:none;cursor:pointer;position:relative;opacity:.5;transition:opacity .25s}
+.dock button:hover{opacity:.85}
+.dock button[aria-pressed="true"]{opacity:1}
+.dock button[aria-pressed="true"]::after{content:"";position:absolute;left:-12px;top:50%;width:4px;height:20px;margin-top:-10px;border-radius:2px;background:var(--on-night)}
+.dock img{width:100%;height:100%;border-radius:12px;display:block}
+.dock button:focus-visible{outline-color:var(--on-night);outline-offset:3px}
+.work .phone{width:318px;height:660px;flex:none;z-index:3;margin-bottom:32px;box-shadow:0 30px 80px rgba(0,0,0,.5)}
+/* the office's screen: the same job in Kenner's web app, partly behind the phone */
+.lap{flex:1;min-width:0;height:620px;margin-left:-150px;display:flex;padding:10px 10px 0;border-radius:18px 18px 0 0;background:#0D0F1F;box-shadow:0 -10px 60px rgba(0,0,0,.35),inset 0 0 0 1px rgba(255,255,255,.12)}
+.lap-s{flex:1;min-width:0;display:flex;flex-direction:column;border-radius:9px 9px 0 0;background:var(--paper);overflow:hidden}
+.lap-p{flex:1;min-height:0;display:flex;flex-direction:column;padding-left:146px}
+.lap-p .look-h{padding-top:18px}
+.lap-p>*{flex:1;min-height:0}
+/* the send button, once the technician's next message is typed: the visitor sends it */
+.snd{appearance:none;border:0;padding:0;cursor:pointer;font:inherit}
+.snd.cue{animation:cue 1.8s var(--ease) infinite}
+@keyframes cue{0%{box-shadow:0 0 0 0 color-mix(in oklab,var(--cue) 55%,transparent)}70%,100%{box-shadow:0 0 0 9px transparent}}
+@media (prefers-reduced-motion:reduce){.snd.cue{animation:none;box-shadow:0 0 0 3px color-mix(in oklab,var(--cue) 35%,transparent)}}
+.wa-in .snd{--cue:var(--wa-green)}
+.im-in .snd{--cue:#0B84FE}
+.tm-in .snd{--cue:#5B5FC7;border-radius:6px;background:none}
+/* a recorded voice note waiting in the composer, and once sent */
+.vdraft{flex:1;min-width:0;display:flex;align-items:center;gap:7px;height:20px}
+.vdraft .vw{flex:1;height:18px}
+.vdraft .vw i{width:2px}
+.vdraft em{font-style:normal;font-size:12px;font-variant-numeric:tabular-nums;color:var(--wa-meta)}
+.im .vdraft .vw i{background:#0B84FE}
+.im .vdraft em{color:#0B84FE}
+.tm .vdraft .vw i{background:#5B5FC7}
+.tm .vdraft em{color:#616161}
+.ib.voice,.tb.voice{min-width:200px}
+.ib .vrow,.tb .vrow{display:flex;align-items:center;gap:8px;height:22px}
+.ib .vrow .vw,.tb .vrow .vw{flex:1;height:20px}
+.ib.out .vw i{background:rgba(255,255,255,.7)}
+.ib .vrow svg,.tb .vrow svg{width:12px;height:12px;flex:none}
+.ib .vrow em,.tb .vrow em{font-style:normal;font-size:12px;font-variant-numeric:tabular-nums}
+.tb .vw i{background:#8B8CC7}
+.ib .trs,.tb .trs{display:block;margin-top:6px;padding-top:6px;border-top:1px solid rgba(0,0,0,.08)}
+.ib.out .trs{border-top-color:rgba(255,255,255,.3)}
+
+/* what Kenner looked up, as the web app shows it: each question a node on one line, unfolding to the steps Kenner took */
+.look{display:flex;flex-direction:column;min-width:0;min-height:0}
+.look-h{display:flex;align-items:center;gap:10px;flex:none;margin:0 20px;padding:16px 0;border-bottom:1px solid var(--line)}
+.look-h img{width:26px;height:26px;border-radius:50%;display:block;flex:none}
+.look-h h3{font:500 16px/1.3 var(--font-text);letter-spacing:-.01em}
+.look-b{flex:1;min-height:0;overflow-y:auto;padding:18px 20px 28px;scrollbar-width:thin;scrollbar-color:var(--line) transparent}
+.trail,.trail ol{list-style:none;margin:0;padding:0}
+.trail li{position:relative;display:grid;grid-template-columns:28px minmax(0,1fr);column-gap:12px;padding-bottom:16px}
+.trail li::after{content:"";position:absolute;left:13.5px;bottom:4px;width:1px;background:var(--line)}
+.trail .run::after{top:32px}
+.trail .st::after{top:26px}
+.trail li.end{padding-bottom:0}
+.trail li.end::after,.trail .grp::after{display:none}
+.trail .grp{display:grid;grid-template-columns:minmax(0,1fr);grid-template-rows:0fr;padding:0;transition:grid-template-rows .5s var(--ease)}
+.trail .grp.open{grid-template-rows:1fr}
+.grp>ol{min-height:0;overflow:hidden;visibility:hidden;transition:visibility 0s .5s}
+.grp.open>ol{visibility:visible;transition:none}
+.trail .in{animation:min .5s var(--ease) both}
+.run-i{width:28px;height:28px;border-radius:50%;background:var(--paper);box-shadow:0 0 0 1px var(--line);display:grid;place-items:center;color:var(--ink)}
+.run-i svg{width:15px;height:15px}
+.run>button{appearance:none;border:0;background:none;padding:4px 0 0;display:flex;align-items:center;gap:6px;min-width:0;font:inherit;font-size:14.5px;line-height:1.4;color:var(--ink);text-align:left;cursor:pointer;border-radius:6px}
+.run>button b{min-width:0;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.run>button span{flex:none;color:var(--ink-subtle);white-space:nowrap}
+.run>button svg{width:16px;height:16px;flex:none;margin-left:auto;color:var(--ink-subtle);transition:transform .35s var(--ease),color .2s}
+.run>button:hover svg{color:var(--ink)}
+.run>button[aria-expanded="true"] svg{transform:rotate(180deg)}
+.st-i{position:relative;width:22px;height:22px;justify-self:center;border-radius:50%;background:var(--mist);color:var(--ink-muted);display:grid;place-items:center}
+.st-i svg{width:13px;height:13px}
+.st-i img{width:22px;height:22px;border-radius:50%;display:block}
+.st.ing .st-i::after{content:"";position:absolute;inset:-3px;border-radius:50%;border:1.5px solid transparent;border-top-color:var(--ultramarine);animation:spin .8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.st-t{padding-top:1px;font-size:14px;line-height:1.45}
+.st-t b{font-weight:500;transition:color .3s}
+.st.ing .st-t b{color:var(--ink-muted)}
+.st-t span{color:var(--ink-subtle)}
+.trail .nw{white-space:nowrap}
+.st-d{display:grid;grid-template-rows:0fr;transition:grid-template-rows .5s var(--ease),opacity .5s var(--ease);opacity:0}
+.st.done .st-d{grid-template-rows:1fr;opacity:1}
+.st-d>div{min-height:0;overflow:hidden}
+.st-d p{margin-top:3px;font-size:13px;line-height:1.5;color:var(--ink-muted)}
+.chs{display:flex;flex-wrap:wrap;gap:6px;padding:8px 2px 2px}
+/* a source chip: the record it names, one tap away, with its card on hover */
+.ch{--src:var(--ultramarine);appearance:none;border:0;display:inline-flex;align-items:center;gap:6px;max-width:100%;height:26px;padding:0 10px;border-radius:999px;background:#EEF2FD;color:var(--ultramarine);font:400 12.5px/1 var(--font-text);white-space:nowrap;cursor:pointer;transition:filter .12s,box-shadow .3s}
+.ch:hover{filter:brightness(.97)}
+.ch svg,.ch img{width:14px;height:14px;flex:none}
+.ch img{border-radius:3px}
+.ch span{min-width:0;overflow:hidden;text-overflow:ellipsis}
+.ch.g{background:color-mix(in oklab,var(--src) 12%,var(--paper));color:var(--ink)}
+.ch.g svg{color:var(--src)}
+.ch.fsm{--src:#0F1340}
+.ch.kw{--src:#5A5F73;max-width:17rem}
+.ch.tel{--src:#2F89D4}
+.ch.hl{box-shadow:0 0 0 1.5px var(--ultramarine)}
+.ch.ping{animation:chping 1.2s var(--ease)}
+@keyframes chping{from{box-shadow:0 0 0 2px var(--ultramarine),0 0 0 6px color-mix(in oklab,var(--ultramarine) 22%,transparent)}}
+/* a chip's card: a picture where there is one, who holds it, what is known about it */
+.refc{position:fixed;z-index:40;left:0;top:0;width:min(360px,calc(100vw - 32px));border-radius:14px;background:var(--paper);color:var(--ink);box-shadow:0 0 0 1px var(--line),0 14px 36px rgba(10,11,30,.16);overflow:hidden;opacity:0;visibility:hidden;transform:translateY(4px);transition:opacity .18s var(--ease),transform .18s var(--ease),visibility 0s .18s}
+.refc.on{opacity:1;visibility:visible;transform:none;transition:opacity .18s var(--ease),transform .18s var(--ease)}
+.refc-b{display:flex;gap:12px;padding:12px}
+.refc-m{width:96px;flex:none;align-self:flex-start;border-radius:8px;overflow:hidden;box-shadow:0 0 0 1px var(--line)}
+.refc-m img{display:block;width:100%;aspect-ratio:3/4;object-fit:cover;object-position:50% 0}
+.refc-c{flex:1;min-width:0;display:flex;flex-direction:column;gap:3px}
+.refc-t{display:flex;align-items:flex-start;gap:8px;font-size:14px;font-weight:500;line-height:1.35}
+.refc-av{width:20px;height:20px;flex:none;margin-top:1px;border-radius:50%;background:#F4F5F8;box-shadow:inset 0 0 0 1px rgba(10,11,30,.08);display:grid;place-items:center;overflow:hidden}
+.refc-av img{width:100%;height:100%;display:block}
+.refc-av.v img{width:66%;height:62%;object-fit:contain}
+.refc-s{font-size:12.5px;line-height:1.4;color:var(--ink-subtle)}
+.refc-x{margin-top:6px;display:flex;flex-direction:column;gap:8px;font-size:13px;line-height:1.5;color:var(--ink-muted)}
+.refc-x dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:4px 12px}
+.refc-x dt{font-weight:500;color:var(--ink)}
+.refc-x dd{margin:0}
+.refc-f{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:38px;padding:6px 12px;border-top:1px solid var(--line);font-size:12.5px;color:var(--ink-subtle)}
+.refc-f>span{display:inline-flex;align-items:center;gap:6px}
+.refc-f img{width:14px;height:14px;border-radius:3px;display:block}
+.refc-f button{appearance:none;border:0;background:none;padding:2px 0;font:inherit;font-weight:500;color:var(--ultramarine);cursor:pointer;display:inline-flex;align-items:center;gap:2px}
+.refc-f button svg{width:14px;height:14px}
+.said{display:flex;flex-direction:column;gap:6px;padding:10px 12px;border-radius:10px;background:var(--mist)}
+.said figure{margin:0;display:flex;flex-direction:column;gap:2px}
+.said figcaption{font-size:12px;color:var(--ink-subtle)}
+.said figcaption b{font-weight:500;color:var(--ink)}
+.said blockquote{margin:0;color:var(--ink)}
+.pgv{width:min(760px,calc(100vw - 32px));max-height:calc(100vh - 32px);padding:0;border:0;border-radius:18px;background:var(--paper);color:var(--ink);box-shadow:var(--shadow-float);overflow:auto}
+.pgv::backdrop{background:rgba(10,11,30,.6);-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px)}
+.pgv-h{position:sticky;top:0;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px 12px 12px 20px;background:rgba(255,255,255,.94);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);border-bottom:1px solid var(--line);font-size:14px;color:var(--ink-muted)}
+.pgv-h button{appearance:none;border:0;width:36px;height:36px;border-radius:50%;background:var(--mist);color:var(--ink);cursor:pointer;display:flex;align-items:center;justify-content:center;flex:none}
+.pgv-h button svg{width:16px;height:16px}
+.pgv img{display:block;width:100%;height:auto}
+
+/* citations inside a chat bubble: the app's own link, which points at the source chip it names */
+.cite{appearance:none;border:0;background:none;padding:0;margin:0;font:inherit;letter-spacing:inherit;color:inherit;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:2px;cursor:pointer;border-radius:3px;white-space:nowrap}
+.wa .cite{color:#027EB5}
+.im .ib.in .cite{color:#007AFF}
+.tm .cite{color:#4F52B2}
+.cite:hover,.cite.hl{text-decoration-thickness:2px}
+
+/* WhatsApp: the composer once the technician has typed */
+.work .wa-in{align-items:flex-end}
+.work .wa-in .fld{height:auto;min-height:30px;padding:5px 8px 5px 11px;justify-content:space-between;align-items:flex-end;gap:6px}
+.work .wa-in>svg{margin-bottom:5px}
+.fld .tx{flex:1;min-width:0;font-size:13.3px;line-height:18px;color:var(--wa-ink)}
+.wa-in .snd{width:30px;height:30px;border-radius:50%;background:var(--wa-green);color:#fff;display:flex;align-items:center;justify-content:center;flex:none}
+.wa-in .snd svg{width:15px;height:15px}
+.work .b .src{font-size:12px;margin-top:3px}
+.ib .src{display:block;margin-top:3px;font-size:11.5px;line-height:15px;color:#6B6B70}
+.tm .tb .src{display:block;margin-top:4px;font-size:11.5px;color:#616161}
+.b.pic .ph.sw{background:#DDE1E5 url(media/curtain-switch.webp) center/cover no-repeat;aspect-ratio:560/709}
+
+/* iMessage */
+.scr.im{background:#fff}
+.im-head{position:relative;flex:none;height:76px;z-index:2}
+.im-head::after{content:"";position:absolute;left:0;right:0;bottom:-16px;height:16px;background:linear-gradient(#fff,rgba(255,255,255,0));pointer-events:none}
+.im-head .gb{position:absolute;top:4px;width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.92);box-shadow:0 2px 8px rgba(0,0,0,.08),inset 0 0 0 .5px rgba(0,0,0,.08);display:flex;align-items:center;justify-content:center;color:#000}
+.im-head .gb.l{left:12px}.im-head .gb.r{right:12px}
+.im-head .gb svg{width:17px;height:17px}
+.im-who{position:absolute;top:0;left:0;right:0;display:flex;flex-direction:column;align-items:center;pointer-events:none}
+.im-who img{width:44px;height:44px;border-radius:50%;display:block}
+.im-who span{margin-top:-5px;padding:3px 7px 3px 9px;border-radius:11px;background:rgba(255,255,255,.94);box-shadow:0 2px 8px rgba(0,0,0,.08),inset 0 0 0 .5px rgba(0,0,0,.06);font-size:10.5px;font-weight:600;display:flex;align-items:center;gap:2px}
+.im-who span svg{width:8px;height:8px;color:#8A8A8E}
+.im-body{flex:1;min-height:0;overflow-y:auto;scrollbar-width:none;padding:4px 12px 10px 13px;display:flex;flex-direction:column}
+.im-body::-webkit-scrollbar{display:none}
+.im-body>*,.tm-body>*,#ask-body>*{flex:none}
+.im-body>:first-child{margin-top:auto}
+.im-ts{align-self:center;margin:2px 0 8px;font-size:9.5px;line-height:1.3;color:#8A8A8E;text-align:center}
+.im-ts b{font-weight:600}
+.ib{position:relative;max-width:78%;margin-top:2px;padding:6px 10px;border-radius:15px;font-size:13.2px;line-height:17px;letter-spacing:-.15px;overflow-wrap:anywhere}
+.ib.in{align-self:flex-start;background:#E9E9EB;color:#000}
+.ib.out{align-self:flex-end;background:#0B84FE;color:#fff}
+.ib.gf{margin-top:8px}
+.ib.tl::before{content:"";position:absolute;bottom:0;width:15px;height:15px;background:inherit}
+.ib.tl.in::before{left:-5px;clip-path:path("M15 0 L15 15 C10.5 15 4.5 14.6 .4 13.1 C3.8 11.6 5.3 9 5.3 3 L5.3 0 Z")}
+.ib.tl.out::before{right:-5px;clip-path:path("M0 0 L0 15 C4.5 15 10.5 14.6 14.6 13.1 C11.3 11.6 9.8 9 9.8 3 L9.8 0 Z")}
+.ib b{font-weight:600}
+.ib.pic{padding:0;width:62%;background:none;overflow:hidden;border-radius:15px}
+.ib.pic::before{display:none}
+.ib.pic span{display:block;aspect-ratio:560/709;background:#DDE1E5 url(media/curtain-switch.webp) center/cover no-repeat}
+.ib.typ{display:flex;gap:4px;padding:10px 12px}
+.ib.typ i,.tb.typ i{width:6px;height:6px;border-radius:50%;background:#8E8E93;animation:dot 1.1s infinite ease-in-out}
+.ib.typ i:nth-child(2),.tb.typ i:nth-child(2){animation-delay:.15s}.ib.typ i:nth-child(3),.tb.typ i:nth-child(3){animation-delay:.3s}
+.im-rc{align-self:flex-end;margin:2px 3px 0 0;font-size:9.5px;font-weight:500;color:#8A8A8E}
+.im-in{flex:none;display:flex;align-items:flex-end;gap:8px;padding:6px 12px 26px 11px;background:#fff}
+.im-in .pl{width:30px;height:30px;border-radius:50%;background:#F2F2F4;box-shadow:inset 0 0 0 .5px rgba(0,0,0,.06);display:flex;align-items:center;justify-content:center;flex:none;color:#6B6B70}
+.im-in .pl svg{width:14px;height:14px;stroke-width:2.4}
+.im-in .fld{flex:1;min-width:0;min-height:30px;padding:6px 5px 6px 11px;border-radius:15px;border:.5px solid #CFCFD4;display:flex;align-items:flex-end;gap:6px;font-size:13.2px;line-height:17px;letter-spacing:-.15px}
+.im-in .fld .ph{flex:1;color:#B5B5BA}
+.im-in .fld .tx{font-size:13.2px;line-height:17px;color:#000}
+.im-in .fld>svg{width:12px;height:16px;flex:none;margin-right:4px;color:#8A8A8E}
+.im-in .snd{width:21px;height:21px;margin:-2px 0 -2px;border-radius:50%;background:#0B84FE;color:#fff;display:flex;align-items:center;justify-content:center;flex:none}
+.im-in .snd svg{width:12px;height:12px;stroke-width:3}
+
+/* Microsoft Teams, on a phone */
+.scr.tm{background:#fff}
+.tm-head{flex:none;display:flex;align-items:center;gap:10px;height:54px;padding:0 14px 0 8px;color:#242424;border-bottom:1px solid #E0E0E0}
+.tm-head>svg{width:22px;height:22px;flex:none}
+.tm-tile{width:32px;height:32px;flex:none;border-radius:8px;background:#fff;box-shadow:0 0 0 1px #E0E0E0;display:grid;place-items:center}
+.tm-tile img{width:24px;height:24px;display:block}
+.tm-name{flex:1;min-width:0;display:flex;flex-direction:column;line-height:1.2}
+.tm-name small{display:inline-flex;align-items:center;gap:2px;font-size:11.5px;color:#616161}
+.tm-name small svg{width:11px;height:11px}
+.tm-head>svg.r{width:18px;height:18px;color:#424242}
+.tm-name b{font-size:15px;font-weight:600}
+.tm-body{flex:1;min-height:0;overflow-y:auto;scrollbar-width:none;padding:6px 10px 12px;background:#F5F5F5;display:flex;flex-direction:column}
+.tm-body::-webkit-scrollbar{display:none}
+.tm-body>:first-child{margin-top:auto}
+.tm-day{align-self:center;margin:4px 0 2px;font-size:11px;color:#616161}
+.tm-meta{display:flex;align-items:center;gap:8px;margin:12px 0 4px;font-size:11px;color:#616161}
+.tm-meta.in{margin-left:34px}
+.tb.in .tm-tile{position:absolute;left:-34px;top:0;width:26px;height:26px;border-radius:7px}
+.tb.in .tm-tile img{width:19px;height:19px}
+.tb.card{display:flex;flex-direction:column;gap:6px;padding:10px 12px 12px}
+.tb.card .im2{width:100%;margin:0}
+.tb.card b{font-weight:600}
+.tm-btn{align-self:flex-start;margin-top:2px;padding:5px 12px;border-radius:4px;box-shadow:inset 0 0 0 1px #8A8A8A;font-weight:600;font-size:12.5px}
+.tm-meta b{font-weight:600;color:#424242}
+.tm-meta.out{justify-content:flex-end;margin-right:2px}
+.tb{position:relative;max-width:84%;margin-top:3px;padding:7px 10px 8px;border-radius:6px;font-size:13px;line-height:1.42;color:#242424;overflow-wrap:anywhere}
+.tb.in{align-self:flex-start;margin-left:34px;max-width:calc(100% - 34px);background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.12)}
+.tb.out{align-self:flex-end;background:#E8EBFA}
+.tb b{font-weight:600}
+.tb .im2{display:block;width:72%;margin:2px 0 7px;border-radius:4px;aspect-ratio:560/709;background:#DDE1E5 url(media/curtain-switch.webp) center/cover no-repeat}
+.tb.typ{display:flex;gap:4px;padding:11px 12px}
+.tm-in{flex:none;display:flex;align-items:flex-end;gap:10px;padding:8px 10px 26px 12px;background:#fff;border-top:1px solid #E0E0E0;color:#616161}
+.tm-in>svg{width:20px;height:20px;flex:none;margin-bottom:6px}
+.tm-in .fld{flex:1;min-width:0;min-height:32px;padding:7px 10px;border-radius:6px;background:#F5F5F5;display:flex;align-items:flex-end;font-size:13px;line-height:18px}
+.tm-in .fld .ph{color:#707070}
+.tm-in .fld .tx{font-size:13px;line-height:18px;color:#242424}
+.tm-in .snd{display:flex;margin-bottom:6px;color:#5B5FC7}
+.tm-in .snd svg{width:20px;height:20px}
+
+/* Kenner's own chat, as the web app's Thread and composer draw it (web/src/chat), on a phone */
+.scr.kw{background:var(--paper)}
+.kw-head{flex:none;display:flex;align-items:center;gap:8px;height:50px;padding:0 10px 0 14px;border-bottom:1px solid #EEF0F4}
+.kw-head>img{width:28px;height:28px;border-radius:50%;display:block;flex:none}
+.kw-head>b{flex:1;font-size:15px;font-weight:500}
+.kw-job{display:inline-flex;align-items:center;gap:3px;font-size:13px;color:var(--ink)}
+.kw-job svg{width:14px;height:14px;color:var(--ink-subtle)}
+.kw-head>svg{width:18px;height:18px;flex:none;color:var(--ink-subtle)}
+.kw-head>svg.kw-call{color:var(--ultramarine)}
+.kw-body{flex:1;min-height:0;overflow-y:auto;scrollbar-width:none;padding:8px 12px 12px;display:flex;flex-direction:column;background:var(--paper)}
+.kw-body::-webkit-scrollbar{display:none}
+.kw-body>*{flex:none}
+.kw-body>:first-child{margin-top:auto}
+.kw-day{align-self:center;margin:6px 0 10px;font-size:11.5px;color:var(--ink-subtle)}
+.kt{display:flex;flex-direction:column;gap:4px;min-width:0}
+.kt.out{align-self:flex-end;align-items:flex-end;max-width:85%}
+.kt.in{align-self:flex-start;flex-direction:row;align-items:flex-start;gap:7px;max-width:94%}
+.kt.in>img,.kt.in>i{width:22px;height:22px;flex:none;margin-top:2px;border-radius:50%;display:block}
+.kt.in>div{display:flex;flex-direction:column;align-items:flex-start;gap:4px;min-width:0}
+.kt.gf{margin-top:14px}
+.kt+.kt:not(.gf){margin-top:4px}
+.kbub{max-width:100%;padding:7px 11px;border-radius:13px 13px 13px 4px;background:var(--paper);box-shadow:0 0 0 1px var(--line);font-size:13px;line-height:1.5;color:var(--ink);overflow-wrap:anywhere}
+.kbub b{font-weight:600}
+.kt.out .kbub{border-radius:13px 13px 4px 13px;background:#E8EEFC;box-shadow:none}
+.kmeta{padding:0 3px;font-size:11px;color:var(--ink-subtle)}
+.kchips{display:flex;flex-wrap:wrap;gap:5px;max-width:100%}
+.kch{appearance:none;border:0;display:inline-flex;align-items:center;gap:5px;max-width:100%;height:22px;padding:0 9px;border-radius:999px;background:#EEF2FD;color:var(--ultramarine);font:400 11.5px/1 var(--font-text);white-space:nowrap;cursor:pointer}
+.kch svg,.kch img{width:13px;height:13px;flex:none}
+.kch span{min-width:0;overflow:hidden;text-overflow:ellipsis}
+.kch.k{max-width:13rem}
+.kw .cite{color:var(--ultramarine)}
+.kpic{display:block;width:190px;max-width:100%;border-radius:12px;box-shadow:0 0 0 1px var(--line);aspect-ratio:560/709;background:#DDE1E5 url(media/curtain-switch.webp) center/cover no-repeat}
+.ktyp{display:flex;align-items:center;gap:7px;margin-top:14px;font-size:11.5px;color:var(--ink-subtle)}
+.ktyp img{width:22px;height:22px;border-radius:50%;display:block}
+/* the app's VoiceNote: a round play button, the recording's waveform and its length */
+.kvn{display:flex;align-items:center;gap:7px;min-width:180px;margin-bottom:6px}
+.kvn .pb{width:28px;height:28px;flex:none;border-radius:50%;background:var(--paper);box-shadow:0 0 0 1px var(--line);display:grid;place-items:center;color:var(--ink)}
+.kvn .pb svg{width:11px;height:11px}
+.kvn .vw{flex:1;height:22px;gap:2px}
+.kvn .vw i{width:2px;background:#5A5F73;opacity:.75}
+.kvn em{font-style:normal;font:400 11px/1 var(--font-mono);color:var(--ink-muted)}
+.kw-in{flex:none;padding:10px 10px 26px;border-top:1px solid #EEF0F4;background:var(--paper)}
+.kw-in .fld{display:flex;align-items:center;gap:4px;min-height:38px;padding:4px;border-radius:12px;background:var(--paper);box-shadow:0 0 0 1px var(--line),0 1px 2px rgba(10,11,30,.06)}
+.kw-in .ib2{width:28px;height:28px;flex:none;display:grid;place-items:center;color:var(--ink-muted)}
+.kw-in .ib2 svg{width:17px;height:17px}
+.kw-in .ph,.kw-in .tx{flex:1;min-width:0;padding:0 2px;font-size:13.5px;line-height:19px}
+.kw-in .ph{color:var(--ink-subtle)}
+.kw-in .tx{color:var(--ink)}
+.kw-in .kvn{flex:1;min-width:0;margin:0}
+.kw-in .snd{--cue:var(--night);width:28px;height:28px;flex:none;border-radius:7px;background:var(--night);color:#fff;display:grid;place-items:center}
+.kw-in .snd svg{width:15px;height:15px;stroke-width:2.4}
+
+/* the report agent's laptop: Kenner's own work order page for the job, captured from the web app (app/work-order.html) */
+.lap-p .wo{width:100%;height:100%;border:0;display:block;background:var(--paper)}
+
+/* the other agents, one square each */
+.squares{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-top:14px}
+.sq{aspect-ratio:1/1;display:flex;flex-direction:column;justify-content:space-between;gap:14px;padding:20px;border-radius:20px;background:var(--mist);overflow:hidden}
+.sq h3{font:500 17px/1.25 var(--font-text);letter-spacing:-.01em}
+.sq p{margin-top:8px;font-size:15px;line-height:1.5;color:var(--ink-muted);text-wrap:pretty}
+.sq-sys{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:8px 16px}
+.sq-sys li{display:grid;grid-template-columns:28px auto;grid-template-rows:auto auto;column-gap:8px;align-items:center;font-size:13px;line-height:1.2;color:var(--ink)}
+.sq-sys img{grid-row:span 2;width:28px;height:28px;border-radius:7px;display:block}
+.sq-sys img.mark{padding:5px;background:var(--paper);box-shadow:inset 0 0 0 1px var(--line);object-fit:contain}
+.sq-sys small{font-size:12px;color:var(--ink-subtle)}
+
+/* narrower screens tuck more of the laptop behind the phone; phones stack them */
+@media (max-width:1100px){
+  .work{min-height:700px;padding:44px 28px 0 20px}
+  .work .phone{width:292px;height:610px}
+  .lap{height:570px;margin-left:-120px}
+  .lap-p{padding-left:116px}
+  .squares{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .sq{aspect-ratio:auto;min-height:230px}
 }
-@media (max-width:1100px){.result{display:none}}
-@media (max-width:860px){
-  .sc{grid-template-columns:minmax(0,1fr);padding:10px;border-radius:22px}
-  .sc-tabs{flex-direction:row;flex-wrap:wrap;justify-content:center;gap:8px;padding:6px 4px 4px}
-  .tab{flex:none;padding:10px 14px;border-radius:999px;background:var(--paper);border-color:var(--line);color:var(--ink)}
-  .tab[aria-selected="true"]{background:var(--ink);border-color:var(--ink);color:var(--paper);box-shadow:none}
-  .tab .tt{font-family:var(--font-text);font-size:14px;font-weight:500;letter-spacing:0;white-space:nowrap}
-  .tab .tt svg,.tab .td{display:none!important}
-  .stage{min-height:0;padding:28px 12px}
-  .stage .phone{width:min(300px,100%);height:630px}
+/* phones keep the phone and the laptop on one screen, so a message sent and the report it changes are seen together:
+   a smaller phone top left with the apps beside it, and the laptop below, tucked under the phone's corner */
+@media (max-width:760px){
+  .work{display:grid;grid-template-columns:auto minmax(0,1fr);align-items:start;min-height:0;padding:16px 12px 0}
+  .dock{grid-area:1/2;align-self:center;justify-self:center;margin:0}
+  .dock button{width:42px;height:42px}
+  .work .phone{grid-area:1/1;zoom:.78;width:300px;height:480px;margin:0}
+  .lap{grid-area:2/1/3/3;height:330px;margin:-44px 0 0 28px;padding:8px 8px 0}
+  /* the screen starts under the phone, so its content starts at the phone's edge */
+  .lap-p{padding:36px 0 0}
+  .lap-p .look-h{padding-top:4px}
+}
+@media (min-width:400px) and (max-width:760px){
+  .work .phone{zoom:.86}
+}
+/* small tablets: the phone at full size in the middle, its apps beside it, over a full-width laptop */
+@media (min-width:561px) and (max-width:760px){
+  .work{grid-template-columns:1fr auto 1fr;padding:24px 20px 0}
+  .work .phone{grid-area:1/2;zoom:1}
+  .dock{grid-area:1/3;justify-self:start;margin-left:24px}
+  .lap{grid-area:2/1/3/4;height:420px;margin:-44px 0 0}
+}
+@media (max-width:350px){
+  .work .phone{zoom:.68}
+  .lap{margin-left:12px}
+}
+@media (max-width:640px){
+  .agents{width:100%}
+  .agents button{flex:1;padding:0 12px}
+  .look-h{margin:0 16px}
+  .look-b{padding-left:16px;padding-right:16px}
+  .squares{grid-template-columns:minmax(0,1fr)}
+  .sq{min-height:0}
 }
 
 /* ---------- integrations (dark tile grid) ---------- */
@@ -643,28 +914,45 @@ footer{border-top:1px solid var(--line)}
     </div>
   </section>
 
-  <section class="sec showcase" id="showcase">
+  <section class="sec" id="showcase">
     <div class="wrap">
       <div class="head center">
-        <h2 class="h2">What technicians do with Kenner</h2>
-        <p class="intro">Pick a moment from a technician’s day.</p>
+        <h2 class="h2">Watch Kenner work</h2>
+        <p class="intro">Pick an agent and send the technician’s messages. Every answer names what Kenner read, and the report fills in as they talk.</p>
       </div>
-      <div class="sc">
-        <div class="sc-tabs" role="tablist" aria-label="Use cases" id="tabs"></div>
-        <div class="stage" role="tabpanel" id="stage" aria-live="polite">
-          <div class="phone">
-            <div class="scr wa">
-              <div class="sbar" data-t="09:41" id="sc-clock"></div>
-              <div class="wa-head"><span class="bk"><i data-i="back"></i><em class="bkn">5</em></span><img src="brand/logo-avatar.svg" alt=""><span class="n"><b>Kenner</b><span id="sc-status"></span></span><span class="hic"><i data-i="video"></i><i data-i="phone"></i></span></div>
-              <div class="wa-body" id="sc-body"></div>
-              <div class="wa-in"><i data-i="plus"></i><span class="fld"><i data-i="sticker"></i></span><i data-i="camera"></i><span class="micb"><i data-i="mic"></i></span></div>
-              <span class="home"></span>
+      <div class="agents" role="group" aria-label="Agent" id="agents">
+        <button type="button" data-flow="fix" aria-pressed="true">Troubleshooting</button>
+        <button type="button" data-flow="report" aria-pressed="false">Service report</button>
+      </div>
+      <div class="work" id="work">
+        <div class="dock" role="group" aria-label="Messaging app" id="dock">
+          <button type="button" data-app="wa" aria-pressed="true" aria-label="WhatsApp"><img src="logos/tiles/whatsapp.svg" alt=""></button>
+          <button type="button" data-app="im" aria-pressed="false" aria-label="iMessage"><img src="logos/tiles/imessage.svg" alt=""></button>
+          <button type="button" data-app="tm" aria-pressed="false" aria-label="Microsoft Teams"><img src="logos/tiles/teams.svg" alt=""></button>
+          <button type="button" data-app="kw" aria-pressed="false" aria-label="Kenner web chat"><img src="apple-touch-icon.png" alt=""></button>
+        </div>
+        <div class="phone"><div class="scr" id="ask-scr"></div></div>
+        <div class="lap">
+          <div class="lap-s">
+            <div class="lap-p">
+              <section class="look" id="look" aria-labelledby="look-t">
+                <div class="look-h"><img src="brand/logo-avatar.svg" alt=""><h3 id="look-t">What Kenner looked up</h3></div>
+                <div class="look-b" id="look-b"><ol class="trail" id="trail"></ol></div>
+              </section>
+              <iframe class="wo" id="wo" src="app/work-order.html#0" title="The walk-in cooler’s work order in Kenner" loading="lazy" hidden></iframe>
             </div>
           </div>
-          <div class="result glass" id="sc-result"></div>
         </div>
       </div>
+      <div class="squares">
+        <article class="sq"><div><h3>Briefing</h3><p>Searches your systems and combines the asset’s history, your team’s field knowledge and the open work order into one briefing before the technician arrives.</p></div><ul class="sq-sys"><li><img class="mark" src="logos/avatar/servicetitan.svg" alt="">ServiceTitan<small>Work orders</small></li><li><img src="logos/grid/sharepoint.svg" alt="">SharePoint<small>Manuals</small></li><li><img src="logos/grid/confluence.svg" alt="">Confluence<small>Knowledge</small></li></ul></article>
+        <article class="sq"><div><h3>Parts</h3><p>Identifies the part from a photo or a description, checks stock on the van and at each depot, and orders it to the van.</p></div><ul class="sq-sys"><li><img src="logos/grid/sap.svg" alt="">SAP<small>Stock</small></li><li><img class="mark" src="logos/avatar/servicetitan.svg" alt="">ServiceTitan<small>Work orders</small></li></ul></article>
+        <article class="sq"><div><h3>Quotes</h3><p>Drafts the quote from your price book and what the technician found, and sends it to the customer once they’ve checked it.</p></div><ul class="sq-sys"><li><img class="mark" src="logos/avatar/servicetitan.svg" alt="">ServiceTitan<small>Price book</small></li><li><img src="logos/grid/quickbooks.svg" alt="">QuickBooks<small>Invoices</small></li></ul></article>
+        <article class="sq"><div><h3>Notes</h3><p>Files what technicians mention in the right system: new leads in your CRM, access notes in your FSM and fixes in your knowledge base.</p></div><ul class="sq-sys"><li><img src="logos/grid/hubspot.svg" alt="">HubSpot<small>Leads</small></li><li><img class="mark" src="logos/avatar/servicetitan.svg" alt="">ServiceTitan<small>Access</small></li><li><img src="logos/grid/confluence.svg" alt="">Confluence<small>Fixes</small></li></ul></article>
+      </div>
     </div>
+    <dialog class="pgv" id="pgv" aria-label="Manual page"><div class="pgv-h"><span id="pgv-cap"></span><button type="button" id="pgv-x" aria-label="Close"><i data-i="s-x"></i></button></div><img id="pgv-img" src="media/scotsman-p38.webp" alt="" loading="lazy" decoding="async"></dialog>
+    <div class="refc" id="refc" aria-hidden="true"></div>
   </section>
 
   <section class="sec" id="outcomes">
@@ -807,6 +1095,25 @@ footer{border-top:1px solid var(--line)}
     bell: S('<path d="M6 16.5V11a6 6 0 0 1 12 0v5.5l1.5 2h-15z"/><path d="M10 20.5a2 2 0 0 0 4 0"/>'),
     cal: S('<rect x="3.5" y="5" width="17" height="15.5" rx="2.5"/><path d="M3.5 10h17M8.5 3v4M15.5 3v4"/>'),
     alarm: S('<circle cx="12" cy="13" r="7"/><path d="M12 9.5V13l2.5 2M4.5 4.5L2.5 6.5M19.5 4.5l2 2"/>'),
+    /* the sources view's own icons, as the web app draws its sources */
+    's-clip': S('<rect width="8" height="4" x="8" y="2" rx="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2M12 11h4M12 16h4M8 11h.01M8 16h.01"/>'),
+    's-hist': S('<path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5M12 7v5l4 2"/>'),
+    's-cap': S('<path d="M21.42 10.92a1 1 0 0 0-.02-1.84L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.83l8.57 3.91a2 2 0 0 0 1.66 0z"/><path d="M22 10v6M6 12.5V16a6 3 0 0 0 12 0v-3.5"/>'),
+    's-page': S('<path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7z"/><path d="M14 2v4a2 2 0 0 0 2 2h4M10 9H8M16 13H8M16 17H8"/>'),
+    's-trash': S('<path d="M3 6h18M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2M10 11v6M14 11v6"/>'),
+    's-act': S('<path d="M22 12h-2.48a2 2 0 0 0-1.93 1.46l-2.35 8.36a.25.25 0 0 1-.48 0L9.24 2.18a.25.25 0 0 0-.48 0l-2.35 8.36A2 2 0 0 1 4.49 12H2"/>'),
+    's-keep': S('<path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2zM12 7v6M15 10H9"/>'),
+    's-eye': S('<path d="M2.06 12.35a1 1 0 0 1 0-.7 10.75 10.75 0 0 1 19.88 0 1 1 0 0 1 0 .7 10.75 10.75 0 0 1-19.88 0"/><circle cx="12" cy="12" r="3"/>'),
+    's-img': S('<rect width="18" height="18" x="3" y="3" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.09-3.09a2 2 0 0 0-2.82 0L6 21"/>'),
+    's-msg': S('<path d="M7.9 20A9 9 0 1 0 4 16.1L2 22z"/>'),
+    's-scroll': S('<path d="M15 12h-5M15 8h-5M19 17V5a2 2 0 0 0-2-2H4"/><path d="M8 21h12a2 2 0 0 0 2-2v-1a1 1 0 0 0-1-1H11a1 1 0 0 0-1 1v1a2 2 0 1 1-4 0V5a2 2 0 1 0-4 0v2a1 1 0 0 0 1 1h3"/>'),
+    's-down': S('<path d="m6 9 6 6 6-6"/>'),
+    's-book': S('<path d="M12 7v14M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/>'),
+    's-chev': S('<path d="m9 18 6-6-6-6"/>'),
+    's-x': S('<path d="M18 6 6 18M6 6l12 12"/>'),
+    's-up': S('<path d="m5 12 7-7 7 7M12 19V5"/>'),
+    's-plane': S('<path d="M3.4 20.4l17.45-7.48a1 1 0 0 0 0-1.84L3.4 3.6a1 1 0 0 0-1.39.91L2 9.12c0 .5.37.93.87.99L17 12 2.87 13.88c-.5.07-.87.5-.87 1l.01 4.61c0 .71.73 1.2 1.39.91z"/>', true),
+    's-send': S('<path d="M14.54 21.69a.5.5 0 0 0 .94-.03l6.5-19a.5.5 0 0 0-.64-.63l-19 6.5a.5.5 0 0 0-.02.93l7.93 3.18a2 2 0 0 1 1.11 1.11z"/><path d="m21.85 2.15-10.94 10.94"/>'),
     person: '<svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="15.5" r="7.5" fill="#fff"/><path d="M5 40c1-9.5 7.5-14 15-14s14 4.5 15 14z" fill="#fff"/></svg>'
   };
   function icons(root){
@@ -832,157 +1139,377 @@ footer{border-top:1px solid var(--line)}
   function navState(){ nav.classList.toggle('solid', window.scrollY > 40); }
   navState(); window.addEventListener('scroll', navState, {passive:true});
 
-  /* ---------- showcase ---------- */
-  var LK = function(s){ return '<span class="lk">'+s+'</span>'; };
-  var CASES = [
-    { id:'help', title:'Help on the job', desc:'Answers with the manual page.', clock:'12:17',
-      msgs:[
-        {f:'out', h:'B-02 is locked out on F.446. Where’s the sensor and how do I test it?', t:'12:06', react:'👀'},
-        {f:'in', media:'manual', h:'Dual sensor, pins 1 to 4 · '+LK('p. 82'), t:'12:06'},
-        {f:'out', h:'Sensor 1 is 10.4k, sensor 2 is 7.9k. Water is about 25 °C.', t:'12:16', react:'👀'},
-        {f:'in', h:'At 25 °C the curve gives <b>about 10 kΩ</b>. Sensor 2 is <b>21% low</b>, past the 10% limit: <b>replace the dual sensor</b>. '+LK('p. 83'), t:'12:17'},
-        {f:'out', h:'Got one in the van. Swapped, F.446 is gone.', t:'12:41', react:'👍'},
-        {f:'in', h:'Good. I’ve saved the readings to the job.', t:'12:41'}
-      ],
-      result:{ meta:'Job notes, B-02', title:'Saved to the job', rows:[['Fault','F.446, flow sensor'],['Measured','10.4 and 7.9 kΩ at 25 °C'],['Done','Dual sensor replaced']], chips:[['Manual','p. 82, 83']] } },
-    { id:'part', title:'Find and order a part', desc:'Photo in, part ordered.', clock:'10:21',
-      msgs:[
-        {f:'out', media:'vessel', h:'Vessel won’t hold its pre-charge. Do we have a new one?', t:'10:18', react:'👀'},
-        {f:'in', h:'That’s the 18 l expansion vessel for the Vitodens 100-W, part 7248373. '+LK('Parts list p. 112'), t:'10:18'},
-        {f:'in', h:'None in your van. The north depot has two. Shall I ship one to your van for tomorrow morning?', t:'10:19'},
-        {f:'out', h:'Yes please.', t:'10:20', react:'👍'},
-        {f:'in', h:'Ordered. It’s in your van by 07:30 tomorrow, and I’ve added it to tomorrow’s visit.', t:'10:21'}
-      ],
-      result:{ meta:'SAP, 10:21', title:'Part ordered', rows:[['Part','Expansion vessel 18 l, 7248373'],['Quantity','1'],['Order','PO 4500018342'],['Delivery','Van 14, tomorrow 07:30']], chips:[['Parts list','p. 112']] } },
-    { id:'time', title:'Log hours and time off', desc:'Overtime and leave in one message.', clock:'17:55',
-      msgs:[
-        {f:'out', h:'Went 1.5 h over at the Klinikum today.', t:'17:52', react:'👍'},
-        {f:'in', h:'Logged 1.5 h overtime for today on job WO-20391. That’s 6.5 h this month.', t:'17:52'},
-        {f:'out', h:'And I’d like 3 to 7 November off.', t:'17:53'},
-        {f:'in', h:'Requested 3 to 7 November, 5 days of leave. You’ll have 12 days left. Anna approves it, and I’ll tell you when she has.', t:'17:53'},
-        {f:'in', h:'Anna approved your leave.', t:'17:55'}
-      ],
-      result:{ meta:'Time tracking, today', title:'Logged', rows:[['Overtime','1.5 h, WO-20391'],['This month','6.5 h'],['Leave','3 to 7 Nov, 5 days'],['Status','Approved by Anna']], chips:[] } },
-    { id:'report', title:'Write the report', desc:'Talk it through, Kenner files it.', clock:'10:16', done:true,
-      msgs:[
-        {f:'out', voice:'0:41', h:'Valve replaced, pre-charge to 1.0, refilled to 1.5, F.74 cleared. Valve from van stock.', t:'10:10', react:'👍'},
-        {f:'in', h:'Got it. Did you replace the whole valve or only the cap seal?', t:'10:10'},
-        {f:'out', h:'Whole valve.', t:'10:11'},
-        {f:'in', h:'Thanks. Can you send me a photo of the serial number plate? It’s on the right side panel.', t:'10:11'},
-        {f:'out', media:'plate', h:'', t:'10:12', react:'👀'},
-        {f:'in', h:'Serial 7570 1234 0012 3 matches B-01. Report for WO-20419 is drafted: valve replaced, pre-charge set to 1.0 bar, system refilled to 1.5 bar, F.74 cleared, 1 valve from van stock. Reply OK to file it.', t:'10:13'},
-        {f:'out', h:'OK', t:'10:15', react:'👍'},
-        {f:'in', h:'Filed to your FSM at 10:16. Thanks, Jonas.', t:'10:16'}
-      ],
-      result:{ meta:'Your FSM, 10:16', title:'Report filed', rows:[['Finding','Expansion vessel valve weeping'],['Work done','Valve replaced, pre-charge 1.0 bar'],['Serial','7570 1234 0012 3'],['Parts','1 valve, van stock']], chips:[['Call','10:10'],['Photo','serial plate']] } },
-    { id:'quote', title:'Quote an extra visit', desc:'Drafted from your price list.', clock:'10:44',
-      msgs:[
-        {f:'out', h:'Mr Hofer wants the second boiler serviced too. Can you quote it?', t:'10:31', react:'👀'},
-        {f:'in', pdf:true, h:'Here’s the quote for B-02 from your 2026 price list: 2 h labour and a gasket set, €389 net. Check it before I send it to Mr Hofer.', t:'10:32'},
-        {f:'out', h:'Looks good, send it.', t:'10:33', react:'👍'},
-        {f:'in', h:'Sent. Mr Hofer approved at 10:44. I’ve booked the visit for Tue 4 Nov, 08:00.', t:'10:44'}
-      ],
-      result:{ meta:'Quote Q-2026-0187', title:'Quote approved', rows:[['Work','B-02 annual service'],['Labour','2 h'],['Parts','Gasket set'],['Total','€389 net'],['Visit','Tue 4 Nov, 08:00']], chips:[['Price list','2026']] } }
-  ];
+  /* ---------- watch Kenner work: a technician's messages to one agent, and what the office sees of the same job ---------- */
+  var askScr = $('ask-scr'), trail = $('trail'), lookB = $('look-b'), refc = $('refc'), look = $('look'), wo = $('wo');
+  var AV = 'brand/logo-avatar.svg', ST = 'logos/avatar/servicetitan.svg', TEAMS = 'logos/tiles/teams.svg';
+  var C = function(k, s){ return '<button type="button" class="cite" data-k="'+k+'">'+s+'</button>'; };
+  var SRC = function(m){ return m.src ? '<span class="src">'+m.src.map(function(x){ return C(x[0], x[1]); }).join(' · ')+'</span>' : ''; };
+  var H = [5,9,6,14,8,5,12,7,16,10,6,13,5,9,15,7,4,11,8,14,6,10,5,12,7,9,4,8,13,6];
+  var waveBars = function(n, knob){ var s = ''; for (var i = 0; i < n; i++) s += '<i style="height:'+H[i%H.length]+'px"></i>'; return '<span class="vw">'+s+(knob ? '<b class="vk"></b>' : '')+'</span>'; };
 
-  var tabs = $('tabs'), body = $('sc-body'), result = $('sc-result'), clock = $('sc-clock'), status = $('sc-status');
-  var ARROW = '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4.5 11.5l7-7M5.5 4.5h6v6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
-  CASES.forEach(function(c, i){
-    var b = document.createElement('button');
-    b.type = 'button'; b.className = 'tab'; b.setAttribute('role','tab'); b.id = 'tab-'+c.id;
-    b.setAttribute('aria-controls','stage'); b.setAttribute('aria-selected', i===0 ? 'true':'false');
-    b.innerHTML = '<span class="tt">'+c.title+ARROW+'</span><span class="td">'+c.desc+'</span>';
-    b.addEventListener('click', function(){ userTook = true; show(i, true); });
-    tabs.appendChild(b);
+  /* Bayline Refrigeration's two Harbor Kitchen jobs from the commercial refrigeration demo: fictional contractor, people and
+     records; the Scotsman manual and its pages are real. A step: its icon, what it is doing, what it did, what it asked,
+     what came back, and the sources it cited. */
+  var FLOWS = {
+    fix: { start:'09:37', pre:[],
+      briefing:{ t:'09:02', done:'Wrote the briefing', steps:[
+        ['s-clip','Reading the work order','Read the work order','WO-RF-2046','Two harvest stops this morning. Bin running low before lunch.',['wo']],
+        ['s-act','Reading IM-01’s data','Read IM-01’s data','','Both stops hit the harvest time limit.',['data']],
+        ['s-hist','Looking up IM-01’s history','Looked up IM-01’s history','','Cleaned on 25 Oct. Water filter changed on 9 Sep.',['r2038','r2011']],
+        ['s-cap','Checking company knowledge','Checked company knowledge','','After a clean, check the curtain first.',['kcurtain']] ] },
+      turns:[
+        { out:{h:'IM-01 stopped on max harvest time. What should I check?'}, t:'09:38', done:'Answered', steps:[
+            ['s-act','Reading IM-01’s data','Read IM-01’s data','','Two harvests hit the time limit, at 6:12 and 7:48. Freeze cycles normal.',['data']],
+            ['s-cap','Checking company knowledge','Checked company knowledge','','After a clean, swing the curtain first. Morgan cleaned it on 25 Oct.',['kcurtain','r2038']],
+            ['s-book','Reading the manual','Read the manual','“maximum harvest time”','Curtain out of position comes first on p. 38. Switch test on p. 46.',['p38','p46']] ],
+          a:[ {h:'<b>Check the curtain first.</b> Morgan cleaned IM-01 on 25 Oct, and after a clean Lee has seen curtains catch on the surround and never open.', src:[['r2038','WO-RF-2038'],['kcurtain','Lee in Teams']]},
+              {h:'1. Swing it by hand. It should move freely.<br>2. Watch its light on the controller: on when the curtain opens, out as it closes. '+C('p46','p. 46')+'<br>3. Still stopping? Power off and meter the switch: 5 Ω or less closed. '+C('p46','p. 46')} ] },
+        { out:{h:'Where’s the switch?'}, t:'09:44', done:'Answered', steps:[
+            ['s-eye','Looking at a manual page','Looked at a manual page','p. 46','The photo on p. 46 circles the curtain switch.',['p46','photo']] ],
+          a:[ {img:true, h:'Circled. Its light on the controller is on while the curtain is open.', src:[['p46','p. 46']]} ] },
+        { out:{h:'Curtain was caught on the surround. Reseated it, 3 cycles clean.'}, t:'10:21', done:'Answered', steps:[
+            ['s-act','Reading IM-01’s data','Read IM-01’s data','','Three harvests since 10:04, all inside the limit.',['data']],
+            ['s-cap','Checking company knowledge','Checked company knowledge','','Nothing yet for cleaning visits on the Prodigy.',[]],
+            ['s-keep','Saving company knowledge','Saved company knowledge','','After cleaning a Prodigy, swing each curtain before restarting.',['knew']] ],
+          a:[ {h:'Good fix. Saved for the team: after cleaning a Prodigy, swing each curtain before restarting. Once Lee approves it, it’s in every cleaning briefing.', src:[['knew','Team knowledge']]} ] } ] },
+    report: { start:'13:46',
+      pre:[ {f:'in', h:'For WC-01’s report: findings, work, parts, refrigerant, tests, handover. Give readings with units, or say what you didn’t test.', t:'13:41'} ],
+      turns:[
+        { out:{voice:'0:25', h:'WC-01 at Harbor Kitchen. Fixed the leak at the liquid-line service valve stem packing. Pumped down into the receiver, adjusted the packing, pressure-tested and pulled a vacuum. No parts, nothing recovered. Added R-448A and the cooler’s back down to temperature. Floor in front gets wet during pump-down, I’ve dried it.'}, t:'13:48',
+          a:[ {h:'Drafted. How much R-448A went in? And your test readings?'} ] },
+        { out:{voice:'0:43', h:'Three pounds, six ounces. Nitrogen at 150 psig for 15 minutes, no bubbles at the stem. Vacuum 450 microns. Detector at the stem after restart, nothing. Cooler air 37 after 30 minutes, didn’t probe the food. I’ll check in with Maya by 10 tomorrow. Maya also wants a price for new door gaskets.'}, t:'13:52',
+          a:[ {h:'All in. Reply OK to file it.'} ] },
+        { out:{h:'OK'}, t:'13:53', a:[ {h:'Filed to WO-RF-2047. Maya has a copy.'} ] } ] }
+  };
+  var LEE = '<div class="said"><figure><figcaption><b>Jamie Patel</b> asked · 16:12</figcaption><blockquote>Another 0530 stopping on max harvest the day after a clean. Switch again?</blockquote></figure><figure><figcaption><b>Lee Carter</b> answered · 16:20</figcaption><blockquote>Swing the curtain before you meter anything. If it went back out of position it catches on the surround and never opens far enough.</blockquote></figure></div>';
+  /* each source a chip can name, and its card: g, the source it reads as (work orders, unit data or Kenner's knowledge), else Kenner's blue */
+  var CH = {
+    wo:{i:'s-page', g:'fsm', l:'WO-RF-2046', av:ST, t:'Harbor Kitchen · Ice machine stops during harvest', s:'WO-RF-2046 · IM-01 · Scotsman MC0530SA-1A', x:'<span>Stopped twice during harvest this morning. Bin running low before lunch.</span>', f:'ServiceTitan'},
+    data:{i:'s-act', g:'tel', l:'IM-01 data', av:AV, t:'IM-01 data', s:'Today · from the unit’s controller', x:'<dl><dt>06:12</dt><dd>Harvest hit the time limit</dd><dt>07:48</dt><dd>Harvest hit the time limit</dd><dt>From 10:04</dt><dd>Three harvests inside the limit</dd></dl>', f:'Unit data'},
+    r2038:{i:'s-page', g:'fsm', l:'WO-RF-2038 report', av:ST, t:'WO-RF-2038 report', s:'25 Oct · Morgan Ellis · Planned cleaning', x:'<dl><dt>Found</dt><dd>Dust on the air filter, scale in the water system. No harvest shutdown seen.</dd><dt>Work</dt><dd>Cleaned the air filter and water system, including the water-level sensor.</dd><dt>Tests</dt><dd>Two complete cycles watched.</dd></dl>', f:'ServiceTitan'},
+    r2011:{i:'s-page', g:'fsm', l:'WO-RF-2011 report', av:ST, t:'WO-RF-2011 report', s:'9 Sep · Jamie Patel · Water-filter service', x:'<dl><dt>Work</dt><dd>Replaced the cartridge and checked the connections.</dd><dt>Tests</dt><dd>No leaks.</dd></dl>', f:'ServiceTitan'},
+    kcurtain:{teams:true, g:'kw', l:'Harvest stop after a clean: check the curtain first', av:AV, t:'Harvest stop after a clean: check the curtain first', s:'Company knowledge · approved by Lee Carter, service supervisor', x:LEE, f:'From Microsoft Teams · 28 Oct'},
+    knew:{i:'s-keep', g:'kw', l:'After cleaning: swing each curtain', av:AV, t:'After cleaning a Prodigy, swing each curtain before restarting', s:'Company knowledge · waiting for Lee Carter to approve', x:'<span>From WO-RF-2046: after the 25 Oct clean the curtain caught on the surround. Reseating it cleared the stops; three cycles clean.</span>', f:'Learned on this job'},
+    p38:{i:'s-book', g:'kw', l:'Prodigy Elite p. 38', av:AV, t:'Scotsman Prodigy Elite service manual, p. 38', s:'Diagnostics, air cooled', m:'media/scotsman-p38.webp', open:'Scotsman Prodigy Elite service manual, page 38: diagnostics, air cooled', f:'Manual'},
+    p46:{i:'s-book', g:'kw', l:'Prodigy Elite p. 46', av:AV, t:'Scotsman Prodigy Elite service manual, p. 46', s:'Test procedures: curtain switch', m:'media/scotsman-p46.webp', open:'Scotsman Prodigy Elite service manual, page 46: curtain switch test procedures', f:'Manual'},
+    photo:{i:'s-img', l:'Photo', av:AV, t:'Curtain switch, circled', s:'From the manual, p. 46', m:'media/curtain-switch.webp', open:'Photo from the manual, page 46: the curtain switch, circled', f:'Sent in the chat'}
+  };
+  var IMG_LABEL = 'Photo from the manual, page 46: the curtain switch, circled';
+  /* a send button for what the technician has ready: the visitor sends it */
+  var TILE = '<span class="tm-tile"><img src="'+AV+'" alt=""></span>';
+  var KVN = function(d){ return '<div class="kvn"><span class="pb">'+ICONS.play+'</span>'+waveBars(30)+'<em>'+d+'</em></div>'; };
+  var SEND = function(icon){ return '<button type="button" class="snd cue" aria-label="Send">'+ICONS[icon]+'</button>'; };
+  var APPS = {
+    wa: { cls:'wa', body:'wa-body',
+      head: function(){ return '<div class="wa-head"><span class="bk">'+ICONS.back+'<em class="bkn">5</em></span><img src="'+AV+'" alt=""><span class="n"><b>Kenner</b><span id="ask-st"></span></span><span class="hic">'+ICONS.video+ICONS.phone+'</span></div>'; },
+      day: function(){ return '<span class="wa-day">Today</span>'; },
+      bubble: function(m, gf, tl){
+        var c = 'b '+m.f+(gf?' gf':'')+(tl?' tl':'');
+        if (m.typ) return '<div class="'+c+' typ" aria-label="Kenner is typing"><i></i><i></i><i></i></div>';
+        var meta = '<span class="meta">'+m.t+(m.f==='out'?ICONS.ticks:'')+'</span>';
+        if (m.voice) return '<div class="'+c+'"><span class="vn">'+ICONS.play.replace('class="i"','class="i pl"')+waveBars(26, true)+'</span><span class="vd num">'+m.voice+'</span><span class="tr">'+m.h+'</span>'+meta+'</div>';
+        if (m.img) return '<div class="'+c+' pic"><span class="ph sw" role="img" aria-label="'+IMG_LABEL+'"></span><span class="cap">'+m.h+SRC(m)+meta+'</span></div>';
+        return '<div class="'+c+'">'+m.h+SRC(m)+meta+'</div>';
+      },
+      composer: function(d){
+        var field = !d ? '<span class="tx"></span>' : d.voice ? '<span class="vdraft">'+waveBars(22)+'<em>'+d.voice+'</em></span>' : '<span class="tx">'+d.shown+'</span>';
+        return '<div class="wa-in" id="ask-cmp">'+ICONS.plus+'<span class="fld">'+field+(d && d.voice ? '' : ICONS.sticker)+'</span>'+(d && d.ready ? SEND('s-plane') : d ? '' : ICONS.camera+'<span class="micb">'+ICONS.mic+'</span>')+'</div>';
+      } },
+    im: { cls:'im', body:'im-body',
+      head: function(){ return '<div class="im-head"><span class="gb l">'+ICONS.back+'</span><span class="gb r">'+ICONS.video+'</span><span class="im-who"><img src="'+AV+'" alt=""><span>Kenner'+ICONS['s-chev']+'</span></span></div>'; },
+      day: function(t){ return '<div class="im-ts">iMessage<br><b>Today</b> '+t+'</div>'; },
+      bubble: function(m, gf, tl){
+        var c = 'ib '+m.f+(gf?' gf':'');
+        if (m.typ) return '<div class="'+c+' tl typ" aria-label="Kenner is typing"><i></i><i></i><i></i></div>';
+        /* iMessage transcribes a voice note under it, and sends a photo and its words as separate bubbles */
+        if (m.voice) return '<div class="'+c+(tl?' tl':'')+' voice"><span class="vrow">'+ICONS.play+waveBars(24)+'<em>'+m.voice+'</em></span><span class="trs">'+m.h+'</span></div>';
+        if (m.img) return '<div class="'+c+' pic"><span role="img" aria-label="'+IMG_LABEL+'"></span></div><div class="ib '+m.f+(tl?' tl':'')+'">'+m.h+SRC(m)+'</div>';
+        return '<div class="'+c+(tl?' tl':'')+'">'+m.h+SRC(m)+'</div>';
+      },
+      composer: function(d){
+        var inner = !d ? '<span class="ph">iMessage</span>'+ICONS.mic : (d.voice ? '<span class="vdraft">'+waveBars(20)+'<em>'+d.voice+'</em></span>' : '<span class="tx">'+d.shown+'</span>')+(d.ready ? SEND('s-up') : '');
+        return '<div class="im-in" id="ask-cmp"><span class="pl">'+ICONS.plus+'</span><span class="fld">'+inner+'</span></div>';
+      } },
+    tm: { cls:'tm', body:'tm-body',
+      head: function(){ return '<div class="tm-head">'+ICONS.back+TILE+'<span class="tm-name"><b>Kenner</b><small>Chat'+ICONS['s-down']+'</small></span>'+ICONS.search.replace('class="i"','class="i r"')+ICONS.more.replace('class="i"','class="i r"')+'</div>'; },
+      day: function(){ return '<span class="tm-day">Today</span>'; },
+      bubble: function(m, gf){
+        var meta = !gf ? '' : m.f === 'in' ? '<div class="tm-meta in"><b>Kenner</b>'+(m.t||'')+'</div>' : '<div class="tm-meta out">'+m.t+'</div>', tile = gf && m.f === 'in' ? TILE : '';
+        if (m.typ) return meta+'<div class="tb in typ" aria-label="Kenner is typing">'+tile+'<i></i><i></i><i></i></div>';
+        if (m.voice) return meta+'<div class="tb '+m.f+' voice"><span class="vrow">'+ICONS.play+waveBars(24)+'<em>'+m.voice+'</em></span><span class="trs">'+m.h+'</span></div>';
+        /* Teams shows a photo Kenner sends as a card that opens it in Kenner */
+        if (m.img) return meta+'<div class="tb in card">'+tile+'<span class="im2" role="img" aria-label="'+IMG_LABEL+'"></span><b>Curtain switch · Prodigy Elite p. 46</b><span>'+m.h+'</span><span class="tm-btn">Open in Kenner</span></div>';
+        return meta+'<div class="tb '+m.f+'">'+tile+m.h+SRC(m)+'</div>';
+      },
+      composer: function(d){
+        var inner = !d ? '<span class="ph">Type a message</span>' : d.voice ? '<span class="vdraft">'+waveBars(20)+'<em>'+d.voice+'</em></span>' : '<span class="tx">'+d.shown+'</span>';
+        return '<div class="tm-in" id="ask-cmp">'+ICONS.plus+'<span class="fld">'+inner+'</span>'+(d && d.ready ? SEND('s-send') : d ? '' : ICONS.mic)+'</div>';
+      } },
+    /* Kenner's own chat, as the web app's Thread draws it: Kenner's turns beside its picture with their sources as chips */
+    kw: { cls:'kw', body:'kw-body',
+      head: function(){ return '<div class="kw-head"><img src="'+AV+'" alt=""><b>Kenner</b><span class="kw-job">WO-RF-'+(flow === 'fix' ? '2046' : '2047')+ICONS['s-down']+'</span>'+ICONS.phone.replace('class="i"','class="i kw-call"')+ICONS['s-chev']+'</div>'; },
+      day: function(){ return '<p class="kw-day">8 Nov</p>'; },
+      bubble: function(m, gf, tl){
+        if (m.typ) return '<div class="ktyp" role="status"><img src="'+AV+'" alt="">Kenner is typing…</div>';
+        if (m.f === 'out') return '<div class="kt out'+(gf?' gf':'')+'"><div class="kbub">'+(m.voice ? KVN(m.voice) : '')+m.h+'</div>'+(tl ? '<span class="kmeta">'+m.t+' · Sent</span>' : '')+'</div>';
+        var chips = m.src ? '<div class="kchips">'+m.src.map(function(x){ var c = CH[x[0]]; return '<button type="button" class="cite kch'+(c.g === 'kw' ? ' k' : '')+'" data-k="'+x[0]+'">'+(c.teams ? '<img src="'+TEAMS+'" alt="">' : ICONS[c.i])+'<span>'+c.l+'</span></button>'; }).join('')+'</div>' : '';
+        return '<div class="kt in'+(gf?' gf':'')+'">'+(gf ? '<img src="'+AV+'" alt="">' : '<i></i>')+'<div>'+(m.img ? '<span class="kpic" role="img" aria-label="'+IMG_LABEL+'"></span>' : '')+'<div class="kbub">'+m.h+'</div>'+chips+(tl ? '<span class="kmeta">'+m.t+'</span>' : '')+'</div></div>';
+      },
+      composer: function(d){
+        var inner = d && d.voice ? '<span class="ib2">'+ICONS['s-trash']+'</span>'+KVN(d.voice) : '<span class="ib2">'+ICONS.camera+'</span>'+(d ? '<span class="tx">'+d.shown+'</span>' : '<span class="ph">Message Kenner</span>');
+        return '<div class="kw-in" id="ask-cmp"><div class="fld">'+inner+(d && d.ready ? SEND('s-up') : d ? '' : '<span class="ib2">'+ICONS.mic+'</span>')+'</div></div>';
+      } }
+  };
+
+  var flow = 'fix', app = 'wa', F = FLOWS.fix, log = [], turn = 0, busy = false, typing = false, draft = null, fresh = 0, askTimers = [], askBody = null;
+  function at(fn, ms){ askTimers.push(setTimeout(fn, ms)); }
+  function halt(){ askTimers.forEach(clearTimeout); askTimers = []; }
+  function clockNow(){ var m = log[log.length-1]; return (m ? m.t : F.start).replace(/^0/, ''); }
+
+  function paint(){
+    var A = APPS[app];
+    askScr.className = 'scr ' + A.cls;
+    askScr.innerHTML = '<div class="sbar" id="ask-clock"></div>' + A.head() + '<div class="'+A.body+'" id="ask-body" aria-live="polite"></div>' + A.composer(draft) + '<span class="home"></span>';
+    askBody = $('ask-body');
+    paintBody(false);
+  }
+  function paintBody(smooth){
+    var A = APPS[app], items = log.concat(typing ? [{f:'in', typ:true, t:''}] : []), html = '', top = askBody.scrollTop;
+    if (items.length) html += A.day(items[0].t);
+    items.forEach(function(m, i){
+      var gf = i === 0 || items[i-1].f !== m.f, tl = i === items.length-1 || items[i+1].f !== m.f;
+      var b = A.bubble(m, gf, tl);
+      html += i >= fresh && smooth ? b.replace(/class="(b|ib|tb|kt) /g, 'class="$1 m-in ') : b;
+    });
+    if (app === 'im' && items.length && items[items.length-1].f === 'out') html += '<div class="im-rc">Delivered</div>';
+    askBody.innerHTML = html;
+    var st = $('ask-st'); if (st){ st.textContent = typing ? 'typing…' : ''; st.className = typing ? 'typing' : ''; }
+    $('ask-clock').innerHTML = '<span class="num">'+clockNow()+'</span>'+SB_IOS;
+    askBody.scrollTop = top;
+    askBody.scrollTo({top: askBody.scrollHeight, behavior: smooth && !still ? 'smooth' : 'auto'});
+  }
+  function paintComposer(){ $('ask-cmp').outerHTML = APPS[app].composer(draft); }
+  function say(m){ typing = false; fresh = log.length; log.push(m); paintBody(true); }
+  function setTyping(on){ typing = on; fresh = log.length; paintBody(true); }
+  /* the technician's next message, typed into the composer (a voice note arrives recorded) and waiting to be sent */
+  function offer(i, instant){
+    var o = F.turns[i] && F.turns[i].out;
+    draft = o ? {h:o.h, voice:o.voice, shown:o.voice || instant || still ? o.h : '', ready:!!(o.voice || instant || still)} : null;
+    paintComposer();
+    if (!draft || draft.ready) return;
+    var n = o.h.length, ticks = Math.max(6, Math.round(Math.min(900, n*18)/40));
+    for (var k = 1; k <= ticks; k++) (function(k){ at(function(){ draft.shown = o.h.slice(0, Math.round(n*k/ticks)); draft.ready = k === ticks; paintComposer(); }, 250 + k*40); })(k);
+  }
+  function message(o, t){ return {f:'out', h:o.h, voice:o.voice, t:t}; }
+
+  /* the timeline: a node for the briefing and for each question, the latest unfolded to its steps */
+  var runOf = function(r){ return r ? F.turns[r-1] : F.briefing; };
+  function chip(k){
+    var c = CH[k], lead = c.teams ? '<img src="'+TEAMS+'" alt="">' : ICONS[c.i];
+    return '<button type="button" class="ch'+(c.g ? ' g '+c.g : '')+'" data-k="'+k+'">'+lead+'<span>'+c.l+'</span></button>';
+  }
+  function stepEl(s, done){
+    var li = document.createElement('li');
+    li.className = 'st' + (done ? ' done' : ' ing');
+    li.innerHTML = '<span class="st-i">'+ICONS[s[0]]+'</span><div><p class="st-t"><b>'+(done ? s[2] : s[1])+'</b>'+(s[3] ? '<span'+(s[3].charAt(0) === '“' ? '' : ' class="nw"')+'> · '+s[3]+'</span>' : '')+'</p>'
+      +'<div class="st-d"><div><p>'+s[4].replace(/WO-RF-\d+/g, '<span class="nw">$&</span>')+'</p>'+(s[5].length ? '<div class="chs">'+s[5].map(chip).join('')+'</div>' : '')+'</div></div></div>';
+    return li;
+  }
+  function finish(li, s){ li.classList.remove('ing'); li.classList.add('done'); li.querySelector('.st-t b').textContent = s[2]; }
+  function doneEl(r){
+    var R = runOf(r), li = document.createElement('li');
+    li.className = 'st done';
+    li.innerHTML = '<span class="st-i"><img src="'+AV+'" alt=""></span><div><p class="st-t"><b>'+R.done+'</b><span> · 8 Nov · '+R.t+'</span></p></div>';
+    return li;
+  }
+  function runEls(r, open){
+    var R = runOf(r), title = r ? '“'+R.out.h+'”' : 'Briefing';
+    var node = document.createElement('li'), grp = document.createElement('li');
+    node.className = 'run';
+    node.innerHTML = '<span class="run-i">'+ICONS[r ? 's-msg' : 's-scroll']+'</span><button type="button" aria-expanded="'+open+'" title="'+title+'"><b>'+title+'</b><span>· '+R.t+'</span>'+ICONS['s-down']+'</button>';
+    grp.className = 'grp' + (open ? ' open' : '');
+    grp.innerHTML = '<ol></ol>';
+    return [node, grp];
+  }
+  function fillRun(grp, r){
+    var ol = grp.firstChild;
+    runOf(r).steps.forEach(function(s){ ol.appendChild(stepEl(s, true)); });
+    ol.appendChild(doneEl(r));
+  }
+  /* the line runs on from each node and step to the next; the last one shown ends it */
+  function markEnd(){
+    trail.querySelectorAll('.end').forEach(function(x){ x.classList.remove('end'); });
+    var grps = trail.querySelectorAll('.grp'), last = grps[grps.length-1];
+    var end = last && last.classList.contains('open') && last.firstChild.lastChild ? last.firstChild.lastChild : last && last.previousSibling;
+    if (end) end.classList.add('end');
+  }
+  function foldRun(grp, open){
+    grp.classList.toggle('open', open);
+    grp.previousSibling.querySelector('button').setAttribute('aria-expanded', open ? 'true' : 'false');
+    markEnd();
+  }
+  function toEnd(el){ el.scrollTo({top: el.scrollHeight, behavior: still ? 'auto' : 'smooth'}); }
+  function paintLook(upTo){
+    trail.innerHTML = '';
+    for (var r = 0; r <= upTo; r++){
+      var els = runEls(r, r === upTo && r > 0);
+      fillRun(els[1], r);
+      trail.appendChild(els[0]); trail.appendChild(els[1]);
+    }
+    markEnd();
+    lookB.scrollTop = lookB.scrollHeight;
+  }
+  trail.addEventListener('click', function(e){
+    var b = e.target.closest('.run > button');
+    if (b){ var grp = b.parentNode.nextSibling; foldRun(grp, !grp.classList.contains('open')); }
   });
 
-  var PLATE = '<span class="pl"><b>Vitodens 100-W</b>Type B1HE-120<br>Serial no. 7570 1234 0012 3<br>Year 2019 · 230 V ~ 50 Hz<br>PMS 3 bar · Qn 3.2–19 kW<span class="bc"></span></span>';
-  function bubble(m, gf, tl, withReact){
-    var d = document.createElement('div');
-    d.className = 'b ' + m.f + (gf ? ' gf' : '') + (tl ? ' tl' : '') + (m.photo || m.media ? ' pic' : '') + (m.media && !m.h ? ' nocap' : '') + (m.pdf ? ' doc' : '');
-    var meta = '<span class="meta">'+m.t+(m.f==='out'?ICONS.ticks:'')+'</span>';
-    if (m.voice) d.innerHTML = '<span class="vn">'+ICONS.play.replace('class="i"','class="i pl"')+'<span class="vw"></span></span><span class="vd num">'+m.voice+'</span><span class="tr">'+m.h+'</span>'+meta;
-    else if (m.media === 'manual') d.innerHTML = '<span class="ph man" role="img" aria-label="Manual figure showing where the dual sensor sits and its pins 1 to 4"></span><span class="cap">'+m.h+meta+'</span>';
-    else if (m.media === 'vessel') d.innerHTML = '<span class="ph vessel" role="img" aria-label="Photo of the expansion vessel next to the boiler"></span><span class="cap">'+m.h+meta+'</span>';
-    else if (m.media === 'plate') d.innerHTML = '<span class="ph plate" role="img" aria-label="Photo of the serial number plate">'+PLATE+'</span><span class="cap">'+m.h+meta+'</span>';
-    else if (m.pdf) d.innerHTML = '<span class="drow"><svg class="dic" viewBox="0 0 26 32" aria-hidden="true"><path d="M3 0h14l9 9v20a3 3 0 0 1-3 3H3a3 3 0 0 1-3-3V3a3 3 0 0 1 3-3z" fill="#E5252A"/><path d="M17 0v6a3 3 0 0 0 3 3h6z" fill="#F28B8D"/><text x="13" y="24" text-anchor="middle" font-family="-apple-system,Helvetica,sans-serif" font-size="7.5" font-weight="700" fill="#fff">PDF</text></svg><span class="dn"><b>Quote-Q-2026-0187.pdf</b><small>84 kB · pdf</small></span></span><span class="cap">'+(m.h||'')+meta+'</span>';
-    else d.innerHTML = m.h + meta;
-    var w = d.querySelector('.vw'); if (w) wave(w, 26);
-    if (withReact && m.react) react(d, m.react, false);
-    return d;
+  /* the report agent's laptop: the captured work order page, moved on a stage as each message lands */
+  var woStage = 0;
+  function report(n, animate){
+    woStage = n;
+    var w = wo.contentWindow;
+    if (w && w.show) w.show(n, animate);
   }
-  function react(d, e, pop){
-    d.classList.add('rx');
-    var r = document.createElement('span'); r.className = 'rxn' + (pop ? ' pop' : ''); r.textContent = e;
-    r.setAttribute('aria-label', 'Kenner reacted ' + e); d.appendChild(r);
-  }
-  function toBottom(smooth){ body.scrollTo({top: body.scrollHeight, behavior: smooth && !still ? 'smooth' : 'auto'}); }
-  function fillResult(c){
-    var r = c.result;
-    var rows = r.rows.map(function(x){ return '<dt>'+x[0]+'</dt><dd>'+x[1]+'</dd>'; }).join('');
-    var chips = r.chips.map(function(x){ return '<span class="chip"><b>'+x[0]+'</b><span>'+x[1]+'</span></span>'; }).join('');
-    result.innerHTML = '<div class="rh"><img src="brand/logo-avatar.svg" alt="Kenner">'+r.meta+'</div><h3>'+r.title+'</h3><dl>'+rows+'</dl>'+(chips?'<div class="chips">'+chips+'</div>':'');
-  }
+  wo.addEventListener('load', function(){ wo.contentWindow.show(woStage, false); });
 
-  var cur = 0, timers = [], userTook = false, inView = false;
-  function clear(){ timers.forEach(clearTimeout); timers = []; }
-  function later(fn, ms){ timers.push(setTimeout(fn, ms)); }
-  function setClock(t){ clock.dataset.t = t; clock.querySelector('span').textContent = t; }
-
-  function show(i, animate){
-    clear(); cur = i;
-    var c = CASES[i];
-    tabs.querySelectorAll('.tab').forEach(function(t, j){ t.setAttribute('aria-selected', j===i ? 'true':'false'); });
-    var active = tabs.children[i];
-    if (active && tabs.scrollWidth > tabs.clientWidth) tabs.scrollTo({left: tabs.scrollLeft + active.getBoundingClientRect().left - tabs.getBoundingClientRect().left - 4, behavior: still ? 'auto':'smooth'});
-    setClock(c.clock);
-    body.innerHTML = '<span class="wa-day">Today</span>';
-    fillResult(c);
-    var M = c.msgs, G = function(k){ return k === 0 || M[k-1].f !== M[k].f; }, T = function(k){ return k === M.length-1 || M[k+1].f !== M[k].f; };
-    status.textContent = ''; status.className = '';
-    if (!animate || still){
-      M.forEach(function(m, k){ body.appendChild(bubble(m, G(k), T(k), true)); });
-      result.classList.remove('off');
-      toBottom(false);
-      return;
-    }
-    result.classList.add('off');
-    var t = 350;
-    M.forEach(function(m, k){
-      var gf = G(k), tl = T(k);
-      if (m.f === 'out'){
-        var ref = {};
-        later(function(){ ref.b = bubble(m, gf, tl, false); ref.b.classList.add('m-in'); body.appendChild(ref.b); toBottom(true); }, t);
-        if (m.react){ later(function(){ react(ref.b, m.react, true); toBottom(true); }, t + 650); t += 400; }
-        t += 1000;
-      } else {
-        var typ = {};
-        later(function(){
-          status.textContent = 'typing…'; status.className = 'typing';
-          typ.b = document.createElement('div'); typ.b.className = 'b in typ tl m-in' + (gf ? ' gf' : '');
-          typ.b.innerHTML = '<i></i><i></i><i></i>'; typ.b.setAttribute('aria-label','Kenner is typing');
-          body.appendChild(typ.b); toBottom(true);
-        }, t);
-        later(function(){
-          typ.b.remove(); status.textContent = ''; status.className = '';
-          var b = bubble(m, gf, tl, false); b.classList.add('m-in'); body.appendChild(b); toBottom(true);
-        }, t + 1100);
-        t += 1100 + 1400;
-      }
-    });
-    later(function(){ result.classList.remove('off'); }, t);
-    later(function(){ if (!userTook && inView) show((cur+1) % CASES.length, true); }, t + 5000);
+  function settle(i){
+    halt(); typing = false; log = F.pre.slice();
+    F.turns.slice(0, i+1).forEach(function(T){ log.push(message(T.out, T.t)); T.a.forEach(function(m){ log.push({f:'in', h:m.h, img:m.img, src:m.src, t:T.t}); }); });
+    turn = i+1; busy = false;
+    if (flow === 'fix') paintLook(i+1); else report(i+1, true);
+    draft = null; paint(); offer(turn, true);
   }
-  show(0, false);
-
-  if (!still && 'IntersectionObserver' in window){
-    var started = false;
-    new IntersectionObserver(function(es){
-      es.forEach(function(e){
-        inView = e.isIntersecting;
-        if (inView && !started && !userTook){ started = true; later(function(){ if (!userTook) show(1, true); }, 6000); }
+  /* a message sent: the troubleshooter's run joins the timeline and its steps come in one at a time, each turning from
+     what it is doing to what it found, before the answer; the report fills in what the technician said */
+  function run(i){
+    var T = F.turns[i];
+    if (still){ settle(i); return; }
+    busy = true; hideCard();
+    draft = null; paintComposer(); say(message(T.out, T.t));
+    var t = 600;
+    at(function(){ setTyping(true); }, t);
+    if (flow === 'fix'){
+      var grp, ol;
+      at(function(){
+        trail.querySelectorAll('.grp.open').forEach(function(g){ foldRun(g, false); });
+        var els = runEls(i+1, true); els[0].classList.add('in');
+        grp = els[1]; ol = grp.firstChild;
+        trail.appendChild(els[0]); trail.appendChild(grp); markEnd(); toEnd(lookB);
+      }, 150);
+      T.steps.forEach(function(s){
+        var li;
+        at(function(){ li = stepEl(s, false); li.classList.add('in'); ol.appendChild(li); markEnd(); toEnd(lookB); }, t);
+        at(function(){ finish(li, s); setTimeout(function(){ toEnd(lookB); }, 120); }, t + 850);
+        t += 1150;
       });
-    }, {threshold:.35}).observe($('stage'));
+    } else {
+      t += 900;
+      at(function(){ report(i+1, true); }, t);
+      t += 1600;
+    }
+    T.a.forEach(function(m, j){
+      if (j){ at(function(){ setTyping(true); }, t); t += 900; }
+      at(function(){ say({f:'in', h:m.h, img:m.img, src:m.src, t:T.t}); }, t);
+      if (!j && flow === 'fix') at(function(){ var li = doneEl(i+1); li.classList.add('in'); trail.querySelector('.grp:last-child ol').appendChild(li); markEnd(); toEnd(lookB); }, t);
+      t += 1000;
+    });
+    at(function(){ turn = i+1; busy = false; offer(turn); }, t - 400);
+  }
+  function start(key){
+    halt(); hideCard();
+    flow = key; F = FLOWS[key]; turn = 0; busy = false; typing = false; log = F.pre.slice(); draft = null;
+    look.hidden = key !== 'fix'; wo.hidden = key === 'fix';
+    if (key === 'fix') paintLook(0); else report(0, false);
+    paint(); offer(0, true);
+  }
+
+  askScr.addEventListener('click', function(e){ if (e.target.closest('.snd.cue') && !busy && draft && draft.ready) run(turn); });
+  $('agents').querySelectorAll('button').forEach(function(b){
+    b.addEventListener('click', function(){
+      if (b.dataset.flow === flow) return;
+      $('agents').querySelectorAll('button').forEach(function(x){ x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); });
+      start(b.dataset.flow);
+    });
+  });
+  $('dock').querySelectorAll('button').forEach(function(b){
+    b.addEventListener('click', function(){
+      if (b.dataset.app === app) return;
+      $('dock').querySelectorAll('button').forEach(function(x){ x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); });
+      app = b.dataset.app;
+      /* a different app shows the same conversation: one still running finishes at once */
+      if (busy) settle(turn); else paint();
+    });
+  });
+
+  /* a chip's card: what the source holds, on hover or focus, or on a tap where nothing hovers */
+  var cardFor = null, cardTimer = null;
+  function showCard(ch){
+    var c = CH[ch.dataset.k];
+    refc.innerHTML = '<div class="refc-b">'+(c.m ? '<span class="refc-m"><img src="'+c.m+'" alt=""></span>' : '')
+      +'<div class="refc-c"><p class="refc-t"><span class="refc-av'+(c.av === ST ? ' v' : '')+'"><img src="'+c.av+'" alt=""></span>'+c.t+'</p><p class="refc-s">'+c.s+'</p>'+(c.x ? '<div class="refc-x">'+c.x+'</div>' : '')+'</div></div>'
+      +'<div class="refc-f"><span>'+(c.teams ? '<img src="'+TEAMS+'" alt="">' : '')+(c.f || 'Company knowledge')+'</span>'+(c.open ? '<button type="button" data-open="'+ch.dataset.k+'">Open'+ICONS['s-chev']+'</button>' : '')+'</div>';
+    var r = ch.getBoundingClientRect(), w = refc.offsetWidth, h = refc.offsetHeight;
+    var left = Math.max(16, Math.min(r.left, innerWidth - w - 16)), top = r.bottom + 8;
+    if (top + h > innerHeight - 16) top = Math.max(16, r.top - h - 8);
+    refc.style.left = left + 'px'; refc.style.top = top + 'px';
+    refc.classList.add('on'); refc.setAttribute('aria-hidden', 'false'); cardFor = ch;
+  }
+  function hideCard(){ clearTimeout(cardTimer); refc.classList.remove('on'); refc.setAttribute('aria-hidden', 'true'); cardFor = null; }
+  function soon(fn, ms){ clearTimeout(cardTimer); cardTimer = setTimeout(fn, ms); }
+  trail.addEventListener('mouseover', function(e){ var ch = e.target.closest('.ch'); if (ch && ch !== cardFor) soon(function(){ showCard(ch); }, 250); });
+  trail.addEventListener('mouseout', function(e){ if (e.target.closest('.ch')) soon(hideCard, 160); });
+  trail.addEventListener('focusin', function(e){ var ch = e.target.closest('.ch'); if (ch) showCard(ch); });
+  trail.addEventListener('focusout', function(e){ if (e.target.closest('.ch') && !refc.contains(e.relatedTarget)) soon(hideCard, 160); });
+  refc.addEventListener('mouseover', function(){ clearTimeout(cardTimer); });
+  refc.addEventListener('mouseout', function(e){ if (!refc.contains(e.relatedTarget)) soon(hideCard, 160); });
+  refc.addEventListener('click', function(e){ var b = e.target.closest('[data-open]'); if (b){ var k = b.dataset.open; hideCard(); openPage(k); } });
+  trail.addEventListener('click', function(e){
+    var ch = e.target.closest('.ch'); if (!ch) return;
+    if (CH[ch.dataset.k].open && !matchMedia('(hover: none)').matches){ hideCard(); openPage(ch.dataset.k); }
+    else if (cardFor === ch) hideCard(); else showCard(ch);
+  });
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') hideCard(); });
+  document.addEventListener('click', function(e){ if (cardFor && !e.target.closest('.ch, .refc, .cite')) hideCard(); });
+  window.addEventListener('scroll', function(){ if (cardFor) hideCard(); }, {passive:true});
+  lookB.addEventListener('scroll', function(){ if (cardFor && !cardFor.matches(':focus')) hideCard(); }, {passive:true});
+
+  /* a citation in the chat points at its chip in the latest run that cited it: resting on it rings the chip, choosing it
+     unfolds that run, brings the chip into view and opens its card */
+  function chipFor(k){ var all = trail.querySelectorAll('.ch[data-k="'+k+'"]'); return all[all.length-1]; }
+  function point(e, on){ var c = e.target.closest && e.target.closest('.cite'), ch = c && chipFor(c.dataset.k); if (ch) ch.classList.toggle('hl', on); }
+  askScr.addEventListener('mouseover', function(e){ point(e, true); });
+  askScr.addEventListener('mouseout', function(e){ point(e, false); });
+  askScr.addEventListener('focusin', function(e){ point(e, true); });
+  askScr.addEventListener('focusout', function(e){ point(e, false); });
+  askScr.addEventListener('click', function(e){
+    var c = e.target.closest('.cite'); if (!c) return;
+    var ch = chipFor(c.dataset.k); if (!ch) return;
+    var grp = ch.closest('.grp');
+    if (!grp.classList.contains('open')) foldRun(grp, true);
+    ch.classList.remove('ping'); void ch.offsetWidth; if (!still) ch.classList.add('ping');
+    setTimeout(function(){ ch.scrollIntoView({block:'nearest', behavior: still ? 'auto' : 'smooth'}); }, still ? 0 : 420);
+    setTimeout(function(){ showCard(ch); }, still ? 0 : 900);
+  });
+
+  /* a cited page or photo opens at a size that can be read */
+  var pgv = $('pgv'), pgvImg = $('pgv-img');
+  function openPage(k){
+    var c = CH[k];
+    pgvImg.src = c.m; pgvImg.alt = c.open;
+    $('pgv-cap').textContent = c.open;
+    if (pgv.showModal) pgv.showModal(); else window.open(c.m, '_blank', 'noopener');
+  }
+  $('pgv-x').addEventListener('click', function(){ pgv.close(); });
+  pgv.addEventListener('click', function(e){ if (e.target === pgv) pgv.close(); });
+
+  /* the first message sends itself once the section is in view, to show how it goes; the rest are the visitor's to send */
+  start('fix');
+  if (still) settle(0);
+  else if ('IntersectionObserver' in window){
+    new IntersectionObserver(function(es, o){
+      es.forEach(function(e){ if (e.isIntersecting){ o.disconnect(); at(function(){ if (flow === 'fix' && turn === 0 && !busy) run(0); }, 2200); } });
+    }, {threshold:.45}).observe($('work'));
   }
 
   /* ---------- integrations tooltip ---------- */
