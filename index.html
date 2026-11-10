@@ -3,13 +3,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>kenner: Field service has a new interface</title>
-<meta name="description" content="Technicians call or text Kenner like a colleague who has been on every job. It briefs them before the job, helps on site, orders the part and writes the report into your FSM.">
+<title>kenner: The personal assistant for HVAC/R service</title>
+<meta name="description" content="We activate your full service knowledge, answer every technician in seconds and take the paperwork off their hands.">
 <link rel="canonical" href="https://getkenner.com/">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://getkenner.com/">
-<meta property="og:title" content="kenner: Field service has a new interface">
-<meta property="og:description" content="Technicians call or text Kenner like a colleague who has been on every job.">
+<meta property="og:title" content="kenner: The personal assistant for HVAC/R service">
+<meta property="og:description" content="We activate your full service knowledge, answer every technician in seconds and take the paperwork off their hands.">
 <meta property="og:image" content="https://getkenner.com/og-image.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -22,753 +22,803 @@
 <style>:root{color-scheme:light}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Instrument+Sans:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&family=Instrument+Sans:wght@400;500;600&display=swap">
 <style>
-/* Layout: one light at the top, paper sections, one night chapter, a closing light. Tokens from the Kenner Design System (brand guide v2). Single light look by design. Phone screens copy the real apps, not the brand. */
+/* Layout: photo hero, then light grey and white bands with white product fragments (two-tone headlines, hairline numbered rows), one night band for the hub, a photo close. Single light look by design. */
 :root{
-  --paper:#FFFFFF; --mist:#F4F5F8; --line:#E6E8EE;
-  --ink:#0A0B1E; --ink-muted:#5A5F73; --ink-subtle:#6A6F84;
-  --ultramarine:#1438CA;
-  --night:#0A0B1E; --ink-card:#14172D; --ink-card-raised:#191D38;
-  --on-night:#FFFFFF; --on-night-muted:#A9B0D6; --on-light-muted:#D6DEF8; --night-line:rgba(255,255,255,.14);
-  --glass:rgba(10,12,32,.44); --glass-line:rgba(255,255,255,.14);
-  --chip-image:rgba(15,16,38,.32); --chip-image-line:rgba(255,255,255,.35);
-  --shadow-card:0 1px 2px rgba(10,11,30,.06),0 12px 32px rgba(10,11,30,.08);
-  --shadow-float:0 30px 70px rgba(0,0,0,.35);
-  --font-display:"Instrument Sans","Geist",system-ui,sans-serif;
-  --font-text:"Geist",system-ui,-apple-system,"Segoe UI",sans-serif;
-  --font-app:-apple-system,BlinkMacSystemFont,"SF Pro Text","Helvetica Neue","Geist",sans-serif;
-  /* the apps' own colours, used only inside phone screens */
-  --wa-green:#25D366; --wa-wall:#EFEAE2; --wa-out:#D9FDD3; --wa-meta:#667781; --wa-ink:#111B21; --wa-bar:#F6F5F3; --wa-tick:#53BDEB;
-  --ios-blue:#007AFF; --ios-grey:#8E8E93; --ios-fill:#EEEEF0;
-  --teams:#5B5FC7; --gm-fab:#D3E3FD; --gm-ink:#041E49;
-  --call-red:#EB4C42; --call-green:#34C759;
+  --ink:#0A0B1E; --muted:#5D6173; --grey:#8B8E9C; --line:#E5E7EC; --line-2:#DADDE3;
+  --ground:#F4F5F7; --paper:#FFFFFF; --accent:#1438CA;
+  --night:#0A0B1E; --night-card:#11142B; --night-tile:#181C38; --on-night:#FFFFFF; --on-night-muted:#9DA3C2; --night-line:rgba(255,255,255,.12);
+  --good:#1F7A48; --good-bg:#E6F6EC;
+  --display:"Instrument Sans","Geist",system-ui,sans-serif;
+  --text:"Geist",system-ui,-apple-system,"Segoe UI",sans-serif;
   --ease:cubic-bezier(.16,1,.3,1);
-  --gutter-l:max(16px,env(safe-area-inset-left,0px));
-  --gutter-r:max(16px,env(safe-area-inset-right,0px));
+  --gl:max(20px,env(safe-area-inset-left,0px)); --gr:max(20px,env(safe-area-inset-right,0px));
+  --sec:clamp(84px,10vw,140px);
+  --r-lg:16px; --r-sm:10px; /* two radii: cards and panels, and controls (buttons, tabs, tiles) */
   color-scheme:light;
 }
-@media (min-width:900px){:root{--gutter-l:max(40px,env(safe-area-inset-left,0px));--gutter-r:max(40px,env(safe-area-inset-right,0px))}}
+@media (min-width:900px){:root{--gl:max(40px,env(safe-area-inset-left,0px));--gr:max(40px,env(safe-area-inset-right,0px))}}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
-body{background:var(--paper);color:var(--ink);font:400 17px/1.55 var(--font-text);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 16px/1.55 var(--text);-webkit-font-smoothing:antialiased;overflow-x:hidden}
 body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:60;background:var(--night)}
-a{color:inherit}
-img{max-width:100%}
 h1,h2,h3,p{margin:0}
-h1,h2,h3{font-family:var(--font-display);font-weight:400;text-wrap:balance}
-.wrap{max-width:1240px;margin:0 auto;padding-left:var(--gutter-l);padding-right:var(--gutter-r)}
-.sec{padding-block:clamp(56px,7vw,96px)}
-.h2{font-size:clamp(30px,3.4vw,46px);line-height:1.05;letter-spacing:-.03em}
-.intro{font-size:16.5px;line-height:1.55;color:var(--ink-muted);max-width:560px}
-.caption{font-size:12px;line-height:1.4;color:var(--ink-subtle)}
-.head{display:flex;flex-direction:column;gap:12px;margin-bottom:clamp(24px,3vw,36px)}
-.num{font-variant-numeric:tabular-nums}
-svg.i{width:22px;height:22px;flex:none;display:block}
+a{color:inherit}
+img{max-width:100%;display:block}
+[hidden]{display:none!important}
+.wrap{max-width:1200px;margin:0 auto;padding-left:var(--gl);padding-right:var(--gr)}
+.sec{padding-block:var(--sec)}
+.h2{font:400 clamp(30px,3.7vw,50px)/1.06 var(--display);letter-spacing:-.032em;text-wrap:balance}
+.h2 span{color:var(--grey)}
+.night .h2 span,.close .h2 span{color:var(--on-night-muted)}
+.center{text-align:center}
+.h2.center>span{display:block}
+.lead-in{max-width:980px}
+a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.night a:focus-visible,.night button:focus-visible,.hero a:focus-visible,.close a:focus-visible{outline-color:#fff}
 
 /* buttons */
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:50px;padding:0 24px;border-radius:999px;border:1px solid transparent;font:500 16px/1 var(--font-text);text-decoration:none;cursor:pointer;white-space:nowrap;transition:background .2s,color .2s,border-color .2s}
-.btn-sm{min-height:42px;padding:0 18px;font-size:15px}
-.btn-white{background:var(--on-night);color:var(--night)}
-.btn-white:hover{background:#E9EDFB}
-.btn-ink{background:var(--ink);color:var(--paper)}
-.btn-ink:hover{background:#23264A}
-.glass{background:var(--glass);color:var(--on-night);box-shadow:inset 0 0 0 1px var(--glass-line);-webkit-backdrop-filter:blur(20px) saturate(140%);backdrop-filter:blur(20px) saturate(140%)}
-.btn.glass:hover{background:rgba(10,12,32,.6)}
-a:focus-visible,button:focus-visible,[tabindex]:focus-visible{outline:2px solid var(--ultramarine);outline-offset:2px}
-.on-dark a:focus-visible,.on-dark button:focus-visible,.hero a:focus-visible,.nav:not(.solid) a:focus-visible{outline-color:var(--on-night)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:48px;padding:0 22px;border-radius:var(--r-sm);border:1px solid transparent;font:500 15.5px/1 var(--text);text-decoration:none;white-space:nowrap;cursor:pointer;transition:background .2s,border-color .2s,color .2s}
+.btn-sm{height:36px;padding:0 16px;font-size:14px}
+.btn-white{background:#fff;color:var(--ink)}
+.btn-white:hover{background:#E9ECF6}
+.btn-ghost{border-color:rgba(255,255,255,.28);color:#fff}
+.btn-ghost:hover{border-color:rgba(255,255,255,.6)}
+.btn-ink{background:var(--ink);color:#fff}
+.btn-ink:hover{background:#262A45}
 
 /* nav */
 .nav{position:fixed;top:env(safe-area-inset-top,0px);left:0;right:0;z-index:50;transition:background .3s,box-shadow .3s}
-.nav-in{display:flex;align-items:center;justify-content:space-between;gap:16px;height:72px}
-.nav .logo{display:block;height:24px}
-.nav .logo img{height:24px;width:auto;display:block}
-.nav .logo .ink{display:none}
-.nav-links{display:flex;align-items:center;gap:28px;font-size:15px}
-.nav-links a:not(.btn){color:var(--on-light-muted);text-decoration:none;transition:color .2s}
-.nav-links a:not(.btn):hover{color:var(--on-night)}
+.nav-in{display:flex;align-items:center;justify-content:space-between;gap:16px;height:60px}
+.logo img{height:21px;width:auto}
+.logo .ink{display:none}
+.links{display:flex;align-items:center;gap:30px;font-size:14.5px}
+.links a:not(.btn){color:rgba(255,255,255,.72);text-decoration:none;transition:color .2s}
+.links a:not(.btn):hover{color:#fff}
 .nav .cta-ink{display:none}
+.nav.dim{background:rgba(10,11,30,.58);-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);box-shadow:0 1px 0 var(--night-line)}
 .nav.solid{background:rgba(255,255,255,.92);-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);box-shadow:0 1px 0 var(--line)}
 .nav.solid .logo .white{display:none}.nav.solid .logo .ink{display:block}
-.nav.solid .nav-links a:not(.btn){color:var(--ink-muted)}
-.nav.solid .nav-links a:not(.btn):hover{color:var(--ink)}
-.nav.solid .cta-glass{display:none}.nav.solid .cta-ink{display:inline-flex}
-@media (max-width:860px){.nav-links a:not(.btn){display:none}}
+.nav.solid .links a:not(.btn){color:var(--muted)}
+.nav.solid .links a:not(.btn):hover{color:var(--ink)}
+.nav.solid .cta-white{display:none}.nav.solid .cta-ink{display:inline-flex}
+@media (max-width:860px){.links a:not(.btn){display:none}}
 
 /* hero */
-.hero{position:relative;background:var(--night);color:var(--on-night)}
-.hero-light{position:absolute;inset:0;overflow:hidden}
-.hero-light::before{content:"";position:absolute;inset:0;background:url(light/sky.jpg) 70% 30%/cover no-repeat}
-.hero-light::after{content:"";position:absolute;inset:0;background:var(--night);opacity:.18}
-.hero-grid{position:relative;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,560px);gap:40px;align-items:start;padding-top:calc(72px + clamp(48px,7vw,104px))}
-.hero-copy{display:flex;flex-direction:column;gap:24px;padding-bottom:clamp(64px,8vw,120px);max-width:600px}
-.hero-copy .eyebrow{font-size:15px;font-weight:500;color:var(--on-light-muted)}
-.hero h1{font-size:clamp(44px,5.8vw,82px);line-height:.98;letter-spacing:-.035em}
-.hero .sub{font-size:clamp(17px,1.5vw,20px);line-height:1.5;color:var(--on-light-muted);max-width:540px}
-.acts{display:flex;flex-wrap:wrap;gap:12px;margin-top:6px}
-.phones{position:relative;height:740px;margin-bottom:-120px;z-index:3}
-.phones .phone{position:absolute}
-.p-call{left:0;top:0;width:282px;height:600px}
-.p-chat{left:232px;top:96px;width:304px;height:644px}
-.rise{animation:rise 1.4s var(--ease) both}
-.rise.d2{animation-delay:.12s}
-@keyframes rise{from{transform:translateY(56px)}to{transform:none}}
-@media (prefers-reduced-motion:reduce){.rise{animation:none}}
-
-/* ---------- phone hardware ---------- */
-.phone{--pr:42px;position:relative;border-radius:var(--pr);background:#000;padding:7px;box-shadow:var(--shadow-float)}
-.phone::before,.phone::after{content:"";position:absolute;width:3px}
-.phone::before{left:-3px;top:17%;height:25%;border-radius:2px 0 0 2px;background:linear-gradient(#000 0 13%,transparent 13% 26%,#000 26% 58%,transparent 58% 68%,#000 68% 100%)}
-.phone::after{right:-3px;top:28%;height:13%;border-radius:0 2px 2px 0;background:#000}
-.phone .scr{position:relative;height:100%;border-radius:calc(var(--pr) - 7px);box-shadow:0 0 0 1px #0E0E10;overflow:hidden;clip-path:inset(-1px round calc(var(--pr) - 6px));display:flex;flex-direction:column;font:400 14px/1.35 var(--font-app);color:#000;background:#fff;isolation:isolate}
-.phone .scr::before{content:"";position:absolute;top:10px;left:50%;width:min(84px,27%);height:24px;transform:translateX(-50%);border-radius:14px;background:radial-gradient(circle at calc(100% - 11px) 50%,#1E2748 0 2.5px,#0B0E1C 3px 4.5px,#000 5px);z-index:20}
-.phone.android .scr::before{width:12px;height:12px;top:14px;border-radius:50%}
-.sbar{display:flex;justify-content:space-between;align-items:center;padding:7px 24px 0 30px;height:40px;flex:none;font:600 13px/1 var(--font-app);letter-spacing:-.01em;position:relative;z-index:2}
-.sbar svg{width:58px;height:11px;display:block}
-.sbar.and{padding:14px 22px 0 24px;height:40px;font-weight:500;font-size:13px}
-.sbar.and svg{width:44px}
-.home{position:absolute;left:50%;bottom:8px;width:118px;height:5px;margin-left:-59px;border-radius:3px;background:#000;z-index:5}
-.on-dark-scr .home,.scr.dk .home{background:#fff}
-
-/* ---------- WhatsApp conversation ---------- */
-.wa{background:var(--wa-wall)}
-.wa .sbar{background:var(--wa-bar)}
-.wa-head{display:flex;align-items:center;gap:8px;padding:2px 10px 8px;background:var(--wa-bar);flex:none;color:var(--wa-ink);position:relative;z-index:2}
-.wa-head .bk{display:flex;align-items:center;height:36px;padding:0 11px 0 4px;border-radius:18px;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.1);font-size:16px}
-.wa-head .bk svg{width:24px;height:24px}
-.wa-head img{width:34px;height:34px;border-radius:50%;display:block}
-.wa-head .n{flex:1 1 auto;min-width:0;overflow:hidden;display:flex;flex-direction:column;gap:1px}
-.wa-head .n b{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.wa-head>.bk,.wa-head>img,.wa-head>.hic{flex:none}
-.wa-head .n b{font-size:16.5px;font-weight:600;letter-spacing:-.01em}
-.wa-head .n span{font-size:12px;color:var(--wa-meta)}
-.wa-head .n span:empty{display:none}
-.wa-head .hic{display:flex;align-items:center;gap:16px;height:36px;padding:0 12px;border-radius:18px;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.1)}
-.wa-head .hic svg{width:20px;height:20px}
-.wa-body{flex:1;min-height:0;overflow-y:auto;overscroll-behavior:contain;scrollbar-width:none;padding:10px 12px 12px;display:flex;flex-direction:column;gap:3px;background:var(--wa-wall) url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='170' height='170' fill='none' stroke='%23000' stroke-opacity='.075' stroke-width='1.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='18' cy='18' r='7'/%3E%3Cpath d='M15 18h6M18 15v6'/%3E%3Cpath d='M48 10l6 10H42z'/%3E%3Crect x='72' y='8' width='16' height='22' rx='3'/%3E%3Cpath d='M76 26h8'/%3E%3Cpath d='M108 12c4-6 12-1 8 4l-8 8-8-8c-4-5 4-10 8-4'/%3E%3Cpath d='M140 10v14a4 4 0 1 1-3-4V12l12-3v12a4 4 0 1 1-3-4'/%3E%3Cpath d='M12 52c6-8 18-8 24 0'/%3E%3Ccircle cx='24' cy='60' r='2'/%3E%3Crect x='46' y='46' width='22' height='16' rx='4'/%3E%3Ccircle cx='57' cy='54' r='4'/%3E%3Cpath d='M86 44l4 8 9 1-7 6 2 9-8-5-8 5 2-9-7-6 9-1z'/%3E%3Cpath d='M118 48h22v14h-22zM122 48v-4h14v4'/%3E%3Cpath d='M152 46c8 0 8 12 0 12s-8 12 0 12'/%3E%3Cpath d='M10 92l10-10 10 10-10 10z'/%3E%3Cpath d='M44 84c10 0 14 8 10 14-4 6-14 4-14-2'/%3E%3Ccircle cx='80' cy='92' r='9'/%3E%3Cpath d='M75 90h2M83 90h2M76 96c2 2 6 2 8 0'/%3E%3Cpath d='M108 86h24M108 94h18M108 102h22'/%3E%3Cpath d='M148 84l12 12M160 84l-12 12'/%3E%3Cpath d='M14 128h20l-4 16H18z'/%3E%3Cpath d='M18 128c0-6 12-6 12 0'/%3E%3Cpath d='M48 124a10 10 0 1 0 14 14'/%3E%3Crect x='76' y='122' width='20' height='20' rx='10'/%3E%3Cpath d='M110 140l8-16 8 16M113 134h10'/%3E%3Cpath d='M142 122c6 4 12 4 18 0M142 132c6 4 12 4 18 0M142 142c6 4 12 4 18 0'/%3E%3Ccircle cx='60' cy='160' r='2'/%3E%3Ccircle cx='120' cy='160' r='2'/%3E%3C/svg%3E")}
-.wa-day{align-self:center;margin:2px 0 6px;padding:4px 10px;border-radius:8px;background:#fff;color:#54656F;font-size:12px;box-shadow:0 1px .5px rgba(11,20,26,.13)}
-.b{position:relative;max-width:82%;padding:7px 10px 7px 11px;border-radius:17px;font-size:14.5px;line-height:1.36;color:var(--wa-ink);box-shadow:0 1px .5px rgba(11,20,26,.13);overflow-wrap:anywhere}
-.b.in{align-self:flex-start;background:#fff}
-.b.out{align-self:flex-end;background:var(--wa-out)}
-.b.gf{margin-top:7px}
-.b.tl.in{border-bottom-left-radius:5px}
-.b.tl.out{border-bottom-right-radius:5px}
-.b.tl::before{content:"";position:absolute;bottom:0;width:10px;height:15px;background:inherit}
-.b.tl.in::before{left:-6px;clip-path:path('M10 0 V15 H0 C5 14 9 10 10 0 Z')}
-.b.tl.out::before{right:-6px;clip-path:path('M0 0 V15 H10 C5 14 1 10 0 0 Z')}
-.b .meta{float:right;display:inline-flex;align-items:center;gap:3px;margin:7px 0 -5px 10px;font-size:11px;color:var(--wa-meta);font-variant-numeric:tabular-nums}
-.b .meta svg{width:16px;height:11px;color:var(--wa-tick)}
-.b .src{display:block;margin-top:4px;font-size:12.5px;color:var(--wa-meta)}
-.b b{font-weight:600}
-.b.pic{padding:0 0 7px;width:76%;max-width:76%}
-.b.pic .ph{display:block;width:100%;aspect-ratio:3/4;border-radius:17px 17px 0 0;background:#DDE1E5 center/cover no-repeat}
-.b.pic .cap{display:block;padding:7px 10px 0 11px}
-.b.pic.nocap{padding:0;background:transparent;box-shadow:none}
-.b.pic.nocap::before{display:none}
-.b.pic.nocap .ph{border-radius:17px;box-shadow:0 1px .5px rgba(11,20,26,.13)}
-.b.pic.nocap .cap{position:absolute;right:9px;bottom:6px;padding:0}
-.b.pic.nocap .meta{margin:0;color:#fff;text-shadow:0 1px 2px rgba(0,0,0,.6)}
-.b.pic.nocap .meta svg{color:#fff}
-.vn{display:flex;align-items:center;gap:9px;min-width:200px;padding:2px 0}
-.vn .pl{width:14px;height:16px;color:#54656F;flex:none}
-.vw{position:relative;display:flex;align-items:center;gap:2px;height:22px;flex:1}
-.vw i{display:block;width:2.5px;border-radius:2px;background:#A9B6BD}
-.vw .vk{position:absolute;left:0;top:50%;width:12px;height:12px;margin-top:-6px;border-radius:50%;background:var(--wa-tick)}
-.vd{font-size:11px;color:var(--wa-meta);margin-top:2px;display:block}
-.tr{display:block;margin-top:6px;padding-top:6px;border-top:1px solid rgba(17,27,33,.08);font-size:13.5px}
-.figure{display:block;background:#fff;border:1px solid #E9EDEF;border-radius:6px;padding:6px;margin:6px 0 2px}
-.figure svg{display:block;width:100%;height:auto}
-.wa-in{display:flex;align-items:center;gap:12px;padding:7px 12px 26px;background:var(--wa-bar);border-top:.5px solid #D1D7DB;flex:none;color:var(--wa-ink)}
-.wa-in .fld{flex:1;height:34px;border-radius:18px;background:#fff;border:.5px solid #D1D7DB;display:flex;align-items:center;justify-content:flex-end;padding:0 8px}
-.wa-in .fld svg{width:20px;height:20px;color:#8696A0}
-.wa-in .micb{width:34px;height:34px;border-radius:50%;background:var(--wa-green);color:#fff;display:flex;align-items:center;justify-content:center;flex:none}
-.wa-in .micb svg{width:20px;height:20px}
-.wa-in{gap:10px}
-.bkn{font-style:normal;font-size:16px;margin-left:-3px}
-/* media inside bubbles */
-.ph.dia{background:#fff;border:1px solid #E9EDEF}
-.b.pic .ph.man{background:#fff url(media/manual-p82.png) 50% 50%/88% no-repeat;aspect-ratio:688/848}
-.b.pic .ph.vessel{background-image:url(media/vessel.jpg);background-position:62% 50%;background-size:cover}
-.ph.dia svg{display:block;width:100%;height:100%}
-.b.pic .ph.plate{position:relative;background:url(media/vessel.jpg) 2% 30%/400% no-repeat;display:flex!important;align-items:center;justify-content:center;overflow:hidden}
-.ph.plate::after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 40% 35%,rgba(255,255,255,.12),rgba(0,0,0,.28));pointer-events:none}
-.plate .pl{position:relative;transform:perspective(500px) rotateY(-14deg) rotate(-4deg);background:#FBFBF8;border-radius:3px;padding:9px 12px 8px;font:500 8.5px/1.55 var(--font-app);color:#1D2027;box-shadow:0 2px 5px rgba(0,0,0,.3);filter:blur(.25px)}
-.plate .pl b{display:block;font:700 11px/1.3 var(--font-app);margin-bottom:2px}
-.plate .bc{display:block;height:16px;margin-top:5px;background:repeating-linear-gradient(90deg,#1D2027 0 1px,transparent 1px 3px,#1D2027 3px 5px,transparent 5px 6px,#1D2027 6px 7px,transparent 7px 9px)}
-.b.doc{padding:5px 5px 7px;width:82%;max-width:82%}
-.drow{display:flex;align-items:center;gap:10px;padding:11px 12px;background:#F0F2F5;border-radius:12px}
-.dic{width:26px;height:32px;flex:none;display:block}
-.dn{display:flex;flex-direction:column;gap:2px;min-width:0}
-.dn b{font-size:15px;font-weight:400;line-height:1.25;overflow-wrap:anywhere}
-.dn small{font-size:12px;color:var(--wa-meta)}
-.b.doc .cap{display:block;padding:8px 6px 0}
-.wa-body::-webkit-scrollbar{display:none}
-.wa-body>.wa-day:first-child{margin-top:auto}
-.b .lk{color:#027EB5;text-decoration:underline;text-underline-offset:2px}
-.b.rx{margin-bottom:15px}
-.rxn{position:absolute;bottom:-15px;display:inline-flex;align-items:center;justify-content:center;height:22px;min-width:26px;padding:0 5px;border-radius:999px;background:#fff;box-shadow:0 1px 3px rgba(11,20,26,.2);font:14px/1 "Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif}
-.b.out .rxn{right:10px}.b.in .rxn{left:10px}
-.rxn.pop{animation:pop .45s var(--ease) both}
-@keyframes pop{from{transform:scale(.3);opacity:0}to{transform:none;opacity:1}}
-.b.typ{display:flex;gap:4px;align-items:center;padding:12px 13px}
-.b.typ i{width:7px;height:7px;border-radius:50%;background:#8696A0;animation:dot 1.1s infinite ease-in-out}
-.b.typ i:nth-child(2){animation-delay:.15s}.b.typ i:nth-child(3){animation-delay:.3s}
-@keyframes dot{0%,60%,100%{opacity:.35;transform:none}30%{opacity:1;transform:translateY(-2px)}}
-.wa-head .n span.typing{color:#1DAA61}
-.m-in{animation:min .5s var(--ease) both}
-@keyframes min{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
-/* zoom the chat out slightly, closer to real WhatsApp proportions */
-.b{font-size:13.3px;padding:6px 9px 6px 10px;border-radius:15px}
-.b .meta{font-size:10.5px;margin-top:6px}
-.tr{font-size:12.6px}
-.wa-day{font-size:11px;padding:3px 9px}
-.wa-body{gap:2.5px;padding:8px 10px 10px}
-.b.gf{margin-top:6px}
-.b.rx{margin-bottom:14px}
-.rxn{height:20px;min-width:24px;font-size:12.5px;bottom:-14px}
-.wa-head{padding:0 10px 7px;gap:7px}
-.wa-head .bk{height:32px;font-size:15px;padding:0 10px 0 3px}
-.wa-head .bk svg{width:21px;height:21px}
-.wa-head .bkn{font-size:13px;margin-left:-2px}
-.wa-head img{width:30px;height:30px}
-.wa-head .n b{font-size:15px}
-.wa-head .n span{font-size:11px}
-.wa-head .hic{height:32px;gap:14px;padding:0 11px}
-.wa-head .hic svg{width:18px;height:18px}
-.wa-in{padding:6px 10px 24px;gap:9px}
-.wa-in svg.i{width:20px;height:20px}
-.wa-in .fld{height:30px}
-.wa-in .fld svg{width:18px;height:18px}
-.wa-in .micb{width:30px;height:30px}
-.wa-in .micb svg{width:17px;height:17px}
-.dn b{font-size:13.5px}
-.dn small{font-size:11px}
-.b.pic .cap{padding:6px 9px 0 10px}
-
-/* hero call screen (first version) */
-.phone .scr.call{background:linear-gradient(180deg,#14172D,#0A0B1E 70%);color:#fff}
-.call .sbar{color:#fff;--sb-inv:#0A0B1E}
-.call .who{display:flex;flex-direction:column;align-items:center;gap:6px;margin-top:64px;text-align:center}
-.call .ring{width:150px;height:150px;border-radius:50%;padding:12px;background:radial-gradient(circle,rgba(62,155,230,.35),rgba(62,155,230,0) 70%);box-shadow:0 0 0 1px rgba(169,216,242,.22),0 0 0 14px rgba(169,216,242,.05);margin-bottom:22px}
-.call .ring img{width:126px;height:126px;display:block;border-radius:50%}
-.call .who b{font:500 24px/1.2 var(--font-text);letter-spacing:-.01em}
-.call .who span{font:400 14px/1.3 var(--font-text);color:var(--on-night-muted)}
-.call .ctrl{margin-top:auto;display:grid;grid-template-columns:repeat(4,1fr);gap:8px;padding:0 18px 40px}
-.call .ctrl span{display:flex;flex-direction:column;align-items:center;gap:7px;font:400 11px/1 var(--font-text);color:var(--on-night-muted)}
-.call .ctrl em{width:52px;height:52px;border-radius:50%;background:rgba(255,255,255,.12);display:flex;align-items:center;justify-content:center;color:#fff}
-.call .ctrl .end em{background:#D7413A}
-
-/* built by: a glass bar along the bottom of the hero, running behind the chat phone */
-.trust{position:relative;z-index:2;background:rgba(10,12,32,.38);-webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px);border-top:1px solid rgba(255,255,255,.12)}
-.trust-in{display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:12px;min-height:100px;padding-block:18px}
-.trust p{font-size:13px;color:var(--on-light-muted);white-space:nowrap}
-.trust .names{display:flex;flex-wrap:wrap;align-items:center;gap:14px 30px;max-width:calc(100% - 300px)}
-.trust .names img{display:block;width:auto;filter:brightness(0) invert(1);opacity:.75}
-.trust .yc{display:flex;align-items:center;gap:6px;font-weight:600;font-size:16px;letter-spacing:-.02em;color:rgba(255,255,255,.75)}
-.trust .yc img{height:20px!important}
-@media (max-width:1100px){.trust .names{max-width:none}}
-
-/* ---------- meet kenner ---------- */
-.meet{background:var(--paper);margin-top:clamp(40px,4.5vw,64px)}
-.meet-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:clamp(32px,5vw,64px);align-items:center}
-.meet-copy{display:flex;flex-direction:column;gap:20px}
-.meet-copy .who{display:flex;align-items:center;gap:12px;font-size:15px;font-weight:500}
-.meet-copy .who img{width:40px;height:40px;border-radius:50%;display:block}.apps{display:flex;flex-wrap:wrap;gap:12px;margin-top:8px}
-.apps img,.apps .pc{width:48px;height:48px;border-radius:12px;display:block;box-shadow:0 1px 2px rgba(10,11,30,.08)}
-.apps .pc{background:linear-gradient(180deg,#5BF675,#0ABE2A);color:#fff;display:flex;align-items:center;justify-content:center}
-.apps .pc svg{width:24px;height:24px}
-.meet-card{position:relative;border-radius:28px;overflow:hidden;background:var(--night) url(light/sky.jpg) 65% 45%/cover no-repeat;padding:clamp(40px,6vw,64px) 20px;display:flex;justify-content:center}
-.clist{width:min(320px,100%);background:#fff;border-radius:30px;border:8px solid #0A0B1E;box-shadow:0 30px 70px rgba(0,0,0,.4);overflow:hidden;color:var(--ink)}
-.clist .hd{display:flex;align-items:baseline;justify-content:space-between;padding:22px 18px 12px}
-.clist .hd b{font-size:24px;font-weight:600;letter-spacing:-.01em}
-.clist .hd time,.cr time{font-size:12.5px;color:var(--ink-subtle);font-variant-numeric:tabular-nums}
-.cr{display:flex;align-items:center;gap:12px;padding:11px 16px;border-top:1px solid #F0F1F4}
-.cr .av{width:42px;height:42px;flex:none;border-radius:50%;background:#E8EAF0;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:600;color:var(--ink-muted)}
-.cr img.av{display:block}
-.cr .tx{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}
-.cr .tx b{font-size:14.5px;font-weight:600}
-.cr .tx span{font-size:13px;color:var(--ink-muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.cr .mt{display:flex;flex-direction:column;align-items:flex-end;gap:5px}
-.cr.unread time{color:var(--ultramarine);font-weight:500}
-.cr .bd{min-width:18px;height:18px;padding:0 5px;border-radius:9px;background:var(--ultramarine);color:#fff;font-size:11px;font-weight:600;display:flex;align-items:center;justify-content:center}
-.cr:last-child{padding-bottom:16px}
-@media (max-width:860px){.meet-grid{grid-template-columns:minmax(0,1fr)}.meet-card{padding:32px 16px}}
-
-/* ---------- showcase ---------- */
-.sc{border:1px solid var(--line);border-radius:28px;padding:14px;display:grid;grid-template-columns:minmax(0,340px) minmax(0,1fr);gap:14px;background:var(--paper)}
-.sc-tabs{display:flex;flex-direction:column;gap:10px;min-height:0}
-.tab{appearance:none;border:1px solid transparent;background:var(--mist);border-radius:16px;padding:18px 20px;min-height:0;text-align:left;cursor:pointer;display:flex;flex-direction:column;gap:8px;flex:1;font:inherit;color:var(--ink-muted);transition:background .25s,border-color .25s,color .25s}
-.tab:hover{color:var(--ink)}
-.tab .tt{display:flex;align-items:center;justify-content:space-between;gap:12px;font-family:var(--font-display);font-size:20px;line-height:1.1;letter-spacing:-.02em}
-.tab .tt svg{width:16px;height:16px;flex:none;transition:transform .35s var(--ease)}
-.tab .td{font-size:15px;line-height:1.5;color:var(--ink-muted);display:none;text-wrap:pretty}
-.tab[aria-selected="true"]{background:var(--paper);border-color:var(--line);color:var(--ink);box-shadow:var(--shadow-card)}
-.tab[aria-selected="true"] .tt svg{transform:rotate(90deg)}
-.tab[aria-selected="true"] .td{display:block}
-.stage{position:relative;border-radius:20px;overflow:hidden;background:var(--night) url(light/window.jpg) 30% 35%/cover no-repeat;min-height:740px;display:flex;align-items:center;justify-content:center;gap:clamp(20px,3vw,40px);padding:40px clamp(20px,3vw,40px)}
-.stage .phone{width:318px;height:670px;flex:none;box-shadow:0 30px 70px rgba(0,0,0,.45)}
-.result{width:300px;flex:none;border-radius:16px;padding:16px 18px;display:flex;flex-direction:column;gap:12px;align-self:flex-end;margin-bottom:54px;transition:opacity .5s var(--ease),transform .5s var(--ease)}
-.result.off{opacity:0;transform:translateY(12px)}
-.result .rh{display:flex;align-items:center;gap:10px;font-size:12px;color:var(--on-light-muted)}
-.result .rh img{width:24px;height:24px;border-radius:50%;display:block}
-.result h3{font-size:24px;line-height:1.1;letter-spacing:-.02em}
-.result dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:7px 14px;font-size:13.5px;line-height:1.4}
-.result dt{color:var(--on-light-muted)}
-.result dd{margin:0}
-.chips{display:flex;flex-wrap:wrap;gap:6px}
-.chip{display:inline-flex;align-items:center;gap:6px;height:24px;padding:0 10px;border-radius:999px;font-size:12px;white-space:nowrap;background:var(--chip-image);color:var(--on-night);box-shadow:inset 0 0 0 1px var(--chip-image-line)}
-.chip b{font-weight:600}
-.chip span{opacity:.8}
-@media (min-width:861px){
-  .sc{height:clamp(600px,calc(100vh - 104px),780px)}
-  .stage{min-height:0;height:100%;padding:24px clamp(20px,3vw,40px)}
-  .stage .phone{height:100%;width:auto;aspect-ratio:330/700}
-  .result{margin-bottom:40px}
+.hero{position:relative;background:var(--night);color:#fff;overflow:hidden}
+.hero-img{position:absolute;inset:0;overflow:hidden}
+.hero-img img{position:absolute;inset:0;width:100%;height:100%;max-width:none;object-fit:cover;object-position:60% 50%}
+.hero-img::after{content:"";position:absolute;inset:0;background:
+  linear-gradient(90deg,rgba(10,11,30,.94) 0%,rgba(10,11,30,.78) 34%,rgba(10,11,30,.22) 66%,rgba(10,11,30,.1) 100%),
+  linear-gradient(180deg,rgba(10,11,30,.45) 0%,rgba(10,11,30,0) 22%,rgba(10,11,30,0) 70%,rgba(10,11,30,.85) 100%)}
+.hero-in{position:relative;padding-top:calc(60px + clamp(84px,11vw,156px));padding-bottom:clamp(110px,12vw,170px)}
+.hero-copy{max-width:720px;display:flex;flex-direction:column;gap:26px}
+.eyebrow{font-size:14.5px;font-weight:500;color:var(--on-night-muted)}
+.hero h1{font:400 clamp(44px,5.8vw,80px)/.98 var(--display);letter-spacing:-.042em;text-wrap:balance}
+.hero .sub{font-size:clamp(17px,1.45vw,20px);line-height:1.5;color:rgba(255,255,255,.74);max-width:660px;text-wrap:balance}
+.acts{display:flex;flex-wrap:wrap;gap:12px;margin-top:4px}
+/* hero annotation: a hairline from the phone's light to Kenner's answer */
+.anno{position:absolute;z-index:2;left:0;top:0;width:0;height:0;opacity:0;transition:opacity .9s var(--ease) .3s}
+.anno.on{opacity:1}
+.anno .dot{position:absolute;left:-5px;top:-5px;width:10px;height:10px;border-radius:50%;background:#fff;box-shadow:0 0 0 5px rgba(255,255,255,.2)}
+.anno .ln{position:absolute;left:0;bottom:12px;width:0;height:236px;border-left:1px solid rgba(255,255,255,.55)}
+.anno .lb{position:absolute;left:14px;top:-252px;width:300px;display:flex;flex-direction:column;gap:6px;text-shadow:0 1px 14px rgba(10,11,30,.8)}
+.anno .lb small{display:flex;align-items:center;gap:7px;font-size:12.5px;color:rgba(255,255,255,.72)}
+.anno .lb small img{width:12px;height:12px;filter:brightness(0) invert(1)}
+.anno .lb p{font:400 19px/1.32 var(--display);letter-spacing:-.01em;color:#fff}
+.anno .lb em{font-style:normal;font-size:13px;color:rgba(255,255,255,.84)}
+@media (prefers-reduced-motion:reduce){.anno{transition:none}}
+.strip{position:relative;border-top:1px solid var(--night-line)}
+.strip-in{display:flex;flex-wrap:wrap;align-items:center;gap:14px 34px;padding-block:24px}
+.strip p{font-size:13px;color:var(--on-night-muted);white-space:nowrap}
+.strip img{width:auto;filter:brightness(0) invert(1);opacity:.62}
+.strip .yc{display:flex;align-items:center;gap:6px;font-weight:600;font-size:16px;letter-spacing:-.02em;color:rgba(255,255,255,.62)}
+@media (max-width:980px){
+  .anno{display:none}
+  .hero-img img{object-position:68% 50%}
+  .hero-img::after{background:linear-gradient(180deg,rgba(10,11,30,.7),rgba(10,11,30,.82) 55%,rgba(10,11,30,.95))}
 }
-@media (max-width:1100px){.result{display:none}}
+
+/* value: two audience panels in the night tones, each with a product window rising from the bottom edge and running off the right */
+.panel{margin-top:clamp(40px,5vw,64px);display:grid;gap:16px}
+.duo{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;max-width:1200px;margin:clamp(40px,5vw,64px) auto 0;padding-left:var(--gl);padding-right:var(--gr)}
+.aud{position:relative;isolation:isolate;container-type:inline-size;overflow:hidden;border-radius:var(--r-lg);background:var(--night);color:#fff;display:flex;flex-direction:column;min-width:0;height:clamp(520px,42vw,600px);scroll-margin-top:230px}
+.aud-bg{position:absolute;inset:0;width:100%;height:100%;z-index:-1;pointer-events:none}
+.aud::after{content:"";position:absolute;inset:0;border-radius:inherit;box-shadow:inset 0 0 0 1px rgba(10,11,30,.16);pointer-events:none}
+.aud-copy{padding:clamp(28px,3.4vw,52px) clamp(24px,3.4vw,52px) 0;display:flex;flex-direction:column;align-items:flex-start;gap:14px}
+.aud-copy h3{font:400 clamp(28px,2.9vw,40px)/1.05 var(--display);letter-spacing:-.03em}
+.aud-copy p{font-size:clamp(16px,1.3vw,18px);line-height:1.5;color:rgba(255,255,255,.84);max-width:430px;text-wrap:pretty}
+.aud-copy .btn{margin-top:10px;height:46px}
+.win{--ml:clamp(24px,10cqw,72px);flex:0 0 50%;min-height:0;align-self:flex-start;width:max(760px,100%);margin:auto 0 0 var(--ml);display:flex;overflow:hidden;background:#fff;color:var(--ink);border-radius:var(--r-sm) 0 0 0;box-shadow:0 0 0 1px rgba(255,255,255,.1),0 24px 70px rgba(0,0,0,.5);font:400 13px/1.4 var(--text)}
+/* leaders: the web app */
+.rail{flex:none;width:52px;background:var(--night);display:flex;flex-direction:column;align-items:center;gap:17px;padding:16px 0;color:rgba(255,255,255,.5);font-size:9.5px;line-height:1}
+.rail img{width:21px;height:21px;margin-bottom:8px;filter:brightness(0) invert(1)}
+.rail span{display:flex;flex-direction:column;align-items:center;gap:5px}
+.rail svg{width:17px;height:17px}
+.rail .on{color:#fff}
+.wb{flex:1;min-width:0;padding:22px 24px;display:flex;flex-direction:column;gap:18px}
+.w-top{display:flex;align-items:baseline;gap:12px}
+.w-top h4{margin:0;font:500 22px/1.2 var(--display);letter-spacing:-.02em}
+.w-top small{font-size:12.5px;color:var(--grey)}
+.kts{display:grid;grid-template-columns:repeat(4,132px);gap:8px}
+.kts .kt{background:var(--ground);border-radius:10px;padding:13px 15px 14px;display:flex;flex-direction:column;gap:3px}
+.kts .kt b{font:400 26px/1.1 var(--display);letter-spacing:-.025em;font-variant-numeric:tabular-nums}
+.kts .kt span{font-size:12px;color:var(--muted)}
+.kts .kt em{font:500 11.5px/1 var(--text);letter-spacing:0;margin-left:8px;color:var(--good)}
+.w-tabs{display:flex;gap:4px;font-size:12.5px;color:var(--muted)}
+.w-tabs span{padding:6px 11px;border-radius:8px}
+.w-tabs .on{background:var(--ground);color:var(--ink);font-weight:500}
+.w-tb{display:flex;flex-direction:column;font-size:12.5px;margin-top:-6px}
+.w-tb>div{display:grid;grid-template-columns:130px 124px 50px 84px;padding:11px 12px;border-bottom:1px solid var(--line)}
+.w-tb .w-th{background:var(--ground);border-radius:8px;border-bottom:0;padding-block:8px;color:var(--grey);font-size:12px}
+.w-tb b{font-weight:500}
+.w-tb span:nth-child(n+3){font-variant-numeric:tabular-nums}
+/* technicians: the message thread */
+.win-chat{flex-direction:column}
+.ch-h{flex:none;display:flex;align-items:center;gap:10px;padding:14px 22px;border-bottom:1px solid var(--line)}
+.ch-h img{width:28px;height:28px;border-radius:50%}
+.ch-h b{font-weight:500;font-size:14px}
+.ch-b{width:calc(100cqw - var(--ml));padding:20px 22px;display:flex;flex-direction:column;gap:14px}
+.ch-me{align-self:flex-end;max-width:84%;display:flex;flex-direction:column;align-items:flex-end;gap:5px}
+.ch-me span,.ch-k p{padding:10px 14px;font:400 15px/1.4 -apple-system,BlinkMacSystemFont,"SF Pro Text",var(--text)}
+.ch-me span{background:#0B84FE;color:#fff;border-radius:18px 18px 6px 18px}
+.ch-me small{font-size:11.5px;color:var(--grey)}
+.ch-k{align-self:flex-start;width:min(88%,460px);display:flex;flex-direction:column;align-items:flex-start;gap:8px}
+.ch-k p{background:#EDEEF2;border-radius:18px 18px 18px 6px}
+.ch-src{align-self:stretch;list-style:none;margin:0;padding:3px 14px;border-radius:var(--r-sm);box-shadow:0 0 0 1px var(--line);display:flex;flex-direction:column}
+.ch-src li{display:flex;align-items:center;gap:10px;padding:9px 0;border-top:1px solid var(--line);font-size:13px;color:var(--muted)}
+.ch-src li:first-child{border-top:0}
+.ch-src svg{width:15px;height:15px;flex:none;color:var(--grey)}
 @media (max-width:860px){
-  .sc{grid-template-columns:minmax(0,1fr);padding:10px;border-radius:22px}
-  .sc-tabs{flex-direction:row;flex-wrap:wrap;justify-content:center;gap:8px;padding:6px 4px 4px}
-  .tab{flex:none;padding:10px 14px;border-radius:999px;background:var(--paper);border-color:var(--line);color:var(--ink)}
-  .tab[aria-selected="true"]{background:var(--ink);border-color:var(--ink);color:var(--paper);box-shadow:none}
-  .tab .tt{font-family:var(--font-text);font-size:14px;font-weight:500;letter-spacing:0;white-space:nowrap}
-  .tab .tt svg,.tab .td{display:none!important}
-  .stage{min-height:0;padding:28px 12px}
-  .stage .phone{width:min(300px,100%);height:630px}
+.duo{grid-template-columns:minmax(0,1fr)}
+.aud{height:auto;scroll-margin-top:76px}
+.win{flex:none;height:300px;width:max(640px,100%);margin-top:32px}
+}
+/* hover, as on harvey.ai: the panel under the pointer widens and the other one steps back */
+@media (hover:hover) and (min-width:861px){
+.duo{display:flex}
+.aud{flex:1 1 0;transition:flex-grow .7s var(--ease),opacity .45s ease}
+.duo:has(.aud:hover) .aud:not(:hover),.duo:has(.aud:focus-within) .aud:not(:focus-within):not(:hover){opacity:.45}
+.duo .aud:hover,.duo:not(:has(.aud:hover)) .aud:focus-within{flex-grow:1.2}
+/* nothing inside a panel may re-wrap while it widens or narrows: sizes come from the panel's resting width, not its current one */
+.duo{--pw:calc((min(100vw,1200px) - var(--gl) - var(--gr) - 16px)/2);--pad:clamp(24px,3.4vw,52px)}
+.aud-copy p{max-width:min(430px,calc(var(--pw)*.909 - 2*var(--pad)))}
+.win{--ml:clamp(24px,calc(var(--pw)*.1),72px)}
+.ch-b{width:calc(var(--pw) - var(--ml))}
+}
+@media (prefers-reduced-motion:reduce){.aud{transition:none}}
+.q summary:focus{outline:none}
+.q summary:focus-visible{outline:2px solid var(--accent);outline-offset:4px;border-radius:6px}
+/* questions */
+.faq{display:flex;flex-direction:column;align-items:center;gap:clamp(36px,4.5vw,56px)}
+.qs{width:100%;max-width:820px;border-top:1px solid var(--line)}
+.q{border-bottom:1px solid var(--line)}
+.q summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:24px;padding:24px 0;font:400 clamp(18px,1.6vw,21px)/1.3 var(--display);letter-spacing:-.01em}
+.q summary::-webkit-details-marker{display:none}
+.q summary i{position:relative;flex:none;width:18px;height:18px;margin-right:2px;transition:transform .3s var(--ease)}
+.q summary i::before,.q summary i::after{content:"";position:absolute;left:0;top:50%;width:18px;height:1.25px;margin-top:-.625px;background:var(--ink)}
+.q summary i::after{transform:rotate(90deg);transition:opacity .2s}
+.q[open] summary i{transform:rotate(180deg)}
+.q[open] summary i::after{opacity:0}
+.q summary:hover i{opacity:.55}
+.q p{margin:0;padding:0 44px 26px 0;font-size:16px;line-height:1.6;color:var(--muted);max-width:640px}
+@media (max-width:860px){.q p{padding-right:0}}
+/* phone: the four outcomes are one card with four short rows, instead of four tall boxes */
+@media (max-width:760px){
+.stats .panel.g4{grid-template-columns:minmax(0,1fr);gap:0}
+.stats .g4 .stat{padding:18px 0;gap:4px}
+.stats .g4 .stat b{font-size:23px;line-height:1.15;letter-spacing:-.025em}
+.stats .g4 .stat b br{display:none}
+.stats .g4 .stat p{max-width:none}
 }
 
-/* ---------- integrations (dark tile grid) ---------- */
-.night{background:var(--night);color:var(--on-night)}
-.night .intro{color:var(--on-night-muted)}
-.center{align-items:center;text-align:center}
-.center .intro{margin:0 auto}
-.ig{position:relative;display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:10px;padding:12px;border-radius:24px;background:var(--ink-card);box-shadow:inset 0 0 0 1px rgba(255,255,255,.05)}
-.gt{appearance:none;border:0;padding:0;aspect-ratio:1/1;border-radius:16px;background:var(--ink-card-raised);display:flex;align-items:center;justify-content:center;cursor:default;transition:opacity .25s,background .25s}
-.gt img{width:50%;height:auto;display:block;border-radius:22%;pointer-events:none}
-.gt.wide img{width:66%}
-.ig.hov .gt{opacity:.32}
-.ig.hov .gt.on{opacity:1;background:#262B52}
-.tip{position:absolute;z-index:5;width:290px;padding:16px 18px;border-radius:16px;background:#1B1F3F;color:#fff;box-shadow:0 24px 60px rgba(0,0,0,.55),inset 0 0 0 1px rgba(255,255,255,.08);pointer-events:none;display:flex;flex-direction:column;gap:8px;transition:opacity .2s}
-.tip[hidden]{display:flex!important;opacity:0}
-.tip b{font-size:17px;font-weight:500}
-.tip p{font-size:14.5px;line-height:1.5;color:var(--on-night-muted)}
-.tip span{align-self:flex-start;font-size:12px;padding:3px 9px;border-radius:999px;background:rgba(255,255,255,.08);color:var(--on-light-muted)}
-.ig-note{margin-top:18px;text-align:center;font-size:14px;color:var(--on-night-muted)}
-@media (max-width:860px){.ig{grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;padding:8px}.gt{border-radius:12px}.tip{width:250px}}
+/* stats */
+.stats{margin-top:clamp(96px,11vw,150px)}
+.stats>.h2{margin-bottom:clamp(36px,4.5vw,56px)}
+.stats .g4{gap:36px 0}
+.stat{border-top:1px solid var(--line-2);padding:26px 28px 0 0;display:flex;flex-direction:column;gap:12px}
+.stat b{font:400 clamp(34px,3.6vw,48px)/1 var(--display);letter-spacing:-.035em}
+.stat p{font-size:15px;line-height:1.5;color:var(--muted);max-width:320px}
 
-/* ---------- mission and outcomes (three cards) ---------- */
-#outcomes{background:var(--mist)}
-#outcomes .tags span{background:var(--paper);box-shadow:inset 0 0 0 1px var(--line)}
-#outcomes .am-ui{background:linear-gradient(160deg,#FFFFFF,#E6E9F1)}
-.mhead{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:24px clamp(32px,6vw,96px);margin-bottom:clamp(32px,4vw,48px)}
-.mtext{display:flex;flex-direction:column;gap:14px}
-.mtext p{font-size:16.5px;line-height:1.6;color:var(--ink-muted)}
-.ac{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(16px,2.4vw,32px)}
-.ac article{display:flex;flex-direction:column;gap:14px;min-width:0}
-.tags{display:flex;gap:6px}
-.tags span{height:28px;padding:0 10px;border-radius:8px;background:var(--mist);display:inline-flex;align-items:center;font-size:13.5px;color:var(--ink-muted)}
-.am{position:relative;aspect-ratio:1/1;border-radius:16px;overflow:hidden;background:var(--mist) center/cover no-repeat;display:flex;align-items:center;justify-content:center;padding:clamp(14px,2vw,28px)}
-.am-photo::before{content:"";position:absolute;inset:0;background:rgba(10,11,30,.35)}
-.am>*{position:relative}
-.stack{width:100%;display:flex;flex-direction:column;gap:8px}
-@media (max-width:500px),(min-width:981px) and (max-width:1120px){.stack .rc:nth-child(3){display:none}}
-.rc{border-radius:12px;padding:10px 12px;font-size:12.5px;display:flex;flex-wrap:wrap;gap:5px;align-items:center}
-.rc p{width:100%;display:flex;justify-content:space-between;font-size:13px}
-.rc p time{color:var(--on-light-muted)}
-.rc span{width:100%;color:var(--on-light-muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-bottom:3px}
-.rc i{font-style:normal;font-size:11.5px;padding:2px 8px;border-radius:6px;background:rgba(255,255,255,.12)}
-.am-ui{background:linear-gradient(160deg,#ECEEF3,#DCDFE7);flex-direction:column;align-items:stretch;justify-content:center;gap:22px}
-.am-ui .q{align-self:flex-end;max-width:84%;background:rgba(255,255,255,.75);border-radius:16px;padding:12px 15px;font-size:14.5px;line-height:1.45;color:var(--ink)}
-.am-ui .work{display:flex;align-items:center;gap:9px;font-size:14.5px;color:var(--ultramarine);font-weight:500}
-.am-ui .work img{width:22px;height:22px;border-radius:50%}
-.am-ui .work em{font-style:normal;animation:blink 1.4s infinite}
-@keyframes blink{0%,100%{opacity:.25}50%{opacity:1}}
-@media (prefers-reduced-motion:reduce){.am-ui .work em{animation:none}}
-.kn{align-self:flex-end;width:100%;border-radius:14px;padding:13px 15px;display:flex;flex-direction:column;gap:6px;font-size:13.5px;line-height:1.45}
-.kn p{display:flex;align-items:center;gap:8px}
-.kn p img{width:22px;height:22px;border-radius:50%}
-.kn small{font-size:12px;color:var(--on-light-muted)}
-.am-photo:has(.kn){align-items:flex-end}
-.ac h3{font-family:var(--font-text);font-weight:500;font-size:18px;letter-spacing:-.01em;margin-top:4px}
-.ad{font-size:15.5px;line-height:1.55;color:var(--ink-muted)}
-@media (max-width:980px){.ac{grid-template-columns:minmax(0,1fr);gap:40px}.ac article{gap:12px}.ac article+article{padding-top:40px;border-top:1px solid var(--line)}.am{aspect-ratio:4/3}.mhead{grid-template-columns:minmax(0,1fr)}}
+/* agents: Arthur's "Watch Kenner work" (agents/agents.css, scoped to #showcase); the old iMessage mockup below is switched off */
+#showcase{background:var(--ground)}
+#showcase .sc-head{margin-bottom:clamp(32px,4vw,48px)}
+#showcase .agents4{margin-top:clamp(48px,6vw,72px)}
+#showcase .agents4 .src h3{margin-top:0;font-size:19px}
 
-/* industries */
-.ind-head{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:clamp(32px,4vw,48px)}
-.ind-head .h2{max-width:720px}
-.arrows{display:flex;gap:10px;flex:none}
-.arrows button{width:46px;height:46px;border-radius:50%;border:1px solid var(--line);background:var(--paper);color:var(--ink);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:border-color .2s}
-.arrows button:hover{border-color:var(--ink)}
-.arrows svg{width:16px;height:16px}
-#industries{overflow-x:clip}
-.carousel{display:flex;gap:20px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;margin-inline:calc(50% - 50vw);padding-inline:calc(50vw - 50%);outline:none}
-.carousel::-webkit-scrollbar{display:none}
-.ic{flex:none;width:calc((100% - 60px) / 3.3);display:flex;flex-direction:column;gap:18px;scroll-snap-align:start}
-.ic figure{position:relative;margin:0;aspect-ratio:4/5;border-radius:20px;overflow:hidden;background:var(--night)}
-.ic figure>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 1.2s var(--ease)}
-.ic:hover figure>img{transform:scale(1.03)}
-.ic figure::after{content:"";position:absolute;inset:55% 0 0;background:linear-gradient(180deg,rgba(10,11,30,0),rgba(10,11,30,.45));pointer-events:none}
-.ic .badge-start{position:absolute;z-index:1;top:16px;left:16px;height:28px;padding:0 12px;border-radius:999px;font-size:13px;display:inline-flex;align-items:center;color:var(--on-night);background:var(--chip-image);box-shadow:inset 0 0 0 1px var(--chip-image-line);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px)}
-.ntf{position:absolute;z-index:1;left:12px;right:12px;bottom:12px;display:grid;grid-template-columns:30px minmax(0,1fr);gap:2px 10px;padding:11px 13px 12px 11px;border-radius:16px;background:rgba(255,255,255,.82);-webkit-backdrop-filter:blur(18px) saturate(1.4);backdrop-filter:blur(18px) saturate(1.4);box-shadow:0 8px 24px rgba(10,11,30,.18);font-family:-apple-system,BlinkMacSystemFont,"Geist",system-ui,sans-serif;color:#0A0B1E;opacity:0;transform:translateY(10px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
-.ntf img{grid-row:span 2;width:30px;height:30px;border-radius:7px;align-self:start;margin-top:1px}
-.ntf b{display:flex;justify-content:space-between;gap:8px;font-size:13px;font-weight:600;line-height:1.25}
-.ntf b small{font-size:12px;font-weight:400;color:rgba(10,11,30,.5)}
-.ntf span{font-size:13px;line-height:1.35}
-.carousel.in .ntf{opacity:1;transform:none}
-.ic figcaption{display:flex;flex-direction:column;gap:6px;padding-right:12px}
-.ic h3{font-size:22px;line-height:1.15;letter-spacing:-.02em}
-.ic p{font-size:15.5px;line-height:1.5;color:var(--ink-muted)}
-.cfoot{display:flex;align-items:center;gap:20px;margin-top:clamp(28px,3vw,36px)}
-.ctrack{position:relative;flex:1;height:2px;border-radius:1px;background:var(--line);overflow:hidden}
-.ctrack i{position:absolute;inset:0 auto 0 0;border-radius:1px;background:var(--ink);transition:transform .15s linear}
-.arrows button:disabled{opacity:.35;cursor:default}
-.arrows button:disabled:hover{border-color:var(--line)}
-.ic.go{color:var(--ink);text-decoration:none}
-.ic.go figure{background:var(--mist);display:flex;flex-direction:column;justify-content:space-between;padding:28px;transition:background .3s}
-.ic.go:hover figure{background:var(--line)}
-.ic.go figure::after{display:none}
-.ic.go span{font-family:var(--font-display);font-size:30px;line-height:1.04;letter-spacing:-.03em;max-width:220px}
-.ic.go i{font-style:normal;display:inline-flex;align-items:center;gap:8px;font-weight:500}
-.ic.go i svg{width:16px;height:16px;transition:transform .3s var(--ease)}
-.ic.go:hover i svg{transform:translateX(3px)}
-@media (max-width:980px){.ic{width:calc((100% - 20px) / 1.8)}}
-@media (max-width:600px){.ic{width:84%}.ic h3{font-size:20px}}
+/* hub: real colours on hover */
+.tile{position:relative}
+.tile .c{position:absolute;opacity:0;transition:opacity .2s}
+.tile .m{transition:opacity .2s}
+#hub .chs .tile .c{top:16px;left:50%;width:36px;height:36px;margin-left:-18px;border-radius:9px}
+.sys .tile .c{top:50%;left:50%;width:44px;height:44px;margin:-22px 0 0 -22px;border-radius:11px}
+.hub .tile.on,.hub .tile:focus-visible{background:#fff;opacity:1}
+.hub .tile.on .c,.hub .tile:focus-visible .c{opacity:1}
+.hub .tile.on .m,.hub .tile:focus-visible .m{opacity:0}
+.hub .tile.on span{color:var(--muted)}
+#hub .chs .tile .m{height:28px;width:auto}
 
-/* closing: product screens from the demo */
-.demo{position:relative;overflow:hidden;background:var(--night);color:var(--on-night);padding-top:clamp(72px,9vw,120px);margin-top:clamp(24px,4vw,48px)}
-.demo-bg{position:absolute;inset:0;background:url(light/sky.jpg) 50% 20%/cover no-repeat;opacity:.9}
-.demo-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,11,30,.25),rgba(10,11,30,0) 40%,rgba(10,11,30,.55))}
-.demo-in{position:relative;display:flex;flex-direction:column;align-items:center;text-align:center;gap:18px}
-.demo h2{font-size:clamp(34px,4.4vw,60px);line-height:1.02;letter-spacing:-.03em;max-width:820px}
-.demo-in>p{max-width:560px;color:var(--on-light-muted)}
-.demo .acts{justify-content:center;margin-top:6px}
-.bars{display:flex;gap:10px;width:min(640px,100%);margin-top:clamp(28px,4vw,48px)}
-.bars button{flex:1;appearance:none;border:0;background:none;padding:6px 0;cursor:pointer;display:flex;flex-direction:column;gap:9px;color:var(--on-light-muted);font:500 12.5px/1 var(--font-text)}
-.bars i{display:block;height:4px;border-radius:2px;background:rgba(255,255,255,.25);overflow:hidden}
-.bars b{display:block;height:100%;width:0;background:#fff;border-radius:2px}
-.bars [aria-selected="true"]{color:#fff}
-.bars [aria-selected="true"] b{animation:fill 5.5s linear forwards}
-.bars.still [aria-selected="true"] b{animation:none;width:100%}
-@keyframes fill{to{width:100%}}
-.laptop{width:min(1100px,100%);margin-top:10px;border-radius:24px 24px 0 0;background:#0D0F1F;padding:12px 12px 0;box-shadow:0 -10px 60px rgba(0,0,0,.35),inset 0 0 0 1px rgba(255,255,255,.12)}
-.lscr{position:relative;aspect-ratio:1440/640;border-radius:13px 13px 0 0;overflow:hidden;background:#fff}
-.lscr img{position:absolute;inset:0 0 auto;width:100%;height:auto;opacity:0;transition:opacity .6s var(--ease)}
-.lscr img.on{opacity:1}
-@media (max-width:600px){.bars span{font-size:11px}.lscr{aspect-ratio:1440/900}}
+/* hairline columns (agents) */
+.src4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));margin-top:clamp(44px,5vw,64px)}
+.src4 .src{position:relative;padding:30px 28px 0 0;border-top:1px solid var(--line)}
+.src4 .src::before,.col+.col::before{content:"";position:absolute;width:11px;height:11px;background:linear-gradient(var(--grey),var(--grey)) center/1px 100% no-repeat,linear-gradient(var(--grey),var(--grey)) center/100% 1px no-repeat;opacity:.7}
+.src4 .src::before{top:-6px;left:-5px}
+.src4 .src svg{width:22px;height:22px;color:var(--ink)}
+.src4 .src h3{font:500 17px/1.3 var(--display);letter-spacing:-.01em;margin:18px 0 6px}
+.src4 .src p{font-size:14.5px;line-height:1.5;color:var(--muted)}
+@media (max-width:980px){.src4{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:36px}}
+@media (max-width:520px){.src4{grid-template-columns:minmax(0,1fr)}}
 
-/* security, compact */
-.f-secu .sl{display:flex;flex-direction:column;gap:10px;padding-top:4px}
-.f-secu .sg div{display:flex;flex-direction:column}
-.f-secu .sg b{font-weight:400;font-size:15px;line-height:1.35;color:var(--ink-muted)}
-.f-secu .sg p{font-size:13px;line-height:1.35;color:var(--ink-subtle)}
-@media (max-width:760px){.f-secu{grid-column:1/-1}.f-secu .sl{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}}
+/* the messages section fills one screen under the nav (capped on tall monitors), content centred */
+#reality{overflow-x:clip;min-height:min(calc(100vh - 60px),820px);display:flex;flex-direction:column;justify-content:center;scroll-margin-top:60px}
+@supports (height:100svh){#reality{min-height:min(calc(100svh - 60px),820px)}}
+#reality>.wrap{width:100%}
+/* reality: drifting technician messages */
+.real{margin-top:0}
+.real .h2{max-width:1000px;margin:0 auto}
+.real .h2>span{display:block}
+.real .h2 img{display:inline-block;height:.7em;width:auto;vertical-align:.04em;margin-right:.08em}
+.mq{display:flex;flex-direction:column;gap:4px;padding-bottom:16px;margin-top:clamp(40px,5vw,60px);margin-inline:calc(50% - 50vw);-webkit-mask-image:linear-gradient(90deg,transparent,#000 9%,#000 91%,transparent);mask-image:linear-gradient(90deg,transparent,#000 9%,#000 91%,transparent)}
+.mq-row{overflow-x:clip;overflow-y:visible;padding-block:14px}
+.mq-track{display:flex;gap:16px;width:max-content;animation:mq var(--d,90s) linear infinite}
+.mq-row.rev .mq-track{animation-direction:reverse}
+.mq:hover .mq-track{animation-play-state:paused}
+@keyframes mq{to{transform:translateX(calc(-50% - 8px))}}
+@media (prefers-reduced-motion:reduce){.mq-track{animation:none}}
+.msg{flex:none;display:flex;align-items:baseline;gap:12px;padding:14px 20px;background:color-mix(in oklab,var(--ink) 7%,var(--paper));border-radius:var(--r-lg) var(--r-lg) var(--r-lg) 4px;font-size:16px;font-weight:500;line-height:1.35;white-space:nowrap}
+.msg small{font-size:13px;font-weight:400;color:var(--grey);font-variant-numeric:tabular-nums}
+/* phone: each message wraps into a bubble that fits the screen (name and time under it), and the section is short enough to see whole */
+@media (max-width:760px){
+#reality{padding-block:48px}
+.mq{gap:0;margin-top:40px;-webkit-mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent);mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent)}
+.mq-row{padding-block:10px}
+.msg{flex-direction:column;align-items:flex-start;gap:4px;white-space:normal;width:min(74vw,300px);padding:12px 16px;font-size:15px}
+.msg small{font-size:12.5px}
+}
+
+
+/* deploy (night) */
+.night{position:relative;background:var(--night);color:#fff;overflow:hidden}
+.night .wrap{position:relative}
+.cols3{display:grid;grid-template-columns:repeat(2,minmax(0,400px));justify-content:center;margin-top:clamp(40px,5vw,60px)}
+.col{position:relative;padding:0 clamp(16px,3vw,40px)}
+.col:first-child{padding-left:0}
+.col+.col::before{top:50%;left:-5px;margin-top:-5px;background:linear-gradient(var(--on-night-muted),var(--on-night-muted)) center/1px 100% no-repeat,linear-gradient(var(--on-night-muted),var(--on-night-muted)) center/100% 1px no-repeat}
+.col h3{font:500 18px/1.3 var(--display);letter-spacing:-.01em}
+.col p{font-size:15px;line-height:1.55;color:var(--on-night-muted);margin-top:8px;max-width:330px}
+@media (max-width:1080px){.cols3{grid-template-columns:repeat(2,minmax(0,1fr));gap:32px 0}.col:nth-child(3){padding-left:0}.col:nth-child(3)::before{display:none}}
+@media (max-width:860px){.cols3{grid-template-columns:minmax(0,1fr);gap:28px}.col{padding:0}.col+.col::before{display:none}}
+.hub{position:relative;margin-top:clamp(48px,6vw,76px)}
+#hub .chs{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:10px}
+.kapp{background:var(--accent);display:flex;align-items:center;justify-content:center}
+.tile .kapp img{width:20px;height:20px;opacity:1;filter:brightness(0) invert(1)}
+.sys{display:grid;grid-template-columns:repeat(10,minmax(0,1fr));gap:10px}
+.sys .tile img.em{height:30px}
+.sys .tile img.df{height:auto;width:66%}
+.sys .tile img.cr{height:auto;width:62%}
+.sys .tile .c.cw{width:72%;height:40px;margin:-20px 0 0 -36%;border-radius:0;object-fit:contain}
+.g4{grid-template-columns:repeat(4,minmax(0,1fr))}
+.g4 .stat b{font-size:clamp(30px,2.8vw,40px)}
+@media (max-width:980px){.g4{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:520px){.g4{grid-template-columns:minmax(0,1fr)}}
+.tile{appearance:none;border:0;border-radius:var(--r-sm);background:var(--night-tile);color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;cursor:default;font:inherit;transition:background .25s,opacity .25s;min-width:0}
+#hub .chs .tile{height:92px}
+.sys .tile{aspect-ratio:1.2/1}
+.tile img{height:28px;width:auto;opacity:.9}
+.tile img.wm{height:15px;max-width:76%}
+.tile img.sil{filter:brightness(0) invert(1)}
+.tile span{font-size:12.5px;color:var(--on-night-muted)}
+.hub.hov .tile{opacity:.32}
+.hub.hov .tile.on{opacity:1;background:#fff}
+/* hub: thin lines run from the channels into Kenner and out to the systems, one small dot travelling each line (drawn by script from the tiles' positions) */
+.core-wrap{display:flex;flex-direction:column;align-items:center;padding:clamp(40px,4.4vw,60px) 0}
+.core{position:relative;z-index:1;width:64px;height:64px;border-radius:var(--r-lg);background:#fff;display:flex;align-items:center;justify-content:center}
+.core img{width:42px;height:42px;transition:transform .5s cubic-bezier(.34,1.56,.64,1)}
+.hub-lines{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;overflow:visible}
+.hub-lines path{fill:none;stroke:rgba(255,255,255,.14);stroke-width:1.25;transition:stroke .35s}
+.hub-lines path.on{stroke:rgba(255,255,255,.6)}
+.hub-lines circle{fill:#fff}
+.tip{position:absolute;z-index:5;width:280px;padding:15px 17px;border-radius:var(--r-sm);background:#1B1F3F;color:#fff;box-shadow:0 24px 60px rgba(0,0,0,.55),inset 0 0 0 1px rgba(255,255,255,.08);pointer-events:none;display:flex;flex-direction:column;gap:6px;transition:opacity .2s}
+.tip.off{opacity:0}
+.tip b{font-size:15.5px;font-weight:500}
+.tip p{font-size:14px;line-height:1.5;color:var(--on-night-muted)}
+.tip p:empty{display:none}
+.tile .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.sys .tile .kapp{display:flex;align-items:center;justify-content:center}
+@media (max-width:860px){.sys{grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}#hub .chs{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}.tip{width:240px}}
+
+/* start: how a team starts, and who it works with */
+#start{background:var(--ground)}
+.start{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:clamp(36px,5vw,80px);align-items:start;margin-top:clamp(40px,5vw,64px)}
+.steps{list-style:none;margin:0;padding:0;border-top:1px solid var(--line-2)}
+.steps li{display:grid;grid-template-columns:140px minmax(0,1fr);gap:6px 24px;padding:22px 0;border-bottom:1px solid var(--line-2)}
+.steps small{font-size:13.5px;color:var(--grey);padding-top:4px}
+.steps b{display:block;font:500 18px/1.3 var(--display);letter-spacing:-.01em}
+.steps p{font-size:15px;line-height:1.55;color:var(--muted);margin-top:6px;max-width:460px}
+.fnd{background:var(--paper);border-radius:var(--r-lg);padding:clamp(22px,2.8vw,34px);display:flex;flex-direction:column;gap:28px;min-width:0}
+.fnd h3{font:400 clamp(20px,1.85vw,25px)/1.22 var(--display);letter-spacing:-.02em;text-wrap:pretty}
+.fnd h3 span{color:var(--grey)}
+.fnd-p{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.fnd figure{margin:0;display:flex;flex-direction:column;gap:14px;min-width:0}
+.fnd figure img{width:clamp(96px,10vw,128px);height:auto;aspect-ratio:1;object-fit:cover;border-radius:50%;background:var(--ground)}
+.fnd figcaption b{display:block;font-weight:500;font-size:16px;line-height:1.3}
+.fnd figcaption small{display:block;font-size:13px;color:var(--grey)}
+.fnd figcaption p{font-size:14px;line-height:1.5;color:var(--muted);margin-top:8px}
+.fnd .btn{align-self:flex-start}
+@media (max-width:980px){.start{grid-template-columns:minmax(0,1fr)}}
+@media (max-width:520px){.steps li{grid-template-columns:minmax(0,1fr)}}
+
+/* close */
+.close{position:relative;background:var(--night) url(img/roof.jpg) 50% 62%/cover no-repeat;color:#fff;overflow:hidden}
+.close::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,11,30,.72) 0%,rgba(10,11,30,.38) 45%,rgba(10,11,30,.7) 100%)}
+.close-in{position:relative;display:flex;flex-direction:column;align-items:center;text-align:center;gap:20px;padding-block:clamp(110px,13vw,190px)}
+.close h2{font:400 clamp(40px,5.6vw,76px)/1 var(--display);letter-spacing:-.04em}
+.close p.line{font-size:17px;color:rgba(255,255,255,.78);max-width:480px}
 
 /* footer */
-footer{border-top:1px solid var(--line)}
-.f-in{display:grid;grid-template-columns:1.5fr 1fr 1fr 1.3fr;gap:32px;padding-block:56px 32px}
-.f-in h4{margin:0 0 12px;font-size:13px;font-weight:500;color:var(--ink-subtle)}
-.f-in a{display:block;text-decoration:none;font-size:15px;color:var(--ink-muted);padding:4px 0}
+footer{background:var(--paper)}
+.f-in{display:grid;grid-template-columns:1.6fr 1fr 1.4fr;gap:32px;padding-block:56px 36px}
+.f-in img{height:22px;width:auto}
+.f-in .tl{margin-top:14px;font-size:15px;color:var(--muted)}
+.f-in h4{margin:0 0 12px;font-size:13px;font-weight:500;color:var(--grey)}
+.f-in a{display:block;text-decoration:none;font-size:15px;color:var(--muted);padding:3px 0}
 .f-in a:hover{color:var(--ink)}
-.f-in .lk img{height:22px;width:auto;display:block}
-.f-in .lk p{margin-top:16px;font-size:15px;color:var(--ink-muted);max-width:260px}
-.f-legal{display:flex;gap:20px}
-.f-legal a{color:inherit;text-decoration:none}
-.f-legal a:hover{color:var(--ink)}
-.f-bot{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;padding-block:20px 40px;border-top:1px solid var(--line);font-size:13px;color:var(--ink-subtle)}
-@media (max-width:760px){.f-in{grid-template-columns:repeat(2,minmax(0,1fr))}.f-in .lk{grid-column:1/-1}}
-
-/* hero responsive */
-@media (max-width:1100px){
-  .hero-grid{grid-template-columns:minmax(0,1fr)}
-  .hero-copy{padding-bottom:24px}
-  .phones{height:640px;width:min(560px,100%);margin:0 auto 32px}
+.f-in .secu{font-size:14px;line-height:1.7;color:var(--muted)}
+.f-bot{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;padding-block:20px 40px;border-top:1px solid var(--line);font-size:13px;color:var(--grey)}
+.f-bot a{color:inherit;text-decoration:none;margin-left:18px}
+@media (max-width:760px){.f-in{grid-template-columns:minmax(0,1fr)}}
+</style>
+<link rel="stylesheet" href="agents/agents.css">
+<style>
+/* demo stage, roomier: more sky above, a clear gutter between the phone and Kenner's panel, looser steps (agents.css itself is untouched) */
+@media (min-width:1101px){
+#showcase .work{padding-left:40px;padding-right:36px}
+#showcase .dock{margin-right:30px}
+#showcase .lap{margin-left:-110px}
+#showcase .lap-p{padding-left:196px}
 }
-@media (max-width:600px){
-  .phones{height:560px;margin-bottom:72px}
-  .phones .phone{--pr:34px}
-  .p-call{width:234px;height:500px;left:0}
-  .p-chat{left:auto;right:0;top:70px;width:256px;height:540px}
-  .hero-light::before{background-position:88% 78%}
-  .hero-light::after{opacity:.4}
-  .call .ring{width:116px;height:116px;padding:9px}.call .ring img{width:98px;height:98px}
-  .call .ctrl em{width:44px;height:44px}
+@media (min-width:761px) and (max-width:1100px){
+#showcase .lap{margin-left:-96px}
+#showcase .lap-p{padding-left:160px}
 }
+@media (min-width:761px){
+#showcase .look-h{margin:0 24px;padding:20px 0}
+#showcase .lap-p .look-h{padding-top:24px}
+#showcase .look-b{padding:24px 24px 32px}
+#showcase .run>button{align-items:flex-start}
+#showcase .run>button b{white-space:normal;overflow:visible}
+#showcase .run>button svg{margin-top:2px}
+#showcase .trail li{padding-bottom:22px}
+}
+/* the demo fits one screen: agent tabs and the whole stage together under the nav, whatever the laptop's height */
+@media (min-width:761px){
+#showcase{--stage:clamp(540px,calc(100vh - 238px),760px);--phone-w:318px}
+#showcase .agents{scroll-margin-top:156px}
+#showcase .sc-top{margin-bottom:clamp(20px,2.4vw,28px)}
+#showcase .sc-top .sc-head{margin:0 0 20px}
+#showcase .sc-top .agents{display:flex;justify-content:center;gap:clamp(20px,3vw,40px);width:100%;max-width:none;margin:0}
+#showcase .agents button{padding:0 2px;white-space:nowrap}
+#showcase .work{min-height:var(--stage);padding-top:32px}
+#showcase .work .phone{zoom:var(--pz,1);width:var(--phone-w);height:calc((var(--stage) - 56px)/var(--pz,1));margin-bottom:24px}
+#showcase .lap{height:calc(var(--stage) - 112px)}
+}
+@media (min-width:761px) and (max-width:1100px){#showcase{--phone-w:292px}}
+/* light stage: no dark box and no laptop. The phone and Kenner's panel sit on the section's grey ground; the panel is a plain white card */
+@media (min-width:761px){
+#showcase .work{background:none;border-radius:0;overflow:visible;padding:0;min-height:0;align-items:center;justify-content:center;gap:clamp(20px,2.6vw,36px)}
+#showcase .dock{margin:0}
+#showcase .work .phone{margin:0;box-shadow:0 18px 40px rgba(10,11,30,.14)}
+#showcase .lap{flex:1 1 0;height:calc(var(--stage) - 56px);margin:0;padding:0;border-radius:var(--r-lg);background:var(--paper);box-shadow:none}
+#showcase .lap-s{border-radius:inherit}
+#showcase .lap-p{padding-left:0}
+}
+/* app picker: bare logos, no tiles and no marker bar; the chosen one is in colour, the others greyed */
+#showcase .dock button[aria-pressed="true"]::after{display:none}
+#showcase .dock{gap:20px}
+#showcase .dock button{width:34px;height:34px;border-radius:0;opacity:.4;filter:grayscale(1);transition:opacity .25s,filter .25s}
+#showcase .dock button:hover{opacity:.8;filter:none}
+#showcase .dock button[aria-pressed="true"]{opacity:1;filter:none}
+#showcase .dock .lg{display:block;width:100%;height:100%;background:var(--c);-webkit-mask:var(--m) center/var(--s,contain) no-repeat;mask:var(--m) center/var(--s,contain) no-repeat}
+#showcase .dock img{border-radius:0}
+/* agent tabs: rounded rectangles instead of full pills; all six agents in one bar, the four without a demo greyed and not clickable */
+/* text tabs on a hairline; the chosen one is underlined */
+#showcase .agents{border-radius:0;padding:0;background:none;box-shadow:inset 0 -1px 0 var(--line-2)}
+#showcase .agents button{border-radius:0;height:42px;background:none;box-shadow:none}
+#showcase .agents button[aria-pressed="true"]{background:none;box-shadow:inset 0 -2px 0 var(--ink)}
+#showcase .agents .ag-off{display:block;height:42px;padding:0 2px;font:500 15px/42px var(--text);color:rgba(10,11,30,.3);white-space:nowrap;cursor:default;-webkit-user-select:none;user-select:none}
+@media (max-width:1100px){#showcase .ag-w{display:none}}
+#showcase .dock button:focus-visible{outline-color:var(--accent)}
+/* demo on a phone: no phone-in-a-phone. The chat and Kenner's lookups are two plain cards that fit one screen together, apps in a row on top */
+@media (max-width:760px){
+#showcase{--mstage:clamp(500px,calc(100vh - 92px),700px)}
+@supports (height:100svh){#showcase{--mstage:clamp(500px,calc(100svh - 92px),700px)}}
+#showcase .agents{scroll-margin-top:72px}
+#showcase .work{display:flex;flex-direction:column;align-items:center;gap:10px;min-height:0;height:var(--mstage);padding:12px;border-radius:20px}
+#showcase .dock{order:0;flex:none;flex-direction:row;justify-content:center;gap:12px;margin:0 0 4px}
+#showcase .dock button{width:38px;height:38px}
+#showcase .dock button[aria-pressed="true"]::after{left:50%;top:auto;bottom:-8px;width:18px;height:3px;margin:0 0 0 -9px}
+#showcase .work .phone{order:1;zoom:1;width:100%;max-width:520px;height:auto;flex:1.5 1 0;min-height:0;margin:0;padding:0;border-radius:16px;background:none;box-shadow:0 14px 34px rgba(0,0,0,.38)}
+#showcase .work .phone::before,#showcase .work .phone::after,#showcase .phone .scr::before,#showcase .phone .sbar,#showcase .phone .home{display:none}
+#showcase .phone .scr{border-radius:16px;clip-path:none;box-shadow:none}
+#showcase .wa-head{padding-top:8px}
+#showcase .im-head{margin-top:8px}
+#showcase .wa-in,#showcase .im-in,#showcase .tm-in,#showcase .kw-in{padding-bottom:10px}
+#showcase .lap{order:2;width:100%;max-width:520px;flex:1 1 0;min-height:0;height:auto;margin:0;padding:0;border-radius:16px;background:var(--paper);box-shadow:0 14px 34px rgba(0,0,0,.3)}
+#showcase .lap-s{border-radius:16px}
+#showcase .lap-p{padding:0}
+#showcase .lap-p .look-h{padding:12px 0}
+#showcase .look-b{padding-top:12px;padding-bottom:16px}
+.send-cue{display:none}
+}
+@media (max-width:760px){
+#showcase{--mstage:clamp(460px,calc(100vh - 100px),700px)}
+@supports (height:100svh){#showcase{--mstage:clamp(460px,calc(100svh - 100px),700px)}}
+#showcase .agents{display:flex;justify-content:flex-start;gap:22px;width:100%;overflow-x:auto;scrollbar-width:none}
+#showcase .agents::-webkit-scrollbar{display:none}
+#showcase .agents button,#showcase .agents .ag-off{flex:none;height:40px;padding:0 2px;font-size:14px}
+#showcase .agents .ag-off{line-height:40px}
+#showcase .work{background:none;padding:0;border-radius:0;overflow:visible}
+#showcase .work .phone{box-shadow:none}
+#showcase .lap{box-shadow:none}
+}
+/* make the send button impossible to miss: a stronger pulse, and a pill pointing at it */
+#showcase .snd.cue{animation:kn-cue 1.6s var(--ease) infinite}
+@keyframes kn-cue{0%{box-shadow:0 0 0 0 color-mix(in oklab,var(--cue) 70%,transparent);transform:scale(1)}35%{transform:scale(1.08)}70%,100%{box-shadow:0 0 0 18px transparent;transform:scale(1)}}
+.send-cue{position:absolute;z-index:30;display:flex;align-items:center;gap:6px;height:32px;padding:0 13px 0 10px;border-radius:var(--r-sm);background:#0A0B1E;color:#fff;font:500 13px/1 "Geist",system-ui,sans-serif;white-space:nowrap;box-shadow:0 10px 30px rgba(10,11,30,.35),0 0 0 1px rgba(255,255,255,.12);opacity:0;transform:translateX(6px);transition:opacity .3s var(--ease),transform .3s var(--ease);pointer-events:none}
+.send-cue.on{opacity:1;transform:none;pointer-events:auto}
+.send-cue{appearance:none;border:0;cursor:pointer}
+.send-cue:hover{background:#262A45}
+/* phones: no room beside the chat, so the pill is off and the pulsing send button carries it alone */
+@media (max-width:760px){.send-cue{display:none}}
+.send-cue{flex-direction:row-reverse;padding:0 10px 0 13px}
+.send-cue svg{width:16px;height:16px;transform:rotate(180deg)}
+.send-cue.up svg{transform:rotate(90deg)}
+@media (prefers-reduced-motion:reduce){#showcase .snd.cue{animation:none;box-shadow:0 0 0 4px color-mix(in oklab,var(--cue) 45%,transparent)}.send-cue{transition:none}}
 </style>
 </head>
 <body>
 <header class="nav" id="nav">
   <div class="wrap nav-in">
     <a class="logo" href="#top" aria-label="kenner home"><img class="white" src="brand/lockup-white.svg" alt="kenner"><img class="ink" src="brand/lockup-ink.svg" alt="kenner"></a>
-    <nav class="nav-links" aria-label="Main">
-      <a href="#meet">Meet Kenner</a>
-      <a href="#tools">Integrations</a>
-      <a href="#showcase">Product</a>
-      <a href="#industries">Industries</a>
-      <a href="#security">Security</a>
-      <a class="btn btn-sm glass cta-glass" href="https://calendar.app.google/fFpCL3WG3pJtqtC89" target="_blank" rel="noopener">Book a demo</a>
+    <nav class="links" aria-label="Main">
+      <a href="#for-leaders">For service leaders</a>
+      <a href="#for-technicians">For technicians</a>
+      <a href="#agents">Agents</a>
+      <a href="#deploy">Integrations</a>
+      <a class="btn btn-sm btn-white cta-white" href="https://calendar.app.google/fFpCL3WG3pJtqtC89" target="_blank" rel="noopener">Book a demo</a>
       <a class="btn btn-sm btn-ink cta-ink" href="https://calendar.app.google/fFpCL3WG3pJtqtC89" target="_blank" rel="noopener">Book a demo</a>
     </nav>
   </div>
 </header>
 
 <main id="top">
+  <!-- 1 · hero -->
   <section class="hero">
-    <div class="hero-light" aria-hidden="true"></div>
-    <div class="wrap hero-grid">
+    <div class="hero-img"><img id="hero-photo" src="img/hero-roof.jpg" alt="An HVAC/R technician checking his phone between condensing units on a roof at first light"></div>
+    <div class="anno" id="anno">
+      <span class="dot" aria-hidden="true"></span><span class="ln" aria-hidden="true"></span>
+      <div class="lb"><small><img src="brand/mark-ultramarine.svg" alt="">Kenner · 6:14 AM</small><p>Condenser fan 2 tripped twice this week. Check it before the compressor.</p><em>From the controller log and Dave’s job in September</em></div>
+    </div>
+    <div class="wrap hero-in">
       <div class="hero-copy">
-        <h1>Field service has a new interface.</h1>
-        <p class="sub">Technicians call or text Kenner like a colleague who’s been on every job. It briefs them before the job, helps on site, orders the part and writes the report into your FSM.</p>
+        <h1>The personal assistant for HVAC/R service</h1>
+        <p class="sub">We activate your full service knowledge, answer every technician in seconds and take the paperwork off their hands.</p>
         <div class="acts">
-          <a class="btn btn-white" href="https://calendar.app.google/fFpCL3WG3pJtqtC89" target="_blank" rel="noopener">Request a demo</a>
-          <a class="btn glass" href="#showcase">See what it does</a>
-        </div>
-      </div>
-
-      <div class="phones" aria-label="Kenner in WhatsApp on a technician's phone: a call and a chat">
-        <div class="phone p-call rise">
-          <div class="scr call dk">
-            <div class="sbar" data-t="09:12"></div>
-            <div class="who"><div class="ring"><img src="brand/logo-avatar.svg" alt="Kenner"></div><b>Kenner</b><span class="num">WhatsApp audio · 02:14</span></div>
-            <div class="ctrl"><span><em><i data-i="micoff"></i></em>Mute</span><span><em><i data-i="speaker"></i></em>Speaker</span><span><em><i data-i="video"></i></em>Camera</span><span class="end"><em><i data-i="hang"></i></em>End</span></div>
-            <span class="home"></span>
-          </div>
-        </div>
-
-        <div class="phone p-chat rise d2">
-          <div class="scr wa">
-            <div class="sbar" data-t="09:15"></div>
-            <div class="wa-head"><span class="bk"><i data-i="back"></i><em class="bkn">5</em></span><img src="brand/logo-avatar.svg" alt=""><span class="n"><b>Kenner</b><span></span></span><span class="hic"><i data-i="video"></i><i data-i="phone"></i></span></div>
-            <div class="wa-body">
-              <span class="wa-day">Today</span>
-              <div class="b out tl gf">
-                <span class="vn"><i data-i="play" class="pl"></i><span class="vw" data-n="30"></span></span>
-                <span class="vd num">0:08</span>
-                <span class="tr">F.446 is gone, but it dropped out on F.62 at full load. Pump is at 60%. Design flow is 1,000 l/h.</span>
-                <span class="meta">09:14<i data-i="ticks"></i></span>
-              </div>
-              <div class="b in gf">Then the sensor was one cause, not the only one. Here is the pump curve at 1,000 l/h.
-                <span class="figure"><svg viewBox="0 0 240 140" role="img" aria-label="Pump curves at 60, 80 and 100 percent with the design flow marked at 1,000 litres per hour">
-                  <rect width="240" height="140" fill="#FFFFFF"/>
-                  <g stroke="#E6E8EE" stroke-width="1"><path d="M30 12V118M70 12V118M110 12V118M150 12V118M190 12V118M230 12V118"/><path d="M30 118H230M30 92H230M30 66H230M30 40H230M30 14H230"/></g>
-                  <path d="M30 22C90 24 150 40 230 92" fill="none" stroke="#0A0B1E" stroke-width="1.6"/>
-                  <path d="M30 48C90 50 150 64 215 110" fill="none" stroke="#5A5F73" stroke-width="1.6"/>
-                  <path d="M30 76C80 78 130 90 185 118" fill="none" stroke="#3E9BE6" stroke-width="1.6"/>
-                  <path d="M130 14V118" stroke="#1438CA" stroke-width="1.4" stroke-dasharray="4 3"/>
-                  <circle cx="130" cy="38" r="3" fill="#0A0B1E"/><circle cx="130" cy="63" r="3" fill="#5A5F73"/><circle cx="130" cy="90" r="3" fill="#3E9BE6"/>
-                  <g font-family="Geist, sans-serif" font-size="8" fill="#6A6F84"><text x="232" y="131" text-anchor="end">flow l/h</text><text x="130" y="131" text-anchor="middle" fill="#1438CA">1,000</text><text x="4" y="18">mbar</text><text x="196" y="88">100%</text><text x="186" y="104">80%</text><text x="160" y="114">60%</text></g>
-                </svg></span>
-                Pump curve · <span class="lk">p. 32</span><span class="meta">09:14</span>
-              </div>
-              <div class="b in tl"><b>60%: about 175 mbar. 80%: about 434 mbar.</b> Saved the commissioning figures to this job’s notes.<span class="meta">09:15</span></div>
-            </div>
-            <div class="wa-in"><i data-i="plus"></i><span class="fld"><i data-i="sticker"></i></span><i data-i="camera"></i><span class="micb"><i data-i="mic"></i></span></div>
-            <span class="home"></span>
-          </div>
+          <a class="btn btn-white" href="https://calendar.app.google/fFpCL3WG3pJtqtC89" target="_blank" rel="noopener">Book a demo</a>
+          <a class="btn btn-ghost" href="#value">See how it works</a>
         </div>
       </div>
     </div>
-    <div class="trust">
-      <div class="wrap trust-in">
+    <div class="strip">
+      <div class="wrap strip-in">
         <p>Built by people from</p>
-        <div class="names">
-          <img src="logos/team/palantir.svg" alt="Palantir" style="height:20px">
-          <img src="logos/team/bayer.svg" alt="Bayer" style="height:28px">
-          <img src="logos/team/enbw.svg" alt="EnBW" style="height:18px">
-          <img src="logos/team/imperial.svg" alt="Imperial College London" style="height:22px">
-          <img src="logos/team/escp.png" alt="ESCP Business School" style="height:25px">
-          <img src="logos/team/ef.svg" alt="Entrepreneurs First" style="height:10px">
-          <span class="yc" role="img" aria-label="Y Combinator"><img src="logos/team/ycombinator.svg" alt="">Combinator</span>
-        </div>
+        <img src="logos/team/palantir.svg" alt="Palantir" style="height:19px">
+        <img src="logos/team/bayer.svg" alt="Bayer" style="height:26px">
+        <img src="logos/team/enbw.svg" alt="EnBW" style="height:17px">
+        <img src="logos/team/imperial.svg" alt="Imperial College London" style="height:21px">
+        <img src="logos/team/escp.png" alt="ESCP Business School" style="height:24px">
+        <img src="logos/team/ef.svg" alt="Entrepreneurs First" style="height:10px">
+        <span class="yc" role="img" aria-label="Y Combinator"><img src="logos/team/ycombinator.svg" alt="" style="height:19px">Combinator</span>
       </div>
     </div>
   </section>
 
-  <section class="sec meet" id="meet">
-    <div class="wrap meet-grid">
-      <div class="meet-copy">
-        <div class="who"><img src="brand/logo-avatar.svg" alt="">Meet Kenner</div>
-        <h2 class="h2">A colleague in their phone. Not another app.</h2>
-        <p class="intro">Technicians save Kenner as a contact and call or text it in the app they already use. It answers from your manuals and past jobs.</p>
-        <div class="apps" aria-label="Works in WhatsApp, iMessage, Microsoft Teams, RCS and normal phone calls">
-          <img src="logos/tiles/whatsapp.svg" alt="WhatsApp"><img src="logos/tiles/imessage.svg" alt="iMessage"><img src="logos/tiles/teams.svg" alt="Microsoft Teams"><img src="logos/tiles/rcs.svg" alt="RCS"><span class="pc" role="img" aria-label="Phone call"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1z"/></svg></span>
+  <!-- 2 · value split + impact -->
+  <section class="sec" id="value">
+    <div class="wrap">
+      <div class="center">
+        <h2 class="h2">Help on every job. Insight across all of them.</h2>
+      </div>
+    </div>
+
+    <div class="duo">
+      <article class="aud" id="for-leaders">
+        <svg class="aud-bg" viewBox="0 0 800 800" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+          <defs>
+            <linearGradient id="au-g1" x1="0" y1="0" x2=".7" y2="1"><stop offset="0" stop-color="#1438CA"/><stop offset="1" stop-color="#0B1C72"/></linearGradient>
+            <filter id="au-s1" x="-25%" y="-25%" width="150%" height="150%" color-interpolation-filters="sRGB">
+              <feTurbulence type="fractalNoise" baseFrequency=".005 .011" numOctaves="3" seed="7" result="warp"/>
+              <feDisplacementMap in="SourceAlpha" in2="warp" scale="190" xChannelSelector="R" yChannelSelector="G" result="shape"/>
+              <feGaussianBlur in="shape" stdDeviation="34" result="soft"/>
+              <feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" seed="11" result="noise"/>
+              <feColorMatrix in="noise" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  1 0 0 0 0" result="na"/>
+              <feComposite in="soft" in2="na" operator="arithmetic" k1="0" k2="1" k3="-1" k4=".5"/>
+              <feComponentTransfer result="dots"><feFuncA type="discrete" tableValues="0 1"/></feComponentTransfer>
+              <feFlood flood-color="#070818"/>
+              <feComposite in2="dots" operator="in"/>
+            </filter>
+            <filter id="au-n1" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency=".8" numOctaves="2" seed="16"/><feColorMatrix type="matrix" values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 .5 -.14"/></filter>
+          </defs>
+          <rect width="800" height="800" fill="url(#au-g1)"/>
+          <path d="M470 -120 L940 -120 L940 940 L700 940 C640 640 560 360 470 -120Z" filter="url(#au-s1)"/>
+          <rect width="800" height="800" filter="url(#au-n1)" opacity=".22"/>
+        </svg>
+        <div class="aud-copy">
+          <h3>For service leaders</h3>
+          <p>Your best engineer’s know‑how at every site. First-time fix by team and fault type.</p>
+          <a class="btn btn-ghost" href="#start">Start with one team</a>
+        </div>
+        <div class="win" role="img" aria-label="Kenner’s web app on the first-time fix page: 76% across all teams, up 9 points since June, with North at 81%, South at 74% and the night shift at 66%, and a table of the faults where jobs come back">
+          <div class="rail">
+            <img src="brand/mark-ultramarine.svg" alt="">
+            <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 11l8-7 8 7v8a1 1 0 0 1-1 1h-4v-6H9v6H5a1 1 0 0 1-1-1z"/></svg>Home</span>
+            <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="5" width="14" height="16" rx="2"/><path d="M9 3.5h6v3H9zM9 12h6M9 16h4"/></svg>Jobs</span>
+            <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8l8-4 8 4v8l-8 4-8-4zM4 8l8 4 8-4M12 12v8"/></svg>Units</span>
+            <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15H6.5A2.5 2.5 0 0 0 4 20.5z"/><path d="M4 20.5A2.5 2.5 0 0 0 6.5 23H20v-5"/></svg>Fixes</span>
+            <span class="on"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 20V11M12 20V4M19 20v-6"/></svg>Insights</span>
+          </div>
+          <div class="wb">
+            <div class="w-top"><h4>First-time fix</h4><small>All sites · June to October</small></div>
+            <div class="kts">
+              <div class="kt"><b>76%<em>+9 pts</em></b><span>All teams</span></div>
+              <div class="kt"><b>81%</b><span>North</span></div>
+              <div class="kt"><b>74%</b><span>South</span></div>
+              <div class="kt"><b>66%</b><span>Night shift</span></div>
+            </div>
+            <div class="w-tabs"><span class="on">By fault</span><span>By model</span><span>By site</span></div>
+            <div class="w-tb">
+              <div class="w-th"><span>Fault</span><span>Equipment</span><span>Jobs</span><span>Came back</span></div>
+              <div><b>Gas cooler fans</b><span>CO2 booster racks</span><span>115</span><span>31%</span></div>
+              <div><b>Condensate switch</b><span>Rooftop units</span><span>86</span><span>24%</span></div>
+              <div><b>Termination sensor</b><span>Display cases</span><span>64</span><span>19%</span></div>
+              <div><b>High pressure valve</b><span>CO2 booster racks</span><span>78</span><span>17%</span></div>
+              <div><b>Economizer actuator</b><span>Rooftop units</span><span>52</span><span>14%</span></div>
+            </div>
+          </div>
+        </div>
+      </article>
+      <article class="aud" id="for-technicians">
+        <svg class="aud-bg" viewBox="0 0 800 800" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+          <defs>
+            <linearGradient id="au-g2" x1="0" y1="0" x2=".7" y2="1"><stop offset="0" stop-color="#3D4873"/><stop offset="1" stop-color="#20274A"/></linearGradient>
+            <filter id="au-s2" x="-25%" y="-25%" width="150%" height="150%" color-interpolation-filters="sRGB">
+              <feTurbulence type="fractalNoise" baseFrequency=".005 .011" numOctaves="3" seed="23" result="warp"/>
+              <feDisplacementMap in="SourceAlpha" in2="warp" scale="190" xChannelSelector="R" yChannelSelector="G" result="shape"/>
+              <feGaussianBlur in="shape" stdDeviation="34" result="soft"/>
+              <feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" seed="27" result="noise"/>
+              <feColorMatrix in="noise" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  1 0 0 0 0" result="na"/>
+              <feComposite in="soft" in2="na" operator="arithmetic" k1="0" k2="1" k3="-1" k4=".5"/>
+              <feComponentTransfer result="dots"><feFuncA type="discrete" tableValues="0 1"/></feComponentTransfer>
+              <feFlood flood-color="#0A0C17"/>
+              <feComposite in2="dots" operator="in"/>
+            </filter>
+            <filter id="au-n2" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency=".8" numOctaves="2" seed="32"/><feColorMatrix type="matrix" values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 .5 -.14"/></filter>
+          </defs>
+          <rect width="800" height="800" fill="url(#au-g2)"/>
+          <path d="M560 -120 L940 -120 L940 940 L380 940 C470 660 610 380 560 -120Z" filter="url(#au-s2)"/>
+          <rect width="800" height="800" filter="url(#au-n2)" opacity=".22"/>
+        </svg>
+        <div class="aud-copy">
+          <h3>For technicians</h3>
+          <p>Answers in seconds: what fixed this fault on this unit before, and what to check first. Say what you did and Kenner writes the report.</p>
+          <a class="btn btn-ghost" href="#showcase">Watch Kenner work</a>
+        </div>
+        <div class="win win-chat" role="img" aria-label="A message thread with Kenner. Carlos writes: Case 14 is at 10°F and climbing, coil’s iced up. Kenner answers: Defrost is ending too early, check the termination sensor first, with the alarm log, Dave’s job in April and the manual as sources">
+          <div class="ch-h"><img src="brand/logo-avatar.svg" alt=""><b>Kenner</b></div>
+          <div class="ch-b">
+            <div class="ch-me"><span>Case 14 is at 10°F and climbing. Coil’s iced up.</span><small>Carlos, 6:12 AM</small></div>
+            <div class="ch-k">
+              <p>Defrost is ending too early. Check the termination sensor first.</p>
+              <ul class="ch-src">
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 14.5V5a2 2 0 1 1 4 0v9.5a4 4 0 1 1-4 0z"/><path d="M12 11v6"/></svg>Alarm log: defrost ended at 18 of 35 min</li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="3.4"/><path d="M5.5 20a6.5 6.5 0 0 1 13 0"/></svg>Dave’s job in April: same fault, sensor 11°F low</li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15H6.5A2.5 2.5 0 0 0 4 20.5z"/><path d="M4 20.5A2.5 2.5 0 0 0 6.5 23H20v-5"/></svg>Manual p. 34: sensor tolerance ±2°F</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </article>
+    </div>
+
+  </section>
+
+  <!-- 3 · agents: "Watch Kenner work" from kenner-site PR #9 (Arthur); styles in agents/agents.css, script in agents/agents.js -->
+  <section class="sec" id="showcase">
+    <div class="wrap">
+      <div class="sc-top">
+      <div class="sc-head">
+        <h2 class="h2 center">Watch Kenner work</h2>
+      </div>
+      <div class="agents" role="group" aria-label="Agent" id="agents">
+        <button type="button" data-flow="fix" aria-pressed="true">Troubleshooting<span class="ag-w"> agent</span></button>
+        <button type="button" data-flow="report" aria-pressed="false">Reporting<span class="ag-w"> agent</span></button>
+        <span class="ag-off" aria-disabled="true" title="Before the van leaves: the unit’s history, what to check first and what to bring.">Briefing<span class="ag-w"> agent</span></span>
+        <span class="ag-off" aria-disabled="true" title="Photo in, part identified, ordered to the van on a yes.">Parts<span class="ag-w"> agent</span></span>
+        <span class="ag-off" aria-disabled="true" title="From a worn part to a quote, drafted from your price book.">Quoting<span class="ag-w"> agent</span></span>
+        <span class="ag-off" aria-disabled="true" title="Leads, access notes and new fixes, filed where they belong.">Notes<span class="ag-w"> agent</span></span>
+      </div>
+      </div>
+      <div class="work" id="work">
+        <div class="dock" role="group" aria-label="Messaging app" id="dock">
+          <button type="button" data-app="im" aria-pressed="true" aria-label="iMessage"><span class="lg" style="--m:url(mono/imessage.svg);--s:132%;--c:linear-gradient(180deg,#5DF777,#0ABE2A)"></span></button>
+          <button type="button" data-app="wa" aria-pressed="false" aria-label="WhatsApp"><span class="lg" style="--m:url(mono/whatsapp.svg);--c:#25D366"></span></button>
+          <button type="button" data-app="tm" aria-pressed="false" aria-label="Microsoft Teams"><span class="lg" style="--m:url(mono/teams.svg);--c:#4B53BC"></span></button>
+          <button type="button" data-app="kw" aria-pressed="false" aria-label="Kenner web chat"><img src="brand/mark-ultramarine.svg" alt=""></button>
+        </div>
+        <div class="phone"><div class="scr" id="ask-scr"></div></div>
+        <div class="lap">
+          <div class="lap-s">
+            <div class="lap-p">
+              <section class="look" id="look" aria-labelledby="look-t">
+                <div class="look-h"><img src="brand/logo-avatar.svg" alt=""><h3 id="look-t">What Kenner looked up</h3></div>
+                <div class="look-b" id="look-b"><ol class="trail" id="trail"></ol></div>
+              </section>
+              <iframe class="wo" id="wo" src="pr/app/work-order.html#0" title="The walk-in cooler’s work order in Kenner" loading="lazy" hidden></iframe>
+            </div>
+          </div>
         </div>
       </div>
-      <div class="meet-card">
-        <div class="clist" role="img" aria-label="A technician's chat list with Kenner between colleagues">
-          <div class="hd"><b>Chats</b><time>06:41</time></div>
-          <div class="cr"><span class="av">A</span><span class="tx"><b>Anna, team lead</b><span>Two jobs moved to Thursday</span></span><span class="mt"><time>06:40</time></span></div>
-          <div class="cr unread"><img class="av" src="brand/logo-avatar.svg" alt=""><span class="tx"><b>Kenner</b><span>Report is drafted. Check it and send.</span></span><span class="mt"><time>06:33</time><span class="bd">1</span></span></div>
-          <div class="cr"><span class="av">T</span><span class="tx"><b>Team North</b><span>Mehmet: Who has the long ladder?</span></span><span class="mt"><time>06:20</time></span></div>
-          <div class="cr"><span class="av">L</span><span class="tx"><b>Lisa</b><span>Back around six?</span></span><span class="mt"><time>05:58</time></span></div>
+      <div class="stats">
+        <h3 class="h2 center">What it adds up to. <span>Real service metric impact.</span></h3>
+        <div class="panel g4" style="margin-top:0">
+          <div class="stat"><b>More <br>jobs</b><p>per technician, every week. Less searching, calling around and typing reports.</p></div>
+          <div class="stat"><b>Less <br>downtime</b><p>Units are back up sooner, so your customers lose less time.</p></div>
+          <div class="stat"><b>Fewer <br>callbacks</b><p>The fix holds the first time, so the same unit doesn’t bring you back.</p></div>
+          <div class="stat"><b>Fewer <br>escalations</b><p>Kenner answers the questions that used to be a call to your most experienced engineer.</p></div>
         </div>
+      </div>
+    </div>
+    <dialog class="pgv" id="pgv" aria-label="Manual page"><div class="pgv-h"><span id="pgv-cap"></span><button type="button" id="pgv-x" aria-label="Close"><i data-i="s-x"></i></button></div><img id="pgv-img" src="pr/media/scotsman-p38.webp" alt="" loading="lazy" decoding="async"></dialog>
+    <div class="refc" id="refc" aria-hidden="true"></div>
+  </section>
+
+  <!-- 4b · reality -->
+  <section class="sec" id="reality">
+    <div class="wrap">
+      <div class="real">
+        <h3 class="h2 center">Reality is not a pre‑recorded video. <span><img src="brand/lockup-ink.svg" alt="Kenner"> learns from every job, even these…</span></h3>
+        <div class="mq" id="mq" aria-label="Messages technicians have sent"></div>
       </div>
     </div>
   </section>
 
-  <section class="night on-dark" id="tools">
+  <!-- 5 · deploy -->
+  <section class="night" id="deploy">
     <div class="wrap sec">
-      <div class="head center">
-        <h2 class="h2">Works with the systems you already run</h2>
-        <p class="intro">Kenner learns from your manuals and job history, and files reports, quotes and orders straight into your systems.</p>
+      <h2 class="h2 center">Connected to everything. <span>On every phone.</span></h2>
+      <div class="hub" id="hub">
+        <svg class="hub-lines" id="hub-lines" aria-hidden="true"></svg>
+        <div class="chs">
+          <button class="tile" type="button" data-n="WhatsApp" data-d="Text, voice notes, photos and calls."><img class="m" src="mono/whatsapp.svg" alt=""><img class="c" src="logos/tiles/whatsapp.svg" alt=""><span>WhatsApp</span></button>
+          <button class="tile" type="button" data-n="iMessage" data-d="The same conversation for iPhone teams."><img class="m" src="mono/imessage.svg" alt=""><img class="c" src="logos/tiles/imessage.svg" alt=""><span>iMessage</span></button>
+          <button class="tile" type="button" data-n="Microsoft Teams" data-d="For companies that keep WhatsApp off work phones."><img class="m" src="mono/teams.svg" alt=""><img class="c" src="logos/tiles/teams.svg" alt=""><span>Teams</span></button>
+          <button class="tile" type="button" data-n="RCS" data-d="Rich messaging on Android, no extra app."><img class="m" src="mono/rcs.svg" alt=""><img class="c" src="logos/tiles/rcs.svg" alt=""><span>RCS</span></button>
+          <button class="tile" type="button" data-n="Phone call" data-d="A normal number. Hands busy on the roof? Just call."><svg class="m" viewBox="0 0 24 24" width="28" height="28" fill="#fff" aria-hidden="true" style="opacity:.9"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1z"/></svg><span class="c" style="background:linear-gradient(180deg,#5BF675,#0ABE2A);display:flex;align-items:center;justify-content:center"><svg viewBox="0 0 24 24" width="20" height="20" fill="#fff" aria-hidden="true"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1z"/></svg></span><span>Phone call</span></button>
+          <button class="tile" type="button" data-n="The Kenner app" data-d="Our own app, for companies that want Kenner outside personal messengers. Same conversation, same history."><img class="m sil" src="brand/mark-ultramarine.svg" alt=""><span class="c kapp"><img src="brand/mark-ultramarine.svg" alt=""></span><span>Kenner</span></button>
+        </div>
+        <div class="core-wrap" aria-hidden="true"><div class="core"><img src="brand/mark-ultramarine.svg" alt=""></div></div>
+        <div class="sys">
+          <button class="tile" type="button" data-n="ServiceTitan" data-d="Jobs, equipment history and estimates. Reports and quotes go back to the job."><img class="m wm sil" src="logos/sys/servicetitan.svg" alt="ServiceTitan"><img class="c" src="logos/grid/servicetitan.svg" alt=""></button>
+          <button class="tile" type="button" data-n="Salesforce Field Service" data-d="Work orders, assets and past visits. The record goes to the work order and the asset."><img class="m" src="mono/salesforce.svg" alt="Salesforce"><img class="c" src="logos/grid/salesforce.svg" alt=""></button>
+          <button class="tile" type="button" data-n="SAP" data-d="Work orders, parts and stock. Parts used go back to the order."><img class="m" src="mono/sap.svg" alt="SAP"><img class="c" src="logos/grid/sap.svg" alt=""></button>
+          <button class="tile" type="button" data-n="Dynamics 365 Field Service" data-d="Work orders, assets and bookings, written back to both."><img class="m" src="mono/dynamics.svg" alt="Dynamics 365"><img class="c" src="logos/grid/dynamics.svg" alt=""></button>
+          <button class="tile" type="button" data-n="IFS" data-d="Work orders and assets, written back to both."><img class="m sil" src="logos/sys/ifs-icon.png" alt="IFS"><img class="c" src="logos/grid/ifs.svg" alt=""></button>
+          <button class="tile" type="button" data-n="ServiceNow" data-d="Work orders and the knowledge base. New field fixes go back as articles."><img class="m wm sil" src="logos/sys/servicenow.svg" alt="ServiceNow"><img class="c" src="logos/grid/servicenow.svg" alt=""></button>
+          <button class="tile" type="button" data-n="ServiceMax" data-d="Work orders and installed base."><img class="m sil" src="logos/sys/servicemax.png" alt="ServiceMax"><img class="c" src="logos/grid/servicemax.svg" alt=""></button>
+          <button class="tile" type="button" data-n="Oracle Field Service" data-d="Activities and past visits."><img class="m" src="mono/oracle.svg" alt="Oracle"><img class="c" src="logos/grid/oracle.svg" alt=""></button>
+          <button class="tile" type="button" data-n="HubSpot" data-d="Notes and quote drafts land on the contact and the deal."><img class="m" src="mono/hubspot.svg" alt="HubSpot"><img class="c" src="logos/grid/hubspot.svg" alt=""></button>
+          <button class="tile" type="button" data-n="Zoho" data-d="Notes and quote drafts go back to the account."><img class="m" src="mono/zoho.svg" alt="Zoho"><img class="c" src="logos/grid/zoho.svg" alt=""></button>
+          <button class="tile" type="button" data-n="Odoo" data-d="Parts, stock and quotes."><img class="m" src="mono/odoo.svg" alt="Odoo"><img class="c" src="logos/grid/odoo.svg" alt=""></button>
+          <button class="tile" type="button" data-n="Zendesk" data-d="Store tickets, linked to the visit."><img class="m" src="mono/zendesk.svg" alt="Zendesk"><img class="c" src="logos/grid/zendesk.svg" alt=""></button>
+          <button class="tile" type="button" data-n="Jira" data-d="Repeat failures go to engineering, with the jobs attached."><img class="m" src="mono/jira.svg" alt="Jira"><img class="c" src="logos/grid/jira.svg" alt=""></button>
+          <button class="tile" type="button" data-n="SharePoint" data-d="Manuals, bulletins and old reports, read where they are."><img class="m sil" src="logos/sys/sharepoint.svg" alt="SharePoint"><img class="c" src="logos/grid/sharepoint.svg" alt=""></button>
+          <button class="tile" type="button" data-n="Confluence" data-d="Your own how-tos, read alongside field fixes."><img class="m" src="mono/confluence.svg" alt="Confluence"><img class="c" src="logos/grid/confluence.svg" alt=""></button>
+          <button class="tile" type="button" data-n="Danfoss Alsense" data-d="Store alarms and case temperatures, read before the technician arrives."><img class="m sil df" src="pr/logos/refrig/danfoss.svg" alt="Danfoss"><img class="c cw" src="pr/logos/refrig/danfoss.svg" alt=""></button>
+          <button class="tile" type="button" data-n="Copeland Site Supervisor" data-d="Rack and case alarms, setpoints and history from the store’s supervisor."><img class="m wm sil" src="pr/logos/refrig/copeland.png" alt="Copeland"><img class="c cw" src="pr/logos/refrig/copeland.png" alt=""></button>
+          <button class="tile" type="button" data-n="Emerson E2/E3" data-d="Controller alarms and logs from the rack, so the brief starts with what the store saw."><img class="m sil em" src="pr/logos/refrig/emerson.png" alt="Emerson"><img class="c cw" src="pr/logos/refrig/emerson.png" alt=""></button>
+          <button class="tile" type="button" data-n="CAREL boss" data-d="Supervisor data from the store: alarms, temperatures and energy."><img class="m cr" src="pr/logos/refrig/carel-mono.svg" alt="CAREL"><img class="c cw" src="pr/logos/refrig/carel.svg" alt=""></button>
+          <button class="tile tplus" type="button" data-n="And everything else" data-d="Rack controllers, building automation, temperature monitoring, leak detection, old work orders and any other system with an API."><svg class="m" viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg><span class="c kapp"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></span><span class="sr">More systems</span></button>
+        </div>
+        <div class="tip off" id="tip" aria-hidden="true"><b></b><p></p></div>
       </div>
-      <div class="ig" id="ig">
-        <button class="gt" type="button" data-n="Salesforce Field Service" data-d="Reads work orders, assets and past visits. Files the approved report back." data-k="FSM"><img src="logos/grid/salesforce.svg" alt="Salesforce Field Service"></button>
-        <button class="gt wide" type="button" data-n="ServiceTitan" data-d="Jobs, equipment history and estimates. Reports and quotes go back to the job." data-k="FSM"><img src="logos/grid/servicetitan.svg" alt="ServiceTitan"></button>
-        <button class="gt" type="button" data-n="ServiceMax" data-d="Work orders and installed base. The approved report lands on the work order." data-k="FSM"><img src="logos/grid/servicemax.svg" alt="ServiceMax"></button>
-        <button class="gt" type="button" data-n="Dynamics 365 Field Service" data-d="Work orders, assets and bookings. Reports filed back." data-k="FSM"><img src="logos/grid/dynamics.svg" alt="Dynamics 365 Field Service"></button>
-        <button class="gt" type="button" data-n="SAP" data-d="Work orders, parts and stock. Orders a part to the van." data-k="FSM and ERP"><img src="logos/grid/sap.svg" alt="SAP"></button>
-        <button class="gt" type="button" data-n="Oracle Field Service" data-d="Activities and past visits. Reports filed back." data-k="FSM"><img src="logos/grid/oracle.svg" alt="Oracle Field Service"></button>
-        <button class="gt" type="button" data-n="IFS" data-d="Work orders and assets. Reports filed back." data-k="FSM"><img src="logos/grid/ifs.svg" alt="IFS"></button>
-        <button class="gt wide" type="button" data-n="ServiceNow" data-d="Field service work orders and the knowledge base technicians check first." data-k="FSM and knowledge"><img src="logos/grid/servicenow.svg" alt="ServiceNow"></button>
-        <button class="gt" type="button" data-n="SharePoint" data-d="Manuals, bulletins and site documents." data-k="Knowledge"><img src="logos/grid/sharepoint.svg" alt="SharePoint"></button>
-        <button class="gt" type="button" data-n="Confluence" data-d="Your own how-tos and fixes." data-k="Knowledge"><img src="logos/grid/confluence.svg" alt="Confluence"></button>
-        <button class="gt" type="button" data-n="Google Drive" data-d="Manuals and drawings, kept where they are." data-k="Knowledge"><img src="logos/grid/gdrive.svg" alt="Google Drive"></button>
-        <button class="gt" type="button" data-n="Notion" data-d="Team wikis and checklists." data-k="Knowledge"><img src="logos/grid/notion.svg" alt="Notion"></button>
-        <button class="gt" type="button" data-n="Dropbox" data-d="Manuals, photos and scans." data-k="Files"><img src="logos/grid/dropbox.svg" alt="Dropbox"></button>
-        <button class="gt" type="button" data-n="Box" data-d="Manuals, photos and scans." data-k="Files"><img src="logos/grid/box.svg" alt="Box"></button>
-        <button class="gt" type="button" data-n="Jira" data-d="Escalations to engineering, with the job attached." data-k="Tickets"><img src="logos/grid/jira.svg" alt="Jira"></button>
-        <button class="gt" type="button" data-n="Zendesk" data-d="Customer tickets linked to the visit." data-k="Tickets"><img src="logos/grid/zendesk.svg" alt="Zendesk"></button>
-        <button class="gt" type="button" data-n="HubSpot" data-d="Customer history. Follow-up quotes land on the deal." data-k="CRM"><img src="logos/grid/hubspot.svg" alt="HubSpot"></button>
-        <button class="gt" type="button" data-n="Zoho" data-d="Customer history and follow-up quotes." data-k="CRM"><img src="logos/grid/zoho.svg" alt="Zoho"></button>
-        <button class="gt" type="button" data-n="Odoo" data-d="Parts, stock and quotes." data-k="ERP"><img src="logos/grid/odoo.svg" alt="Odoo"></button>
-        <button class="gt" type="button" data-n="Personio" data-d="Hours, overtime and leave requests." data-k="HR"><img src="logos/grid/personio.svg" alt="Personio"></button>
-        <button class="gt" type="button" data-n="DATEV" data-d="Hours and invoices for payroll and accounting." data-k="Finance"><img src="logos/grid/datev.svg" alt="DATEV"></button>
-        <button class="gt" type="button" data-n="QuickBooks" data-d="Quotes and invoices from your price list." data-k="Finance"><img src="logos/grid/quickbooks.svg" alt="QuickBooks"></button>
-        <button class="gt" type="button" data-n="Xero" data-d="Quotes and invoices from your price list." data-k="Finance"><img src="logos/grid/xero.svg" alt="Xero"></button>
-        <button class="gt" type="button" data-n="Google Calendar" data-d="Visits and leave in the right calendar." data-k="Calendar"><img src="logos/grid/gcal.svg" alt="Google Calendar"></button>
-        <div class="tip" id="tip" hidden><b></b><p></p><span></span></div>
-      </div>
-      <p class="ig-note">Plus your PDFs, file shares and any system with an API.</p>
     </div>
   </section>
 
-  <section class="sec showcase" id="showcase">
+  <!-- 5a · start: how a team starts, and who it works with -->
+  <section class="sec" id="start">
     <div class="wrap">
-      <div class="head center">
-        <h2 class="h2">What technicians do with Kenner</h2>
-        <p class="intro">Pick a moment from a technician’s day.</p>
+      <h2 class="h2 center">Start with one team. <span>Live in a week.</span></h2>
+    </div>
+    <div class="wrap start">
+      <div>
+        <ol class="steps">
+          <li><small>In the first week</small><div><b>Connected and in their contacts</b><p>We connect to your FSM, CRM, ERP, KMS and sensors. Five to ten technicians save Kenner as a contact. No app, no training day.</p></div></li>
+          <li><small>For two weeks</small><div><b>Kenner works real jobs</b><p>A brief before the job, answers on it and the report after.</p></div></li>
+          <li><small>At the end</small><div><b>Real KPI improvements</b><p>What changed, in your own numbers. You decide on the rollout from there.</p></div></li>
+        </ol>
       </div>
-      <div class="sc">
-        <div class="sc-tabs" role="tablist" aria-label="Use cases" id="tabs"></div>
-        <div class="stage" role="tabpanel" id="stage" aria-live="polite">
-          <div class="phone">
-            <div class="scr wa">
-              <div class="sbar" data-t="09:41" id="sc-clock"></div>
-              <div class="wa-head"><span class="bk"><i data-i="back"></i><em class="bkn">5</em></span><img src="brand/logo-avatar.svg" alt=""><span class="n"><b>Kenner</b><span id="sc-status"></span></span><span class="hic"><i data-i="video"></i><i data-i="phone"></i></span></div>
-              <div class="wa-body" id="sc-body"></div>
-              <div class="wa-in"><i data-i="plus"></i><span class="fld"><i data-i="sticker"></i></span><i data-i="camera"></i><span class="micb"><i data-i="mic"></i></span></div>
-              <span class="home"></span>
-            </div>
-          </div>
-          <div class="result glass" id="sc-result"></div>
+      <aside class="fnd" aria-label="The founders">
+        <h3>You work with the founders</h3>
+        <div class="fnd-p">
+          <figure><img src="img/team/lennart.jpg" alt="Lennart Wendt" width="480" height="480" loading="lazy" decoding="async"><figcaption><b>Lennart Wendt</b><small>CEO</small><p>Worked alongside Bayer’s field technicians, then built and ran a production facility, faults, maintenance and shift work included.</p></figcaption></figure>
+          <figure><img src="img/team/arthur.jpg" alt="Arthur Allilaire" width="320" height="320" loading="lazy" decoding="async"><figcaption><b>Arthur Allilaire</b><small>CTO</small><p>Built integrations and data governance workflows on Palantir’s data platform, and agents at YC-backed startups.</p></figcaption></figure>
         </div>
+        <a class="btn btn-ink" href="https://calendar.app.google/fFpCL3WG3pJtqtC89" target="_blank" rel="noopener">Talk to the founders</a>
+      </aside>
+    </div>
+  </section>
+
+  <!-- 5b · questions -->
+  <section class="sec" id="faq">
+    <div class="wrap faq">
+      <h2 class="h2 center">Common questions. <span>Straight answers.</span></h2>
+      <div class="qs">
+        <details class="q">
+          <summary>Who is it for?<i aria-hidden="true"></i></summary>
+          <p>Service teams that keep commercial HVAC and refrigeration running, whether contractors or in-house: for supermarket chains, restaurants and food service, cold storage, offices, schools and hospitals. If your technicians work on rooftop units, chillers, heat pumps, racks, display cases or walk-ins, it’s built for you.</p>
+        </details>
+        <details class="q">
+          <summary>Does it only work for HVAC/R?<i aria-hidden="true"></i></summary>
+          <p>No. We started in HVAC/R because a failed unit costs money by the hour and every site is different. The same approach works for any equipment that gets serviced, and we already work with teams in data center cooling, elevators, fire protection, medical devices and industrial equipment.</p>
+        </details>
+        <details class="q">
+          <summary>How is this different from a chatbot on our manuals?<i aria-hidden="true"></i></summary>
+          <p>Most AI tools search your documents and paste together an answer, an approach called retrieval or RAG. Kenner builds a knowledge graph of your service instead: every unit, every job done on it, its alarms, its parts and its manual, linked together. So it answers from the unit in front of the technician, shows where each part of the answer came from, and says so when it doesn’t know. Every job your team finishes adds to the graph.</p>
+        </details>
+        <details class="q">
+          <summary>Does it help with refrigerant compliance, like EPA 608 and F-gas?<i aria-hidden="true"></i></summary>
+          <p>Yes. After a leak repair or a top-up, Kenner asks for what your refrigerant records need: the refrigerant, the amount added or recovered, where the leak was, how it was found and how it was tested. It writes that to the unit’s record in your FSM and books the follow-up leak check, so every unit has a complete history when you need to show it. Your certified technicians still make the calls; Kenner makes sure nothing is missing.</p>
+        </details>
+        <details class="q">
+          <summary>Does Kenner replace our FSM or ERP?<i aria-hidden="true"></i></summary>
+          <p>No. Kenner works with the FSM, ERP and CRM you already run. It reads from them before the job and writes the report, the refrigerant record, parts and follow-ups back to them after it.</p>
+        </details>
+        <details class="q">
+          <summary>Do our technicians have to learn a new app?<i aria-hidden="true"></i></summary>
+          <p>No. They save Kenner as a contact and use WhatsApp, iMessage, Teams or a normal phone call, so it works on the phone they already have. A voice note after the job is enough for the report.</p>
+        </details>
+        <details class="q">
+          <summary>Is our data secure?<i aria-hidden="true"></i></summary>
+          <p>Your data stays yours and stays in your systems. Every pilot comes with a data processing agreement under GDPR, ISO 27001 certification is in progress and our SOC 2 audit is in preparation.</p>
+        </details>
+        <details class="q">
+          <summary>How fast can we start?<i aria-hidden="true"></i></summary>
+          <p>Within a week. We connect to your systems, your technicians save Kenner as a contact, and the first briefs and reports run in the same week. A pilot runs two weeks with five to ten technicians, measured against your own numbers.</p>
+        </details>
       </div>
     </div>
   </section>
 
-  <section class="sec" id="outcomes">
-    <div class="wrap">
-      <div class="mhead">
-        <h2 class="h2">We adapt to the technician. Not the other way round.</h2>
-        <div class="mtext">
-          <p>Our mission is to keep the world running. We help service companies get more jobs out of every technician and keep what their most experienced people know inside the company, long after they retire. Technicians get back their time for the fix itself and the part of the job they enjoy, while we take care of the rest.</p>
-        </div>
-      </div>
-      <div class="ac">
-        <article>
-          <p class="tags"><span>01</span><span>First-time fix</span></p>
-          <div class="am am-photo" style="background-image:url(light/window.jpg)">
-            <div class="stack">
-              <div class="rc glass"><p><b>Report #4471</b><time>12 Sep</time></p><span>Valve weeping on the expansion vessel. Not replaced.</span><i>B-01</i><i>F.74</i><i>Open</i></div>
-              <div class="rc glass"><p><b>Report #4380</b><time>3 Aug</time></p><span>Pressure topped up to 1.5 bar, no cause found.</span><i>B-01</i><i>F.74</i><i>Closed</i></div>
-              <div class="rc glass"><p><b>Report #4102</b><time>14 Mar</time></p><span>Annual service. Vessel pre-charge 0.8 bar.</span><i>B-01</i><i>Service</i></div>
-            </div>
-          </div>
-          <h3>History prevents the second visit</h3>
-          <p class="ad">Kenner briefs every technician with what the last visits found, so the right part is already in the van.</p>
-        </article>
-        <article>
-          <p class="tags"><span>02</span><span>Capacity</span></p>
-          <div class="am am-ui">
-            <div class="q">Where’s the dual sensor on the B1HE-150?</div>
-            <p class="work"><img src="brand/logo-avatar.svg" alt="">Looking it up<em>…</em></p>
-          </div>
-          <h3>Answers instead of phone calls</h3>
-          <p class="ad">Less searching and fewer calls to the hotline. Hours, reports, quotes and part orders go out from one message.</p>
-        </article>
-        <article>
-          <p class="tags"><span>03</span><span>Knowledge</span></p>
-          <div class="am am-photo" style="background-image:url(media/pipework.jpg)">
-            <div class="kn glass"><p><img src="brand/logo-avatar.svg" alt=""><b>New fix saved</b></p><span>“Valve weeps under 1.0 bar pre-charge. Set the vessel first, then refill.”</span><small>Approved by Lukas, senior technician</small></div>
-          </div>
-          <h3>Knowledge that stays</h3>
-          <p class="ad">Every job adds to what the team knows. New technicians learn from it, and it stays when your seniors retire.</p>
-        </article>
-      </div>
+  <!-- 6 · close -->
+  <section class="close" id="pilot">
+    <div class="wrap close-in">
+      <h2>See it on your own jobs</h2>
+      <p class="line">Start with one team: two weeks, five to ten technicians, measured against your own numbers.</p>
+      <div class="acts"><a class="btn btn-white" href="https://calendar.app.google/fFpCL3WG3pJtqtC89" target="_blank" rel="noopener">Book a demo</a></div>
     </div>
   </section>
-
-  <section class="sec" id="industries">
-    <div class="wrap">
-      <div class="ind-head">
-        <h2 class="h2">Built for service where a second visit costs you</h2>
-        <div class="arrows">
-          <button type="button" id="prev" aria-label="Previous industry"><svg viewBox="0 0 16 16"><path d="M10 3L5 8l5 5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
-          <button type="button" id="next" aria-label="Next industry"><svg viewBox="0 0 16 16"><path d="M6 3l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
-        </div>
-      </div>
-      <div class="carousel" id="car" tabindex="0" aria-label="Industries">
-        <article class="ic"><figure><img src="photos/hvac.jpg" alt="Technician working on an outdoor heat pump" style="object-position:40% 50%"><span class="badge-start">Where we start</span><div class="ntf"><img src="brand/logo-avatar.svg" alt=""><b>Kenner<small>now</small></b><span>F.1100 again on this unit. Last time it was the expansion valve, check that first.</span></div></figure><figcaption><h3>Heat pumps and HVAC</h3><p>Warranty makes every repeat visit your cost.</p></figcaption></article>
-        <article class="ic"><figure><img src="photos/fire.jpg" alt="Technician checking a pressure gauge on a sprinkler pipe"><div class="ntf"><img src="brand/logo-avatar.svg" alt=""><b>Kenner<small>now</small></b><span>Riser 2 had a leaking alarm valve at the last inspection. Take a photo before you test.</span></div></figure><figcaption><h3>Fire protection</h3><p>Inspections across thousands of sites, each one different.</p></figcaption></article>
-        <article class="ic"><figure><img src="photos/elevator.jpg" alt="Hands on an elevator drive"><div class="ntf"><img src="brand/logo-avatar.svg" alt=""><b>Kenner<small>now</small></b><span>Third callback on lift B this month. In June it was the door belt, there is one on your van.</span></div></figure><figcaption><h3>Elevators</h3><p>Full-service contracts, where every callback costs margin.</p></figcaption></article>
-        <article class="ic"><figure><img src="photos/medical.jpg" alt="Technician kneeling with a laptop beside a medical scanner"><div class="ntf"><img src="brand/logo-avatar.svg" alt=""><b>Kenner<small>now</small></b><span>Coil error E-412. Both earlier cases were fixed by reseating the head coil connector.</span></div></figure><figcaption><h3>Medical devices</h3><p>Uptime is patient care, and every engineer covers dozens of models.</p></figcaption></article>
-        <article class="ic"><figure><img src="photos/industrial.jpg" alt="Technician with ear protection beside a machine"><div class="ntf"><img src="brand/logo-avatar.svg" alt=""><b>Kenner<small>now</small></b><span>Only Klaus has heard this bearing noise before. He is free at 2, want me to call him in?</span></div></figure><figcaption><h3>Industrial equipment</h3><p>Rare faults, and the few people who have seen them before.</p></figcaption></article>
-        <a class="ic go" href="https://calendar.app.google/fFpCL3WG3pJtqtC89" target="_blank" rel="noopener"><figure><span>Start with one team.</span><i>Request a demo <svg viewBox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></i></figure></a>
-      </div>
-      <div class="cfoot" aria-hidden="true"><div class="ctrack"><i id="cbar"></i></div></div>
-    </div>
-  </section>
-
-  <section class="demo on-dark" id="pilot">
-    <div class="demo-bg" aria-hidden="true"></div>
-    <div class="wrap demo-in">
-      <h2>Start with one team.</h2>
-      <p>Two weeks with five to ten of your technicians, measured against your own baseline. Live in about a week.</p>
-      <div class="acts"><a class="btn btn-white" href="https://calendar.app.google/fFpCL3WG3pJtqtC89" target="_blank" rel="noopener">Request a demo</a></div>
-      <div class="bars" id="bars" role="tablist" aria-label="Product screens">
-        <button type="button" role="tab" aria-selected="true"><i><b></b></i><span>Work orders</span></button>
-        <button type="button" role="tab" aria-selected="false"><i><b></b></i><span>Briefings</span></button>
-        <button type="button" role="tab" aria-selected="false"><i><b></b></i><span>Knowledge</span></button>
-        <button type="button" role="tab" aria-selected="false"><i><b></b></i><span>Team</span></button>
-      </div>
-      <div class="laptop">
-        <div class="lscr" id="lscr">
-          <img class="on" src="demo/app-1.jpg" alt="kenner web app: work orders with technician, schedule and status">
-          <img src="demo/app-2.jpg" alt="kenner web app: a job briefing with first checks, likely parts and history" fetchpriority="low" decoding="async">
-          <img src="demo/app-3.jpg" alt="kenner web app: knowledge base with models, fault codes and parts" fetchpriority="low" decoding="async">
-          <img src="demo/app-4.jpg" alt="kenner web app: team view with each technician’s briefings and reports" fetchpriority="low" decoding="async">
-        </div>
-      </div>
-    </div>
-  </section>
-
 </main>
 
 <footer>
   <div class="wrap">
     <div class="f-in">
-      <div class="lk"><img src="brand/lockup-ink.svg" alt="kenner"><p>For the teams that keep the world running.</p></div>
-      <div><h4>Product</h4><a href="#meet">Meet Kenner</a><a href="#showcase">What it does</a><a href="#tools">Integrations</a><a href="#industries">Industries</a><a href="#outcomes">Why kenner</a></div>
-      <div><h4>Company</h4><a href="https://calendar.app.google/fFpCL3WG3pJtqtC89" target="_blank" rel="noopener">Request a demo</a></div>
-      <div class="f-secu" id="security"><h4>Security</h4><div class="sl">
-        <div class="sg"><div><b>ISO 27001</b><p>Certification in progress</p></div></div>
-        <div class="sg"><div><b>SOC 2</b><p>Audit in preparation</p></div></div>
-        <div class="sg"><div><b>GDPR</b><p>DPA for every pilot</p></div></div>
-        <div class="sg"><div><b>Your data</b><p>Stays yours, always</p></div></div>
-      </div></div>
+      <div><img src="brand/lockup-ink.svg" alt="kenner"><p class="tl">For the teams that keep it cold.</p></div>
+      <div><h4>Product</h4><a href="#for-leaders">For service leaders</a><a href="#for-technicians">For technicians</a><a href="#agents">Agents</a><a href="#deploy">Integrations</a></div>
+      <div><h4>Security</h4><p class="secu">ISO 27001 certification in progress<br>SOC 2 audit in preparation<br>GDPR, with a DPA for every pilot<br>Your data stays yours</p></div>
     </div>
-    <div class="f-bot"><span>© 2026 Kenner Systems Inc.</span><span class="f-legal"><a href="legal.html#imprint">Imprint</a><a href="legal.html#privacy">Privacy</a></span></div>
+    <div class="f-bot"><span>© 2026 Kenner Systems Inc.</span><span><a href="legal.html#imprint">Imprint</a><a href="legal.html#privacy">Privacy</a></span></div>
   </div>
 </footer>
 
@@ -776,271 +826,292 @@ footer{border-top:1px solid var(--line)}
 (function(){
   var still = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var $ = function(id){ return document.getElementById(id); };
-
-  /* icons used inside the phone screens (stroke icons at 24, filled where the apps fill them) */
-  var S = function(inner, fill){ return '<svg class="i" viewBox="0 0 24 24" aria-hidden="true" fill="'+(fill?'currentColor':'none')+'" stroke="'+(fill?'none':'currentColor')+'" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">'+inner+'</svg>'; };
-  var ICONS = {
-    back: S('<path d="M15 5l-7 7 7 7"/>'),
-    video: S('<rect x="2.5" y="6.5" width="13" height="11" rx="3"/><path d="M15.5 10.5l6-3.5v10l-6-3.5"/>'),
-    phone: S('<path d="M5 4h3l2 5-2.5 1.5a11 11 0 0 0 5 5L14 13l5 2v3a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/>'),
-    phonefill: S('<path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1z"/>', true),
-    plus: S('<path d="M12 5v14M5 12h14"/>'),
-    camera: S('<rect x="2.5" y="6.5" width="19" height="14" rx="3"/><path d="M8.5 6.5l1.5-2.5h4l1.5 2.5"/><circle cx="12" cy="13.5" r="3.5"/>'),
-    mic: S('<rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5.5 11a6.5 6.5 0 0 0 13 0M12 17.5V21"/>'),
-    micoff: S('<rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5.5 11a6.5 6.5 0 0 0 13 0M12 17.5V21M4 4l16 16"/>'),
-    speaker: S('<path d="M4 9.5v5h4l5 4v-13l-5 4z"/><path d="M16.5 9a4 4 0 0 1 0 6M19 6.5a7.5 7.5 0 0 1 0 11"/>'),
-    hang: S('<path d="M12 9c-3.1 0-6 .9-8.3 2.5-.6.4-.8 1.2-.4 1.8l1.2 1.9c.4.6 1.1.8 1.7.5l2.3-1.1c.5-.2.8-.8.7-1.3l-.3-1.6c2-.6 4.2-.6 6.2 0l-.3 1.6c-.1.5.2 1.1.7 1.3l2.3 1.1c.6.3 1.3.1 1.7-.5l1.2-1.9c.4-.6.2-1.4-.4-1.8C18 9.9 15.1 9 12 9z"/>', true),
-    more: S('<circle cx="5.5" cy="12" r="1.7"/><circle cx="12" cy="12" r="1.7"/><circle cx="18.5" cy="12" r="1.7"/>', true),
-    sticker: S('<path d="M20 12.5V8a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v8a4 4 0 0 0 4 4h4.5z"/><path d="M12.5 20v-3.5a4 4 0 0 1 4-4H20"/>'),
-    search: S('<circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.2-4.2"/>'),
-    compose: S('<path d="M11 4.5H6.5a2 2 0 0 0-2 2v11a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V13"/><path d="M17.5 3.5l3 3-8.5 8.5H9v-3z"/>'),
-    chev: S('<path d="M9.5 6l6 6-6 6"/>'),
-    lock: S('<rect x="5.5" y="10.5" width="13" height="10" rx="2"/><path d="M8.5 10.5V8a3.5 3.5 0 0 1 7 0v2.5"/>'),
-    play: S('<path d="M6 3.5l14 8.5-14 8.5z"/>', true),
-    ticks: '<svg viewBox="0 0 16 11" aria-hidden="true"><path d="M1 6l3 3 6-7.5M6.5 8.5l.8.8 6-7.5" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>',
-    updates: S('<circle cx="12" cy="12" r="8.5" stroke-dasharray="3 2.2"/><circle cx="12" cy="12" r="4"/>'),
-    people: S('<circle cx="12" cy="8.5" r="3.2"/><path d="M5.5 19.5a6.5 6.5 0 0 1 13 0"/><circle cx="5" cy="10" r="2.2"/><circle cx="19" cy="10" r="2.2"/>'),
-    chatfill: S('<path d="M21 11.5a8.5 8.5 0 0 1-12.6 7.4L3.5 20.5l1.6-4.6A8.5 8.5 0 1 1 21 11.5z"/>', true),
-    bubble: S('<path d="M21 11.5a8.5 8.5 0 0 1-12.6 7.4L3.5 20.5l1.6-4.6A8.5 8.5 0 1 1 21 11.5z"/>'),
-    chatplus: S('<path d="M21 11.5a8.5 8.5 0 0 1-12.6 7.4L3.5 20.5l1.6-4.6A8.5 8.5 0 1 1 21 11.5z"/><path d="M12.5 8v7M9 11.5h7"/>'),
-    gear: S('<circle cx="12" cy="12" r="3.2"/><path d="M12 2.8v2.4M12 18.8v2.4M2.8 12h2.4M18.8 12h2.4M5.5 5.5l1.7 1.7M16.8 16.8l1.7 1.7M5.5 18.5l1.7-1.7M16.8 7.2l1.7-1.7"/>'),
-    bell: S('<path d="M6 16.5V11a6 6 0 0 1 12 0v5.5l1.5 2h-15z"/><path d="M10 20.5a2 2 0 0 0 4 0"/>'),
-    cal: S('<rect x="3.5" y="5" width="17" height="15.5" rx="2.5"/><path d="M3.5 10h17M8.5 3v4M15.5 3v4"/>'),
-    alarm: S('<circle cx="12" cy="13" r="7"/><path d="M12 9.5V13l2.5 2M4.5 4.5L2.5 6.5M19.5 4.5l2 2"/>'),
-    person: '<svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="15.5" r="7.5" fill="#fff"/><path d="M5 40c1-9.5 7.5-14 15-14s14 4.5 15 14z" fill="#fff"/></svg>'
-  };
-  function icons(root){
-    root.querySelectorAll('[data-i]').forEach(function(el){
-      var svg = ICONS[el.dataset.i]; if (!svg) return;
-      if (el.tagName === 'I') { el.outerHTML = el.className ? svg.replace('<svg class="i"', '<svg class="i '+el.className+'"') : svg; }
-      else el.innerHTML = svg;
-    });
+  function onView(el, fn, th){
+    if (!('IntersectionObserver' in window)) { fn(true); return; }
+    new IntersectionObserver(function(es){ es.forEach(function(e){ fn(e.isIntersecting); }); }, {threshold: th || .3}).observe(el);
   }
-  var SB_IOS = '<svg viewBox="0 0 66 12" aria-hidden="true"><g fill="currentColor"><rect x="0" y="8" width="3" height="4" rx="1"/><rect x="5" y="6" width="3" height="6" rx="1"/><rect x="10" y="3.5" width="3" height="8.5" rx="1"/><rect x="15" y="1" width="3" height="11" rx="1"/></g><path d="M24 4.4a8.7 8.7 0 0 1 11.6 0M26.2 6.8a5.4 5.4 0 0 1 7.2 0M28.4 9.2a2.2 2.2 0 0 1 2.8 0" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><rect x="40" y=".5" width="23" height="11" rx="3.6" fill="currentColor"/><text x="51.5" y="9" text-anchor="middle" font-size="8" font-weight="700" font-family="-apple-system,Helvetica,sans-serif" style="fill:var(--sb-inv,#fff)">100</text><path d="M64.6 4.3v3.4" stroke="currentColor" stroke-opacity=".5" stroke-width="1.4" stroke-linecap="round"/></svg>';
-  var SB_AND = '<svg viewBox="0 0 44 12" aria-hidden="true" fill="currentColor"><path d="M0 4.2a10 10 0 0 1 13 0L6.5 11.5z"/><path d="M17 11.5L27 1.5v10z"/><rect x="33" y="1" width="6" height="11" rx="1.2"/><rect x="34.5" y="0" width="3" height="1.5" rx=".5"/></svg>';
-  function sbars(){ document.querySelectorAll('.sbar[data-t]').forEach(function(s){ s.innerHTML = '<span class="num">'+s.dataset.t+'</span>'+(s.classList.contains('and')?SB_AND:SB_IOS); }); }
-  function wave(el, n){
-    var h = [5,9,6,14,8,5,12,7,16,10,6,13,5,9,15,7,4,11,8,14,6,10,5,12,7,9,4,8,13,6];
-    var s = ''; for (var i=0;i<n;i++) s += '<i style="height:'+h[i%h.length]+'px"></i>';
-    el.innerHTML = s + '<b class="vk"></b>';
-  }
-  icons(document); sbars();
-  document.querySelectorAll('.vw[data-n]').forEach(function(w){ wave(w, +w.dataset.n); });
 
-  /* nav turns to paper once the hero is behind it */
+  /* nav */
   var nav = $('nav');
-  function navState(){ nav.classList.toggle('solid', window.scrollY > 40); }
-  navState(); window.addEventListener('scroll', navState, {passive:true});
+  var heroEl = document.querySelector('.hero');
+  function navState(){ var y = window.scrollY, end = heroEl.offsetTop + heroEl.offsetHeight - 60; nav.classList.toggle('solid', y >= end); nav.classList.toggle('dim', y > 40 && y < end); }
+  navState(); window.addEventListener('scroll', navState, {passive:true}); window.addEventListener('resize', navState);
 
-  /* ---------- showcase ---------- */
-  var LK = function(s){ return '<span class="lk">'+s+'</span>'; };
-  var CASES = [
-    { id:'help', title:'Help on the job', desc:'Answers with the manual page.', clock:'12:17',
-      msgs:[
-        {f:'out', h:'B-02 is locked out on F.446. Where’s the sensor and how do I test it?', t:'12:06', react:'👀'},
-        {f:'in', media:'manual', h:'Dual sensor, pins 1 to 4 · '+LK('p. 82'), t:'12:06'},
-        {f:'out', h:'Sensor 1 is 10.4k, sensor 2 is 7.9k. Water is about 25 °C.', t:'12:16', react:'👀'},
-        {f:'in', h:'At 25 °C the curve gives <b>about 10 kΩ</b>. Sensor 2 is <b>21% low</b>, past the 10% limit: <b>replace the dual sensor</b>. '+LK('p. 83'), t:'12:17'},
-        {f:'out', h:'Got one in the van. Swapped, F.446 is gone.', t:'12:41', react:'👍'},
-        {f:'in', h:'Good. I’ve saved the readings to the job.', t:'12:41'}
-      ],
-      result:{ meta:'Job notes, B-02', title:'Saved to the job', rows:[['Fault','F.446, flow sensor'],['Measured','10.4 and 7.9 kΩ at 25 °C'],['Done','Dual sensor replaced']], chips:[['Manual','p. 82, 83']] } },
-    { id:'part', title:'Find and order a part', desc:'Photo in, part ordered.', clock:'10:21',
-      msgs:[
-        {f:'out', media:'vessel', h:'Vessel won’t hold its pre-charge. Do we have a new one?', t:'10:18', react:'👀'},
-        {f:'in', h:'That’s the 18 l expansion vessel for the Vitodens 100-W, part 7248373. '+LK('Parts list p. 112'), t:'10:18'},
-        {f:'in', h:'None in your van. The north depot has two. Shall I ship one to your van for tomorrow morning?', t:'10:19'},
-        {f:'out', h:'Yes please.', t:'10:20', react:'👍'},
-        {f:'in', h:'Ordered. It’s in your van by 07:30 tomorrow, and I’ve added it to tomorrow’s visit.', t:'10:21'}
-      ],
-      result:{ meta:'SAP, 10:21', title:'Part ordered', rows:[['Part','Expansion vessel 18 l, 7248373'],['Quantity','1'],['Order','PO 4500018342'],['Delivery','Van 14, tomorrow 07:30']], chips:[['Parts list','p. 112']] } },
-    { id:'time', title:'Log hours and time off', desc:'Overtime and leave in one message.', clock:'17:55',
-      msgs:[
-        {f:'out', h:'Went 1.5 h over at the Klinikum today.', t:'17:52', react:'👍'},
-        {f:'in', h:'Logged 1.5 h overtime for today on job WO-20391. That’s 6.5 h this month.', t:'17:52'},
-        {f:'out', h:'And I’d like 3 to 7 November off.', t:'17:53'},
-        {f:'in', h:'Requested 3 to 7 November, 5 days of leave. You’ll have 12 days left. Anna approves it, and I’ll tell you when she has.', t:'17:53'},
-        {f:'in', h:'Anna approved your leave.', t:'17:55'}
-      ],
-      result:{ meta:'Time tracking, today', title:'Logged', rows:[['Overtime','1.5 h, WO-20391'],['This month','6.5 h'],['Leave','3 to 7 Nov, 5 days'],['Status','Approved by Anna']], chips:[] } },
-    { id:'report', title:'Write the report', desc:'Talk it through, Kenner files it.', clock:'10:16', done:true,
-      msgs:[
-        {f:'out', voice:'0:41', h:'Valve replaced, pre-charge to 1.0, refilled to 1.5, F.74 cleared. Valve from van stock.', t:'10:10', react:'👍'},
-        {f:'in', h:'Got it. Did you replace the whole valve or only the cap seal?', t:'10:10'},
-        {f:'out', h:'Whole valve.', t:'10:11'},
-        {f:'in', h:'Thanks. Can you send me a photo of the serial number plate? It’s on the right side panel.', t:'10:11'},
-        {f:'out', media:'plate', h:'', t:'10:12', react:'👀'},
-        {f:'in', h:'Serial 7570 1234 0012 3 matches B-01. Report for WO-20419 is drafted: valve replaced, pre-charge set to 1.0 bar, system refilled to 1.5 bar, F.74 cleared, 1 valve from van stock. Reply OK to file it.', t:'10:13'},
-        {f:'out', h:'OK', t:'10:15', react:'👍'},
-        {f:'in', h:'Filed to your FSM at 10:16. Thanks, Jonas.', t:'10:16'}
-      ],
-      result:{ meta:'Your FSM, 10:16', title:'Report filed', rows:[['Finding','Expansion vessel valve weeping'],['Work done','Valve replaced, pre-charge 1.0 bar'],['Serial','7570 1234 0012 3'],['Parts','1 valve, van stock']], chips:[['Call','10:10'],['Photo','serial plate']] } },
-    { id:'quote', title:'Quote an extra visit', desc:'Drafted from your price list.', clock:'10:44',
-      msgs:[
-        {f:'out', h:'Mr Hofer wants the second boiler serviced too. Can you quote it?', t:'10:31', react:'👀'},
-        {f:'in', pdf:true, h:'Here’s the quote for B-02 from your 2026 price list: 2 h labour and a gasket set, €389 net. Check it before I send it to Mr Hofer.', t:'10:32'},
-        {f:'out', h:'Looks good, send it.', t:'10:33', react:'👍'},
-        {f:'in', h:'Sent. Mr Hofer approved at 10:44. I’ve booked the visit for Tue 4 Nov, 08:00.', t:'10:44'}
-      ],
-      result:{ meta:'Quote Q-2026-0187', title:'Quote approved', rows:[['Work','B-02 annual service'],['Labour','2 h'],['Parts','Gasket set'],['Total','€389 net'],['Visit','Tue 4 Nov, 08:00']], chips:[['Price list','2026']] } }
+  /* hero annotation: pin to the phone in the photo (object-fit: cover, 60% 50%) */
+  var hp = $('hero-photo'), anno = $('anno'), PX = 0.656, PY = 0.608, POS = 0.60;
+  function placeAnno(){
+    if (!hp.naturalWidth) return;
+    var box = hp.getBoundingClientRect(), host = anno.parentNode.getBoundingClientRect();
+    var s = Math.max(box.width / hp.naturalWidth, box.height / hp.naturalHeight), dw = hp.naturalWidth * s, dh = hp.naturalHeight * s;
+    var x = box.left - host.left + (box.width - dw) * POS + PX * dw, y = box.top - host.top + (box.height - dh) * 0.5 + PY * dh;
+    anno.style.left = x + 'px'; anno.style.top = y + 'px'; anno.classList.add('on');
+  }
+  if (hp.complete) placeAnno(); else hp.addEventListener('load', placeAnno);
+  window.addEventListener('resize', placeAnno);
+
+  /* reality: technician messages */
+  var MSGS = [
+    [['Store manager unplugged the freezer to charge his e-bike','Carlos, 6:12 AM'],['Manual says the sensor is behind panel B. There is no panel B','Mike, 9:40 AM'],['The leak was a melted Magnum behind the kick plate','Luis, 2:05 PM'],['Pigeons are nesting in the gas cooler again','Tyler, 7:31 AM'],['Previous tech left a note on the rack: good luck','Ashley, 11:18 AM']],
+    [['Found the missing sensor, zip-tied to the ceiling','Ashley, 1:36 PM'],['Customer says it has been beeping since Christmas','Mike, 8:55 AM'],['Rack is on the roof, the ladder is at the other store','Carlos, 7:02 AM'],['A mouse chewed the sensor cable. The mouse is fine','Luis, 3:49 PM'],['Compressor sounds like a cement mixer. Is that the noise you meant?','Tyler, 12:20 PM']],
+    [['Controller thinks it is 1998. Is that a problem?','Mike, 4:02 PM'],['Fixed it by switching it off and on. Maybe leave that out of the report','Luis, 9:03 AM'],['The frost on this coil is shaped like Texas','Tyler, 4:58 AM'],['Who installed this? Asking for a friend','Ashley, 2:42 PM'],['Sight glass full of bubbles, store manager full of questions','Mike, 11:59 AM']]
   ];
+  var mq = $('mq');
+  mq.innerHTML = MSGS.map(function(row, i){
+    var chips = row.map(function(m, k){ return '<span class="msg">'+m[0]+'<small>'+m[1]+'</small></span>'; }).join('');
+    return '<div class="mq-row'+(i % 2 ? ' rev' : '')+'" style="--d:'+(95 + i * 18)+'s"><div class="mq-track">'+chips+chips+'</div></div>';
+  }).join('');
+  mq.querySelectorAll('.mq-track').forEach(function(t){ t.querySelectorAll('.msg').forEach(function(c, k){ if (k >= t.children.length / 2) c.setAttribute('aria-hidden','true'); }); });
 
-  var tabs = $('tabs'), body = $('sc-body'), result = $('sc-result'), clock = $('sc-clock'), status = $('sc-status');
-  var ARROW = '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4.5 11.5l7-7M5.5 4.5h6v6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
-  CASES.forEach(function(c, i){
-    var b = document.createElement('button');
-    b.type = 'button'; b.className = 'tab'; b.setAttribute('role','tab'); b.id = 'tab-'+c.id;
-    b.setAttribute('aria-controls','stage'); b.setAttribute('aria-selected', i===0 ? 'true':'false');
-    b.innerHTML = '<span class="tt">'+c.title+ARROW+'</span><span class="td">'+c.desc+'</span>';
-    b.addEventListener('click', function(){ userTook = true; show(i, true); });
-    tabs.appendChild(b);
-  });
-
-  var PLATE = '<span class="pl"><b>Vitodens 100-W</b>Type B1HE-120<br>Serial no. 7570 1234 0012 3<br>Year 2019 · 230 V ~ 50 Hz<br>PMS 3 bar · Qn 3.2–19 kW<span class="bc"></span></span>';
-  function bubble(m, gf, tl, withReact){
-    var d = document.createElement('div');
-    d.className = 'b ' + m.f + (gf ? ' gf' : '') + (tl ? ' tl' : '') + (m.photo || m.media ? ' pic' : '') + (m.media && !m.h ? ' nocap' : '') + (m.pdf ? ' doc' : '');
-    var meta = '<span class="meta">'+m.t+(m.f==='out'?ICONS.ticks:'')+'</span>';
-    if (m.voice) d.innerHTML = '<span class="vn">'+ICONS.play.replace('class="i"','class="i pl"')+'<span class="vw"></span></span><span class="vd num">'+m.voice+'</span><span class="tr">'+m.h+'</span>'+meta;
-    else if (m.media === 'manual') d.innerHTML = '<span class="ph man" role="img" aria-label="Manual figure showing where the dual sensor sits and its pins 1 to 4"></span><span class="cap">'+m.h+meta+'</span>';
-    else if (m.media === 'vessel') d.innerHTML = '<span class="ph vessel" role="img" aria-label="Photo of the expansion vessel next to the boiler"></span><span class="cap">'+m.h+meta+'</span>';
-    else if (m.media === 'plate') d.innerHTML = '<span class="ph plate" role="img" aria-label="Photo of the serial number plate">'+PLATE+'</span><span class="cap">'+m.h+meta+'</span>';
-    else if (m.pdf) d.innerHTML = '<span class="drow"><svg class="dic" viewBox="0 0 26 32" aria-hidden="true"><path d="M3 0h14l9 9v20a3 3 0 0 1-3 3H3a3 3 0 0 1-3-3V3a3 3 0 0 1 3-3z" fill="#E5252A"/><path d="M17 0v6a3 3 0 0 0 3 3h6z" fill="#F28B8D"/><text x="13" y="24" text-anchor="middle" font-family="-apple-system,Helvetica,sans-serif" font-size="7.5" font-weight="700" fill="#fff">PDF</text></svg><span class="dn"><b>Quote-Q-2026-0187.pdf</b><small>84 kB · pdf</small></span></span><span class="cap">'+(m.h||'')+meta+'</span>';
-    else d.innerHTML = m.h + meta;
-    var w = d.querySelector('.vw'); if (w) wave(w, 26);
-    if (withReact && m.react) react(d, m.react, false);
-    return d;
-  }
-  function react(d, e, pop){
-    d.classList.add('rx');
-    var r = document.createElement('span'); r.className = 'rxn' + (pop ? ' pop' : ''); r.textContent = e;
-    r.setAttribute('aria-label', 'Kenner reacted ' + e); d.appendChild(r);
-  }
-  function toBottom(smooth){ body.scrollTo({top: body.scrollHeight, behavior: smooth && !still ? 'smooth' : 'auto'}); }
-  function fillResult(c){
-    var r = c.result;
-    var rows = r.rows.map(function(x){ return '<dt>'+x[0]+'</dt><dd>'+x[1]+'</dd>'; }).join('');
-    var chips = r.chips.map(function(x){ return '<span class="chip"><b>'+x[0]+'</b><span>'+x[1]+'</span></span>'; }).join('');
-    result.innerHTML = '<div class="rh"><img src="brand/logo-avatar.svg" alt="Kenner">'+r.meta+'</div><h3>'+r.title+'</h3><dl>'+rows+'</dl>'+(chips?'<div class="chips">'+chips+'</div>':'');
-  }
-
-  var cur = 0, timers = [], userTook = false, inView = false;
-  function clear(){ timers.forEach(clearTimeout); timers = []; }
-  function later(fn, ms){ timers.push(setTimeout(fn, ms)); }
-  function setClock(t){ clock.dataset.t = t; clock.querySelector('span').textContent = t; }
-
-  function show(i, animate){
-    clear(); cur = i;
-    var c = CASES[i];
-    tabs.querySelectorAll('.tab').forEach(function(t, j){ t.setAttribute('aria-selected', j===i ? 'true':'false'); });
-    var active = tabs.children[i];
-    if (active && tabs.scrollWidth > tabs.clientWidth) tabs.scrollTo({left: tabs.scrollLeft + active.getBoundingClientRect().left - tabs.getBoundingClientRect().left - 4, behavior: still ? 'auto':'smooth'});
-    setClock(c.clock);
-    body.innerHTML = '<span class="wa-day">Today</span>';
-    fillResult(c);
-    var M = c.msgs, G = function(k){ return k === 0 || M[k-1].f !== M[k].f; }, T = function(k){ return k === M.length-1 || M[k+1].f !== M[k].f; };
-    status.textContent = ''; status.className = '';
-    if (!animate || still){
-      M.forEach(function(m, k){ body.appendChild(bubble(m, G(k), T(k), true)); });
-      result.classList.remove('off');
-      toBottom(false);
-      return;
-    }
-    result.classList.add('off');
-    var t = 350;
-    M.forEach(function(m, k){
-      var gf = G(k), tl = T(k);
-      if (m.f === 'out'){
-        var ref = {};
-        later(function(){ ref.b = bubble(m, gf, tl, false); ref.b.classList.add('m-in'); body.appendChild(ref.b); toBottom(true); }, t);
-        if (m.react){ later(function(){ react(ref.b, m.react, true); toBottom(true); }, t + 650); t += 400; }
-        t += 1000;
-      } else {
-        var typ = {};
-        later(function(){
-          status.textContent = 'typing…'; status.className = 'typing';
-          typ.b = document.createElement('div'); typ.b.className = 'b in typ tl m-in' + (gf ? ' gf' : '');
-          typ.b.innerHTML = '<i></i><i></i><i></i>'; typ.b.setAttribute('aria-label','Kenner is typing');
-          body.appendChild(typ.b); toBottom(true);
-        }, t);
-        later(function(){
-          typ.b.remove(); status.textContent = ''; status.className = '';
-          var b = bubble(m, gf, tl, false); b.classList.add('m-in'); body.appendChild(b); toBottom(true);
-        }, t + 1100);
-        t += 1100 + 1400;
-      }
-    });
-    later(function(){ result.classList.remove('off'); }, t);
-    later(function(){ if (!userTook && inView) show((cur+1) % CASES.length, true); }, t + 5000);
-  }
-  show(0, false);
-
-  if (!still && 'IntersectionObserver' in window){
-    var started = false;
-    new IntersectionObserver(function(es){
-      es.forEach(function(e){
-        inView = e.isIntersecting;
-        if (inView && !started && !userTook){ started = true; later(function(){ if (!userTook) show(1, true); }, 6000); }
-      });
-    }, {threshold:.35}).observe($('stage'));
-  }
-
-  /* ---------- integrations tooltip ---------- */
-  var ig = $('ig'), tip = $('tip');
+  /* hub tooltips */
+  var hub = $('hub'), tip = $('tip');
   function tipOn(g){
-    ig.classList.add('hov'); ig.querySelectorAll('.gt').forEach(function(x){ x.classList.toggle('on', x === g); });
-    tip.querySelector('b').textContent = g.dataset.n; tip.querySelector('p').textContent = g.dataset.d; tip.querySelector('span').textContent = g.dataset.k;
-    tip.hidden = false;
-    var w = tip.offsetWidth, h = tip.offsetHeight;
-    var left = Math.max(8, Math.min(g.offsetLeft + g.offsetWidth/2 - w/2, ig.clientWidth - w - 8));
-    var top = g.offsetTop + g.offsetHeight + 8;
-    if (top + h > ig.clientHeight + 24) top = g.offsetTop - h - 8;
+    hub.classList.add('hov'); hub.querySelectorAll('.tile').forEach(function(x){ x.classList.toggle('on', x === g); });
+    tip.querySelector('b').textContent = g.dataset.n; tip.querySelector('p').textContent = g.dataset.d;
+    tip.classList.remove('off');
+    var hr = hub.getBoundingClientRect(), gr = g.getBoundingClientRect(), w = tip.offsetWidth, h = tip.offsetHeight;
+    var left = Math.max(8, Math.min(gr.left - hr.left + gr.width / 2 - w / 2, hub.clientWidth - w - 8));
+    var top = gr.bottom - hr.top + 8; if (top + h > hub.clientHeight + 20) top = gr.top - hr.top - h - 8;
     tip.style.left = left + 'px'; tip.style.top = top + 'px';
   }
-  function tipOff(){ ig.classList.remove('hov'); tip.hidden = true; ig.querySelectorAll('.gt.on').forEach(function(x){ x.classList.remove('on'); }); }
-  ig.querySelectorAll('.gt').forEach(function(g){
-    g.addEventListener('mouseenter', function(){ tipOn(g); });
-    g.addEventListener('focus', function(){ tipOn(g); });
-    g.addEventListener('click', function(){ tipOn(g); });
-    g.addEventListener('blur', tipOff);
+  function tipOff(){ hub.classList.remove('hov'); tip.classList.add('off'); hub.querySelectorAll('.tile.on').forEach(function(x){ x.classList.remove('on'); }); }
+  hub.querySelectorAll('.tile').forEach(function(g){
+    g.addEventListener('mouseenter', function(){ tipOn(g); }); g.addEventListener('focus', function(){ tipOn(g); });
+    g.addEventListener('click', function(){ tipOn(g); }); g.addEventListener('blur', tipOff);
   });
-  ig.addEventListener('mouseleave', tipOff);
+  hub.addEventListener('mouseleave', tipOff);
 
-  document.querySelectorAll('.p-chat .wa-body').forEach(function(b){ b.scrollTop = b.scrollHeight; });
-
-  /* ---------- product screens ---------- */
-  var bars = $('bars'), shots = $('lscr').querySelectorAll('img'), bi = 0, bt = null;
-  if (still) bars.classList.add('still');
-  function screen(k){
-    bi = k;
-    bars.querySelectorAll('button').forEach(function(b, j){ b.setAttribute('aria-selected', j === k ? 'true' : 'false'); var x = b.querySelector('b'); x.style.animation = 'none'; void x.offsetWidth; x.style.animation = ''; });
-    var im = shots[k];
-    (im.decode ? im.decode() : Promise.resolve()).catch(function(){}).then(function(){
-      if (bi === k && im.naturalWidth) shots.forEach(function(s, j){ s.classList.toggle('on', j === k); });
-    });
+  /* hub lines: from each channel in the row above Kenner into the mark, and from the mark out to each system in the row below.
+     One dot at a time: it leaves a channel picked at random, runs into Kenner, then on to a system picked at random. */
+  var hl = $('hub-lines'), hcore = hub.querySelector('.core'), hIn = [], hOut = [], hDot = null, hA = null, hB = null, hT0 = 0, hRaf = 0, hSeen = false;
+  function hubRow(sel, last){
+    var t = [].slice.call(hub.querySelectorAll(sel)), ys = t.map(function(e){ return e.offsetTop; });
+    var y = last ? Math.max.apply(null, ys) : Math.min.apply(null, ys);
+    return t.filter(function(e){ return e.offsetTop === y; });
   }
-  bars.querySelectorAll('button').forEach(function(b, j){ b.addEventListener('click', function(){ screen(j); restart(); }); });
-  function restart(){ clearInterval(bt); if (!still) bt = setInterval(function(){ screen((bi + 1) % shots.length); }, 5500); }
-  restart();
-
-  /* ---------- industries carousel ---------- */
-  var car = $('car'), cbar = $('cbar'), cards = car.children, pv = $('prev'), nx = $('next');
-  function step(){ return cards[0].getBoundingClientRect().width + 20; }
-  function onScroll(){
-    var max = car.scrollWidth - car.clientWidth, f = max > 0 ? car.scrollLeft / max : 0;
-    var vis = car.clientWidth / car.scrollWidth;
-    cbar.style.width = (vis * 100) + '%';
-    cbar.style.transform = 'translateX(' + (f * (1 / vis - 1) * 100) + '%)';
-    pv.disabled = car.scrollLeft <= 4; nx.disabled = car.scrollLeft >= max - 4;
+  function hubLine(x1, y1, x2, y2, cls){
+    var m = (y2 - y1) * .62;
+    return '<path class="' + cls + '" d="M' + x1.toFixed(1) + ' ' + y1.toFixed(1) + 'C' + x1.toFixed(1) + ' ' + (y1 + m).toFixed(1) + ' ' + x2.toFixed(1) + ' ' + (y2 - m).toFixed(1) + ' ' + x2.toFixed(1) + ' ' + y2.toFixed(1) + '"/>';
   }
-  pv.addEventListener('click', function(){ car.scrollBy({left:-step(), behavior: still?'auto':'smooth'}); });
-  nx.addEventListener('click', function(){ car.scrollBy({left: step(), behavior: still?'auto':'smooth'}); });
-  car.addEventListener('scroll', onScroll, {passive:true}); function edge(){ car.style.scrollPaddingInline = getComputedStyle(car).paddingLeft; onScroll(); }
-  window.addEventListener('resize', edge); edge();
-  if (still || !('IntersectionObserver' in window)) car.classList.add('in');
-  else new IntersectionObserver(function(es, o){ es.forEach(function(e){ if (e.isIntersecting){ car.classList.add('in'); o.disconnect(); } }); }, {threshold:.35}).observe(car);
+  function hubLines(){
+    var hr = hub.getBoundingClientRect(), cr = hcore.getBoundingClientRect(), h = '';
+    var cx = cr.left - hr.left + cr.width / 2, ct = cr.top - hr.top, cb = cr.bottom - hr.top;
+    hl.setAttribute('viewBox', '0 0 ' + hr.width + ' ' + hr.height);
+    hubRow('.chs .tile', true).forEach(function(t){ var r = t.getBoundingClientRect(); h += hubLine(r.left - hr.left + r.width / 2, r.bottom - hr.top, cx, ct, 'in'); });
+    hubRow('.sys .tile', false).forEach(function(t){ var r = t.getBoundingClientRect(); h += hubLine(cx, cb, r.left - hr.left + r.width / 2, r.top - hr.top, 'out'); });
+    hl.innerHTML = h + (still ? '' : '<circle r="3" opacity="0"/>');
+    hIn = [].slice.call(hl.querySelectorAll('.in')); hOut = [].slice.call(hl.querySelectorAll('.out')); hDot = hl.querySelector('circle'); hA = hB = null;
+  }
+  function hubPick(list, prev){ var p; do { p = list[Math.floor(Math.random() * list.length)]; } while (list.length > 1 && p === prev); return p; }
+  var hRot = 0, hTicked = false, hMark = hcore.querySelector('img'), HSTEP = 45; /* the mark repeats every 45 degrees, so each notch lands on the same shape */
+  function hubTick(now){
+    hRaf = 0;
+    if (!hSeen || !hDot || !hIn.length || !hOut.length) return;
+    var LEG = 1250, TICK = 560, REST = 450, t = now - hT0;
+    if (!hA || t >= LEG * 2 + TICK + REST) {
+      if (hA) hA.classList.remove('on'); if (hB) hB.classList.remove('on');
+      hA = hubPick(hIn, hA); hB = hubPick(hOut, hB); hT0 = now; t = 0; hTicked = false;
+    }
+    var out = t >= LEG + TICK;
+    if (t >= LEG && !out) {
+      /* the dot has arrived: Kenner's mark turns one notch, like a tick, before the dot leaves again */
+      hDot.setAttribute('opacity', 0); hA.classList.remove('on');
+      if (!hTicked) { hTicked = true; hRot += HSTEP; hMark.style.transform = 'rotate(' + hRot + 'deg)'; }
+    }
+    else if (t >= LEG * 2 + TICK) { hDot.setAttribute('opacity', 0); hB.classList.remove('on'); }
+    else {
+      var leg = out ? hB : hA, f = (out ? t - LEG - TICK : t) / LEG;
+      f = f < .5 ? 2 * f * f : 1 - Math.pow(2 - 2 * f, 2) / 2;
+      var pt = leg.getPointAtLength(f * leg.getTotalLength());
+      hDot.setAttribute('cx', pt.x.toFixed(1)); hDot.setAttribute('cy', pt.y.toFixed(1)); hDot.setAttribute('opacity', 1);
+      hA.classList.toggle('on', !out); hB.classList.toggle('on', out);
+    }
+    hRaf = requestAnimationFrame(hubTick);
+  }
+  hubLines(); window.addEventListener('resize', hubLines); window.addEventListener('load', hubLines);
+  onView(hub, function(v){ hSeen = v; if (v && !hRaf && !still) hRaf = requestAnimationFrame(hubTick); }, .15);
 })();
 </script>
-
+<script>
+/* demo phone: when the stage shrinks to fit the window, scale the whole phone (frame and chat together) instead of squeezing the chat into a smaller frame */
+(function(){
+  var sc = document.getElementById('showcase'); if (!sc) return;
+  function fit(){
+    if (window.innerWidth <= 760) { sc.style.removeProperty('--pz'); return; }
+    var stage = Math.max(540, Math.min(window.innerHeight - 238, 760));
+    var pw = window.innerWidth <= 1100 ? 292 : 318;
+    var z = Math.max(.76, Math.min((stage - 56) * .482 / pw, 1));
+    sc.style.setProperty('--pz', z.toFixed(3));
+  }
+  fit(); window.addEventListener('resize', fit);
+})();
+</script>
+<script src="agents/agents.js" charset="utf-8"></script>
+<script>
+/* the demo opens in iMessage: agents.js starts in WhatsApp, so pick iMessage once it has loaded */
+(function(){ function im(){ var b = document.querySelector('#dock [data-app="im"]'); if (b) b.click(); } im(); document.addEventListener('DOMContentLoaded', im); })();
+</script>
+<script>
+/* Reporting agent: the report fills in field by field instead of landing all at once. Arthur's work-order page re-renders a
+   whole stage and flashes every change together; here its show() is wrapped from outside (same origin, his file untouched):
+   each field that changed is emptied, scrolled to and typed in, one after the other. A field that already had text only
+   types the words that are new, and those stay marked, with an "Updated" tag, until the next message. */
+(function(){
+  var wo = document.getElementById('wo'); if (!wo) return;
+  var calm = matchMedia('(prefers-reduced-motion: reduce)').matches, timers = [], LAST = 3;
+  function later(fn, ms){ timers.push(setTimeout(fn, ms)); }
+  function fields(d){
+    var out = [];
+    d.querySelectorAll('label[for^="report-field-"]').forEach(function(l){
+      var box = l.closest('.min-w-0') || l.parentNode.parentNode, dd = box.querySelector('dd');
+      if (dd && box.getClientRects().length) out.push({key:l.htmlFor, label:l, box:box, dd:dd, raw:dd.textContent});
+    });
+    return out;
+  }
+  /* the stretches of b that are not in a, word by word */
+  function added(a, b){
+    var A = a.split(/(\s+)/), B = b.split(/(\s+)/), n = A.length, m = B.length, dp = [], i, j;
+    for (i = 0; i <= n; i++) dp[i] = new Uint16Array(m + 1);
+    for (i = n - 1; i >= 0; i--) for (j = m - 1; j >= 0; j--) dp[i][j] = A[i] === B[j] ? dp[i + 1][j + 1] + 1 : Math.max(dp[i + 1][j], dp[i][j + 1]);
+    var ins = []; i = 0; j = 0;
+    while (j < m){
+      if (i < n && A[i] === B[j]){ ins[j] = false; i++; j++; }
+      else if (i < n && dp[i + 1][j] >= dp[i][j + 1]) i++;
+      else { ins[j] = !/^\s*$/.test(B[j]); j++; }
+    }
+    for (j = 1; j < m - 1; j++) if (/^\s+$/.test(B[j]) && ins[j - 1] && ins[j + 1]) ins[j] = true;
+    var r = [], pos = 0;
+    for (j = 0; j < m; j++){
+      if (ins[j]){ if (r.length && r[r.length - 1][1] === pos) r[r.length - 1][1] = pos + B[j].length; else r.push([pos, pos + B[j].length]); }
+      pos += B[j].length;
+    }
+    return r;
+  }
+  /* put each of those stretches in an empty span that remembers its text */
+  function wrap(d, dd, ranges, chg){
+    var tw = d.createTreeWalker(dd, 4), nodes = [], nd, pos = 0, spans = [];
+    while ((nd = tw.nextNode())) nodes.push(nd);
+    nodes.forEach(function(node){
+      var t = node.nodeValue, s = pos, e = pos + t.length; pos = e;
+      var cuts = ranges.filter(function(r){ return r[1] > s && r[0] < e; });
+      if (!cuts.length) return;
+      var frag = d.createDocumentFragment(), at = s;
+      cuts.forEach(function(r){
+        var a = Math.max(r[0], s), b = Math.min(r[1], e);
+        if (a > at) frag.appendChild(d.createTextNode(t.slice(at - s, a - s)));
+        var sp = d.createElement('span'); sp.className = 'kn-ins' + (chg ? ' kn-chg' : ''); sp.dataset.t = t.slice(a - s, b - s);
+        frag.appendChild(sp); spans.push(sp); at = b;
+      });
+      if (at < e) frag.appendChild(d.createTextNode(t.slice(at - s)));
+      node.parentNode.replaceChild(frag, node);
+    });
+    return spans;
+  }
+  function type(spans, done){
+    var total = spans.reduce(function(n, s){ return n + s.dataset.t.length; }, 0), dur = Math.max(160, Math.min(total * 3.2, 420)), t0 = Date.now();
+    (function step(){
+      var f = Math.min(1, (Date.now() - t0) / dur), n = Math.round(f * total);
+      spans.forEach(function(s){ var L = s.dataset.t.length, k = Math.max(0, Math.min(L, n)); if (s.textContent.length !== k) s.textContent = s.dataset.t.slice(0, k); n -= L; });
+      if (f < 1) later(step, 24); else done();
+    })();
+  }
+  /* the report is filed: fold its card and go back to the top, so the four cards are in view together */
+  function fold(w, smooth){
+    var d = w.document, b = d.querySelector('#job-report h2 > button[aria-expanded="true"]');
+    if (b){ b.click(); if (d.activeElement && d.activeElement.blur) d.activeElement.blur(); }
+    w.scrollTo({top:0, behavior: smooth ? 'smooth' : 'auto'});
+  }
+  /* the briefing comes before the job and the report after it, so the briefing card sits first */
+  function order(d){
+    var r = d.getElementById('job-report'), b = d.getElementById('job-briefing');
+    if (r && b && r.parentNode === b.parentNode && (r.compareDocumentPosition(b) & 4)) r.parentNode.insertBefore(b, r);
+  }
+  function run(w, list, done){
+    var d = w.document, i = 0;
+    (function next(){
+      if (i >= list.length){ if (done) done(); return; }
+      var f = list[i++], r = f.box.getBoundingClientRect();
+      w.scrollTo({top: w.scrollY + r.top - Math.max(16, (w.innerHeight - r.height) / 2 - 40), behavior:'smooth'});
+      later(function(){
+        type(f.spans, function(){
+          f.box.classList.remove('fresh'); void f.box.offsetWidth; f.box.classList.add('fresh');
+          if (f.chg){ var tag = d.createElement('span'); tag.className = 'kn-tag'; tag.textContent = 'Updated'; f.label.parentNode.insertBefore(tag, f.label.nextSibling); }
+          later(next, 60);
+        });
+      }, 90);
+    })();
+  }
+  function hook(){
+    var w = wo.contentWindow;
+    if (!w || !w.show || w.show.kn) return;
+    var orig = w.show, d = w.document, st = d.createElement('style'), seen = null;
+    st.textContent = '.kn-chg{background:color-mix(in oklab,#1438CA 14%,transparent);box-shadow:0 0 0 2px color-mix(in oklab,#1438CA 14%,transparent);border-radius:3px}.kn-chg:empty{background:none;box-shadow:none}.kn-tag{display:inline-flex;align-items:center;height:18px;margin-left:6px;padding:0 7px;border-radius:5px;background:color-mix(in oklab,#1438CA 12%,transparent);color:#1438CA;font-size:11px;font-weight:500;line-height:1}';
+    /* the service report and briefing cards: no preview line when folded. A finished card says so itself, with a dark
+       border in place of the grey hairline and a tag by its title: the briefing from the start ("Done"), the report once it is filed */
+    st.textContent += "#job-report>div:first-child>span.truncate,#job-briefing>div:first-child>span.truncate{display:none}" +
+      "#job-briefing,[data-kn-stage=\"3\"] #job-report{box-shadow:0 0 0 1.5px #0A0B1E}" +
+      "#job-briefing h2,[data-kn-stage=\"3\"] #job-report h2{display:flex;align-items:center;gap:10px}" +
+      "#job-briefing h2::after{content:\"Done\"}[data-kn-stage=\"3\"] #job-report h2::after{content:\"Filed\"}" +
+      "#job-briefing h2::after,[data-kn-stage=\"3\"] #job-report h2::after{display:inline-flex;align-items:center;height:20px;padding:0 8px 0 23px;border-radius:5px;font-size:12px;font-weight:500;line-height:1;color:#0A0B1E;background:rgba(10,11,30,.06) url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' fill='none' stroke='%230A0B1E' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M2.5 6.3l2.3 2.3 4.7-5'/%3E%3C/svg%3E\") 7px 50%/12px no-repeat}";
+    d.head.appendChild(st);
+    order(d);
+    w.show = function(n, animate){
+      d.documentElement.setAttribute('data-kn-stage', n);
+      /* what each field said after the last message: kept here, since a fill cut short leaves half-typed text on the page */
+      var before = seen || {};
+      if (!seen) fields(d).forEach(function(f){ before[f.key] = f.raw; });
+      timers.forEach(clearTimeout); timers = [];
+      orig(n, animate);
+      order(d);
+      seen = {};
+      fields(d).forEach(function(f){ seen[f.key] = f.raw; });
+      if (n === LAST && (!animate || calm)) fold(w, false);
+      if (!animate || calm) return;
+      var list = [];
+      fields(d).forEach(function(f){
+        var prev = before[f.key], was = (prev || '').trim(), now = f.raw.trim();
+        if (!now || now === 'Not filled' || prev === f.raw) return;
+        /* a field counts as updated only when most of it was already there; a placeholder turning into an answer is a new fill */
+        var ranges = was && was !== 'Not filled' ? added(prev, f.raw) : null;
+        if (ranges && ranges.reduce(function(n, r){ return n + r[1] - r[0]; }, 0) > f.raw.length * .7) ranges = null;
+        f.chg = !!ranges;
+        f.spans = wrap(d, f.dd, ranges || [[0, f.raw.length]], f.chg);
+        if (!f.spans.length) return;
+        f.box.classList.remove('fresh'); list.push(f);
+      });
+      run(w, list, n === LAST ? function(){ later(function(){ fold(w, true); }, 900); } : null);
+    };
+    w.show.kn = true;
+  }
+  wo.addEventListener('load', hook); hook();
+})();
+</script>
+<script>
+/* "Tap to send": a pill beside the phone's send button whenever the technician's next message is ready */
+(function(){
+  var work = document.getElementById('work'), scr = document.getElementById('ask-scr');
+  if (!work || !scr) return;
+  var pill = document.createElement('button'); pill.type = 'button'; pill.className = 'send-cue'; pill.setAttribute('aria-label', 'Send the message');
+  pill.addEventListener('click', function(){ var b = scr.querySelector('.snd.cue'); if (b) b.click(); });
+  pill.innerHTML = '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M13 8H3M7 4L3 8l4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Tap to send';
+  work.appendChild(pill);
+  var raf = 0;
+  function place(){
+    raf = 0;
+    var b = scr.querySelector('.snd.cue');
+    if (!b || !b.offsetParent) { pill.classList.remove('on'); return; }
+    var wr = work.getBoundingClientRect(), br = b.getBoundingClientRect(), pw = pill.offsetWidth, ph = pill.offsetHeight;
+    /* left of the phone, level with the send button and pointing at it, so it never covers the chat or Kenner's panel */
+    var phone = scr.closest('.phone'), pr = phone ? phone.getBoundingClientRect() : br;
+    var left = pr.left - wr.left - pw - 12, top = br.top - wr.top + br.height / 2 - ph / 2, up = false;
+    left = Math.max(8 - wr.left, Math.min(left, work.clientWidth - pw - 8));
+    pill.style.left = left + 'px'; pill.style.top = top + 'px';
+    pill.classList.toggle('up', up); pill.classList.add('on');
+  }
+  function queue(){ if (!raf) raf = requestAnimationFrame(place); }
+  new MutationObserver(queue).observe(scr, {subtree:true, childList:true, attributes:true, attributeFilter:['class']});
+  window.addEventListener('resize', queue);
+  queue();
+})();
+</script>
 </body>
 </html>
