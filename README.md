@@ -16,7 +16,7 @@ Static site served by GitHub Pages from `main` (custom domain in `CNAME`, keep t
 - `logos/`, `mono/`: integration, channel and team logos, in colour and in one colour
 - `light/`: light backgrounds
 - `photos/`, `media/`, `demo/`: from the previous homepage, not used by the current one
-- `favicon.svg`, `favicon-32.png`, `apple-touch-icon.png`, `og-image.jpg` (link preview, 1200x630, still the previous headline)
+- `favicon.svg`, `favicon-32.png`, `apple-touch-icon.png`, `og-image.jpg` (link preview, 1200x630)
 
 ## Notes
 - Booking links point to https://calendar.app.google/fFpCL3WG3pJtqtC89 (existing Google Workspace booking page).
