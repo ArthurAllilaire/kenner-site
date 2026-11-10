@@ -60,30 +60,39 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
 .night a:focus-visible,.night button:focus-visible,.hero a:focus-visible,.close a:focus-visible{outline-color:#fff}
 
 /* buttons */
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:48px;padding:0 22px;border-radius:var(--r-sm);border:1px solid transparent;font:500 15.5px/1 var(--text);text-decoration:none;white-space:nowrap;cursor:pointer;transition:background .2s,border-color .2s,color .2s}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:48px;padding:0 22px;border-radius:var(--r-sm);border:1px solid transparent;font:500 15.5px/1 var(--text);text-decoration:none;white-space:nowrap;cursor:pointer;transition:background .2s,border-color .2s,color .2s,transform .16s var(--ease)}
+.btn:active{transform:scale(.97)}
 .btn-sm{height:36px;padding:0 16px;font-size:14px}
 .btn-white{background:#fff;color:var(--ink)}
-.btn-white:hover{background:#E9ECF6}
 .btn-ghost{border-color:rgba(255,255,255,.28);color:#fff}
-.btn-ghost:hover{border-color:rgba(255,255,255,.6)}
 .btn-ink{background:var(--ink);color:#fff}
+/* hover states only for a pointer that can hover: on a touch screen a tap would leave them stuck */
+@media (hover:hover) and (pointer:fine){
+.btn-white:hover{background:#E9ECF6}
+.btn-ghost:hover{border-color:rgba(255,255,255,.6)}
 .btn-ink:hover{background:#262A45}
+}
 
 /* nav */
 .nav{position:fixed;top:env(safe-area-inset-top,0px);left:0;right:0;z-index:50;transition:background .3s,box-shadow .3s}
 .nav-in{display:flex;align-items:center;justify-content:space-between;gap:16px;height:60px}
-.logo img{height:21px;width:auto}
-.logo .ink{display:none}
+/* the white and the ink lockup sit on top of each other and crossfade at the bar's pace; the one button changes colour with it */
+.logo{display:grid}
+.logo img{grid-area:1/1;height:21px;width:auto;transition:opacity .3s}
+.logo .ink{opacity:0}
 .links{display:flex;align-items:center;gap:30px;font-size:14.5px}
 .links a:not(.btn){color:rgba(255,255,255,.72);text-decoration:none;transition:color .2s}
-.links a:not(.btn):hover{color:#fff}
-.nav .cta-ink{display:none}
+.nav .cta{transition:background .3s,border-color .3s,color .3s,transform .16s var(--ease)}
 .nav.dim{background:rgba(10,11,30,.58);-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);box-shadow:0 1px 0 var(--night-line)}
 .nav.solid{background:rgba(255,255,255,.92);-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);box-shadow:0 1px 0 var(--line)}
-.nav.solid .logo .white{display:none}.nav.solid .logo .ink{display:block}
+.nav.solid .logo .white{opacity:0}.nav.solid .logo .ink{opacity:1}
 .nav.solid .links a:not(.btn){color:var(--muted)}
+.nav.solid .cta{background:var(--ink);color:#fff}
+@media (hover:hover) and (pointer:fine){
+.links a:not(.btn):hover{color:#fff}
 .nav.solid .links a:not(.btn):hover{color:var(--ink)}
-.nav.solid .cta-white{display:none}.nav.solid .cta-ink{display:inline-flex}
+.nav.solid .cta:hover{background:#262A45}
+}
 @media (max-width:860px){.links a:not(.btn){display:none}}
 
 /* hero */
@@ -179,7 +188,11 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
 /* hover, as on harvey.ai: the panel under the pointer widens and the other one steps back */
 @media (hover:hover) and (min-width:861px){
 .duo{display:flex}
-.aud{flex:1 1 0;transition:flex-grow .7s var(--ease),opacity .45s ease}
+.aud{flex:1 1 0;transition:flex-grow .5s var(--ease),opacity .5s ease}
+/* the grain background keeps one size (a little over the widened panel) on its own layer, pinned to the panel's outer edge:
+   widening only uncovers more of it, and the filter is not drawn again on every frame */
+.aud-bg{right:auto;width:calc(var(--pw)*1.1);will-change:transform}
+#for-technicians .aud-bg{left:auto;right:0}
 .duo:has(.aud:hover) .aud:not(:hover),.duo:has(.aud:focus-within) .aud:not(:focus-within):not(:hover){opacity:.45}
 .duo .aud:hover,.duo:not(:has(.aud:hover)) .aud:focus-within{flex-grow:1.2}
 /* nothing inside a panel may re-wrap while it widens or narrows: sizes come from the panel's resting width, not its current one */
@@ -202,8 +215,13 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
 .q summary i::after{transform:rotate(90deg);transition:opacity .2s}
 .q[open] summary i{transform:rotate(180deg)}
 .q[open] summary i::after{opacity:0}
-.q summary:hover i{opacity:.55}
+@media (hover:hover) and (pointer:fine){.q summary:hover i{opacity:.55}}
 .q p{margin:0;padding:0 44px 26px 0;font-size:16px;line-height:1.6;color:var(--muted);max-width:640px}
+/* the answer fades in under its question while the plus turns; closing stays instant */
+.q[open] p{animation:q-in .2s var(--ease)}
+@keyframes q-in{from{opacity:0;transform:translateY(-4px)}}
+@keyframes kn-fade{from{opacity:0}to{opacity:1}}
+@media (prefers-reduced-motion:reduce){.q[open] p{animation-name:kn-fade}}
 @media (max-width:860px){.q p{padding-right:0}}
 /* phone: the four outcomes are one card with four short rows, instead of four tall boxes */
 @media (max-width:760px){
@@ -264,7 +282,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
 .mq-row{overflow-x:clip;overflow-y:visible;padding-block:14px}
 .mq-track{display:flex;gap:16px;width:max-content;animation:mq var(--d,90s) linear infinite}
 .mq-row.rev .mq-track{animation-direction:reverse}
-.mq:hover .mq-track{animation-play-state:paused}
+@media (hover:hover) and (pointer:fine){.mq:hover .mq-track{animation-play-state:paused}}
 @keyframes mq{to{transform:translateX(calc(-50% - 8px))}}
 @media (prefers-reduced-motion:reduce){.mq-track{animation:none}}
 .msg{flex:none;display:flex;align-items:baseline;gap:12px;padding:14px 20px;background:color-mix(in oklab,var(--ink) 7%,var(--paper));border-radius:var(--r-lg) var(--r-lg) var(--r-lg) 4px;font-size:16px;font-weight:500;line-height:1.35;white-space:nowrap}
@@ -315,7 +333,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
 /* hub: thin lines run from the channels into Kenner and out to the systems, one small dot travelling each line (drawn by script from the tiles' positions) */
 .core-wrap{display:flex;flex-direction:column;align-items:center;padding:clamp(40px,4.4vw,60px) 0}
 .core{position:relative;z-index:1;width:64px;height:64px;border-radius:var(--r-lg);background:#fff;display:flex;align-items:center;justify-content:center}
-.core img{width:42px;height:42px;transition:transform .5s cubic-bezier(.34,1.56,.64,1)}
+.core img{width:42px;height:42px;transition:transform .4s var(--ease)}
 .hub-lines{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;overflow:visible}
 .hub-lines path{fill:none;stroke:rgba(255,255,255,.14);stroke-width:1.25;transition:stroke .35s}
 .hub-lines path.on{stroke:rgba(255,255,255,.6)}
@@ -364,7 +382,7 @@ footer{background:var(--paper)}
 .f-in .tl{margin-top:14px;font-size:15px;color:var(--muted)}
 .f-in h4{margin:0 0 12px;font-size:13px;font-weight:500;color:var(--grey)}
 .f-in a{display:block;text-decoration:none;font-size:15px;color:var(--muted);padding:3px 0}
-.f-in a:hover{color:var(--ink)}
+@media (hover:hover) and (pointer:fine){.f-in a:hover{color:var(--ink)}}
 .f-in .secu{font-size:14px;line-height:1.7;color:var(--muted)}
 .f-bot{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;padding-block:20px 40px;border-top:1px solid var(--line);font-size:13px;color:var(--grey)}
 .f-bot a{color:inherit;text-decoration:none;margin-left:18px}
@@ -417,8 +435,9 @@ footer{background:var(--paper)}
 /* app picker: bare logos, no tiles and no marker bar; the chosen one is in colour, the others greyed */
 #showcase .dock button[aria-pressed="true"]::after{display:none}
 #showcase .dock{gap:20px}
-#showcase .dock button{width:34px;height:34px;border-radius:0;opacity:.4;filter:grayscale(1);transition:opacity .25s,filter .25s}
-#showcase .dock button:hover{opacity:.8;filter:none}
+#showcase .dock button{width:34px;height:34px;border-radius:0;opacity:.4;filter:grayscale(1);transition:opacity .25s,filter .25s,transform .16s var(--ease)}
+#showcase .dock button:active{transform:scale(.95)}
+@media (hover:hover) and (pointer:fine){#showcase .dock button:hover{opacity:.8;filter:none}}
 #showcase .dock button[aria-pressed="true"]{opacity:1;filter:none}
 #showcase .dock .lg{display:block;width:100%;height:100%;background:var(--c);-webkit-mask:var(--m) center/var(--s,contain) no-repeat;mask:var(--m) center/var(--s,contain) no-repeat}
 #showcase .dock img{border-radius:0}
@@ -463,19 +482,34 @@ footer{background:var(--paper)}
 #showcase .work .phone{box-shadow:none}
 #showcase .lap{box-shadow:none}
 }
-/* make the send button impossible to miss: a stronger pulse, and a pill pointing at it */
-#showcase .snd.cue{animation:kn-cue 1.6s var(--ease) infinite}
+/* make the send button impossible to miss: a stronger pulse, and a pill pointing at it.
+   The halo is a disc behind the button's icon that only scales and fades (nothing is repainted); --k takes it 18px past the button's edge */
+#showcase .snd{transition:transform .16s var(--ease)}
+#showcase .snd:active{transform:scale(.95)}
+#showcase .snd.cue{position:relative;isolation:isolate;animation:kn-bump 1.6s var(--ease) infinite}
+#showcase .snd.cue::after{content:"";position:absolute;inset:0;z-index:-1;border-radius:inherit;background:var(--cue);pointer-events:none;animation:kn-halo 1.6s var(--ease) infinite}
+#showcase .wa-in .snd{--k:2.2}
+#showcase .im-in .snd{--k:2.714}
+#showcase .kw-in .snd{--k:2.286}
+@keyframes kn-bump{0%,70%,100%{scale:1}35%{scale:1.08}}
+@keyframes kn-halo{0%{transform:scale(1);opacity:.7}70%,100%{transform:scale(var(--k,2.2));opacity:0}}
+/* the Teams send button has no fill, so a disc would cover its icon: it keeps the outline halo */
+@media (prefers-reduced-motion:no-preference){#showcase .tm-in .snd.cue{animation-name:kn-cue}}
+#showcase .tm-in .snd.cue::after{content:none}
 @keyframes kn-cue{0%{box-shadow:0 0 0 0 color-mix(in oklab,var(--cue) 70%,transparent);transform:scale(1)}35%{transform:scale(1.08)}70%,100%{box-shadow:0 0 0 18px transparent;transform:scale(1)}}
 .send-cue{position:absolute;z-index:30;display:flex;align-items:center;gap:6px;height:32px;padding:0 13px 0 10px;border-radius:var(--r-sm);background:#0A0B1E;color:#fff;font:500 13px/1 "Geist",system-ui,sans-serif;white-space:nowrap;box-shadow:0 10px 30px rgba(10,11,30,.35),0 0 0 1px rgba(255,255,255,.12);opacity:0;transform:translateX(6px);transition:opacity .3s var(--ease),transform .3s var(--ease);pointer-events:none}
 .send-cue.on{opacity:1;transform:none;pointer-events:auto}
+.send-cue.on:active{transform:scale(.97);transition-duration:.16s}
 .send-cue{appearance:none;border:0;cursor:pointer}
-.send-cue:hover{background:#262A45}
+@media (hover:hover) and (pointer:fine){.send-cue:hover{background:#262A45}}
 /* phones: no room beside the chat, so the pill is off and the pulsing send button carries it alone */
 @media (max-width:760px){.send-cue{display:none}}
 .send-cue{flex-direction:row-reverse;padding:0 10px 0 13px}
 .send-cue svg{width:16px;height:16px;transform:rotate(180deg)}
 .send-cue.up svg{transform:rotate(90deg)}
-@media (prefers-reduced-motion:reduce){#showcase .snd.cue{animation:none;box-shadow:0 0 0 4px color-mix(in oklab,var(--cue) 45%,transparent)}.send-cue{transition:none}}
+@media (prefers-reduced-motion:reduce){#showcase .snd.cue{animation:none;box-shadow:0 0 0 4px color-mix(in oklab,var(--cue) 45%,transparent)}#showcase .snd.cue::after{content:none}.send-cue{transition:none}
+/* the demo's messages and steps fade in without the slide */
+#showcase .m-in,#showcase .trail .in{animation-name:kn-fade}}
 </style>
 </head>
 <body>
@@ -487,8 +521,7 @@ footer{background:var(--paper)}
       <a href="#for-technicians">For technicians</a>
       <a href="#agents">Agents</a>
       <a href="#deploy">Integrations</a>
-      <a class="btn btn-sm btn-white cta-white" href="https://calendar.app.google/fFpCL3WG3pJtqtC89" target="_blank" rel="noopener">Book a demo</a>
-      <a class="btn btn-sm btn-ink cta-ink" href="https://calendar.app.google/fFpCL3WG3pJtqtC89" target="_blank" rel="noopener">Book a demo</a>
+      <a class="btn btn-sm btn-white cta" href="https://calendar.app.google/fFpCL3WG3pJtqtC89" target="_blank" rel="noopener">Book a demo</a>
     </nav>
   </div>
 </header>
