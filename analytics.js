@@ -91,6 +91,7 @@
   /* what the page's own scripts know and autocapture cannot name. Listened for from outside, so those scripts stay as they are;
      in the capture phase, because some of them change the element (a send button loses its cue) before the click bubbles up */
   function sectionName(s){ return s.id || s.className.split(' ')[0]; }
+  function pressed(group){ return document.querySelector(group + ' [aria-pressed="true"]'); }
   var sends = {};
   document.addEventListener('click', function(e){
     var t = e.target, el;
@@ -102,12 +103,14 @@
       var sec = el.closest('section');
       track('book_demo_clicked', {placement: el.closest('header') ? 'nav' : sec ? sectionName(sec) : 'page', label: el.textContent.trim()});
     }
-    else if ((el = t.closest('#agents [data-flow]'))) track('demo_agent_selected', {agent: el.dataset.flow});
-    else if ((el = t.closest('#dock [data-app]'))) track('demo_app_selected', {app: el.dataset.app});
+    /* the agent or app already showing does nothing when clicked; choosing an agent starts its conversation from the top */
+    else if ((el = t.closest('#agents [data-flow][aria-pressed="false"]'))){ sends[el.dataset.flow] = 0; track('demo_agent_selected', {agent: el.dataset.flow}); }
+    else if ((el = t.closest('#dock [data-app][aria-pressed="false"]'))) track('demo_app_selected', {app: el.dataset.app});
+    /* a send button is on the page only while a message is ready, so each click on it, or on the pill that stands for it, sends one */
     else if (t.closest('.snd.cue, .send-cue')){
-      var on = document.querySelector('#agents [aria-pressed="true"]'), agent = on ? on.dataset.flow : '';
+      var agent = pressed('#agents').dataset.flow, draft = document.querySelector('#ask-cmp .fld'), said = draft ? draft.textContent.trim() : '';
       sends[agent] = (sends[agent] || 0) + 1;
-      track('demo_message_sent', {agent: agent, step: sends[agent]});
+      track('demo_message_sent', {agent: agent, step: sends[agent], app: pressed('#dock').dataset.app, message: draft && draft.querySelector('.vdraft') ? 'Voice note, ' + said : said});
     }
   }, true);
 
