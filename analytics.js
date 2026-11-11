@@ -55,11 +55,16 @@
     set(granted ? 'granted' : 'denied');
     track(granted ? 'consent_granted' : 'consent_declined');
     if (granted && us) rb2b();
-    /* RB2B cannot be stopped once it runs on a page: what it stored here is removed and the page loaded again without it */
+    /* RB2B cannot be stopped once it runs on a page: what it and the partner it calls (LiveIntent, the _li_ and _lc2_ names)
+       stored here is removed, and the page loaded again without it. A cookie's domain cannot be read back, so each way it may have been set is cleared */
     if (!granted && window.reb2b){
+      var theirs = /^(_reb2b|_li_|_lc2_)/, host = location.hostname.replace(/^www\./, '');
       try {
-        [localStorage, sessionStorage].forEach(function(st){ Object.keys(st).forEach(function(k){ if (k.indexOf('_reb2b') === 0) st.removeItem(k); }); });
-        document.cookie.split('; ').forEach(function(c){ if (c.indexOf('_reb2b') === 0) document.cookie = c.split('=')[0] + '=; max-age=0; path=/'; });
+        [localStorage, sessionStorage].forEach(function(st){ Object.keys(st).forEach(function(k){ if (theirs.test(k)) st.removeItem(k); }); });
+        document.cookie.split('; ').forEach(function(c){
+          var name = c.split('=')[0];
+          if (theirs.test(name)) ['', '; domain=' + host, '; domain=www.' + host].forEach(function(d){ document.cookie = name + '=; max-age=0; path=/' + d; });
+        });
       } catch (e) {}
       location.reload();
     }
