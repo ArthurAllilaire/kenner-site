@@ -216,8 +216,11 @@
     var st = $('ask-st'); if (st){ st.textContent = typing ? 'typing…' : ''; st.className = typing ? 'typing' : ''; }
     $('ask-clock').innerHTML = '<span class="num">'+clockNow()+'</span>'+SB_IOS;
     askBody.scrollTop = top;
-    askBody.scrollTo({top: askBody.scrollHeight, behavior: smooth && !still ? 'smooth' : 'auto'});
+    var outs = askBody.querySelectorAll('.out'), lastOut = outs[outs.length-1];
+    if (narrow() && !busy && lastOut) askBody.scrollTop = Math.max(0, askBody.scrollTop + lastOut.getBoundingClientRect().top - askBody.getBoundingClientRect().top - 12);
+    else askBody.scrollTo({top: askBody.scrollHeight, behavior: smooth && !still ? 'smooth' : 'auto'});
   }
+  function narrow(){ return window.matchMedia('(max-width: 760px)').matches; }
   function paintComposer(){ $('ask-cmp').outerHTML = APPS[app].composer(draft); }
   function say(m){ typing = false; fresh = log.length; log.push(m); paintBody(true); }
   function setTyping(on){ typing = on; fresh = log.length; paintBody(true); }
@@ -287,7 +290,8 @@
       trail.appendChild(els[0]); trail.appendChild(els[1]);
     }
     markEnd();
-    lookB.scrollTop = lookB.scrollHeight;
+    var open = trail.querySelector('.grp.open'), head = open && open.previousElementSibling;
+    lookB.scrollTop = narrow() && head ? Math.max(0, lookB.scrollTop + head.getBoundingClientRect().top - lookB.getBoundingClientRect().top - 8) : lookB.scrollHeight;
   }
   trail.addEventListener('click', function(e){
     var b = e.target.closest('.run > button');
