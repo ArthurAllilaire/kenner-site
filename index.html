@@ -24,9 +24,9 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&family=Instrument+Sans:wght@400;500;600&display=swap">
 <style>
-/* Layout: photo hero, then light grey and white bands with white product fragments (two-tone headlines, hairline numbered rows), one night band for the hub, a photo close. Single light look by design. */
+/* Layout: light hero with the rooftop photograph in a frame (kenner's mark is the voice in it), then light grey and white bands with white product fragments (two-tone headlines, hairline numbered rows), one night band for the hub, a photo close. Single light look by design. */
 :root{
-  --ink:#0A0B1E; --muted:#5D6173; --grey:#8B8E9C; --line:#E5E7EC; --line-2:#DADDE3;
+  --ink:#0A0B1E; --muted:#5D6173; --grey:#696D7E; --grey-lg:#7C8091; --line:#E5E7EC; --line-2:#DADDE3;
   --ground:#F4F5F7; --paper:#FFFFFF; --accent:#1438CA;
   --night:#0A0B1E; --night-card:#11142B; --night-tile:#181C38; --on-night:#FFFFFF; --on-night-muted:#9DA3C2; --night-line:rgba(255,255,255,.12);
   --good:#1F7A48; --good-bg:#E6F6EC;
@@ -43,21 +43,22 @@
 html{scroll-behavior:smooth}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 body{margin:0;background:var(--paper);color:var(--ink);font:400 16px/1.55 var(--text);-webkit-font-smoothing:antialiased;overflow-x:hidden}
-body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:60;background:var(--night)}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:60;background:var(--ground)}
 h1,h2,h3,p{margin:0}
+p{text-wrap:pretty}
 a{color:inherit}
-img{max-width:100%;display:block}
+img{max-width:100%;height:auto;display:block}
 [hidden]{display:none!important}
 .wrap{max-width:1200px;margin:0 auto;padding-left:var(--gl);padding-right:var(--gr)}
 .sec{padding-block:var(--sec)}
 .h2{font:400 clamp(30px,3.7vw,50px)/1.06 var(--display);letter-spacing:-.032em;text-wrap:balance}
-.h2 span{color:var(--grey)}
+.h2 span{color:var(--grey-lg)}
 .night .h2 span,.close .h2 span{color:var(--on-night-muted)}
 .center{text-align:center}
 .h2.center>span{display:block}
 .lead-in{max-width:980px}
 a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
-.night a:focus-visible,.night button:focus-visible,.hero a:focus-visible,.close a:focus-visible{outline-color:#fff}
+.night a:focus-visible,.night button:focus-visible,.close a:focus-visible,.aud a:focus-visible,.aud button:focus-visible{outline-color:#fff}
 
 /* buttons */
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:48px;padding:0 22px;border-radius:var(--r-sm);border:1px solid transparent;font:500 15.5px/1 var(--text);text-decoration:none;white-space:nowrap;cursor:pointer;transition:background .2s,border-color .2s,color .2s,transform .16s var(--ease)}
@@ -66,68 +67,111 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
 .btn-white{background:#fff;color:var(--ink)}
 .btn-ghost{border-color:rgba(255,255,255,.28);color:#fff}
 .btn-ink{background:var(--ink);color:#fff}
+.btn-line{border-color:var(--line-2);color:var(--ink)}
 /* hover states only for a pointer that can hover: on a touch screen a tap would leave them stuck */
 @media (hover:hover) and (pointer:fine){
 .btn-white:hover{background:#E9ECF6}
 .btn-ghost:hover{border-color:rgba(255,255,255,.6)}
 .btn-ink:hover{background:#262A45}
+.btn-line:hover{border-color:var(--ink)}
 }
 
-/* nav */
+/* nav: ink on the light hero; a light glass bar once the page moves, plain white past the hero */
 .nav{position:fixed;top:env(safe-area-inset-top,0px);left:0;right:0;z-index:50;transition:background .3s,box-shadow .3s}
 .nav-in{display:flex;align-items:center;justify-content:space-between;gap:16px;height:60px}
-/* the white and the ink lockup sit on top of each other and crossfade at the bar's pace; the one button changes colour with it */
-.logo{display:grid}
-.logo img{grid-area:1/1;height:21px;width:auto;transition:opacity .3s}
-.logo .ink{opacity:0}
+.logo{display:block}
+.logo img{height:21px;width:auto}
 .links{display:flex;align-items:center;gap:30px;font-size:14.5px}
-.links a:not(.btn){color:rgba(255,255,255,.72);text-decoration:none;transition:color .2s}
-.nav .cta{transition:background .3s,border-color .3s,color .3s,transform .16s var(--ease)}
-.nav.dim{background:rgba(10,11,30,.58);-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);box-shadow:0 1px 0 var(--night-line)}
-.nav.solid{background:rgba(255,255,255,.92);-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);box-shadow:0 1px 0 var(--line)}
-.nav.solid .logo .white{opacity:0}.nav.solid .logo .ink{opacity:1}
-.nav.solid .links a:not(.btn){color:var(--muted)}
-.nav.solid .cta{background:var(--ink);color:#fff}
-@media (hover:hover) and (pointer:fine){
-.links a:not(.btn):hover{color:#fff}
-.nav.solid .links a:not(.btn):hover{color:var(--ink)}
-.nav.solid .cta:hover{background:#262A45}
-}
-@media (max-width:860px){.links a:not(.btn){display:none}}
+.links a:not(.btn){color:var(--muted);text-decoration:none;transition:color .2s}
+.nav.dim{background:rgba(244,245,247,.86);-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);box-shadow:0 1px 0 var(--line)}
+.nav.solid{background:#fff;box-shadow:0 1px 0 var(--line)}
+@media (hover:hover) and (pointer:fine){.links a:not(.btn):hover{color:var(--ink)}}
+@media (max-width:860px){.links a:not(.btn){display:none}.nav .btn-sm{height:44px}}
 
-/* hero */
-.hero{position:relative;background:var(--night);color:#fff;overflow:hidden}
-.hero-img{position:absolute;inset:0;overflow:hidden}
-.hero-img img{position:absolute;inset:0;width:100%;height:100%;max-width:none;object-fit:cover;object-position:60% 50%}
-.hero-img::after{content:"";position:absolute;inset:0;background:
-  linear-gradient(90deg,rgba(10,11,30,.94) 0%,rgba(10,11,30,.78) 34%,rgba(10,11,30,.22) 66%,rgba(10,11,30,.1) 100%),
-  linear-gradient(180deg,rgba(10,11,30,.45) 0%,rgba(10,11,30,0) 22%,rgba(10,11,30,0) 70%,rgba(10,11,30,.85) 100%)}
-.hero-in{position:relative;padding-top:calc(60px + clamp(84px,11vw,156px));padding-bottom:clamp(110px,12vw,170px)}
-.hero-copy{max-width:720px;display:flex;flex-direction:column;gap:26px}
-.eyebrow{font-size:14.5px;font-weight:500;color:var(--on-night-muted)}
-.hero h1{font:400 clamp(44px,5.8vw,80px)/.98 var(--display);letter-spacing:-.042em;text-wrap:balance}
-.hero .sub{font-size:clamp(17px,1.45vw,20px);line-height:1.5;color:rgba(255,255,255,.74);max-width:660px;text-wrap:balance}
+/* hero: light ground and ink words on the left; on the right the rooftop photograph in a rounded frame, with kenner's mark as the voice.
+   One control: click the mark (or the button under it) to hear a real call. The rays move with the sound and reach for the pointer,
+   and two messages arrive while it plays, as they do on the technician's phone. The hero fills the first screen, the logo strip at its foot */
+.hero{position:relative;display:flex;flex-direction:column;min-height:min(100vh,1040px);background:var(--ground);color:var(--ink);overflow:hidden}
+@supports (height:100svh){.hero{min-height:min(100svh,1040px)}}
+.hero-in{position:relative;flex:1 0 auto;width:100%;display:flex;flex-direction:column;justify-content:center;padding-top:calc(60px + clamp(32px,5vw,72px));padding-bottom:clamp(32px,5vw,72px)}
+.hero-copy{max-width:min(519px,44%);display:flex;flex-direction:column;gap:26px}
+.hero h1{font:400 clamp(40px,4.5vw,65px)/.98 var(--display);letter-spacing:-.042em;text-wrap:balance}
+.hero .sub{font-size:clamp(17px,1.45vw,20px);line-height:1.5;color:var(--muted);max-width:660px;text-wrap:balance}
 .acts{display:flex;flex-wrap:wrap;gap:12px;margin-top:4px}
-/* hero annotation: a hairline from the phone's light to Kenner's answer */
-.anno{position:absolute;z-index:2;left:0;top:0;width:0;height:0;opacity:0;transition:opacity .9s var(--ease) .3s}
-.anno.on{opacity:1}
-.anno .dot{position:absolute;left:-5px;top:-5px;width:10px;height:10px;border-radius:50%;background:#fff;box-shadow:0 0 0 5px rgba(255,255,255,.2)}
-.anno .ln{position:absolute;left:0;bottom:12px;width:0;height:236px;border-left:1px solid rgba(255,255,255,.55)}
-.anno .lb{position:absolute;left:14px;top:-252px;width:300px;display:flex;flex-direction:column;gap:6px;text-shadow:0 1px 14px rgba(10,11,30,.8)}
-.anno .lb small{display:flex;align-items:center;gap:7px;font-size:12.5px;color:rgba(255,255,255,.72)}
-.anno .lb small img{width:12px;height:12px;filter:brightness(0) invert(1)}
-.anno .lb p{font:400 19px/1.32 var(--display);letter-spacing:-.01em;color:#fff}
-.anno .lb em{font-style:normal;font-size:13px;color:rgba(255,255,255,.84)}
-@media (prefers-reduced-motion:reduce){.anno{transition:none}}
-.strip{position:relative;border-top:1px solid var(--night-line)}
+/* the frame: between the nav and the hero's foot, never taller than 760px (on a tall monitor it stays a near-square and sits centred) */
+.fin{position:absolute;z-index:2;right:var(--gr);top:104px;bottom:40px;max-height:760px;margin-block:auto;width:min(628px,52%);container-type:size;display:flex;flex-direction:column;align-items:center;gap:18px;padding-top:48px;border-radius:var(--r-lg);overflow:hidden;background:var(--night);color:#fff}
+.fin-img{position:absolute;inset:0;width:100%;height:100%;max-width:none;object-fit:cover;object-position:50% 50%}
+.fin::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,11,30,.34),rgba(10,11,30,.12) 46%,rgba(10,11,30,.56));pointer-events:none}
+/* the mark: its size also answers to the frame's height, so it stays in the sky on a short window */
+.mk{position:relative;z-index:1;flex:none;--mw:min(46cqw,40cqh,280px);width:var(--mw);aspect-ratio:1;margin-top:calc(var(--mw)*-.041);touch-action:none}
+.mk svg{display:block;width:100%;height:100%;overflow:visible}
+.mk-play{appearance:none;border:0;position:absolute;inset:0;width:100%;height:100%;margin:0;padding:0;border-radius:50%;background:none;color:#fff;display:grid;place-items:center;cursor:pointer}
+.mk-play svg{display:none;width:9.5%;height:9.5%}
+.mk.playing .mk-play svg{display:block}
+.mk-play:focus-visible{outline:2px solid #fff;outline-offset:4px}
+.mk.by-ptr .mk-play:focus-visible{outline:none}
+/* under the mark: the slot the two messages arrive in, then the button, which gives way to the spoken line while the call plays.
+   Button and line share one fixed height, so nothing above them moves when a line wraps */
+.mk-foot{position:absolute;z-index:1;left:48px;right:48px;bottom:44px;display:flex;flex-direction:column;align-items:center;gap:12px}
+.mk-cta{appearance:none;display:inline-flex;align-items:center;gap:9px;height:44px;margin:2px 0;padding:0 16px 0 13px;border-radius:var(--r-sm);border:1px solid rgba(255,255,255,.36);background:none;color:#fff;font:500 15px/1 var(--text);white-space:nowrap;cursor:pointer;transition:border-color .2s,transform .16s var(--ease)}
+.mk-cta:active{transform:scale(.97)}
+.mk-cta svg{width:14px;height:14px}
+.mk-cta span{font-weight:400;font-variant-numeric:tabular-nums}
+.mk-cta:focus-visible{outline:2px solid #fff;outline-offset:3px}
+@media (hover:hover) and (pointer:fine){.mk-cta:hover{border-color:#fff}}
+.mk-cap{height:48px;max-width:44ch;margin:0;padding:0 12px;display:flex;align-items:center;justify-content:center;overflow:hidden;font-size:15px;line-height:24px;color:#fff;text-align:center;text-wrap:balance}
+.mk-cap img{display:inline-block;width:13px;height:13px;margin:0 7px 0 0;vertical-align:-1.5px;filter:brightness(0) invert(1)}
+.mk.playing ~ .mk-foot .mk-cta,.mk:not(.playing) ~ .mk-foot .mk-cap{display:none}
+.mk-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+/* the two messages share one place. The text from Kenner is an iPhone notification in liquid glass (clear glass, a sheen from the top left,
+   a bright hairline rim) and leaves to the left; the action is the app's own quiet grey row and leaves to the right */
+.mk-msgs{display:grid;justify-items:center;align-items:end}
+.mk-note,.mk-act{grid-area:1/1;display:flex;align-items:center;width:min(264px,calc(100cqw - 48px));text-align:left;transition:opacity .45s var(--ease),transform .6s var(--ease)}
+.mk-note{position:relative;isolation:isolate;gap:9px;padding:10px 15px 10px 10px;border-radius:24px;background:linear-gradient(135deg,rgba(255,255,255,.2),rgba(255,255,255,.06) 46%,rgba(255,255,255,.12)),rgba(12,14,34,.26);-webkit-backdrop-filter:blur(12px) saturate(1.9) brightness(1.08);backdrop-filter:blur(12px) saturate(1.9) brightness(1.08);box-shadow:0 10px 28px rgba(5,8,25,.24);color:#fff;text-shadow:0 1px 2px rgba(5,8,25,.35);font:400 13.5px/1.3 -apple-system,BlinkMacSystemFont,"SF Pro Text",var(--text)}
+.mk-note::before{content:"";position:absolute;inset:0;z-index:-1;border-radius:inherit;background:radial-gradient(130% 90% at 8% 0%,rgba(255,255,255,.32),transparent 52%),radial-gradient(90% 70% at 100% 100%,rgba(255,255,255,.13),transparent 60%);pointer-events:none}
+.mk-note::after{content:"";position:absolute;inset:0;border-radius:inherit;padding:1px;background:linear-gradient(135deg,rgba(255,255,255,.95),rgba(255,255,255,.2) 30%,rgba(255,255,255,.08) 62%,rgba(255,255,255,.7));-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none}
+.mk-note .av{position:relative;flex:none;width:30px;height:30px}
+.mk-note .av img{width:30px;height:30px;border-radius:50%}
+.mk-note .av i{position:absolute;right:-3px;bottom:-3px;width:14px;height:14px;border-radius:4px;background:url(logos/tiles/imessage.svg) center/cover no-repeat;box-shadow:0 0 0 1.5px rgba(255,255,255,.45)}
+.mk-note .tx{flex:1;min-width:0;display:grid;grid-template-columns:minmax(0,1fr) auto;column-gap:8px;align-items:baseline}
+.mk-note b{font-weight:600}
+.mk-note time{font-size:12px;color:rgba(255,255,255,.76)}
+.mk-note p{grid-column:1/-1;margin:0;text-wrap:wrap}
+.mk-act{gap:10px;padding:9px 9px 9px 12px;border-radius:10px;background:#F2F3F7;color:var(--ink);font:400 13.5px/1.35 var(--text)}
+.mk-act svg{flex:none;width:17px;height:17px;color:var(--grey)}
+.mk-act .chev{width:15px;height:15px}
+.mk-act .tx{flex:1;min-width:0;display:flex;flex-direction:column}
+.mk-act small{font-size:12.5px;color:var(--grey)}
+.mk-note.out,.mk-act.out{opacity:0;transform:translateY(14px) scale(.95);transition:opacity .3s ease,transform 0s .3s}
+.mk-note.gone,.mk-act.gone{opacity:0;transition:transform .5s cubic-bezier(.5,0,.85,.45),opacity .18s ease .34s}
+.mk-note.gone{transform:translateX(calc(-50cqw - 100%))}
+.mk-act.gone{transform:translateX(calc(50cqw + 100%))}
+/* over the mark, a small tag at the pointer says a click plays the call; it goes once the call runs */
+.mk-tip{position:fixed;z-index:60;left:0;top:0;padding:8px 11px;border-radius:8px;background:var(--ink);color:#fff;font:500 13px/1 var(--text);white-space:nowrap;pointer-events:none;opacity:0;transition:opacity .15s}
+.mk-tip.on{opacity:1}
+@media (prefers-reduced-motion:reduce){.mk-note,.mk-act,.mk-note.out,.mk-act.out,.mk-note.gone,.mk-act.gone{transition:none}}
+.strip{position:relative;border-top:1px solid var(--line-2)}
 .strip-in{display:flex;flex-wrap:wrap;align-items:center;gap:14px 34px;padding-block:24px}
-.strip p{font-size:13px;color:var(--on-night-muted);white-space:nowrap}
-.strip img{width:auto;filter:brightness(0) invert(1);opacity:.62}
-.strip .yc{display:flex;align-items:center;gap:6px;font-weight:600;font-size:16px;letter-spacing:-.02em;color:rgba(255,255,255,.62)}
+.strip p{font-size:13px;color:var(--grey);white-space:nowrap}
+.strip img{width:auto;filter:brightness(0);opacity:.6}
+.strip .yc{display:flex;align-items:center;gap:6px;font-weight:600;font-size:16px;letter-spacing:-.02em;color:rgba(10,11,30,.62)}
+/* tablet and phone: the frame sits under the buttons; the messages lie over the foot of the mark, so no gap waits for them */
 @media (max-width:980px){
-  .anno{display:none}
-  .hero-img img{object-position:68% 50%}
-  .hero-img::after{background:linear-gradient(180deg,rgba(10,11,30,.7),rgba(10,11,30,.82) 55%,rgba(10,11,30,.95))}
+  .hero-copy{max-width:720px}
+  .fin{position:relative;right:auto;top:auto;bottom:auto;width:100%;max-width:440px;max-height:none;container-type:normal;margin:22px 0 0;gap:10px;padding:26px 0 14px}
+  .fin-img{object-position:55% 50%}
+  .mk{--mw:min(62vw,260px);margin-top:0}
+  .mk-foot{position:relative;left:auto;right:auto;bottom:auto;gap:0}
+  .mk-msgs{position:absolute;left:0;right:0;bottom:calc(100% + 2px)}
+  .mk-cta{margin:9.5px 0}
+  .mk-cap{height:63px;font-size:14px;line-height:21px}
+}
+@media (max-width:760px){
+  .hero-in{justify-content:flex-start;padding-top:calc(60px + 28px);padding-bottom:24px}
+  .hero-copy{gap:18px}
+  .strip-in{gap:10px 24px;padding-block:16px}
+  .strip img{zoom:.82}
+  .strip .yc{font-size:13.5px}
 }
 
 /* value: two audience panels in the night tones, each with a product window rising from the bottom edge and running off the right */
@@ -140,7 +184,10 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
 .aud-copy h3{font:400 clamp(28px,2.9vw,40px)/1.05 var(--display);letter-spacing:-.03em}
 .aud-copy p{font-size:clamp(16px,1.3vw,18px);line-height:1.5;color:rgba(255,255,255,.84);max-width:430px;text-wrap:pretty}
 .aud-copy .btn{margin-top:10px;height:46px}
-.win{--ml:clamp(24px,10cqw,72px);flex:0 0 50%;min-height:0;align-self:flex-start;width:max(760px,100%);margin:auto 0 0 var(--ml);display:flex;overflow:hidden;background:#fff;color:var(--ink);border-radius:var(--r-sm) 0 0 0;box-shadow:0 0 0 1px rgba(255,255,255,.1),0 24px 70px rgba(0,0,0,.5);font:400 13px/1.4 var(--text)}
+.win{--ml:clamp(24px,10cqw,72px);flex:0 0 50%;min-height:0;align-self:flex-start;width:max(760px,100%);margin:auto 0 0 var(--ml);display:flex;overflow:hidden;background:#fff;color:var(--ink);border-radius:var(--r-sm) 0 0 0;box-shadow:0 0 0 1px rgba(255,255,255,.1),0 24px 70px rgba(0,0,0,.5);font:400 13px/1.4 var(--text);position:relative}
+/* the last visible row fades out instead of being cut through its letters at the panel's edge */
+.win::after{content:"";position:absolute;left:52px;right:0;bottom:0;height:52px;background:linear-gradient(180deg,rgba(255,255,255,0),#fff);pointer-events:none}
+.win-chat::after{left:0}
 /* leaders: the web app */
 .rail{flex:none;width:52px;background:var(--night);display:flex;flex-direction:column;align-items:center;gap:17px;padding:16px 0;color:rgba(255,255,255,.5);font-size:9.5px;line-height:1}
 .rail img{width:21px;height:21px;margin-bottom:8px;filter:brightness(0) invert(1)}
@@ -193,7 +240,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
    widening only uncovers more of it, and the filter is not drawn again on every frame */
 .aud-bg{right:auto;width:calc(var(--pw)*1.1);will-change:transform}
 #for-technicians .aud-bg{left:auto;right:0}
-.duo:has(.aud:hover) .aud:not(:hover),.duo:has(.aud:focus-within) .aud:not(:focus-within):not(:hover){opacity:.45}
+.duo:has(.aud:hover) .aud:not(:hover):not(:focus-within),.duo:has(.aud:focus-within) .aud:not(:focus-within):not(:hover){opacity:.45}
 .duo .aud:hover,.duo:not(:has(.aud:hover)) .aud:focus-within{flex-grow:1.2}
 /* nothing inside a panel may re-wrap while it widens or narrows: sizes come from the panel's resting width, not its current one */
 .duo{--pw:calc((min(100vw,1200px) - var(--gl) - var(--gr) - 16px)/2);--pad:clamp(24px,3.4vw,52px)}
@@ -208,10 +255,10 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
 .faq{display:flex;flex-direction:column;align-items:center;gap:clamp(36px,4.5vw,56px)}
 .qs{width:100%;max-width:820px;border-top:1px solid var(--line)}
 .q{border-bottom:1px solid var(--line)}
-.q summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:24px;padding:24px 0;font:400 clamp(18px,1.6vw,21px)/1.3 var(--display);letter-spacing:-.01em}
+.q summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:24px;padding:24px 0;font:400 clamp(18px,1.6vw,21px)/28px var(--display);letter-spacing:-.01em}
 .q summary::-webkit-details-marker{display:none}
 .q summary i{position:relative;flex:none;width:18px;height:18px;margin-right:2px;transition:transform .3s var(--ease)}
-.q summary i::before,.q summary i::after{content:"";position:absolute;left:0;top:50%;width:18px;height:1.25px;margin-top:-.625px;background:var(--ink)}
+.q summary i::before,.q summary i::after{content:"";position:absolute;left:0;top:8.5px;width:18px;height:1.5px;background:var(--ink)}
 .q summary i::after{transform:rotate(90deg);transition:opacity .2s}
 .q[open] summary i{transform:rotate(180deg)}
 .q[open] summary i::after{opacity:0}
@@ -261,7 +308,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
 /* hairline columns (agents) */
 .src4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));margin-top:clamp(44px,5vw,64px)}
 .src4 .src{position:relative;padding:30px 28px 0 0;border-top:1px solid var(--line)}
-.src4 .src::before,.col+.col::before{content:"";position:absolute;width:11px;height:11px;background:linear-gradient(var(--grey),var(--grey)) center/1px 100% no-repeat,linear-gradient(var(--grey),var(--grey)) center/100% 1px no-repeat;opacity:.7}
+.src4 .src::before,.col+.col::before{content:"";position:absolute;width:11px;height:11px;background:linear-gradient(var(--grey-lg),var(--grey-lg)) center/1px 100% no-repeat,linear-gradient(var(--grey-lg),var(--grey-lg)) center/100% 1px no-repeat;opacity:.7}
 .src4 .src::before{top:-6px;left:-5px}
 .src4 .src svg{width:22px;height:22px;color:var(--ink)}
 .src4 .src h3{font:500 17px/1.3 var(--display);letter-spacing:-.01em;margin:18px 0 6px}
@@ -270,8 +317,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
 @media (max-width:520px){.src4{grid-template-columns:minmax(0,1fr)}}
 
 /* the messages section fills one screen under the nav (capped on tall monitors), content centred */
-#reality{overflow-x:clip;min-height:min(calc(100vh - 60px),820px);display:flex;flex-direction:column;justify-content:center;scroll-margin-top:60px}
-@supports (height:100svh){#reality{min-height:min(calc(100svh - 60px),820px)}}
+#reality{overflow-x:clip;scroll-margin-top:60px}
 #reality>.wrap{width:100%}
 /* reality: drifting technician messages */
 .real{margin-top:0}
@@ -284,9 +330,16 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
 .mq-row.rev .mq-track{animation-direction:reverse}
 @media (hover:hover) and (pointer:fine){.mq:hover .mq-track{animation-play-state:paused}}
 @keyframes mq{to{transform:translateX(calc(-50% - 8px))}}
-@media (prefers-reduced-motion:reduce){.mq-track{animation:none}}
+.mq.paused .mq-track{animation-play-state:paused}
+@media (prefers-reduced-motion:reduce){.mq-track{animation:none}.mq-ctl{display:none}}
+.mq-ctl{appearance:none;border:0;display:flex;align-items:center;justify-content:center;width:44px;height:44px;margin:4px auto 0;border-radius:var(--r-sm);background:none;color:var(--muted);cursor:pointer;transition:background .2s,color .2s,transform .16s var(--ease)}
+.mq-ctl:active{transform:scale(.95)}
+.mq-ctl svg{width:18px;height:18px}
+.mq-ctl .pl,.mq-ctl[aria-pressed="true"] .pa{display:none}
+.mq-ctl[aria-pressed="true"] .pl{display:block}
+@media (hover:hover) and (pointer:fine){.mq-ctl:hover{background:var(--ground);color:var(--ink)}}
 .msg{flex:none;display:flex;align-items:baseline;gap:12px;padding:14px 20px;background:color-mix(in oklab,var(--ink) 7%,var(--paper));border-radius:var(--r-lg) var(--r-lg) var(--r-lg) 4px;font-size:16px;font-weight:500;line-height:1.35;white-space:nowrap}
-.msg small{font-size:13px;font-weight:400;color:var(--grey);font-variant-numeric:tabular-nums}
+.msg small{font-size:13px;font-weight:400;color:var(--muted);font-variant-numeric:tabular-nums}
 /* phone: each message wraps into a bubble that fits the screen (name and time under it), and the section is short enough to see whole */
 @media (max-width:760px){
 #reality{padding-block:48px}
@@ -326,6 +379,8 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
 .sys .tile{aspect-ratio:1.2/1}
 .tile img{height:28px;width:auto;opacity:.9}
 .tile img.wm{height:15px;max-width:76%}
+.sys .tile img.m:not(.wm):not(.df):not(.cr):not(.em){height:32px}
+.sys .tile img.wm{height:17px;max-width:80%}
 .tile img.sil{filter:brightness(0) invert(1)}
 .tile span{font-size:12.5px;color:var(--on-night-muted)}
 .hub.hov .tile{opacity:.32}
@@ -345,7 +400,9 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
 .tip p:empty{display:none}
 .tile .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
 .sys .tile .kapp{display:flex;align-items:center;justify-content:center}
-@media (max-width:860px){.sys{grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}#hub .chs{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}.tip{width:240px}}
+@media (max-width:1100px){.sys{grid-template-columns:repeat(5,minmax(0,1fr))}.sys .tile{aspect-ratio:1.7/1}.sys .tile img.m:not(.wm):not(.df):not(.cr):not(.em){height:38px}.sys .tile img.wm{height:20px}.sys .tile img.em{height:36px}}
+@media (max-width:860px){#hub .chs{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}.tip{width:240px}}
+@media (max-width:640px){.sys{grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}.sys .tile{aspect-ratio:1.2/1}.sys .tile img.m:not(.wm):not(.df):not(.cr):not(.em){height:30px}.sys .tile img.wm{height:13px;max-width:84%}.sys .tile img.em{height:28px}}
 
 /* start: how a team starts, and who it works with */
 #start{background:var(--ground)}
@@ -370,23 +427,23 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
 
 /* close */
 .close{position:relative;background:var(--night) url(img/roof.jpg) 50% 62%/cover no-repeat;color:#fff;overflow:hidden}
-.close::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,11,30,.72) 0%,rgba(10,11,30,.38) 45%,rgba(10,11,30,.7) 100%)}
+.close::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,11,30,.74) 0%,rgba(10,11,30,.6) 45%,rgba(10,11,30,.76) 100%)}
 .close-in{position:relative;display:flex;flex-direction:column;align-items:center;text-align:center;gap:20px;padding-block:clamp(110px,13vw,190px)}
-.close h2{font:400 clamp(40px,5.6vw,76px)/1 var(--display);letter-spacing:-.04em}
-.close p.line{font-size:17px;color:rgba(255,255,255,.78);max-width:480px}
+.close h2{font:400 clamp(30px,3.7vw,50px)/1.06 var(--display);letter-spacing:-.032em;text-wrap:balance}
+.close p.line{font-size:17px;color:rgba(255,255,255,.92);max-width:480px}
 
 /* footer */
 footer{background:var(--paper)}
 .f-in{display:grid;grid-template-columns:1.6fr 1fr 1.4fr;gap:32px;padding-block:56px 36px}
 .f-in img{height:22px;width:auto}
 .f-in .tl{margin-top:14px;font-size:15px;color:var(--muted)}
-.f-in h4{margin:0 0 12px;font-size:13px;font-weight:500;color:var(--grey)}
+.f-in h3{margin:0 0 12px;font-size:13px;font-weight:500;color:var(--grey)}
 .f-in a{display:block;text-decoration:none;font-size:15px;color:var(--muted);padding:3px 0}
 @media (hover:hover) and (pointer:fine){.f-in a:hover{color:var(--ink)}}
 .f-in .secu{font-size:14px;line-height:1.7;color:var(--muted)}
 .f-bot{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;padding-block:20px 40px;border-top:1px solid var(--line);font-size:13px;color:var(--grey)}
 .f-bot a{color:inherit;text-decoration:none;margin-left:18px}
-@media (max-width:760px){.f-in{grid-template-columns:minmax(0,1fr)}}
+@media (max-width:760px){.f-in{grid-template-columns:minmax(0,1fr)}.f-in a{display:flex;align-items:center;min-height:44px;padding:0}.f-in h3{margin-bottom:4px}.f-bot{align-items:center}.f-bot a{display:inline-flex;align-items:center;min-height:44px}}
 </style>
 <link rel="stylesheet" href="agents/agents.css">
 <style>
@@ -432,13 +489,13 @@ footer{background:var(--paper)}
 #showcase .lap-s{border-radius:inherit}
 #showcase .lap-p{padding-left:0}
 }
-/* app picker: bare logos, no tiles and no marker bar; the chosen one is in colour, the others greyed */
+/* app picker: bare logos, no tiles and no marker bar; the chosen one is at full strength, the others dimmed but still in colour (grey is kept for the agents without a demo) */
 #showcase .dock button[aria-pressed="true"]::after{display:none}
 #showcase .dock{gap:20px}
-#showcase .dock button{width:34px;height:34px;border-radius:0;opacity:.4;filter:grayscale(1);transition:opacity .25s,filter .25s,transform .16s var(--ease)}
+#showcase .dock button{width:34px;height:34px;border-radius:0;opacity:.45;transition:opacity .25s,transform .16s var(--ease)}
 #showcase .dock button:active{transform:scale(.95)}
-@media (hover:hover) and (pointer:fine){#showcase .dock button:hover{opacity:.8;filter:none}}
-#showcase .dock button[aria-pressed="true"]{opacity:1;filter:none}
+@media (hover:hover) and (pointer:fine){#showcase .dock button:hover{opacity:.85}}
+#showcase .dock button[aria-pressed="true"]{opacity:1}
 #showcase .dock .lg{display:block;width:100%;height:100%;background:var(--c);-webkit-mask:var(--m) center/var(--s,contain) no-repeat;mask:var(--m) center/var(--s,contain) no-repeat}
 #showcase .dock img{border-radius:0}
 /* agent tabs: rounded rectangles instead of full pills; all six agents in one bar, the four without a demo greyed and not clickable */
@@ -456,7 +513,11 @@ footer{background:var(--paper)}
 #showcase .agents{scroll-margin-top:72px}
 #showcase .work{display:flex;flex-direction:column;align-items:center;gap:10px;min-height:0;height:var(--mstage);padding:12px;border-radius:20px}
 #showcase .dock{order:0;flex:none;flex-direction:row;justify-content:center;gap:12px;margin:0 0 4px}
-#showcase .dock button{width:38px;height:38px}
+#showcase .dock button{width:44px;height:44px}
+#showcase .chs{gap:8px}
+#showcase .ch{height:36px}
+#showcase .cite{position:relative}
+#showcase .cite::after{content:"";position:absolute;inset:-8px -4px}
 #showcase .dock button[aria-pressed="true"]::after{left:50%;top:auto;bottom:-8px;width:18px;height:3px;margin:0 0 0 -9px}
 #showcase .work .phone{order:1;zoom:1;width:100%;max-width:520px;height:auto;flex:1.5 1 0;min-height:0;margin:0;padding:0;border-radius:16px;background:none;box-shadow:0 14px 34px rgba(0,0,0,.38)}
 #showcase .work .phone::before,#showcase .work .phone::after,#showcase .phone .scr::before,#showcase .phone .sbar,#showcase .phone .home{display:none}
@@ -474,10 +535,9 @@ footer{background:var(--paper)}
 @media (max-width:760px){
 #showcase{--mstage:clamp(460px,calc(100vh - 100px),700px)}
 @supports (height:100svh){#showcase{--mstage:clamp(460px,calc(100svh - 100px),700px)}}
-#showcase .agents{display:flex;justify-content:flex-start;gap:22px;width:100%;overflow-x:auto;scrollbar-width:none}
-#showcase .agents::-webkit-scrollbar{display:none}
-#showcase .agents button,#showcase .agents .ag-off{flex:none;height:40px;padding:0 2px;font-size:14px}
-#showcase .agents .ag-off{line-height:40px}
+#showcase .agents{display:flex;flex-wrap:wrap;justify-content:center;gap:0 22px;width:100%}
+#showcase .agents button,#showcase .agents .ag-off{flex:none;height:44px;padding:0 2px;font-size:14px}
+#showcase .agents .ag-off{line-height:44px}
 #showcase .work{background:none;padding:0;border-radius:0;overflow:visible}
 #showcase .work .phone{box-shadow:none}
 #showcase .lap{box-shadow:none}
@@ -486,8 +546,8 @@ footer{background:var(--paper)}
    The halo is a disc behind the button's icon that only scales and fades (nothing is repainted); --k takes it 18px past the button's edge */
 #showcase .snd{transition:transform .16s var(--ease)}
 #showcase .snd:active{transform:scale(.95)}
-#showcase .snd.cue{position:relative;isolation:isolate;animation:kn-bump 1.6s var(--ease) infinite}
-#showcase .snd.cue::after{content:"";position:absolute;inset:0;z-index:-1;border-radius:inherit;background:var(--cue);pointer-events:none;animation:kn-halo 1.6s var(--ease) infinite}
+#showcase .snd.cue{position:relative;isolation:isolate;animation:kn-bump 1.6s var(--ease) 3}
+#showcase .snd.cue::after{content:"";position:absolute;inset:0;z-index:-1;border-radius:inherit;background:var(--cue);pointer-events:none;opacity:0;animation:kn-halo 1.6s var(--ease) 3}
 #showcase .wa-in .snd{--k:2.2}
 #showcase .im-in .snd{--k:2.714}
 #showcase .kw-in .snd{--k:2.286}
@@ -497,7 +557,7 @@ footer{background:var(--paper)}
 @media (prefers-reduced-motion:no-preference){#showcase .tm-in .snd.cue{animation-name:kn-cue}}
 #showcase .tm-in .snd.cue::after{content:none}
 @keyframes kn-cue{0%{box-shadow:0 0 0 0 color-mix(in oklab,var(--cue) 70%,transparent);transform:scale(1)}35%{transform:scale(1.08)}70%,100%{box-shadow:0 0 0 18px transparent;transform:scale(1)}}
-.send-cue{position:absolute;z-index:30;display:flex;align-items:center;gap:6px;height:32px;padding:0 13px 0 10px;border-radius:var(--r-sm);background:#0A0B1E;color:#fff;font:500 13px/1 "Geist",system-ui,sans-serif;white-space:nowrap;box-shadow:0 10px 30px rgba(10,11,30,.35),0 0 0 1px rgba(255,255,255,.12);opacity:0;transform:translateX(6px);transition:opacity .3s var(--ease),transform .3s var(--ease);pointer-events:none}
+.send-cue{position:absolute;z-index:30;display:flex;align-items:center;gap:6px;height:32px;padding:0 13px 0 10px;border-radius:var(--r-sm);background:#0A0B1E;color:#fff;font:500 13px/1 "Geist",system-ui,sans-serif;white-space:nowrap;opacity:0;transform:translateY(-6px);transition:opacity .3s var(--ease),transform .3s var(--ease);pointer-events:none}
 .send-cue.on{opacity:1;transform:none;pointer-events:auto}
 .send-cue.on:active{transform:scale(.97);transition-duration:.16s}
 .send-cue{appearance:none;border:0;cursor:pointer}
@@ -508,20 +568,21 @@ footer{background:var(--paper)}
 .send-cue svg{width:16px;height:16px;transform:rotate(180deg)}
 .send-cue.up svg{transform:rotate(90deg)}
 @media (prefers-reduced-motion:reduce){#showcase .snd.cue{animation:none;box-shadow:0 0 0 4px color-mix(in oklab,var(--cue) 45%,transparent)}#showcase .snd.cue::after{content:none}.send-cue{transition:none}
-/* the demo's messages and steps fade in without the slide */
-#showcase .m-in,#showcase .trail .in{animation-name:kn-fade}}
+/* the demo's messages and steps fade in without the slide; the typing dots rest */
+#showcase .m-in,#showcase .trail .in{animation-name:kn-fade}
+#showcase .b.typ i,#showcase .ib.typ i,#showcase .tb.typ i{animation:none;opacity:.7}}
 </style>
 </head>
 <body>
 <header class="nav" id="nav">
   <div class="wrap nav-in">
-    <a class="logo" href="#top" aria-label="kenner home"><img class="white" src="brand/lockup-white.svg" alt="kenner"><img class="ink" src="brand/lockup-ink.svg" alt="kenner"></a>
+    <a class="logo" href="#top" aria-label="kenner home"><img src="brand/lockup-ink.svg" alt="kenner"></a>
     <nav class="links" aria-label="Main">
       <a href="#for-leaders">For service leaders</a>
       <a href="#for-technicians">For technicians</a>
       <a href="#agents">Agents</a>
       <a href="#deploy">Integrations</a>
-      <a class="btn btn-sm btn-white cta" href="https://calendar.app.google/fFpCL3WG3pJtqtC89" target="_blank" rel="noopener">Book a demo</a>
+      <a class="btn btn-sm btn-ink" href="https://calendar.app.google/fFpCL3WG3pJtqtC89" target="_blank" rel="noopener">Book a demo</a>
     </nav>
   </div>
 </header>
@@ -529,19 +590,29 @@ footer{background:var(--paper)}
 <main id="top">
   <!-- 1 · hero -->
   <section class="hero">
-    <div class="hero-img"><img id="hero-photo" src="img/hero-roof.jpg" alt="An HVAC/R technician checking his phone between condensing units on a roof at first light"></div>
-    <div class="anno" id="anno">
-      <span class="dot" aria-hidden="true"></span><span class="ln" aria-hidden="true"></span>
-      <div class="lb"><small><img src="brand/mark-ultramarine.svg" alt="">Kenner · 6:14 AM</small><p>Condenser fan 2 tripped twice this week. Check it before the compressor.</p><em>From the controller log and Dave’s job in September</em></div>
-    </div>
     <div class="wrap hero-in">
       <div class="hero-copy">
         <h1>The personal assistant for HVAC/R service</h1>
         <p class="sub">We activate your full service knowledge, answer every technician in seconds and take the paperwork off their hands.</p>
         <div class="acts">
-          <a class="btn btn-white" href="https://calendar.app.google/fFpCL3WG3pJtqtC89" target="_blank" rel="noopener">Book a demo</a>
-          <a class="btn btn-ghost" href="#value">See how it works</a>
+          <a class="btn btn-ink" href="https://calendar.app.google/fFpCL3WG3pJtqtC89" target="_blank" rel="noopener">Book a demo</a>
+          <a class="btn btn-line" href="#value">See how it works</a>
         </div>
+      </div>
+      <div class="fin" id="fin">
+        <img class="fin-img" src="img/hero-roof.jpg" width="2048" height="1152" fetchpriority="high" alt="An HVAC/R technician on his phone between condensing units on a roof at first light">
+        <div class="mk" id="mk">
+          <svg viewBox="0 0 100 100" aria-hidden="true"><defs><radialGradient id="mk-g" gradientUnits="userSpaceOnUse" cx="50" cy="50" r="50"><stop offset="0" stop-color="#fff"/><stop offset=".7" stop-color="#F1F5FF"/><stop offset="1" stop-color="#DFE8FF"/></radialGradient></defs><g id="mk-rays" fill="url(#mk-g)"></g></svg>
+          <button class="mk-play" id="mk-play" type="button" aria-pressed="false" aria-label="Play a technician’s call with Kenner, 47 seconds"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M5 3v10M11 3v10" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg></button>
+        </div>
+        <div class="mk-foot">
+          <div class="mk-msgs"><div class="mk-note out" id="mk-note" role="img" aria-label="A message from Kenner during the call: 2 photos attached"><span class="av"><img src="brand/logo-avatar.svg" alt=""><i></i></span><span class="tx"><b>Kenner</b><time>now</time><p>2 photos attached</p></span></div><div class="mk-act out" id="mk-act" role="img" aria-label="Kenner took an action during the call: updated the owner to George"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13.4 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-7.4"/><path d="M2 6h4"/><path d="M2 10h4"/><path d="M2 14h4"/><path d="M2 18h4"/><path d="M21.378 5.626a1 1 0 1 0-3.004-3.004l-5.01 5.012a2 2 0 0 0-.506.854l-.837 2.87a.5.5 0 0 0 .62.62l2.87-.837a2 2 0 0 0 .854-.506z"/></svg><span class="tx"><small>Kenner took an action</small><span>Updated the owner to George.</span></span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></div></div>
+          <button class="mk-cta" id="mk-cta" type="button"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M5.4 3.4v9.2L12.9 8z" fill="currentColor" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>Listen to a call<span>0:47</span></button>
+          <p class="mk-cap" id="mk-cap" aria-hidden="true"></p>
+        </div>
+        <p class="mk-sr">The call, in words. Kenner: Hey, it’s Kenner. What can I help you with? Technician: Hi Kenner, I’m at the site now and it’s throwing an F74 error. What does that mean again? Kenner: F74 means the boiler is reporting water pressure too low. It locks out the burner and stops heating. Since it’s recurring, compare the boiler reading with an external manometer. Technician: Sure, will do. Do you have any photos from the last visit you can send me, so I can compare? Kenner: I’ll send last visit’s photos. Sent to your iMessage. Technician: Cheers. And one more note before I continue: the owner has changed. It’s now George, no longer Tom, because he’s taken over from his father. Kenner: Got it. I’ll note George as the owner. Noted. Technician: Cheers Kenner, see you later. Kenner: See you later.</p>
+        <!-- the recorded call. Without the file, Play still runs the lines and the two messages, silently -->
+        <audio id="mk-audio" preload="none" src="audio/debrief.mp3"></audio>
       </div>
     </div>
     <div class="strip">
@@ -557,6 +628,7 @@ footer{background:var(--paper)}
       </div>
     </div>
   </section>
+  <div class="mk-tip" id="mk-tip" aria-hidden="true">Click to listen</div>
 
   <!-- 2 · value split + impact -->
   <section class="sec" id="value">
@@ -595,7 +667,7 @@ footer{background:var(--paper)}
         </div>
         <div class="win" role="img" aria-label="Kenner’s web app on the first-time fix page: 76% across all teams, up 9 points since June, with North at 81%, South at 74% and the night shift at 66%, and a table of the faults where jobs come back">
           <div class="rail">
-            <img src="brand/mark-ultramarine.svg" alt="">
+            <img src="brand/mark-ultramarine.svg" alt="" loading="lazy" decoding="async">
             <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 11l8-7 8 7v8a1 1 0 0 1-1 1h-4v-6H9v6H5a1 1 0 0 1-1-1z"/></svg>Home</span>
             <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="5" width="14" height="16" rx="2"/><path d="M9 3.5h6v3H9zM9 12h6M9 16h4"/></svg>Jobs</span>
             <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8l8-4 8 4v8l-8 4-8-4zM4 8l8 4 8-4M12 12v8"/></svg>Units</span>
@@ -649,7 +721,7 @@ footer{background:var(--paper)}
           <a class="btn btn-ghost" href="#showcase">Watch Kenner work</a>
         </div>
         <div class="win win-chat" role="img" aria-label="A message thread with Kenner. Carlos writes: Case 14 is at 10°F and climbing, coil’s iced up. Kenner answers: Defrost is ending too early, check the termination sensor first, with the alarm log, Dave’s job in April and the manual as sources">
-          <div class="ch-h"><img src="brand/logo-avatar.svg" alt=""><b>Kenner</b></div>
+          <div class="ch-h"><img src="brand/logo-avatar.svg" alt="" loading="lazy" decoding="async"><b>Kenner</b></div>
           <div class="ch-b">
             <div class="ch-me"><span>Case 14 is at 10°F and climbing. Coil’s iced up.</span><small>Carlos, 6:12 AM</small></div>
             <div class="ch-k">
@@ -688,14 +760,14 @@ footer{background:var(--paper)}
           <button type="button" data-app="im" aria-pressed="true" aria-label="iMessage"><span class="lg" style="--m:url(mono/imessage.svg);--s:132%;--c:linear-gradient(180deg,#5DF777,#0ABE2A)"></span></button>
           <button type="button" data-app="wa" aria-pressed="false" aria-label="WhatsApp"><span class="lg" style="--m:url(mono/whatsapp.svg);--c:#25D366"></span></button>
           <button type="button" data-app="tm" aria-pressed="false" aria-label="Microsoft Teams"><span class="lg" style="--m:url(mono/teams.svg);--c:#4B53BC"></span></button>
-          <button type="button" data-app="kw" aria-pressed="false" aria-label="Kenner web chat"><img src="brand/mark-ultramarine.svg" alt=""></button>
+          <button type="button" data-app="kw" aria-pressed="false" aria-label="Kenner web chat"><img src="brand/mark-ultramarine.svg" alt="" loading="lazy" decoding="async"></button>
         </div>
         <div class="phone"><div class="scr" id="ask-scr"></div></div>
         <div class="lap">
           <div class="lap-s">
             <div class="lap-p">
               <section class="look" id="look" aria-labelledby="look-t">
-                <div class="look-h"><img src="brand/logo-avatar.svg" alt=""><h3 id="look-t">What Kenner looked up</h3></div>
+                <div class="look-h"><img src="brand/logo-avatar.svg" alt="" loading="lazy" decoding="async"><h3 id="look-t">What Kenner looked up</h3></div>
                 <div class="look-b" id="look-b"><ol class="trail" id="trail"></ol></div>
               </section>
               <iframe class="wo" id="wo" src="pr/app/work-order.html#0" title="The walk-in cooler’s work order in Kenner" loading="lazy" hidden></iframe>
@@ -704,7 +776,7 @@ footer{background:var(--paper)}
         </div>
       </div>
       <div class="stats">
-        <h3 class="h2 center">What it adds up to. <span>Real service metric impact.</span></h3>
+        <h2 class="h2 center">What it adds up to. <span>Real service metric impact.</span></h2>
         <div class="panel g4" style="margin-top:0">
           <div class="stat"><b>More <br>jobs</b><p>per technician, every week. Less searching, calling around and typing reports.</p></div>
           <div class="stat"><b>Less <br>downtime</b><p>Units are back up sooner, so your customers lose less time.</p></div>
@@ -713,7 +785,7 @@ footer{background:var(--paper)}
         </div>
       </div>
     </div>
-    <dialog class="pgv" id="pgv" aria-label="Manual page"><div class="pgv-h"><span id="pgv-cap"></span><button type="button" id="pgv-x" aria-label="Close"><i data-i="s-x"></i></button></div><img id="pgv-img" src="pr/media/scotsman-p38.webp" alt="" loading="lazy" decoding="async"></dialog>
+    <dialog class="pgv" id="pgv" aria-label="Manual page"><div class="pgv-h"><span id="pgv-cap"></span><button type="button" id="pgv-x" aria-label="Close"><i data-i="s-x"></i></button></div><img id="pgv-img" src="pr/media/scotsman-p38.webp" alt="" loading="lazy" decoding="async" width="1000" height="1295"></dialog>
     <div class="refc" id="refc" aria-hidden="true"></div>
   </section>
 
@@ -721,8 +793,9 @@ footer{background:var(--paper)}
   <section class="sec" id="reality">
     <div class="wrap">
       <div class="real">
-        <h3 class="h2 center">Reality is not a pre‑recorded video. <span><img src="brand/lockup-ink.svg" alt="Kenner"> learns from every job, even these…</span></h3>
-        <div class="mq" id="mq" aria-label="Messages technicians have sent"></div>
+        <h2 class="h2 center">Reality is not a pre‑recorded video. <span><img src="brand/lockup-ink.svg" alt="Kenner" loading="lazy" decoding="async"> learns from every job, even these…</span></h2>
+        <div class="mq" id="mq" role="group" aria-label="Messages technicians have sent"></div>
+        <button class="mq-ctl" id="mq-ctl" type="button" aria-pressed="false" aria-label="Pause the messages"><svg class="pa" viewBox="0 0 18 18" aria-hidden="true"><path d="M6 4v10M12 4v10" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg><svg class="pl" viewBox="0 0 18 18" aria-hidden="true"><path d="M6.5 4.2v9.6L14 9z" fill="currentColor"/></svg></button>
       </div>
     </div>
   </section>
@@ -734,34 +807,34 @@ footer{background:var(--paper)}
       <div class="hub" id="hub">
         <svg class="hub-lines" id="hub-lines" aria-hidden="true"></svg>
         <div class="chs">
-          <button class="tile" type="button" data-n="WhatsApp" data-d="Text, voice notes, photos and calls."><img class="m" src="mono/whatsapp.svg" alt=""><img class="c" src="logos/tiles/whatsapp.svg" alt=""><span>WhatsApp</span></button>
-          <button class="tile" type="button" data-n="iMessage" data-d="The same conversation for iPhone teams."><img class="m" src="mono/imessage.svg" alt=""><img class="c" src="logos/tiles/imessage.svg" alt=""><span>iMessage</span></button>
-          <button class="tile" type="button" data-n="Microsoft Teams" data-d="For companies that keep WhatsApp off work phones."><img class="m" src="mono/teams.svg" alt=""><img class="c" src="logos/tiles/teams.svg" alt=""><span>Teams</span></button>
-          <button class="tile" type="button" data-n="RCS" data-d="Rich messaging on Android, no extra app."><img class="m" src="mono/rcs.svg" alt=""><img class="c" src="logos/tiles/rcs.svg" alt=""><span>RCS</span></button>
+          <button class="tile" type="button" data-n="WhatsApp" data-d="Text, voice notes, photos and calls."><img class="m" src="mono/whatsapp.svg" alt="" loading="lazy" decoding="async"><img class="c" src="logos/tiles/whatsapp.svg" alt="" loading="lazy" decoding="async"><span>WhatsApp</span></button>
+          <button class="tile" type="button" data-n="iMessage" data-d="The same conversation for iPhone teams."><img class="m" src="mono/imessage.svg" alt="" loading="lazy" decoding="async"><img class="c" src="logos/tiles/imessage.svg" alt="" loading="lazy" decoding="async"><span>iMessage</span></button>
+          <button class="tile" type="button" data-n="Microsoft Teams" data-d="For companies that keep WhatsApp off work phones."><img class="m" src="mono/teams.svg" alt="" loading="lazy" decoding="async"><img class="c" src="logos/tiles/teams.svg" alt="" loading="lazy" decoding="async"><span>Teams</span></button>
+          <button class="tile" type="button" data-n="RCS" data-d="Rich messaging on Android, no extra app."><img class="m" src="mono/rcs.svg" alt="" loading="lazy" decoding="async"><img class="c" src="logos/tiles/rcs.svg" alt="" loading="lazy" decoding="async"><span>RCS</span></button>
           <button class="tile" type="button" data-n="Phone call" data-d="A normal number. Hands busy on the roof? Just call."><svg class="m" viewBox="0 0 24 24" width="28" height="28" fill="#fff" aria-hidden="true" style="opacity:.9"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1z"/></svg><span class="c" style="background:linear-gradient(180deg,#5BF675,#0ABE2A);display:flex;align-items:center;justify-content:center"><svg viewBox="0 0 24 24" width="20" height="20" fill="#fff" aria-hidden="true"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1z"/></svg></span><span>Phone call</span></button>
-          <button class="tile" type="button" data-n="The Kenner app" data-d="Our own app, for companies that want Kenner outside personal messengers. Same conversation, same history."><img class="m sil" src="brand/mark-ultramarine.svg" alt=""><span class="c kapp"><img src="brand/mark-ultramarine.svg" alt=""></span><span>Kenner</span></button>
+          <button class="tile" type="button" data-n="The Kenner app" data-d="Our own app, for companies that want Kenner outside personal messengers. Same conversation, same history."><img class="m sil" src="brand/mark-ultramarine.svg" alt="" loading="lazy" decoding="async"><span class="c kapp"><img src="brand/mark-ultramarine.svg" alt="" loading="lazy" decoding="async"></span><span>Kenner</span></button>
         </div>
-        <div class="core-wrap" aria-hidden="true"><div class="core"><img src="brand/mark-ultramarine.svg" alt=""></div></div>
+        <div class="core-wrap" aria-hidden="true"><div class="core"><img src="brand/mark-ultramarine.svg" alt="" loading="lazy" decoding="async"></div></div>
         <div class="sys">
-          <button class="tile" type="button" data-n="ServiceTitan" data-d="Jobs, equipment history and estimates. Reports and quotes go back to the job."><img class="m wm sil" src="logos/sys/servicetitan.svg" alt="ServiceTitan"><img class="c" src="logos/grid/servicetitan.svg" alt=""></button>
-          <button class="tile" type="button" data-n="Salesforce Field Service" data-d="Work orders, assets and past visits. The record goes to the work order and the asset."><img class="m" src="mono/salesforce.svg" alt="Salesforce"><img class="c" src="logos/grid/salesforce.svg" alt=""></button>
-          <button class="tile" type="button" data-n="SAP" data-d="Work orders, parts and stock. Parts used go back to the order."><img class="m" src="mono/sap.svg" alt="SAP"><img class="c" src="logos/grid/sap.svg" alt=""></button>
-          <button class="tile" type="button" data-n="Dynamics 365 Field Service" data-d="Work orders, assets and bookings, written back to both."><img class="m" src="mono/dynamics.svg" alt="Dynamics 365"><img class="c" src="logos/grid/dynamics.svg" alt=""></button>
-          <button class="tile" type="button" data-n="IFS" data-d="Work orders and assets, written back to both."><img class="m sil" src="logos/sys/ifs-icon.png" alt="IFS"><img class="c" src="logos/grid/ifs.svg" alt=""></button>
-          <button class="tile" type="button" data-n="ServiceNow" data-d="Work orders and the knowledge base. New field fixes go back as articles."><img class="m wm sil" src="logos/sys/servicenow.svg" alt="ServiceNow"><img class="c" src="logos/grid/servicenow.svg" alt=""></button>
-          <button class="tile" type="button" data-n="ServiceMax" data-d="Work orders and installed base."><img class="m sil" src="logos/sys/servicemax.png" alt="ServiceMax"><img class="c" src="logos/grid/servicemax.svg" alt=""></button>
-          <button class="tile" type="button" data-n="Oracle Field Service" data-d="Activities and past visits."><img class="m" src="mono/oracle.svg" alt="Oracle"><img class="c" src="logos/grid/oracle.svg" alt=""></button>
-          <button class="tile" type="button" data-n="HubSpot" data-d="Notes and quote drafts land on the contact and the deal."><img class="m" src="mono/hubspot.svg" alt="HubSpot"><img class="c" src="logos/grid/hubspot.svg" alt=""></button>
-          <button class="tile" type="button" data-n="Zoho" data-d="Notes and quote drafts go back to the account."><img class="m" src="mono/zoho.svg" alt="Zoho"><img class="c" src="logos/grid/zoho.svg" alt=""></button>
-          <button class="tile" type="button" data-n="Odoo" data-d="Parts, stock and quotes."><img class="m" src="mono/odoo.svg" alt="Odoo"><img class="c" src="logos/grid/odoo.svg" alt=""></button>
-          <button class="tile" type="button" data-n="Zendesk" data-d="Store tickets, linked to the visit."><img class="m" src="mono/zendesk.svg" alt="Zendesk"><img class="c" src="logos/grid/zendesk.svg" alt=""></button>
-          <button class="tile" type="button" data-n="Jira" data-d="Repeat failures go to engineering, with the jobs attached."><img class="m" src="mono/jira.svg" alt="Jira"><img class="c" src="logos/grid/jira.svg" alt=""></button>
-          <button class="tile" type="button" data-n="SharePoint" data-d="Manuals, bulletins and old reports, read where they are."><img class="m sil" src="logos/sys/sharepoint.svg" alt="SharePoint"><img class="c" src="logos/grid/sharepoint.svg" alt=""></button>
-          <button class="tile" type="button" data-n="Confluence" data-d="Your own how-tos, read alongside field fixes."><img class="m" src="mono/confluence.svg" alt="Confluence"><img class="c" src="logos/grid/confluence.svg" alt=""></button>
-          <button class="tile" type="button" data-n="Danfoss Alsense" data-d="Store alarms and case temperatures, read before the technician arrives."><img class="m sil df" src="pr/logos/refrig/danfoss.svg" alt="Danfoss"><img class="c cw" src="pr/logos/refrig/danfoss.svg" alt=""></button>
-          <button class="tile" type="button" data-n="Copeland Site Supervisor" data-d="Rack and case alarms, setpoints and history from the store’s supervisor."><img class="m wm sil" src="pr/logos/refrig/copeland.png" alt="Copeland"><img class="c cw" src="pr/logos/refrig/copeland.png" alt=""></button>
-          <button class="tile" type="button" data-n="Emerson E2/E3" data-d="Controller alarms and logs from the rack, so the brief starts with what the store saw."><img class="m sil em" src="pr/logos/refrig/emerson.png" alt="Emerson"><img class="c cw" src="pr/logos/refrig/emerson.png" alt=""></button>
-          <button class="tile" type="button" data-n="CAREL boss" data-d="Supervisor data from the store: alarms, temperatures and energy."><img class="m cr" src="pr/logos/refrig/carel-mono.svg" alt="CAREL"><img class="c cw" src="pr/logos/refrig/carel.svg" alt=""></button>
+          <button class="tile" type="button" data-n="ServiceTitan" data-d="Jobs, equipment history and estimates. Reports and quotes go back to the job."><img class="m wm sil" src="logos/sys/servicetitan.svg" alt="ServiceTitan" loading="lazy" decoding="async"><img class="c" src="logos/grid/servicetitan.svg" alt="" loading="lazy" decoding="async"></button>
+          <button class="tile" type="button" data-n="Salesforce Field Service" data-d="Work orders, assets and past visits. The record goes to the work order and the asset."><img class="m" src="mono/salesforce.svg" alt="Salesforce" loading="lazy" decoding="async"><img class="c" src="logos/grid/salesforce.svg" alt="" loading="lazy" decoding="async"></button>
+          <button class="tile" type="button" data-n="SAP" data-d="Work orders, parts and stock. Parts used go back to the order."><img class="m" src="mono/sap.svg" alt="SAP" loading="lazy" decoding="async"><img class="c" src="logos/grid/sap.svg" alt="" loading="lazy" decoding="async"></button>
+          <button class="tile" type="button" data-n="Dynamics 365 Field Service" data-d="Work orders, assets and bookings, written back to both."><img class="m" src="mono/dynamics.svg" alt="Dynamics 365" loading="lazy" decoding="async"><img class="c" src="logos/grid/dynamics.svg" alt="" loading="lazy" decoding="async"></button>
+          <button class="tile" type="button" data-n="IFS" data-d="Work orders and assets, written back to both."><img class="m sil" src="logos/sys/ifs-icon.png" alt="IFS" loading="lazy" decoding="async" width="190" height="186"><img class="c" src="logos/grid/ifs.svg" alt="" loading="lazy" decoding="async"></button>
+          <button class="tile" type="button" data-n="ServiceNow" data-d="Work orders and the knowledge base. New field fixes go back as articles."><img class="m wm sil" src="logos/sys/servicenow.svg" alt="ServiceNow" loading="lazy" decoding="async"><img class="c" src="logos/grid/servicenow.svg" alt="" loading="lazy" decoding="async"></button>
+          <button class="tile" type="button" data-n="ServiceMax" data-d="Work orders and installed base."><img class="m sil" src="logos/sys/servicemax.png" alt="ServiceMax" loading="lazy" decoding="async" width="96" height="96"><img class="c" src="logos/grid/servicemax.svg" alt="" loading="lazy" decoding="async"></button>
+          <button class="tile" type="button" data-n="Oracle Field Service" data-d="Activities and past visits."><img class="m" src="mono/oracle.svg" alt="Oracle" loading="lazy" decoding="async"><img class="c" src="logos/grid/oracle.svg" alt="" loading="lazy" decoding="async"></button>
+          <button class="tile" type="button" data-n="HubSpot" data-d="Notes and quote drafts land on the contact and the deal."><img class="m" src="mono/hubspot.svg" alt="HubSpot" loading="lazy" decoding="async"><img class="c" src="logos/grid/hubspot.svg" alt="" loading="lazy" decoding="async"></button>
+          <button class="tile" type="button" data-n="Zoho" data-d="Notes and quote drafts go back to the account."><img class="m" src="mono/zoho.svg" alt="Zoho" loading="lazy" decoding="async"><img class="c" src="logos/grid/zoho.svg" alt="" loading="lazy" decoding="async"></button>
+          <button class="tile" type="button" data-n="Odoo" data-d="Parts, stock and quotes."><img class="m" src="mono/odoo.svg" alt="Odoo" loading="lazy" decoding="async"><img class="c" src="logos/grid/odoo.svg" alt="" loading="lazy" decoding="async"></button>
+          <button class="tile" type="button" data-n="Zendesk" data-d="Store tickets, linked to the visit."><img class="m" src="mono/zendesk.svg" alt="Zendesk" loading="lazy" decoding="async"><img class="c" src="logos/grid/zendesk.svg" alt="" loading="lazy" decoding="async"></button>
+          <button class="tile" type="button" data-n="Jira" data-d="Repeat failures go to engineering, with the jobs attached."><img class="m" src="mono/jira.svg" alt="Jira" loading="lazy" decoding="async"><img class="c" src="logos/grid/jira.svg" alt="" loading="lazy" decoding="async"></button>
+          <button class="tile" type="button" data-n="SharePoint" data-d="Manuals, bulletins and old reports, read where they are."><img class="m sil" src="logos/sys/sharepoint.svg" alt="SharePoint" loading="lazy" decoding="async"><img class="c" src="logos/grid/sharepoint.svg" alt="" loading="lazy" decoding="async"></button>
+          <button class="tile" type="button" data-n="Confluence" data-d="Your own how-tos, read alongside field fixes."><img class="m" src="mono/confluence.svg" alt="Confluence" loading="lazy" decoding="async"><img class="c" src="logos/grid/confluence.svg" alt="" loading="lazy" decoding="async"></button>
+          <button class="tile" type="button" data-n="Danfoss Alsense" data-d="Store alarms and case temperatures, read before the technician arrives."><img class="m sil df" src="pr/logos/refrig/danfoss.svg" alt="Danfoss" loading="lazy" decoding="async"><img class="c cw" src="pr/logos/refrig/danfoss.svg" alt="" loading="lazy" decoding="async"></button>
+          <button class="tile" type="button" data-n="Copeland Site Supervisor" data-d="Rack and case alarms, setpoints and history from the store’s supervisor."><img class="m wm sil" src="pr/logos/refrig/copeland.png" alt="Copeland" loading="lazy" decoding="async" width="600" height="54"><img class="c cw" src="pr/logos/refrig/copeland.png" alt="" loading="lazy" decoding="async" width="600" height="54"></button>
+          <button class="tile" type="button" data-n="Emerson E2/E3" data-d="Controller alarms and logs from the rack, so the brief starts with what the store saw."><img class="m sil em" src="pr/logos/refrig/emerson.png" alt="Emerson" loading="lazy" decoding="async" width="600" height="264"><img class="c cw" src="pr/logos/refrig/emerson.png" alt="" loading="lazy" decoding="async" width="600" height="264"></button>
+          <button class="tile" type="button" data-n="CAREL boss" data-d="Supervisor data from the store: alarms, temperatures and energy."><img class="m cr" src="pr/logos/refrig/carel-mono.svg" alt="CAREL" loading="lazy" decoding="async"><img class="c cw" src="pr/logos/refrig/carel.svg" alt="" loading="lazy" decoding="async"></button>
           <button class="tile tplus" type="button" data-n="And everything else" data-d="Rack controllers, building automation, temperature monitoring, leak detection, old work orders and any other system with an API."><svg class="m" viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg><span class="c kapp"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></span><span class="sr">More systems</span></button>
         </div>
         <div class="tip off" id="tip" aria-hidden="true"><b></b><p></p></div>
@@ -847,9 +920,9 @@ footer{background:var(--paper)}
 <footer>
   <div class="wrap">
     <div class="f-in">
-      <div><img src="brand/lockup-ink.svg" alt="kenner"><p class="tl">For the teams that keep it cold.</p></div>
-      <div><h4>Product</h4><a href="#for-leaders">For service leaders</a><a href="#for-technicians">For technicians</a><a href="#agents">Agents</a><a href="#deploy">Integrations</a></div>
-      <div><h4>Security</h4><p class="secu">ISO 27001 certification in progress<br>SOC 2 audit in preparation<br>GDPR, with a DPA for every pilot<br>Your data stays yours</p></div>
+      <div><img src="brand/lockup-ink.svg" alt="kenner" loading="lazy" decoding="async"><p class="tl">For the teams that keep it cold.</p></div>
+      <div><h3>Product</h3><a href="#for-leaders">For service leaders</a><a href="#for-technicians">For technicians</a><a href="#agents">Agents</a><a href="#deploy">Integrations</a></div>
+      <div><h3>Security</h3><p class="secu">ISO 27001 certification in progress<br>SOC 2 audit in preparation<br>GDPR, with a DPA for every pilot<br>Your data stays yours</p></div>
     </div>
     <div class="f-bot"><span>© 2026 Kenner Systems Inc.</span><span><a href="legal.html#imprint">Imprint</a><a href="legal.html#privacy">Privacy</a></span></div>
   </div>
@@ -870,18 +943,6 @@ footer{background:var(--paper)}
   function navState(){ var y = window.scrollY, end = heroEl.offsetTop + heroEl.offsetHeight - 60; nav.classList.toggle('solid', y >= end); nav.classList.toggle('dim', y > 40 && y < end); }
   navState(); window.addEventListener('scroll', navState, {passive:true}); window.addEventListener('resize', navState);
 
-  /* hero annotation: pin to the phone in the photo (object-fit: cover, 60% 50%) */
-  var hp = $('hero-photo'), anno = $('anno'), PX = 0.656, PY = 0.608, POS = 0.60;
-  function placeAnno(){
-    if (!hp.naturalWidth) return;
-    var box = hp.getBoundingClientRect(), host = anno.parentNode.getBoundingClientRect();
-    var s = Math.max(box.width / hp.naturalWidth, box.height / hp.naturalHeight), dw = hp.naturalWidth * s, dh = hp.naturalHeight * s;
-    var x = box.left - host.left + (box.width - dw) * POS + PX * dw, y = box.top - host.top + (box.height - dh) * 0.5 + PY * dh;
-    anno.style.left = x + 'px'; anno.style.top = y + 'px'; anno.classList.add('on');
-  }
-  if (hp.complete) placeAnno(); else hp.addEventListener('load', placeAnno);
-  window.addEventListener('resize', placeAnno);
-
   /* reality: technician messages */
   var MSGS = [
     [['Store manager unplugged the freezer to charge his e-bike','Carlos, 6:12 AM'],['Manual says the sensor is behind panel B. There is no panel B','Mike, 9:40 AM'],['The leak was a melted Magnum behind the kick plate','Luis, 2:05 PM'],['Pigeons are nesting in the gas cooler again','Tyler, 7:31 AM'],['Previous tech left a note on the rack: good luck','Ashley, 11:18 AM']],
@@ -894,6 +955,8 @@ footer{background:var(--paper)}
     return '<div class="mq-row'+(i % 2 ? ' rev' : '')+'" style="--d:'+(95 + i * 18)+'s"><div class="mq-track">'+chips+chips+'</div></div>';
   }).join('');
   mq.querySelectorAll('.mq-track').forEach(function(t){ t.querySelectorAll('.msg').forEach(function(c, k){ if (k >= t.children.length / 2) c.setAttribute('aria-hidden','true'); }); });
+  var mqCtl = $('mq-ctl');
+  mqCtl.addEventListener('click', function(){ var on = mq.classList.toggle('paused'); mqCtl.setAttribute('aria-pressed', on ? 'true' : 'false'); mqCtl.setAttribute('aria-label', on ? 'Play the messages' : 'Pause the messages'); });
 
   /* hub tooltips */
   var hub = $('hub'), tip = $('tip');
@@ -908,6 +971,7 @@ footer{background:var(--paper)}
   }
   function tipOff(){ hub.classList.remove('hov'); tip.classList.add('off'); hub.querySelectorAll('.tile.on').forEach(function(x){ x.classList.remove('on'); }); }
   hub.querySelectorAll('.tile').forEach(function(g){
+    if (g.dataset.d){ var sr = document.createElement('span'); sr.className = 'sr'; sr.textContent = (g.querySelector('span:not(.c)') ? '' : g.dataset.n + '. ') + g.dataset.d; g.appendChild(sr); }
     g.addEventListener('mouseenter', function(){ tipOn(g); }); g.addEventListener('focus', function(){ tipOn(g); });
     g.addEventListener('click', function(){ tipOn(g); }); g.addEventListener('blur', tipOff);
   });
@@ -976,6 +1040,128 @@ footer{background:var(--paper)}
     sc.style.setProperty('--pz', z.toFixed(3));
   }
   fit(); window.addEventListener('resize', fit);
+})();
+</script>
+<script>
+/* hero */
+(function(){
+  var still = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  /* the mark as the voice. Its sixteen rays are the logo's own shapes; each keeps its inner end and changes length.
+     At rest they breathe; while the debrief plays they move with the voice (the recording's own spectrum once audio/debrief.mp3 exists,
+     a speech-like rhythm until then). The rays nearest the pointer reach for it, and moving the pointer round the mark spins it. */
+  var MARK = 'M48.4 36.6L39.8 4.1L36.4 5.0L32.9 6.2L45.9 37.6ZM31.1 7.0L27.8 8.5L24.8 10.3L41.7 39.4L44.1 38.4ZM39.4 41.7L10.3 24.8L8.5 27.8L7.0 31.1L38.4 44.1ZM6.2 32.9L5.0 36.4L4.1 39.8L36.6 48.4L37.6 45.9ZM36.6 51.6L4.1 60.2L5.0 63.6L6.2 67.1L37.6 54.1ZM7.0 68.9L8.5 72.2L10.3 75.2L39.4 58.3L38.4 55.9ZM41.7 60.6L24.8 89.7L27.8 91.5L31.1 93.0L44.1 61.6ZM32.9 93.8L36.4 95.0L39.8 95.9L48.4 63.4L45.9 62.4ZM67.1 6.2L63.6 5.0L60.2 4.1L51.6 36.6L54.1 37.6ZM58.3 39.4L75.2 10.3L72.2 8.5L68.9 7.0L55.9 38.4ZM93.0 31.1L91.5 27.8L89.7 24.8L60.6 41.7L61.6 44.1ZM63.4 48.4L95.9 39.8L95.0 36.4L93.8 32.9L62.4 45.9ZM93.8 67.1L95.0 63.6L95.9 60.2L63.4 51.6L62.4 54.1ZM60.6 58.3L89.7 75.2L91.5 72.2L93.0 68.9L61.6 55.9ZM68.9 93.0L72.2 91.5L75.2 89.7L58.3 60.6L55.9 61.6ZM51.6 63.4L60.2 95.9L63.6 95.0L67.1 93.8L54.1 62.4Z';
+  /* the recorded call (audio/debrief.mp3), line by line: start in seconds, who speaks (K for Kenner), the words */
+  var CUES = [
+    [0, 'K', 'Hey, it’s Kenner. What can I help you with?'],
+    [2.5, '', 'Hi Kenner, I’m at the site now and it’s throwing an F74 error. What does that mean again?'],
+    [8.7, 'K', 'F74 means the boiler is reporting water pressure too low.'],
+    [12.9, 'K', 'It locks out the burner and stops heating.'],
+    [15.2, 'K', 'Since it’s recurring, compare the boiler reading with an external manometer.'],
+    [19.9, '', 'Sure, will do. Do you have any photos from the last visit you can send me, so I can compare?'],
+    [26.2, 'K', 'I’ll send last visit’s photos. Sent to your iMessage.'],
+    [31.0, '', 'Cheers. And one more note before I continue: the owner has changed.'],
+    [34.5, '', 'It’s now George, no longer Tom, because he’s taken over from his father.'],
+    [39.2, 'K', 'Got it. I’ll note George as the owner. Noted.'],
+    [42.7, '', 'Cheers Kenner, see you later.'],
+    [45.2, 'K', 'See you later.']
+  ], capAt = -1;
+  var mk = document.getElementById('mk'), mkG = document.getElementById('mk-rays'), mkBtn = document.getElementById('mk-play'), mkCap = document.getElementById('mk-cap'), mkAud = document.getElementById('mk-audio');
+  var mkTip = document.getElementById('mk-tip'), finePtr = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+  var RIN = 13.8, rays = MARK.split('Z').filter(Boolean).map(function(d){
+    var pts = d.slice(1).split('L').map(function(p){ var xy = p.trim().split(/\s+/), x = +xy[0] - 50, y = +xy[1] - 50; return {r: Math.hypot(x, y), a: Math.atan2(y, x)}; });
+    var mid = pts.reduce(function(m, p){ return p.r > m.r ? p : m; }, pts[0]).a, el = document.createElementNS('http://www.w3.org/2000/svg', 'polygon');
+    mkG.appendChild(el);
+    return {pts: pts, a: mid, el: el, s: 1};
+  });
+  rays.sort(function(p, q){ return p.a - q.a; });
+  function restCap(){ if (!mkPlay){ mkCap.textContent = ''; capAt = -1; } }
+  var mkOn = false, mkPlay = false, mkT = 0, mkLast = 0, mkRaf = 0, mkDur = 46.6, mkSound = false, mkWait = false, mkRot = 0, mkSpin = 0, ptr = null, ptrAng = null, analyser = null, bins = null;
+  function wrap(a){ while (a > Math.PI) a -= 2 * Math.PI; while (a < -Math.PI) a += 2 * Math.PI; return a; }
+  function drawMark(now){
+    var t = now / 1000, env = 0;
+    if (mkPlay){
+      /* without a recording: syllables in bursts, a breath between sentences */
+      env = Math.max(0, Math.sin(t * 5.2) * .5 + .5) * (.55 + .45 * Math.sin(t * 13.7 + 1)) * (Math.sin(t * 1.3) > -.86 ? 1 : .15);
+      if (mkSound && analyser){ analyser.getByteFrequencyData(bins); }
+    }
+    rays.forEach(function(r, i){
+      var want = 1;
+      if (!still) want += .03 * Math.sin(t * 1.15 + i * .9);
+      if (!still && !mkPlay){ var ph = wrap(r.a + mkRot - t * 1.4); want += .07 * Math.exp(-(ph * ph) / .5); }
+      if (mkPlay) want += mkSound && analyser ? (bins[2 + (i * 3) % 40] / 255) * .42 - .08 : env * (.1 + .26 * (Math.sin(t * 8.3 + i * 2.4) * .5 + .5)) - .05;
+      if (ptr){
+        var diff = wrap(ptr.a - (r.a + mkRot)), near = Math.max(0, 1 - Math.abs(ptr.d - .8) / 1.7);
+        want += Math.exp(-(diff * diff) / .28) * near * (mkPlay ? .34 : .13);
+      }
+      r.s += (want - r.s) * (still ? 1 : .2);
+      r.el.setAttribute('points', r.pts.map(function(p){ var rr = RIN + (p.r - RIN) * r.s; return (50 + rr * Math.cos(p.a)).toFixed(2) + ',' + (50 + rr * Math.sin(p.a)).toFixed(2); }).join(' '));
+    });
+    if (!still){ mkRot += mkSpin + (mkPlay ? .0016 : 0); mkSpin *= .94; }
+    mkG.setAttribute('transform', 'rotate(' + (mkRot * 180 / Math.PI).toFixed(2) + ' 50 50)');
+  }
+  function mkTick(now){
+    mkRaf = 0; if (!mkOn && !mkPlay) return;
+    if (mkPlay){
+      if (mkSound) mkT = mkAud.currentTime; else if (!mkWait) mkT += (now - mkLast) / 1000;
+      mkLast = now;
+      if (mkT >= mkDur){ mkStop(true); }
+      else {
+        /* the message arrives as Kenner says the photos are sent, stays a moment, and is swiped away */
+        MSGS.forEach(function(m){ if (m.state === 0 && mkT >= m.at){ m.state = 1; m.el.classList.remove('out'); } if (m.state === 1 && mkT >= m.at + m.stay){ m.state = 2; m.el.classList.add('gone'); } });
+        var k = 0; while (k < CUES.length - 1 && CUES[k + 1][0] <= mkT) k++;
+        if (k !== capAt){ capAt = k; mkCap.innerHTML = '<span>' + (CUES[k][1] === 'K' ? '<img src="brand/mark-ultramarine.svg" alt="Kenner: ">' : '') + CUES[k][2] + '</span>'; }
+      }
+    }
+    drawMark(now);
+    if (!still || mkPlay) mkRaf = requestAnimationFrame(mkTick);
+  }
+  function mkStop(reset){
+    mkPlay = false; if (mkSound) mkAud.pause();
+    mk.classList.remove('playing'); mkBtn.setAttribute('aria-pressed', 'false');
+    if (reset){ mkT = 0; restCap(); msgReset(); }
+  }
+  /* messages that arrive during the call: element, the second it arrives, how long it stays. Each leaves by its own .gone rule (the text to the left, the action to the right) */
+  var MSGS = [['mk-note', 29.5, 2.5], ['mk-act', 41.4, 2.5]].map(function(m){ return {el: document.getElementById(m[0]), at: m[1], stay: m[2], state: 0}; });
+  function msgReset(){ MSGS.forEach(function(m){ m.state = 0; m.el.classList.remove('gone'); m.el.classList.add('out'); }); }
+  function mkToggle(){
+    mkTip.classList.remove('on');
+    if (mkPlay){ mkStop(false); return; }
+    if (mkT === 0) msgReset();
+    mkPlay = true; mkLast = performance.now(); mk.classList.add('playing'); mkBtn.setAttribute('aria-pressed', 'true');
+    /* the words wait for the sound to start (up to a second and a half), so lines and message stay in step with the recording; with no recording they run on the clock */
+    mkWait = !mkSound; setTimeout(function(){ mkWait = false; }, 1500);
+    try { mkAud.currentTime = mkT; var p = mkAud.play(); if (p && p.catch) p.catch(function(){ mkSound = false; mkWait = false; }); } catch (e) { mkWait = false; }
+    if (!mkRaf) mkRaf = requestAnimationFrame(mkTick);
+  }
+  mkBtn.addEventListener('click', mkToggle); document.getElementById('mk-cta').addEventListener('click', mkToggle);
+  mkAud.addEventListener('playing', function(){
+    if (!mkPlay) return;
+    mkSound = true; mkWait = false; if (isFinite(mkAud.duration) && mkAud.duration > 1) mkDur = mkAud.duration;
+    try { if (!analyser){ var AC = window.AudioContext || window.webkitAudioContext, ctx = new AC(), src = ctx.createMediaElementSource(mkAud); analyser = ctx.createAnalyser(); analyser.fftSize = 128; bins = new Uint8Array(analyser.frequencyBinCount); src.connect(analyser); analyser.connect(ctx.destination); } } catch (e) { analyser = null; }
+  });
+  mkAud.addEventListener('ended', function(){ if (mkOn) mkStop(true); });
+  mkAud.addEventListener('error', function(){ mkSound = false; mkWait = false; });
+  /* the pointer, measured from the mark's centre in units of its radius */
+  function onPtr(e){
+    if (!mkOn) return;
+    var b = mk.getBoundingClientRect(), R = b.width / 2, x = (e.clientX - b.left - R) / R, y = (e.clientY - b.top - R) / R, d = Math.hypot(x, y), a = Math.atan2(y, x);
+    var hint = finePtr && !mkPlay && d <= 1.05 && e.type === 'pointermove';
+    mkTip.classList.toggle('on', hint); if (hint) mkTip.style.transform = 'translate(' + (e.clientX + 14) + 'px,' + (e.clientY + 18) + 'px)';
+    if (d > 2.6){ ptr = null; ptrAng = null; return; }
+    if (ptrAng !== null && d > .25 && !still) mkSpin = Math.max(-.02, Math.min(.02, mkSpin + wrap(a - ptrAng) * (mkPlay ? .045 : .018)));
+    ptrAng = a; ptr = {a: a, d: d};
+  }
+  window.addEventListener('pointermove', onPtr, {passive: true});
+  mk.addEventListener('pointerdown', onPtr);
+  /* the focus ring is for the keyboard: a click or tap on the mark never draws it */
+  mk.addEventListener('pointerdown', function(){ mk.classList.add('by-ptr'); });
+  window.addEventListener('keydown', function(e){ if (e.key === 'Tab') mk.classList.remove('by-ptr'); });
+  document.addEventListener('pointerleave', function(){ ptr = null; ptrAng = null; });
+  /* the rays rest while the hero is off screen; a call that is playing carries on */
+  function mkRun(on){ mkOn = on; if (on){ drawMark(performance.now()); if (!mkRaf && !still) mkRaf = requestAnimationFrame(mkTick); } }
+  if ('IntersectionObserver' in window) new IntersectionObserver(function(es){ es.forEach(function(e){ mkRun(e.isIntersecting); }); }, {threshold: .05}).observe(document.getElementById('fin'));
+  else mkRun(true);
+  drawMark(performance.now());
 })();
 </script>
 <script src="agents/agents.js" charset="utf-8"></script>
@@ -1133,10 +1319,10 @@ footer{background:var(--paper)}
     var b = scr.querySelector('.snd.cue');
     if (!b || !b.offsetParent) { pill.classList.remove('on'); return; }
     var wr = work.getBoundingClientRect(), br = b.getBoundingClientRect(), pw = pill.offsetWidth, ph = pill.offsetHeight;
-    /* left of the phone, level with the send button and pointing at it, so it never covers the chat or Kenner's panel */
+    /* under the phone, below the send button and pointing up at it: inside the column at every width, and never over the chat or Kenner's panel */
     var phone = scr.closest('.phone'), pr = phone ? phone.getBoundingClientRect() : br;
-    var left = pr.left - wr.left - pw - 12, top = br.top - wr.top + br.height / 2 - ph / 2, up = false;
-    left = Math.max(8 - wr.left, Math.min(left, work.clientWidth - pw - 8));
+    var left = br.left - wr.left + br.width / 2 - pw / 2, top = pr.bottom - wr.top + 10, up = true;
+    left = Math.max(pr.left - wr.left, Math.min(left, pr.right - wr.left - pw));
     pill.style.left = left + 'px'; pill.style.top = top + 'px';
     pill.classList.toggle('up', up); pill.classList.add('on');
   }
