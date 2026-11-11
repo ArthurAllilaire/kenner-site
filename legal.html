@@ -8,6 +8,7 @@
 <link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Instrument+Sans:wght@400;500&display=swap">
+<script src="analytics.js" defer></script>
 <style>
 :root{--paper:#FFFFFF;--line:#E6E8EE;--ink:#0A0B1E;--ink-muted:#5A5F73;--ink-subtle:#6A6F84;--ultramarine:#1438CA;
   --font-display:"Instrument Sans","Geist",system-ui,sans-serif;--font-text:"Geist",system-ui,-apple-system,sans-serif;color-scheme:light}
@@ -30,6 +31,8 @@ ul{margin:0 0 12px;padding-left:20px}
 a{color:var(--ultramarine)}
 .meta{font-size:14px;color:var(--ink-subtle)}
 .obj{color:var(--ink);font-weight:500}
+button.lnk{padding:0;border:0;background:none;font:inherit;color:var(--ultramarine);text-decoration:underline;cursor:pointer}
+a:focus-visible,button:focus-visible{outline:2px solid var(--ultramarine);outline-offset:3px}
 section+section{margin-top:72px;padding-top:56px;border-top:1px solid var(--line)}
 dl{display:grid;grid-template-columns:minmax(0,180px) minmax(0,1fr);gap:8px 24px;margin:20px 0 0}
 dt{color:var(--ink-subtle);font-size:15px}
@@ -58,7 +61,7 @@ dd{margin:0;color:var(--ink)}
 
 <section id="privacy">
   <h1>Privacy policy</h1>
-  <p class="meta">Last updated 26 October 2026</p>
+  <p class="meta">Last updated 10 November 2026</p>
 
   <h2>Who is responsible</h2>
   <p>Kenner Systems Inc., 2261 Market Street #83475, San Francisco, CA 94114, United States, is responsible for the processing of personal data on this website. Contact: <a href="mailto:lennart.wendt@kenner.work">lennart.wendt@kenner.work</a>, +1 415 505 6709.</p>
@@ -73,8 +76,12 @@ dd{margin:0;color:var(--ink)}
   <h3>Fonts</h3>
   <p>This website loads its fonts from Google Fonts, provided by Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Ireland, and Google LLC, 1600 Amphitheatre Parkway, Mountain View, CA 94043, USA. When a page loads, your browser connects to Google's servers and Google receives your IP address. This can include a transfer to Google LLC in the United States. We use Google Fonts so the website displays consistently; the legal basis is our legitimate interest in a consistent presentation (Art. 6(1)(f) GDPR). Google Fonts sets no cookies. More information: <a href="https://fonts.google.com/faq" target="_blank" rel="noopener">fonts.google.com/faq</a>.</p>
 
-  <h3>No cookies, no tracking</h3>
-  <p>This website sets no cookies, stores nothing on your device and uses no analytics or advertising tools.</p>
+  <h3 id="analytics">Analytics</h3>
+  <p>We use PostHog to see how this website is used and to improve it. The provider is PostHog, Inc., 2261 Market Street #4008, San Francisco, CA 94114, United States, which processes the data on our behalf (Art. 28 GDPR) on servers in the United States.</p>
+  <p><span class="obj">On every visit, without cookies.</span> PostHog records which page you open and the page you came from, what you click, how far you scroll, how long you stay, your browser, operating system and screen size, your IP address, and the country, region and city you are visiting from, which PostHog works out from that address. For this we set no cookies and store nothing on your device: your visit gets a random number that is gone when you close or reload the page. The legal basis is our legitimate interest in understanding how our website is used (Art. 6(1)(f) GDPR).</p>
+  <p><span class="obj">With your consent, cookies and a recording.</span> If you choose "Accept" in the cookie notice, PostHog also stores cookies and entries in your browser's local and session storage (their names start with <code>ph_</code>) so that we recognise your browser when you return, and records your visit so we can play it back: what the page showed, your mouse movements, your clicks and your scrolling. The cookies expire after one year. The legal basis is your consent (Art. 6(1)(a) GDPR, § 25(1) TDDDG). You can withdraw it at any time, with effect for the future, under <button class="lnk" type="button" data-cookie-settings>Cookie settings</button>. We then remove the cookies and the storage entries and stop recording.</p>
+  <p>Your answer to the cookie notice is saved in your browser's local storage (<code>kenner-consent</code>), so that we do not ask again on every visit (§ 25(2) no. 2 TDDDG).</p>
+  <p>This website uses no advertising tools.</p>
 
   <h3>Booking a call</h3>
   <p>Our booking links open a booking page in Google Calendar, part of Google Workspace, which we also use for email. Google LLC processes this data on our behalf under a data processing agreement (Art. 28 GDPR). If you book, we receive your name, email address and any details you enter, and use them to prepare and hold the call and to follow up afterwards. The legal basis is our legitimate interest in talking to businesses that are interested in our product (Art. 6(1)(f) GDPR). The booking page runs on Google's website, where Google sets its own cookies and processes data for its own purposes under its privacy policy: <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">policies.google.com/privacy</a>.</p>
@@ -88,10 +95,11 @@ dd{margin:0;color:var(--ink)}
 
   <h2>Where your data is processed</h2>
   <p>We are a company based in the United States, and we process your data there. When you give us your data directly, for example by email or by booking a call, the GDPR still applies to how we handle it. The United States may not offer the same level of data protection as the European Union, for example regarding access by US authorities.</p>
-  <p>The service providers named above are also based in the United States: GitHub, Inc. (hosting) and Google LLC (fonts, booking page and email). Both are certified under the EU-US Data Privacy Framework, for which the European Commission has decided that it ensures an adequate level of data protection (Art. 45 GDPR). You can check their certification at <a href="https://www.dataprivacyframework.gov" target="_blank" rel="noopener">dataprivacyframework.gov</a>.</p>
+  <p>The service providers named above are also based in the United States: GitHub, Inc. (hosting), Google LLC (fonts, booking page and email) and PostHog, Inc. (analytics). All three are certified under the EU-US Data Privacy Framework, for which the European Commission has decided that it ensures an adequate level of data protection (Art. 45 GDPR). You can check their certification at <a href="https://www.dataprivacyframework.gov" target="_blank" rel="noopener">dataprivacyframework.gov</a>.</p>
 
   <h2>How long we keep it</h2>
   <p>We keep booking details, emails and call notes while we are in contact about a possible collaboration, and delete them once they are no longer needed for that purpose, unless a contract follows or the law requires us to keep them longer, for example for tax records.</p>
+  <p>Recordings of visits to this website are deleted after 30 days. We delete the other usage data once we no longer need it to improve the website.</p>
 
   <h2>Your rights</h2>
   <p>Under the GDPR you have the right to:</p>
@@ -100,6 +108,7 @@ dd{margin:0;color:var(--ink)}
     <li>have it corrected (Art. 16) or deleted (Art. 17)</li>
     <li>restrict its processing (Art. 18)</li>
     <li>receive it in a portable format (Art. 20)</li>
+    <li>withdraw a consent you have given, with effect for the future (Art. 7(3))</li>
     <li>complain to a data protection supervisory authority, in particular in the EU country where you live or work (Art. 77)</li>
   </ul>
   <p>We do not use automated decision-making or profiling (Art. 22 GDPR). To use any of these rights, email <a href="mailto:lennart.wendt@kenner.work">lennart.wendt@kenner.work</a>.</p>

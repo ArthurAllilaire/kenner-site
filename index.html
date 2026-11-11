@@ -23,6 +23,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&family=Instrument+Sans:wght@400;500;600&display=swap">
+<script src="analytics.js" defer></script>
 <style>
 /* Layout: light hero with the rooftop photograph in a frame (kenner's mark is the voice in it), then light grey and white bands with white product fragments (two-tone headlines, hairline numbered rows), one night band for the hub, a photo close. Single light look by design. */
 :root{
@@ -452,8 +453,10 @@ footer{background:var(--paper)}
 @media (hover:hover) and (pointer:fine){.f-in a:hover{color:var(--ink)}}
 .f-in .secu{font-size:14px;line-height:1.7;color:var(--muted)}
 .f-bot{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;padding-block:20px 40px;border-top:1px solid var(--line);font-size:13px;color:var(--grey)}
-.f-bot a{color:inherit;text-decoration:none;margin-left:18px}
-@media (max-width:760px){.f-in{grid-template-columns:minmax(0,1fr)}.f-in a{display:flex;align-items:center;min-height:44px;padding:0}.f-in h3{margin-bottom:4px}.f-bot{align-items:center}.f-bot a{display:inline-flex;align-items:center;min-height:44px}}
+.f-bot span+span{display:flex;flex-wrap:wrap;column-gap:18px}
+.f-bot a,.f-bot button{color:inherit;text-decoration:none}
+.f-bot button{padding:0;border:0;background:none;font:inherit;cursor:pointer}
+@media (max-width:760px){.f-in{grid-template-columns:minmax(0,1fr)}.f-in a{display:flex;align-items:center;min-height:44px;padding:0}.f-in h3{margin-bottom:4px}.f-bot{align-items:center}.f-bot a,.f-bot button{display:inline-flex;align-items:center;min-height:44px}}
 </style>
 <link rel="stylesheet" href="agents/agents.css">
 <style>
@@ -934,7 +937,7 @@ footer{background:var(--paper)}
       <div><h3>Product</h3><a href="#for-leaders">For service leaders</a><a href="#for-technicians">For technicians</a><a href="#agents">Agents</a><a href="#deploy">Integrations</a></div>
       <div><h3>Security</h3><p class="secu">ISO 27001 certification in progress<br>SOC 2 audit in preparation<br>GDPR, with a DPA for every pilot<br>Your data stays yours</p></div>
     </div>
-    <div class="f-bot"><span>© 2026 Kenner Systems Inc.</span><span><a href="legal.html#imprint">Imprint</a><a href="legal.html#privacy">Privacy</a></span></div>
+    <div class="f-bot"><span>© 2026 Kenner Systems Inc.</span><span><a href="legal.html#imprint">Imprint</a><a href="legal.html#privacy">Privacy</a><button type="button" data-cookie-settings>Cookie settings</button></span></div>
   </div>
 </footer>
 
