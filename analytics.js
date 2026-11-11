@@ -1,6 +1,8 @@
-/* Analytics (PostHog) and the cookie notice that governs it. Loaded by index.html and legal.html.
+/* Analytics (PostHog), visitor identification (RB2B) and the cookie notice that governs both. Loaded by index.html and legal.html.
    Every visit is measured without touching the device: PostHog keeps its state in memory, so nothing is stored and a visitor
-   is a new anonymous id on each page load. A cookie, a lasting id and session recordings start only after "Accept".
+   is a new anonymous id on each page load. A cookie, a lasting id and session recordings need the visitor's say:
+   outside the United States they start only after "Accept"; in the United States they run, together with RB2B, until the
+   visitor switches them off under "Cookie settings".
    The privacy policy (legal.html#analytics) describes exactly this split; change them together. */
 (function(){
   var TOKEN = 'phc_xtRPdEy5DnNUASjW574UqMAqzziktLwgG7B4H3pFjUkc', HOST = 'https://us.i.posthog.com';
@@ -10,13 +12,15 @@
   /* PostHog's loader, as published at posthog.com/docs/libraries/js: a stub that queues calls until array.js arrives */
   !function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],Object.defineProperty(u,"toString",{configurable:!0,enumerable:!0,writable:!0,value:function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e}}),Object.defineProperty(u.people,"toString",{configurable:!0,enumerable:!0,writable:!0,value:function(){return u.toString(1)+".people (stub)"}}),o="init capture register register_once register_for_session unregister unregister_for_session getFeatureFlag getFeatureFlagResult isFeatureEnabled reloadFeatureFlags updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures on onFeatureFlags onSessionId getSurveys getActiveMatchingSurveys renderSurvey canRenderSurvey getNextSurveyStep identify setPersonProperties group resetGroups setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags resetGroupPropertiesForFlags reset get_distinct_id getGroups get_session_id get_session_replay_url alias set_config startSessionRecording stopSessionRecording sessionRecordingStarted captureException loadToolbar get_property getSessionProperty createPersonProfile opt_in_capturing opt_out_capturing has_opted_in_capturing has_opted_out_capturing clear_opt_in_out_capturing debug".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
 
-  /* the choice is the one thing kept on the device before consent; a browser that refuses storage is asked again next visit */
+  /* the choice is the one thing kept on the device before consent; a browser that refuses storage is asked again next visit.
+     'granted' and 'denied' are the visitor's answers; 'implied' is the United States default, kept so a returning visitor is recognised from the first event */
   function stored(){ try { return localStorage.getItem(KEY); } catch (e) { return null; } }
-  function store(v){ try { localStorage.setItem(KEY, v); } catch (e) {} }
+  function store(v){ try { if (v) localStorage.setItem(KEY, v); else localStorage.removeItem(KEY); } catch (e) {} }
   var consent = stored();
+  function on(){ return consent === 'granted' || consent === 'implied'; }
   /* PostHog keeps a per-tab id in session storage that its own reset leaves behind */
   function clearTabId(){ try { Object.keys(sessionStorage).forEach(function(k){ if (k.indexOf('ph_') === 0) sessionStorage.removeItem(k); }); } catch (e) {} }
-  if (consent !== 'granted') clearTabId();
+  if (!on()) clearTabId();
 
   function mode(granted){
     return {
@@ -26,27 +30,45 @@
       disable_session_recording: !granted
     };
   }
-  var config = mode(consent === 'granted');
+  var config = mode(on());
   config.api_host = HOST;
   config.defaults = '2026-08-30';
   config.capture_heatmaps = true;
   config.capture_performance = true;
   config.capture_exceptions = true;
-  /* previews and local copies run the same code but send nothing: each event is printed instead */
+  /* previews and local copies run the same code but record nothing: each event is printed instead */
   if (!LIVE) config.before_send = function(e){ console.debug('[analytics, not sent]', e.event, e.properties); return null; };
   posthog.init(TOKEN, config);
   posthog.register({consent: consent || 'pending'});
   function track(name, props){ posthog.capture(name, props); }
 
-  function decide(granted){
-    var withdrawn = consent === 'granted' && !granted;
-    consent = granted ? 'granted' : 'denied';
+  function set(next){
+    var was = on();
+    consent = next;
     store(consent);
-    posthog.set_config(mode(granted));
-    /* consent withdrawn: the lasting id goes with the cookie, so what follows is not tied to the visits before */
-    if (withdrawn){ posthog.reset(); clearTabId(); }
-    posthog.register({consent: consent});
+    posthog.set_config(mode(on()));
+    /* switched off: the lasting id goes with the cookie, so what follows is not tied to the visits before */
+    if (was && !on()){ posthog.reset(); clearTabId(); }
+    posthog.register({consent: consent || 'pending'});
+  }
+  function decide(granted){
+    set(granted ? 'granted' : 'denied');
     track(granted ? 'consent_granted' : 'consent_declined');
+    if (granted && us) rb2b();
+    /* RB2B cannot be stopped once it runs on a page: what it stored here is removed and the page loaded again without it */
+    if (!granted && window.reb2b){
+      try {
+        [localStorage, sessionStorage].forEach(function(st){ Object.keys(st).forEach(function(k){ if (k.indexOf('_reb2b') === 0) st.removeItem(k); }); });
+        document.cookie.split('; ').forEach(function(c){ if (c.indexOf('_reb2b') === 0) document.cookie = c.split('=')[0] + '=; max-age=0; path=/'; });
+      } catch (e) {}
+      location.reload();
+    }
+  }
+
+  /* RB2B puts a company, or for some visitors a name, to a visit from the United States. Its loader as RB2B publishes it */
+  function rb2b(){
+    if (!LIVE){ console.debug('[rb2b, not loaded]'); return; }
+    !function(key){if(window.reb2b)return;window.reb2b={loaded:true};var s=document.createElement("script");s.async=true;s.src="https://ddwl4m2hdecbv.cloudfront.net/b/"+key+"/"+key+".js.gz";document.getElementsByTagName("script")[0].parentNode.insertBefore(s,document.getElementsByTagName("script")[0]);}("XOE9GH30K3OM");
   }
 
   /* the notice */
@@ -66,8 +88,7 @@
       var st = document.createElement('style'); st.textContent = CSS; document.head.appendChild(st);
       notice = document.createElement('div');
       notice.className = 'kn-ck'; notice.tabIndex = -1; notice.setAttribute('role', 'region'); notice.setAttribute('aria-labelledby', 'kn-ck-t');
-      notice.innerHTML = '<h2 id="kn-ck-t">Analytics cookies</h2>' +
-        '<p>With your OK we set a cookie and record your visit, to improve this site. Without it we only count visits and store nothing on your device. <a href="legal.html#analytics">Privacy policy</a></p>' +
+      notice.innerHTML = '<h2 id="kn-ck-t">Analytics cookies</h2><p></p>' +
         '<div class="kn-ck-acts"><button type="button" data-v="0">Decline</button><button type="button" data-v="1">Accept</button></div>';
       notice.addEventListener('click', function(e){
         var b = e.target.closest('button'); if (!b) return;
@@ -77,6 +98,10 @@
       if ('ResizeObserver' in window) new ResizeObserver(room).observe(notice);
     }
     /* first in the document, so a keyboard reaches it before the rest of the page */
+    notice.querySelector('p').innerHTML = (us
+      ? 'We set cookies, record your visit and work out which company or person is visiting, to improve this site and to follow up. If you decline, we only count visits and store nothing on your device.'
+      : 'With your OK we set a cookie and record your visit, to improve this site. Without it we only count visits and store nothing on your device.') +
+      ' <a href="legal.html#analytics">Privacy policy</a>';
     document.body.insertBefore(notice, document.body.firstChild);
     room(); notice.classList.add('on'); root.classList.add('kn-ck-open');
     if (focus) notice.focus();
@@ -86,7 +111,22 @@
     notice.classList.remove('on'); root.classList.remove('kn-ck-open');
     setTimeout(function(){ if (!notice.classList.contains('on')) notice.remove(); }, 500);
   }
-  if (!consent) show(false);
+
+  /* Where the visitor is decides the default. PostHog answers from the IP address (feature flag us-visitor, changed in PostHog
+     without a deploy). Until it answers, and if it never does, a visitor counts as outside the United States and is asked. */
+  var us = false;
+  function ask(){ if (!consent && !(notice && notice.classList.contains('on'))) show(false); }
+  var late = setTimeout(ask, 4000);
+  posthog.onFeatureFlags(function(flags, variants, ctx){
+    clearTimeout(late);
+    if (ctx && ctx.errorsLoading){ ask(); return; }
+    us = flags.indexOf('us-visitor') >= 0;
+    if (us && !consent){ set('implied'); if (notice && notice.classList.contains('on')) hide(); }
+    /* the default belongs to the place, not the browser: a visitor who has since left the United States is asked like anyone else */
+    else if (!us && consent === 'implied') set(null);
+    if (us && on()) rb2b();
+    ask();
+  });
 
   /* what the page's own scripts know and autocapture cannot name. Listened for from outside, so those scripts stay as they are;
      in the capture phase, because some of them change the element (a send button loses its cue) before the click bubbles up */
