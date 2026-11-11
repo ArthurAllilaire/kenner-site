@@ -153,8 +153,14 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
 .strip{position:relative;border-top:1px solid var(--line-2)}
 .strip-in{display:flex;flex-wrap:wrap;align-items:center;gap:14px 34px;padding-block:24px}
 .strip p{font-size:13px;color:var(--grey);white-space:nowrap}
-.strip img{width:auto;filter:brightness(0);opacity:.6}
-.strip .yc{display:flex;align-items:center;gap:6px;font-weight:600;font-size:16px;letter-spacing:-.02em;color:rgba(10,11,30,.62)}
+/* the logos rest in one grey; under the pointer each takes its own colours. The padding only makes the thin ones easier to hit */
+.strip img{box-sizing:content-box;width:auto;padding-block:10px;margin-block:-10px;filter:brightness(0);opacity:.6;transition:filter .25s ease,opacity .25s ease}
+.strip .yc{display:flex;align-items:center;gap:6px;font-weight:600;font-size:16px;letter-spacing:-.02em;color:rgba(10,11,30,.62);transition:color .25s ease}
+@media (hover:hover) and (pointer:fine){
+  .strip img:hover,.strip .yc:hover img{filter:brightness(1);opacity:1}
+  .strip .yc:hover{color:#F0652F}
+}
+@media (prefers-reduced-motion:reduce){.strip img,.strip .yc{transition:none}}
 /* tablet and phone: the frame sits under the buttons; the messages lie over the foot of the mark, so no gap waits for them */
 @media (max-width:980px){
   .hero-copy{max-width:720px}
