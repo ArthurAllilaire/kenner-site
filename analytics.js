@@ -104,7 +104,7 @@
     }
     /* first in the document, so a keyboard reaches it before the rest of the page */
     notice.querySelector('p').innerHTML = (us
-      ? 'We set cookies, record your visit and work out which company or person is visiting, to improve this site and to follow up. If you decline, we only count visits and store nothing on your device.'
+      ? 'We use cookies to understand how this site is used and who visits it. If you decline, we only count visits and store nothing on your device.'
       : 'With your OK we set a cookie and record your visit, to improve this site. Without it we only count visits and store nothing on your device.') +
       ' <a href="legal.html#analytics">Privacy policy</a>';
     document.body.insertBefore(notice, document.body.firstChild);
