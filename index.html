@@ -21,6 +21,115 @@
 <link rel="icon" href="favicon-96.png" sizes="96x96" type="image/png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <style>:root{color-scheme:light}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "Organization",
+   "@id": "https://getkenner.com/#organization",
+   "name": "Kenner",
+   "legalName": "Kenner Systems Inc.",
+   "url": "https://getkenner.com/",
+   "logo": "https://getkenner.com/brand/logo-avatar.svg",
+   "description": "We activate your full service knowledge, answer every technician in seconds and take the paperwork off their hands.",
+   "founder": [
+    {
+     "@type": "Person",
+     "name": "Lennart Wendt",
+     "jobTitle": "CEO",
+     "sameAs": "https://www.linkedin.com/in/lennartwendt/"
+    },
+    {
+     "@type": "Person",
+     "name": "Arthur Allilaire",
+     "jobTitle": "CTO",
+     "sameAs": "https://www.linkedin.com/in/arthur-allilaire/"
+    }
+   ]
+  },
+  {
+   "@type": "WebSite",
+   "@id": "https://getkenner.com/#website",
+   "url": "https://getkenner.com/",
+   "name": "Kenner",
+   "publisher": {
+    "@id": "https://getkenner.com/#organization"
+   }
+  },
+  {
+   "@type": "SoftwareApplication",
+   "@id": "https://getkenner.com/#product",
+   "name": "Kenner",
+   "url": "https://getkenner.com/",
+   "applicationCategory": "BusinessApplication",
+   "operatingSystem": "iOS, Android",
+   "description": "The personal assistant for service. We activate your full service knowledge, answer every technician in seconds and take the paperwork off their hands.",
+   "publisher": {
+    "@id": "https://getkenner.com/#organization"
+   },
+   "audience": {
+    "@type": "Audience",
+    "audienceType": "HVAC/R and field service technicians and service leaders"
+   }
+  },
+  {
+   "@type": "FAQPage",
+   "@id": "https://getkenner.com/#faq",
+   "mainEntity": [
+    {
+     "@type": "Question",
+     "name": "Who is it for?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Service teams that keep equipment running on site, whether contractors, manufacturers or in-house: HVAC and refrigeration, elevators, fire protection, heat pumps, medical devices, forklifts, data centers, food equipment, wind turbines and machinery. If your technicians diagnose and repair equipment in the field, it’s built for you."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "How is this different from a chatbot on our manuals?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "A chatbot searches your documents and pastes together an answer. Kenner builds a knowledge graph of your service instead: every unit, every job done on it, its alarms, its parts and its manual, linked together. So it answers for the unit in front of the technician, shows its sources and says when it doesn’t know. And Kenner doesn’t just look up answers. It carries out real tasks for you: it writes the quote, sends the invoice and orders the parts, in the systems you already run. Every job your team finishes adds to the graph."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Does Kenner replace our FSM or ERP?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "No. Kenner works with the FSM, ERP and CRM you already run. It reads from them before the job and writes the report, parts and follow-ups back to them after it."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Do our technicians have to learn a new app?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "No. They save Kenner as a contact and use WhatsApp, iMessage, Teams or a normal phone call, so it works on the phone they already have. A voice note after the job is enough for the report."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Is our data secure?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Your data stays yours and stays in your systems. Every pilot comes with a data processing agreement under GDPR, ISO 27001 certification is in progress and our SOC 2 audit is in preparation."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "How fast can we start?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Within a week. We connect to your systems, your technicians save Kenner as a contact, and the first briefs and reports run in the same week. A pilot runs two weeks with five to ten technicians, measured against your own numbers."
+     }
+    }
+   ]
+  }
+ ]
+}
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&family=Instrument+Sans:wght@400;500;600&display=swap">
@@ -461,7 +570,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
 
 /* footer */
 footer{background:var(--paper)}
-.f-in{display:grid;grid-template-columns:1.6fr 1fr 1.4fr;gap:32px;padding-block:56px 36px}
+.f-in{display:grid;grid-template-columns:1.6fr 1fr 1fr 1.4fr;gap:32px;padding-block:56px 36px}
 .f-in img{height:22px;width:auto}
 .f-in .tl{margin-top:14px;font-size:15px;color:var(--muted)}
 .f-in h3{margin:0 0 12px;font-size:13px;font-weight:500;color:var(--grey)}
@@ -472,6 +581,7 @@ footer{background:var(--paper)}
 .f-bot span+span{display:flex;flex-wrap:wrap;column-gap:18px}
 .f-bot a,.f-bot button{color:inherit;text-decoration:none}
 .f-bot button{padding:0;border:0;background:none;font:inherit;cursor:pointer}
+@media (max-width:900px){.f-in{grid-template-columns:1.4fr 1fr 1fr}.f-in>div:last-child{grid-column:1/-1}}
 @media (max-width:760px){.f-in{grid-template-columns:minmax(0,1fr)}.f-in a{display:flex;align-items:center;min-height:44px;padding:0}.f-in h3{margin-bottom:4px}.f-bot{align-items:center}.f-bot a,.f-bot button{display:inline-flex;align-items:center;min-height:44px}}
 </style>
 <link rel="stylesheet" href="agents/agents.css">
@@ -941,6 +1051,7 @@ footer{background:var(--paper)}
     <div class="f-in">
       <div><img src="brand/lockup-ink.svg" alt="kenner" loading="lazy" decoding="async"><p class="tl">For the teams that keep the world running.</p></div>
       <div><h3>Product</h3><a href="#for-leaders">For service leaders</a><a href="#for-technicians">For technicians</a><a href="#agents">Agents</a><a href="#deploy">Integrations</a></div>
+      <div><h3>Resources</h3><a href="blog/best-ai-for-hvac-technicians.html">Best AI for HVAC technicians</a></div>
       <div><h3>Security</h3><p class="secu">ISO 27001 certification in progress<br>SOC 2 audit in preparation<br>GDPR, with a DPA for every pilot<br>Your data stays yours</p></div>
     </div>
     <div class="f-bot"><span>© 2026 Kenner Systems Inc.</span><span><a href="legal.html#imprint">Imprint</a><a href="legal.html#privacy">Privacy</a><button type="button" data-cookie-settings>Cookie settings</button></span></div>

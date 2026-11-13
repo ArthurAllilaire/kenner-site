@@ -1,0 +1,151 @@
+<!doctype html>
+<!-- Built by blog/build_blog.py from blog/src/. Edit the fragment there, not this file. -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Kenner vs Agentforce for Field Service and Dynamics 365 Copilot</title>
+<meta name="description" content="Salesforce and Microsoft build AI into their field service apps. Kenner works on top of any FSM, by text or phone call. What each does, with list prices.">
+<link rel="canonical" href="https://getkenner.com/blog/kenner-vs-agentforce-and-dynamics-365-copilot.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="kenner">
+<meta property="og:url" content="https://getkenner.com/blog/kenner-vs-agentforce-and-dynamics-365-copilot.html">
+<meta property="og:title" content="Kenner vs Agentforce for Field Service and Dynamics 365 Copilot">
+<meta property="og:description" content="Salesforce and Microsoft build AI into their field service apps. Kenner works on top of any FSM, by text or phone call. What each does, with list prices.">
+<meta property="og:image" content="https://getkenner.com/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="article:published_time" content="2026-11-10">
+<meta property="article:modified_time" content="2026-11-13">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://getkenner.com/og-image.jpg">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="icon" href="../favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Instrument+Sans:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="blog.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "Kenner vs the AI built into your FSM: Agentforce for Field Service and Dynamics 365 Copilot", "description": "Salesforce and Microsoft build AI into their field service apps. Kenner works on top of any FSM, by text or phone call. What each does, with list prices.", "datePublished": "2026-11-10", "dateModified": "2026-11-13", "author": {"@type": "Person", "name": "Arthur Allilaire", "jobTitle": "CTO", "url": "https://www.linkedin.com/in/arthur-allilaire/", "sameAs": "https://www.linkedin.com/in/arthur-allilaire/", "worksFor": {"@type": "Organization", "name": "Kenner Systems Inc.", "alternateName": "Kenner", "url": "https://getkenner.com/", "logo": {"@type": "ImageObject", "url": "https://getkenner.com/apple-touch-icon.png"}}}, "publisher": {"@type": "Organization", "name": "Kenner Systems Inc.", "alternateName": "Kenner", "url": "https://getkenner.com/", "logo": {"@type": "ImageObject", "url": "https://getkenner.com/apple-touch-icon.png"}}, "image": "https://getkenner.com/og-image.jpg", "mainEntityOfPage": {"@type": "WebPage", "@id": "https://getkenner.com/blog/kenner-vs-agentforce-and-dynamics-365-copilot.html"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "kenner", "item": "https://getkenner.com/"}, {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://getkenner.com/blog/"}, {"@type": "ListItem", "position": 3, "name": "Kenner vs the AI built into your FSM: Agentforce for Field Service and Dynamics 365 Copilot", "item": "https://getkenner.com/blog/kenner-vs-agentforce-and-dynamics-365-copilot.html"}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Does Kenner work with Salesforce Field Service?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Kenner reads work orders, assets and past visits from Salesforce Field Service, and the record goes back to the work order and the asset."}}, {"@type": "Question", "name": "Does Kenner work with Dynamics 365 Field Service?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Kenner reads work orders, assets and bookings from Dynamics 365 Field Service and writes back to both the work order and the asset."}}, {"@type": "Question", "name": "How much does Agentforce for Field Service cost?", "acceptedAnswer": {"@type": "Answer", "text": "Salesforce lists Agentforce for Field Service at $125 per user per month, and includes it in its Field Service Max edition at $650 per user per month. Prices were checked on Salesforce’s pricing pages on 10 November 2026; confirm with Salesforce which base licence you need."}}, {"@type": "Question", "name": "Is Copilot included in Dynamics 365 Field Service?", "acceptedAnswer": {"@type": "Answer", "text": "Microsoft’s pricing page lists AI assistance from Copilot as included in the Dynamics 365 Field Service licence at $105 per user per month, paid yearly, and says agents require Copilot Credits."}}, {"@type": "Question", "name": "If we already have Agentforce or Copilot, why add Kenner?", "acceptedAnswer": {"@type": "Answer", "text": "Add Kenner when the answer to a fault is not all in the FSM: alarms in the store controller, manuals and old reports in SharePoint, parts in the ERP. Kenner links those to the unit in a knowledge graph and reaches technicians by text or phone call. If everything they need is already in the FSM, the built-in AI may be enough."}}]}</script>
+</head>
+<body>
+<header class="nav">
+  <div class="wrap nav-in">
+    <a class="logo" href="../" aria-label="kenner home"><img src="../brand/lockup-ink.svg" alt="kenner"></a>
+    <nav class="links" aria-label="Main">
+      <a class="wide" href="../#for-leaders">For service leaders</a>
+      <a class="wide" href="../#for-technicians">For technicians</a>
+      <a href="./">Blog</a>
+      <a class="btn btn-sm btn-ink" href="https://calendar.app.google/fFpCL3WG3pJtqtC89" target="_blank" rel="noopener">Book a demo</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <article>
+    <header class="phead">
+      <div class="wrap"><div class="col">
+        <nav class="crumbs" aria-label="Breadcrumb"><a href="./">Blog</a><span aria-hidden="true">/</span><span>Comparisons</span></nav>
+        <h1>Kenner vs the AI built into your FSM: Agentforce for Field Service and Dynamics 365 Copilot</h1>
+        <p class="lead">Salesforce and Microsoft both ship AI inside their field service products. Agentforce for Field Service briefs mobile workers before a job, helps them troubleshoot and summarises the work. Copilot in Dynamics 365 Field Service summarises and updates work orders and searches product manuals. Both work inside the vendor’s own app and data. Kenner (getkenner.com) works on top of whichever FSM you run, reaches technicians in WhatsApp, iMessage, Teams or by phone, and joins the FSM to the systems around it. If one platform holds everything your technicians need, use its AI. If the answer is usually spread across several systems, add Kenner.</p>
+        <div class="by"><img src="../img/team/arthur.jpg" alt="" width="38" height="38"><div><b><a href="https://www.linkedin.com/in/arthur-allilaire/" rel="author noopener">Arthur Allilaire</a>, CTO at Kenner</b><span><time datetime="2026-11-10">10 November 2026</time> · Updated 13 November 2026 · 6 min read</span></div></div>
+      </div></div>
+    </header>
+    <div class="wrap post"><div class="col">
+      <div class="prose">
+<div class="tldr">
+<h2>In short</h2>
+<ul>
+<li><strong>Agentforce for Field Service</strong> and <strong>Copilot in Dynamics 365 Field Service</strong> are the natural first choice if your technicians already work in that vendor’s app and the data they need is in it.</li>
+<li><strong>Kenner</strong> works with both. It adds what sits outside the FSM, and it reaches technicians in the messaging apps they already use and by phone.</li>
+<li>Kenner leaves scheduling and dispatch to your FSM. It does not replace it.</li>
+</ul>
+</div>
+
+<h2>Side by side</h2>
+<table class="cmp">
+<thead><tr><th scope="col"><span class="sr">Compared on</span></th><th scope="col">Kenner</th><th scope="col">Agentforce for Field Service</th><th scope="col">Copilot in Dynamics 365 Field Service</th></tr></thead>
+<tbody>
+<tr><th scope="row">Where technicians use it</th><td data-l="Kenner">WhatsApp, iMessage, Microsoft Teams, RCS, a normal phone call or the Kenner app</td><td data-l="Agentforce for Field Service">On the phone, as part of Salesforce Field Service. Pre-work briefs can be played back through a Siri shortcut</td><td data-l="Copilot in Dynamics 365 Field Service">The Dynamics 365 Field Service mobile app</td></tr>
+<tr><th scope="row">Before the job</th><td data-l="Kenner">A brief before the job, starting with what the site’s controllers saw</td><td data-l="Agentforce for Field Service">Pre-Work Brief</td><td data-l="Copilot in Dynamics 365 Field Service">Work order summaries with status, related activities and recommended next actions</td></tr>
+<tr><th scope="row">On the job</th><td data-l="Kenner">Answers from a knowledge graph of your units: their jobs, alarms, parts and manuals</td><td data-l="Agentforce for Field Service">On-site Knowledge Search and Multimodal Troubleshooting</td><td data-l="Copilot in Dynamics 365 Field Service">Questions in natural language; Microsoft says Copilot can search lengthy product manuals</td></tr>
+<tr><th scope="row">After the job</th><td data-l="Kenner">Writes the report from a voice note, with refrigerant record, parts and follow-ups, to your FSM</td><td data-l="Agentforce for Field Service">Post-Work Summary</td><td data-l="Copilot in Dynamics 365 Field Service">Work order update by text or speech, in preview</td></tr>
+<tr><th scope="row">Works with</th><td data-l="Kenner">Salesforce Field Service, Dynamics 365 Field Service, ServiceTitan, SAP, IFS, ServiceNow, ServiceMax, Oracle Field Service and more</td><td data-l="Agentforce for Field Service">Salesforce Field Service</td><td data-l="Copilot in Dynamics 365 Field Service">Dynamics 365 Field Service</td></tr>
+<tr><th scope="row">For the office</th><td data-l="Kenner">First-time fix by team and fault type for service leaders</td><td data-l="Agentforce for Field Service">Schedule Summary, Resolve Schedule Gaps, Asset Health Score and Capacity Planning</td><td data-l="Copilot in Dynamics 365 Field Service">Inspection templates from PDFs or images, an agent feed, record summaries and charts</td></tr>
+<tr><th scope="row">List price</th><td data-l="Kenner">Free while in beta. Starts with a two-week pilot</td><td data-l="Agentforce for Field Service">$125 per user per month; included in Field Service Max at $650 per user per month</td><td data-l="Copilot in Dynamics 365 Field Service">Included in Dynamics 365 Field Service at $105 per user per month, paid yearly. Agents require Copilot Credits</td></tr>
+</tbody></table>
+<p class="cmp-note">Salesforce and Microsoft details and list prices are from their own product, pricing and documentation pages, last checked 10 November 2026.</p>
+
+<h2>What Agentforce for Field Service does well</h2>
+<p>Salesforce’s <a href="https://www.salesforce.com/service/field-service-management/ai/pricing/">pricing page</a> describes it as assistive AI for dispatchers and mobile workers. For the technician it lists a Pre-Work Brief, On-site Knowledge Search, Multimodal Troubleshooting and a Post-Work Summary. For the office it lists schedule summaries, help resolving schedule gaps, an asset health score and capacity planning.</p>
+<p>Salesforce has also thought about the drive to site. In its <a href="https://www.salesforce.com/news/stories/agentforce-for-field-service-deep-dive/">deep dive</a> it describes technicians playing back the pre-work brief on their phone through a Siri shortcut, so they hear it without taking their eyes off the road.</p>
+<p>If Salesforce is your system of record for work orders, assets and knowledge, the strength is obvious: one vendor, one data model and one set of permissions.</p>
+
+<h2>What Copilot in Dynamics 365 Field Service does well</h2>
+<p>Microsoft’s <a href="https://learn.microsoft.com/en-us/dynamics365/field-service/copilot-overview">documentation</a> lists what Copilot does today: work order summaries on demand, with status, priority, related activities and recommended next actions; work order updates from natural language, typed or spoken, in the mobile app, currently in preview; and questions in natural language about the data in the system. On its <a href="https://www.microsoft.com/en-us/dynamics-365/products/field-service">product page</a> Microsoft adds that Copilot can search lengthy product manuals for answers.</p>
+<p>For the office there is inspection template creation from PDFs or images, and an agent feed for supervising agent-generated tasks. And the price is hard to argue with: Microsoft’s <a href="https://www.microsoft.com/en-us/dynamics-365/products/field-service/pricing">pricing page</a> lists Copilot assistance as included in the Field Service licence.</p>
+
+<h2>Where Kenner is different</h2>
+<h3>It works across systems, not inside one</h3>
+<p>The AI in an FSM answers from that FSM. In commercial HVAC and refrigeration, half the story is often somewhere else. Kenner reads store and rack controllers (Danfoss Alsense, Copeland Site Supervisor, Emerson E2/E3, CAREL boss), manuals and old reports in SharePoint or Confluence, and parts and stock in the ERP. It links them to the unit in a knowledge graph, next to the work orders from your FSM. See <a href="knowledge-graph-vs-rag-field-service.html">knowledge graph vs RAG for field service</a>.</p>
+<h3>It meets technicians where they already are</h3>
+<p>Technicians save Kenner as a contact and use WhatsApp, iMessage, Microsoft Teams, RCS or a normal phone call. Nobody has to open the FSM’s app to ask a question or file a report.</p>
+<h3>It is built for HVAC and refrigeration</h3>
+<p>After a leak repair or a top-up, Kenner asks for what refrigerant records need under rules such as EPA 608 and F-gas, writes it to the unit’s record in your FSM and books the follow-up leak check.</p>
+<h3>It writes back to your FSM</h3>
+<p>Kenner does not become another system of record. With Salesforce Field Service, the record goes to the work order and the asset. With Dynamics 365 Field Service, it is written back to the work order and the asset as well.</p>
+
+<h2>Who should pick which</h2>
+<p><strong>Use the built-in AI if</strong> your technicians already work in the Salesforce or Dynamics 365 mobile app all day, the knowledge they need is maintained in that platform, and you want scheduling and dispatch help as much as help on the job.</p>
+<p><strong>Add Kenner if</strong> the answer to a fault usually depends on data outside the FSM, your technicians prefer to text or call, or you want reports and refrigerant records written from a voice note and saved to the work order.</p>
+<p>The same reasoning applies to other platforms. If you run ServiceTitan, read <a href="kenner-vs-servicetitan-atlas.html">Kenner vs ServiceTitan Atlas</a>. For an independent enterprise platform, read <a href="kenner-vs-aquant.html">Kenner vs Aquant</a>.</p>
+<h2 id="faq">Common questions</h2>
+<div class="qs">
+<details class="q"><summary>Does Kenner work with Salesforce Field Service?<i aria-hidden="true"></i></summary><p>Yes. Kenner reads work orders, assets and past visits from Salesforce Field Service, and the record goes back to the work order and the asset.</p></details>
+<details class="q"><summary>Does Kenner work with Dynamics 365 Field Service?<i aria-hidden="true"></i></summary><p>Yes. Kenner reads work orders, assets and bookings from Dynamics 365 Field Service and writes back to both the work order and the asset.</p></details>
+<details class="q"><summary>How much does Agentforce for Field Service cost?<i aria-hidden="true"></i></summary><p>Salesforce lists Agentforce for Field Service at $125 per user per month, and includes it in its Field Service Max edition at $650 per user per month. Prices were checked on Salesforce’s pricing pages on 10 November 2026; confirm with Salesforce which base licence you need.</p></details>
+<details class="q"><summary>Is Copilot included in Dynamics 365 Field Service?<i aria-hidden="true"></i></summary><p>Microsoft’s pricing page lists AI assistance from Copilot as included in the Dynamics 365 Field Service licence at $105 per user per month, paid yearly, and says agents require Copilot Credits.</p></details>
+<details class="q"><summary>If we already have Agentforce or Copilot, why add Kenner?<i aria-hidden="true"></i></summary><p>Add Kenner when the answer to a fault is not all in the FSM: alarms in the store controller, manuals and old reports in SharePoint, parts in the ERP. Kenner links those to the unit in a knowledge graph and reaches technicians by text or phone call. If everything they need is already in the FSM, the built-in AI may be enough.</p></details>
+</div>
+      </div>
+<section class="sources" aria-labelledby="src-h"><h2 id="src-h">Sources</h2><p>Everything said here about other products comes from their own pages, last checked 10 November 2026. Products change; if something here is out of date, tell us and we will correct it.</p>
+<ol>
+<li><a href="https://www.salesforce.com/service/field-service-management/ai/pricing/" rel="noopener">Salesforce: Agentforce for Field Service and Operations pricing</a></li>
+<li><a href="https://www.salesforce.com/service/field-service-management/pricing/" rel="noopener">Salesforce: Field Service and Operations pricing</a></li>
+<li><a href="https://www.salesforce.com/news/stories/agentforce-for-field-service-deep-dive/" rel="noopener">Salesforce News: Agentforce for Field Service deep dive (9 April 2025)</a></li>
+<li><a href="https://learn.microsoft.com/en-us/dynamics365/field-service/copilot-overview" rel="noopener">Microsoft Learn: Copilot features in Dynamics 365 Field Service (updated 17 July 2026)</a></li>
+<li><a href="https://learn.microsoft.com/en-us/dynamics365/field-service/overview" rel="noopener">Microsoft Learn: Overview of Dynamics 365 Field Service</a></li>
+<li><a href="https://www.microsoft.com/en-us/dynamics-365/products/field-service" rel="noopener">Microsoft: Dynamics 365 Field Service</a></li>
+<li><a href="https://www.microsoft.com/en-us/dynamics-365/products/field-service/pricing" rel="noopener">Microsoft: Dynamics 365 Field Service pricing</a></li>
+</ol></section>
+      <nav class="more" aria-labelledby="more-h"><h2 class="list-h" id="more-h">Keep reading</h2><div class="rows">
+<a class="row" href="kenner-vs-servicetitan-atlas.html"><h3>Kenner vs ServiceTitan Atlas: which AI fits your technicians?</h3><p>Atlas is the AI inside ServiceTitan. Kenner is the personal assistant technicians text or call, across your systems. What each does and who should pick which.</p><small>10 November 2026 · 6 min read</small></a>
+<a class="row" href="kenner-vs-aquant.html"><h3>Kenner vs Aquant: AI for field technicians compared</h3><p>Aquant is an enterprise AI platform for equipment service. Kenner is a personal assistant for HVAC/R service teams. What each does and who should pick which.</p><small>10 November 2026 · 5 min read</small></a>
+<a class="row" href="knowledge-graph-vs-rag-field-service.html"><h3>Knowledge graph vs RAG: why a chatbot on your manuals is not enough for field service</h3><p>RAG searches your documents. A knowledge graph links each unit to its jobs, alarms, parts and manual. What that means for technicians on a service call.</p><small>10 November 2026 · 6 min read</small></a>
+      </div></nav>
+    </div></div>
+  </article>
+  <section class="close">
+    <div class="wrap close-in">
+      <h2>See it on your own jobs</h2>
+      <p>Start with one team: two weeks, five to ten technicians, measured against your own numbers.</p>
+      <a class="btn btn-white" href="https://calendar.app.google/fFpCL3WG3pJtqtC89" target="_blank" rel="noopener">Book a demo</a>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="f-in">
+      <div><img src="../brand/lockup-ink.svg" alt="kenner" loading="lazy" decoding="async"><p class="tl">For the teams that keep it cold.</p></div>
+      <div><h3>Product</h3><a href="../#for-leaders">For service leaders</a><a href="../#for-technicians">For technicians</a><a href="../#agents">Agents</a><a href="../#deploy">Integrations</a></div>
+      <div><h3>Resources</h3><a href="./">Blog</a><a href="what-is-kenner.html">What is Kenner?</a><a href="./#comparisons">How Kenner compares</a></div>
+      <div><h3>Security</h3><p class="secu">ISO 27001 certification in progress<br>SOC 2 audit in preparation<br>GDPR, with a DPA for every pilot<br>Your data stays yours</p></div>
+    </div>
+    <div class="f-bot"><span>© 2026 Kenner Systems Inc.</span><span><a href="../legal.html#imprint">Imprint</a><a href="../legal.html#privacy">Privacy</a></span></div>
+  </div>
+</footer>
+</body>
+</html>

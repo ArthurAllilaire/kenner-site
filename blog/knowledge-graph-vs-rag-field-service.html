@@ -1,0 +1,153 @@
+<!doctype html>
+<!-- Built by blog/build_blog.py from blog/src/. Edit the fragment there, not this file. -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Knowledge graph vs RAG for field service AI | kenner</title>
+<meta name="description" content="RAG searches your documents. A knowledge graph links each unit to its jobs, alarms, parts and manual. What that means for technicians on a service call.">
+<link rel="canonical" href="https://getkenner.com/blog/knowledge-graph-vs-rag-field-service.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="kenner">
+<meta property="og:url" content="https://getkenner.com/blog/knowledge-graph-vs-rag-field-service.html">
+<meta property="og:title" content="Knowledge graph vs RAG for field service AI | kenner">
+<meta property="og:description" content="RAG searches your documents. A knowledge graph links each unit to its jobs, alarms, parts and manual. What that means for technicians on a service call.">
+<meta property="og:image" content="https://getkenner.com/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="article:published_time" content="2026-11-10">
+<meta property="article:modified_time" content="2026-11-10">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://getkenner.com/og-image.jpg">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="icon" href="../favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Instrument+Sans:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="blog.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "Knowledge graph vs RAG: why a chatbot on your manuals is not enough for field service", "description": "RAG searches your documents. A knowledge graph links each unit to its jobs, alarms, parts and manual. What that means for technicians on a service call.", "datePublished": "2026-11-10", "dateModified": "2026-11-10", "author": {"@type": "Person", "name": "Arthur Allilaire", "jobTitle": "CTO", "url": "https://www.linkedin.com/in/arthur-allilaire/", "sameAs": "https://www.linkedin.com/in/arthur-allilaire/", "worksFor": {"@type": "Organization", "name": "Kenner Systems Inc.", "alternateName": "Kenner", "url": "https://getkenner.com/", "logo": {"@type": "ImageObject", "url": "https://getkenner.com/apple-touch-icon.png"}}}, "publisher": {"@type": "Organization", "name": "Kenner Systems Inc.", "alternateName": "Kenner", "url": "https://getkenner.com/", "logo": {"@type": "ImageObject", "url": "https://getkenner.com/apple-touch-icon.png"}}, "image": "https://getkenner.com/og-image.jpg", "mainEntityOfPage": {"@type": "WebPage", "@id": "https://getkenner.com/blog/knowledge-graph-vs-rag-field-service.html"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "kenner", "item": "https://getkenner.com/"}, {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://getkenner.com/blog/"}, {"@type": "ListItem", "position": 3, "name": "Knowledge graph vs RAG: why a chatbot on your manuals is not enough for field service", "item": "https://getkenner.com/blog/knowledge-graph-vs-rag-field-service.html"}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What is RAG in plain words?", "acceptedAnswer": {"@type": "Answer", "text": "Retrieval-augmented generation. The software searches a set of documents for passages that look relevant to the question, hands them to a language model, and the model writes an answer from them. A chatbot on your manuals is RAG."}}, {"@type": "Question", "name": "What is a knowledge graph in field service?", "acceptedAnswer": {"@type": "Answer", "text": "A map of your service in which things are linked rather than stored as loose text: every unit, every job done on it, its alarms, its parts and its manual. A question about a unit can then follow those links instead of searching for similar wording."}}, {"@type": "Question", "name": "Does Kenner still use our manuals?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Manuals, bulletins and old reports are read where they are, for example in SharePoint, and your own how-tos in Confluence. In the graph a manual belongs to the units it covers, so the page that comes back is for this model."}}, {"@type": "Question", "name": "How is Kenner different from a chatbot on our manuals?", "acceptedAnswer": {"@type": "Answer", "text": "A chatbot on manuals searches documents and pastes together an answer. Kenner builds a knowledge graph of your service, answers from the unit in front of the technician, shows where each part of the answer came from, and says so when it does not know. Every finished job adds to the graph."}}]}</script>
+</head>
+<body>
+<header class="nav">
+  <div class="wrap nav-in">
+    <a class="logo" href="../" aria-label="kenner home"><img src="../brand/lockup-ink.svg" alt="kenner"></a>
+    <nav class="links" aria-label="Main">
+      <a class="wide" href="../#for-leaders">For service leaders</a>
+      <a class="wide" href="../#for-technicians">For technicians</a>
+      <a href="./">Blog</a>
+      <a class="btn btn-sm btn-ink" href="https://calendar.app.google/fFpCL3WG3pJtqtC89" target="_blank" rel="noopener">Book a demo</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <article>
+    <header class="phead">
+      <div class="wrap"><div class="col">
+        <nav class="crumbs" aria-label="Breadcrumb"><a href="./">Blog</a><span aria-hidden="true">/</span><span>Start here</span></nav>
+        <h1>Knowledge graph vs RAG: why a chatbot on your manuals is not enough for field service</h1>
+        <p class="lead">RAG, short for retrieval-augmented generation, searches your documents and writes an answer from the passages it finds. That works for questions a manual can answer. Most questions on a service call are about one particular unit: what failed here before, what the last technician changed, what the controller logged overnight. A knowledge graph links each unit to its jobs, alarms, parts and manual, so the answer starts from the unit in front of the technician. That is how Kenner (getkenner.com) is built.</p>
+        <div class="by"><img src="../img/team/arthur.jpg" alt="" width="38" height="38"><div><b><a href="https://www.linkedin.com/in/arthur-allilaire/" rel="author noopener">Arthur Allilaire</a>, CTO at Kenner</b><span><time datetime="2026-11-10">10 November 2026</time> · 6 min read</span></div></div>
+      </div></div>
+    </header>
+    <div class="wrap post"><div class="col">
+      <div class="prose">
+<div class="tldr">
+<h2>In short</h2>
+<ul>
+<li>RAG answers from documents. It is quick to set up and good for what the manual says.</li>
+<li>Service questions are mostly about a unit, and the facts sit in several systems, not in one document.</li>
+<li>A knowledge graph links unit, jobs, alarms, parts and manual, so one question can use all of them.</li>
+<li>The practical test: ask about a unit with a history, and ask where each part of the answer came from.</li>
+</ul>
+</div>
+
+<h2>What RAG does well</h2>
+<p>It is worth being fair to retrieval, because it solved a real problem. Before it, a technician looking for a torque value or an error code scrolled through a PDF on a phone. With RAG they ask in plain words and get the passage back, and pointing a tool at a folder of manuals is quick to do.</p>
+<p>If the question is what the manual says, document search is the right tool. Error code tables, wiring conventions, start-up procedures and maintenance intervals are all in documents, and retrieval finds them.</p>
+
+<h2>Where document search runs out on a service call</h2>
+<h3>The question is about a unit, not a document</h3>
+<p>A technician standing at an iced-up display case rarely needs the general theory of defrost. They need to know that defrost on this case ended early last night, that a colleague found the termination sensor reading low on the same case in April, and what tolerance the manual allows for that sensor. Only the last of those is in a manual.</p>
+<h3>The facts live in different systems</h3>
+<p>The work orders are in the FSM. The alarms are in the store controller. Parts and stock are in the ERP. The manual is on SharePoint. A passage search treats each of these as separate text. It can find a similar-sounding report, but it has no way to know that the report, the alarm and the manual page all belong to the same piece of equipment.</p>
+<h3>Similar words are not the same unit</h3>
+<p>Two job reports can read almost the same and be about different models at different sites, with different causes. Ranking by how alike the wording is will happily return the wrong one. On a service call, the wrong history is worse than none.</p>
+<h3>It has to say when it does not know</h3>
+<p>A system that always retrieves something will always answer something. A technician needs the opposite habit: a clear statement of what the answer rests on, and a plain no when there is nothing on record.</p>
+
+<h2>What a knowledge graph adds</h2>
+<p>A knowledge graph stores the links, not just the text. In Kenner’s case: every unit, every job done on it, its alarms, its parts and its manual, linked together.</p>
+<p>Take the iced-up case again, an illustrative example from our homepage. Starting from the unit, the graph leads to three things at once:</p>
+<ul>
+<li><strong>Its alarm log:</strong> defrost ended at 18 of 35 minutes.</li>
+<li><strong>Its job history:</strong> a colleague’s visit in April for the same fault, where the sensor read 11°F low.</li>
+<li><strong>Its manual:</strong> the page with the sensor tolerance, plus or minus 2°F.</li>
+</ul>
+<p>Put together, that is an answer a senior engineer would give: defrost is ending too early, check the termination sensor first. And each part of it can be shown with its source, so the technician can judge it instead of trusting it blind.</p>
+
+<h2>What changes for the technician</h2>
+<ul>
+<li><strong>Answers start from the unit.</strong> Its own history comes first, then what the manual says.</li>
+<li><strong>Sources are visible.</strong> The alarm, the earlier job and the manual page are shown next to the answer.</li>
+<li><strong>It says when it does not know.</strong> If there is no earlier job for this fault, that is what it reports.</li>
+<li><strong>Every job teaches it.</strong> The report from today’s visit becomes history for the next technician at that unit.</li>
+</ul>
+
+<h2>What changes for the service leader</h2>
+<p>A pile of documents cannot tell you your first-time fix rate. A graph can, because each job is tied to a unit, a fault and a team. That is how Kenner shows first-time fix by team and by fault type, and which faults on which equipment keep bringing technicians back.</p>
+<p>It also gives field knowledge a place to live. When a technician finds a fix worth keeping, it is saved for the team and goes into later briefings once a supervisor has approved it. The know-how of your best engineer stops depending on whether they pick up the phone.</p>
+
+<h2>Does a graph replace retrieval?</h2>
+<p>No, and nobody should claim it does. Manuals still matter and still have to be read. The difference is where the reading starts. In a graph the manual is attached to the units it covers, so the page that comes back is for this model, next to what actually happened on this unit.</p>
+
+<h2 id="five-questions">Five questions to ask any vendor</h2>
+<p>You do not need to audit anyone’s architecture. Ask for a demo on your own data and try these:</p>
+<ol>
+<li><strong>Ask about a specific unit with a history.</strong> Does the answer mention what was done on that unit before, or only what the manual says?</li>
+<li><strong>Ask where each part of the answer came from.</strong> Can it point to the job, the alarm and the page?</li>
+<li><strong>Ask something it cannot know.</strong> Does it say so, or does it produce a confident paragraph?</li>
+<li><strong>Ask what happens to a finished job.</strong> Does today’s fix reach the next technician, and who approves it?</li>
+<li><strong>Ask what it writes back.</strong> Does the report land in your FSM, or in another place someone has to copy from?</li>
+</ol>
+<p>We built Kenner to pass all five. If you want to see how the alternatives are built, start with <a href="kenner-vs-servicetitan-atlas.html">Kenner vs ServiceTitan Atlas</a> or <a href="chatgpt-for-hvac-troubleshooting.html">ChatGPT for HVAC troubleshooting</a>, or read <a href="what-is-kenner.html">what Kenner is and how a pilot runs</a>.</p>
+<h2 id="faq">Common questions</h2>
+<div class="qs">
+<details class="q"><summary>What is RAG in plain words?<i aria-hidden="true"></i></summary><p>Retrieval-augmented generation. The software searches a set of documents for passages that look relevant to the question, hands them to a language model, and the model writes an answer from them. A chatbot on your manuals is RAG.</p></details>
+<details class="q"><summary>What is a knowledge graph in field service?<i aria-hidden="true"></i></summary><p>A map of your service in which things are linked rather than stored as loose text: every unit, every job done on it, its alarms, its parts and its manual. A question about a unit can then follow those links instead of searching for similar wording.</p></details>
+<details class="q"><summary>Does Kenner still use our manuals?<i aria-hidden="true"></i></summary><p>Yes. Manuals, bulletins and old reports are read where they are, for example in SharePoint, and your own how-tos in Confluence. In the graph a manual belongs to the units it covers, so the page that comes back is for this model.</p></details>
+<details class="q"><summary>How is Kenner different from a chatbot on our manuals?<i aria-hidden="true"></i></summary><p>A chatbot on manuals searches documents and pastes together an answer. Kenner builds a knowledge graph of your service, answers from the unit in front of the technician, shows where each part of the answer came from, and says so when it does not know. Every finished job adds to the graph.</p></details>
+</div>
+      </div>
+      <nav class="more" aria-labelledby="more-h"><h2 class="list-h" id="more-h">Keep reading</h2><div class="rows">
+<a class="row" href="what-is-kenner.html"><h3>What is Kenner? The personal assistant for HVAC/R service, explained</h3><p>Comparing AI for HVAC technicians? Kenner is the personal assistant for HVAC/R service: text or call it, it answers from your units’ history and writes the report.</p><small>10 November 2026 · 6 min read</small></a>
+<a class="row" href="chatgpt-for-hvac-troubleshooting.html"><h3>Can you use ChatGPT for HVAC troubleshooting?</h3><p>ChatGPT helps with general HVAC questions but does not know your unit’s history. What a general chatbot can and cannot do on a service call.</p><small>10 November 2026 · 5 min read</small></a>
+<a class="row" href="kenner-vs-aquant.html"><h3>Kenner vs Aquant: AI for field technicians compared</h3><p>Aquant is an enterprise AI platform for equipment service. Kenner is a personal assistant for HVAC/R service teams. What each does and who should pick which.</p><small>10 November 2026 · 5 min read</small></a>
+      </div></nav>
+    </div></div>
+  </article>
+  <section class="close">
+    <div class="wrap close-in">
+      <h2>See it on your own jobs</h2>
+      <p>Start with one team: two weeks, five to ten technicians, measured against your own numbers.</p>
+      <a class="btn btn-white" href="https://calendar.app.google/fFpCL3WG3pJtqtC89" target="_blank" rel="noopener">Book a demo</a>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="f-in">
+      <div><img src="../brand/lockup-ink.svg" alt="kenner" loading="lazy" decoding="async"><p class="tl">For the teams that keep it cold.</p></div>
+      <div><h3>Product</h3><a href="../#for-leaders">For service leaders</a><a href="../#for-technicians">For technicians</a><a href="../#agents">Agents</a><a href="../#deploy">Integrations</a></div>
+      <div><h3>Resources</h3><a href="./">Blog</a><a href="what-is-kenner.html">What is Kenner?</a><a href="./#comparisons">How Kenner compares</a></div>
+      <div><h3>Security</h3><p class="secu">ISO 27001 certification in progress<br>SOC 2 audit in preparation<br>GDPR, with a DPA for every pilot<br>Your data stays yours</p></div>
+    </div>
+    <div class="f-bot"><span>© 2026 Kenner Systems Inc.</span><span><a href="../legal.html#imprint">Imprint</a><a href="../legal.html#privacy">Privacy</a></span></div>
+  </div>
+</footer>
+</body>
+</html>

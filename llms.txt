@@ -1,0 +1,44 @@
+# Kenner (Kenner Systems Inc.)
+
+> The personal assistant for service. We activate your full service knowledge, answer every technician in seconds and take the paperwork off their hands.
+
+## Common questions
+
+### Who is it for?
+
+Service teams that keep equipment running on site, whether contractors, manufacturers or in-house: HVAC and refrigeration, elevators, fire protection, heat pumps, medical devices, forklifts, data centers, food equipment, wind turbines and machinery. If your technicians diagnose and repair equipment in the field, it’s built for you.
+
+### How is this different from a chatbot on our manuals?
+
+A chatbot searches your documents and pastes together an answer. Kenner builds a knowledge graph of your service instead: every unit, every job done on it, its alarms, its parts and its manual, linked together. So it answers for the unit in front of the technician, shows its sources and says when it doesn’t know. And Kenner doesn’t just look up answers. It carries out real tasks for you: it writes the quote, sends the invoice and orders the parts, in the systems you already run. Every job your team finishes adds to the graph.
+
+### Does Kenner replace our FSM or ERP?
+
+No. Kenner works with the FSM, ERP and CRM you already run. It reads from them before the job and writes the report, parts and follow-ups back to them after it.
+
+### Do our technicians have to learn a new app?
+
+No. They save Kenner as a contact and use WhatsApp, iMessage, Teams or a normal phone call, so it works on the phone they already have. A voice note after the job is enough for the report.
+
+### Is our data secure?
+
+Your data stays yours and stays in your systems. Every pilot comes with a data processing agreement under GDPR, ISO 27001 certification is in progress and our SOC 2 audit is in preparation.
+
+### How fast can we start?
+
+Within a week. We connect to your systems, your technicians save Kenner as a contact, and the first briefs and reports run in the same week. A pilot runs two weeks with five to ten technicians, measured against your own numbers.
+
+## Links
+
+- [Kenner](https://getkenner.com/)
+- [Book a demo](https://calendar.app.google/fFpCL3WG3pJtqtC89)
+- [Best AI for HVAC technicians in 2026 | kenner](https://getkenner.com/blog/best-ai-for-hvac-technicians.html)
+- [ChatGPT for HVAC troubleshooting: does it work? | kenner](https://getkenner.com/blog/chatgpt-for-hvac-troubleshooting.html)
+- [Blog: how Kenner works and how it compares | kenner](https://getkenner.com/blog/)
+- [Kenner vs Agentforce for Field Service and Dynamics 365 Copilot](https://getkenner.com/blog/kenner-vs-agentforce-and-dynamics-365-copilot.html)
+- [Kenner vs Aquant: AI for field service technicians compared](https://getkenner.com/blog/kenner-vs-aquant.html)
+- [Kenner vs Bluon: AI for HVAC technicians compared](https://getkenner.com/blog/kenner-vs-bluon.html)
+- [Kenner vs ServiceTitan Atlas: AI for HVAC technicians compared](https://getkenner.com/blog/kenner-vs-servicetitan-atlas.html)
+- [Kenner vs XOi: AI for commercial HVAC technicians compared](https://getkenner.com/blog/kenner-vs-xoi.html)
+- [Knowledge graph vs RAG for field service AI | kenner](https://getkenner.com/blog/knowledge-graph-vs-rag-field-service.html)
+- [What is Kenner? AI for HVAC/R technicians, explained](https://getkenner.com/blog/what-is-kenner.html)
