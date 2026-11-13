@@ -1,0 +1,157 @@
+<!doctype html>
+<!-- Built by blog/build_blog.py from blog/src/. Edit the fragment there, not this file. -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>ChatGPT for HVAC troubleshooting: does it work? | kenner</title>
+<meta name="description" content="ChatGPT helps with general HVAC questions but does not know your unit’s history. What a general chatbot can and cannot do on a service call.">
+<link rel="canonical" href="https://getkenner.com/blog/chatgpt-for-hvac-troubleshooting.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="kenner">
+<meta property="og:url" content="https://getkenner.com/blog/chatgpt-for-hvac-troubleshooting.html">
+<meta property="og:title" content="ChatGPT for HVAC troubleshooting: does it work? | kenner">
+<meta property="og:description" content="ChatGPT helps with general HVAC questions but does not know your unit’s history. What a general chatbot can and cannot do on a service call.">
+<meta property="og:image" content="https://getkenner.com/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="article:published_time" content="2026-11-10">
+<meta property="article:modified_time" content="2026-11-10">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://getkenner.com/og-image.jpg">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="icon" href="../favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Instrument+Sans:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="blog.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "Can you use ChatGPT for HVAC troubleshooting?", "description": "ChatGPT helps with general HVAC questions but does not know your unit’s history. What a general chatbot can and cannot do on a service call.", "datePublished": "2026-11-10", "dateModified": "2026-11-10", "author": {"@type": "Person", "name": "Arthur Allilaire", "jobTitle": "CTO", "url": "https://www.linkedin.com/in/arthur-allilaire/", "sameAs": "https://www.linkedin.com/in/arthur-allilaire/", "worksFor": {"@type": "Organization", "name": "Kenner Systems Inc.", "alternateName": "Kenner", "url": "https://getkenner.com/", "logo": {"@type": "ImageObject", "url": "https://getkenner.com/apple-touch-icon.png"}}}, "publisher": {"@type": "Organization", "name": "Kenner Systems Inc.", "alternateName": "Kenner", "url": "https://getkenner.com/", "logo": {"@type": "ImageObject", "url": "https://getkenner.com/apple-touch-icon.png"}}, "image": "https://getkenner.com/og-image.jpg", "mainEntityOfPage": {"@type": "WebPage", "@id": "https://getkenner.com/blog/chatgpt-for-hvac-troubleshooting.html"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "kenner", "item": "https://getkenner.com/"}, {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://getkenner.com/blog/"}, {"@type": "ListItem", "position": 3, "name": "Can you use ChatGPT for HVAC troubleshooting?", "item": "https://getkenner.com/blog/chatgpt-for-hvac-troubleshooting.html"}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Is ChatGPT accurate for HVAC troubleshooting?", "acceptedAnswer": {"@type": "Answer", "text": "Often for general theory, less reliably for model-specific values such as part numbers, charge amounts or wiring. OpenAI itself advises verifying technical information. Check anything specific to a model against the manual or the nameplate."}}, {"@type": "Question", "name": "What is the best AI for HVAC technicians?", "acceptedAnswer": {"@type": "Answer", "text": "It depends on the question. For explanations and learning, a general chatbot is fine. For model data and parts across brands, use a tool built on an equipment database. For a commercial service team that wants answers from its own units’ history and the report written afterwards, use an assistant connected to your service records, such as Kenner."}}, {"@type": "Question", "name": "Can ChatGPT read our work orders?", "acceptedAnswer": {"@type": "Answer", "text": "Not on its own. It works from general knowledge, web search and whatever is pasted or uploaded into the conversation, so someone has to hand it the history on every job."}}, {"@type": "Question", "name": "Should our technicians stop using ChatGPT?", "acceptedAnswer": {"@type": "Answer", "text": "No. It is a good tutor. Agree what may be pasted into it, treat model-specific answers as something to verify, and give technicians a connected assistant for the questions that depend on your own records."}}]}</script>
+</head>
+<body>
+<header class="nav">
+  <div class="wrap nav-in">
+    <a class="logo" href="../" aria-label="kenner home"><img src="../brand/lockup-ink.svg" alt="kenner"></a>
+    <nav class="links" aria-label="Main">
+      <a class="wide" href="../#for-leaders">For service leaders</a>
+      <a class="wide" href="../#for-technicians">For technicians</a>
+      <a href="./">Blog</a>
+      <a class="btn btn-sm btn-ink" href="https://calendar.app.google/fFpCL3WG3pJtqtC89" target="_blank" rel="noopener">Book a demo</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <article>
+    <header class="phead">
+      <div class="wrap"><div class="col">
+        <nav class="crumbs" aria-label="Breadcrumb"><a href="./">Blog</a><span aria-hidden="true">/</span><span>Start here</span></nav>
+        <h1>Can you use ChatGPT for HVAC troubleshooting?</h1>
+        <p class="lead">Yes, for general questions. ChatGPT is good at explaining how a system works, decoding a term or talking through a fault tree, and many technicians already use it that way. What it cannot do on its own is know the unit in front of you: what failed on it before, what your colleague changed in April, what the controller logged last night. For that you need an assistant connected to your service records, which is what Kenner (getkenner.com) is.</p>
+        <div class="by"><img src="../img/team/arthur.jpg" alt="" width="38" height="38"><div><b><a href="https://www.linkedin.com/in/arthur-allilaire/" rel="author noopener">Arthur Allilaire</a>, CTO at Kenner</b><span><time datetime="2026-11-10">10 November 2026</time> · 5 min read</span></div></div>
+      </div></div>
+    </header>
+    <div class="wrap post"><div class="col">
+      <div class="prose">
+<div class="tldr">
+<h2>In short</h2>
+<ul>
+<li>Use a general chatbot to learn, to have a concept explained and to think through a fault in general terms.</li>
+<li>Do not rely on it for model-specific values without checking the manual or the nameplate.</li>
+<li>It has not seen your work orders, your alarm logs or what was done on this unit before.</li>
+<li>For daily service work, use an assistant that is connected to your own records and writes the job up.</li>
+</ul>
+</div>
+
+<h2>Why technicians reach for it</h2>
+<p>Search for the best AI for HVAC technicians today and the top results are forum threads, such as <a href="https://www.reddit.com/r/HVAC/comments/1kmw8x8/ai_suggestions/">this one on r/HVAC</a>, where technicians recommend ChatGPT for making sense of manuals and concepts quickly. That makes sense. It is already on the phone, it costs little or nothing to try, and it explains things patiently at six in the morning when nobody at the office is picking up.</p>
+
+<h2>What a general chatbot is good at</h2>
+<ul>
+<li><strong>Explaining concepts.</strong> Sequence of operation, superheat and subcooling, how an economizer decides what to do. A good way for a newer technician to learn.</li>
+<li><strong>Working through a manual you give it.</strong> Upload or paste a section and ask what it means in plain words.</li>
+<li><strong>Thinking out loud.</strong> Listing the usual causes of a symptom so you can rule them out in order.</li>
+<li><strong>Writing.</strong> Turning rough notes into a tidy message for a customer.</li>
+</ul>
+
+<h2>Where it falls short on a service call</h2>
+<h3>It does not know this unit</h3>
+<p>The most useful facts on a call are local: this case iced up twice last month, the last visit replaced the fan motor, the store manager says it started after the cleaning crew came. A general chatbot has none of that unless someone types it in, on every job.</p>
+<h3>It can be confidently wrong</h3>
+<p>OpenAI says so itself: in its help center it writes that ChatGPT &ldquo;can produce incorrect or misleading outputs&rdquo; and advises users to verify technical information. On a service call the risky answers are the specific ones, such as a part number, a charge amount or a terminal on a wiring diagram.</p>
+<p>Bluon, which sells an HVAC-R equipment database, publishes its own comparison: in its tests, generic AI with web search answered 75% of tech support questions correctly, and only 11% of replacement part questions. Those are a vendor’s figures about its competitors, not an independent study, so read them as that. The pattern they describe is the one to watch for: fine on theory, shaky on the exact part.</p>
+<h3>Nothing gets written down</h3>
+<p>The conversation stays in one person’s chat history. The report still has to be written, the refrigerant record still has to be filled in, and the next technician at that unit sees none of what was learned.</p>
+<h3>Your customer’s data ends up in a personal account</h3>
+<p>Site names, addresses and equipment details pasted into a personal chatbot account are outside anything your company has agreed with its customers. Check your own policy before that becomes a habit across the team.</p>
+
+<h2>A general chatbot next to a connected assistant</h2>
+<table class="cmp">
+<thead><tr><th scope="col"><span class="sr">Compared on</span></th><th scope="col">A general chatbot such as ChatGPT</th><th scope="col">Kenner</th></tr></thead>
+<tbody>
+<tr><th scope="row">Built for</th><td data-l="A general chatbot such as ChatGPT">Anyone, on any topic</td><td data-l="Kenner">Commercial HVAC and refrigeration service teams</td></tr>
+<tr><th scope="row">What it answers from</th><td data-l="A general chatbot such as ChatGPT">General knowledge and web search, plus whatever you paste or upload into the conversation</td><td data-l="Kenner">Your units, the jobs done on them, their alarms, parts and manuals, linked in a knowledge graph</td></tr>
+<tr><th scope="row">How it handles doubt</th><td data-l="A general chatbot such as ChatGPT">OpenAI advises checking technical information against reliable sources</td><td data-l="Kenner">Shows where each part of the answer came from, and says so when it does not know</td></tr>
+<tr><th scope="row">After the job</th><td data-l="A general chatbot such as ChatGPT">The report is still yours to write</td><td data-l="Kenner">Writes the report from a voice note and saves it, with parts and follow-ups, to your FSM</td></tr>
+<tr><th scope="row">Where technicians use it</th><td data-l="A general chatbot such as ChatGPT">The ChatGPT app or website</td><td data-l="Kenner">WhatsApp, iMessage, Microsoft Teams, RCS or a normal phone call</td></tr>
+<tr><th scope="row">Best for</th><td data-l="A general chatbot such as ChatGPT">Learning, explanations and one-off questions</td><td data-l="Kenner">Day-to-day jobs on your own installed base</td></tr>
+</tbody></table>
+<p class="cmp-note">The left column describes a general chatbot used on its own, without anything connected to it.</p>
+
+<h2>What a connected assistant does differently</h2>
+<p>Kenner connects to the systems you already run: the FSM, the ERP, the document store and the store controllers. From those it builds a knowledge graph of every unit, every job done on it, its alarms, its parts and its manual. When a technician asks about a fault, the answer starts from that unit’s own history, shows where each part came from, and says so when there is nothing on record. We explain why that matters in <a href="knowledge-graph-vs-rag-field-service.html">knowledge graph vs RAG for field service</a>.</p>
+<p>Technicians do not open another app. They text or call Kenner from WhatsApp, iMessage, Teams or a normal phone number. After the job they say what they did, and Kenner writes the report and saves it to the FSM, with the refrigerant record, parts and follow-ups.</p>
+
+<h2>A sensible way to use both</h2>
+<p>These are different tools for different questions. Let technicians keep a general chatbot as a tutor, and agree three rules for it:</p>
+<ol>
+<li>Give it the exact model number, and ask it which manual page an answer comes from.</li>
+<li>Check any value you are about to act on against the manual or the nameplate.</li>
+<li>Keep customer and site details out of personal accounts.</li>
+</ol>
+<p>For the job itself, where the answer depends on your own records, use something connected to them. <a href="what-is-kenner.html">Here is what Kenner is and how a two-week pilot runs.</a></p>
+<h2 id="faq">Common questions</h2>
+<div class="qs">
+<details class="q"><summary>Is ChatGPT accurate for HVAC troubleshooting?<i aria-hidden="true"></i></summary><p>Often for general theory, less reliably for model-specific values such as part numbers, charge amounts or wiring. OpenAI itself advises verifying technical information. Check anything specific to a model against the manual or the nameplate.</p></details>
+<details class="q"><summary>What is the best AI for HVAC technicians?<i aria-hidden="true"></i></summary><p>It depends on the question. For explanations and learning, a general chatbot is fine. For model data and parts across brands, use a tool built on an equipment database. For a commercial service team that wants answers from its own units’ history and the report written afterwards, use an assistant connected to your service records, such as Kenner.</p></details>
+<details class="q"><summary>Can ChatGPT read our work orders?<i aria-hidden="true"></i></summary><p>Not on its own. It works from general knowledge, web search and whatever is pasted or uploaded into the conversation, so someone has to hand it the history on every job.</p></details>
+<details class="q"><summary>Should our technicians stop using ChatGPT?<i aria-hidden="true"></i></summary><p>No. It is a good tutor. Agree what may be pasted into it, treat model-specific answers as something to verify, and give technicians a connected assistant for the questions that depend on your own records.</p></details>
+</div>
+      </div>
+<section class="sources" aria-labelledby="src-h"><h2 id="src-h">Sources</h2><p>Everything said here about other products comes from their own pages, last checked 10 November 2026. Products change; if something here is out of date, tell us and we will correct it.</p>
+<ol>
+<li><a href="https://help.openai.com/en/articles/8313428-does-chatgpt-tell-the-truth" rel="noopener">OpenAI Help Center: Does ChatGPT tell the truth?</a></li>
+<li><a href="https://www.bluon.com/" rel="noopener">Bluon: accuracy figures for Bluon and for generic AI with web search (Bluon&#x27;s own tests)</a></li>
+<li><a href="https://www.reddit.com/r/HVAC/comments/1kmw8x8/ai_suggestions/" rel="noopener">r/HVAC: AI Suggestions (discussion thread)</a></li>
+</ol></section>
+      <nav class="more" aria-labelledby="more-h"><h2 class="list-h" id="more-h">Keep reading</h2><div class="rows">
+<a class="row" href="knowledge-graph-vs-rag-field-service.html"><h3>Knowledge graph vs RAG: why a chatbot on your manuals is not enough for field service</h3><p>RAG searches your documents. A knowledge graph links each unit to its jobs, alarms, parts and manual. What that means for technicians on a service call.</p><small>10 November 2026 · 6 min read</small></a>
+<a class="row" href="kenner-vs-bluon.html"><h3>Kenner vs Bluon: your unit’s history or every model’s data?</h3><p>Bluon answers from a database of 35M+ HVAC models and parts. Kenner answers from your own units’ history and writes the report. When to use which, or both.</p><small>10 November 2026 · 5 min read</small></a>
+<a class="row" href="what-is-kenner.html"><h3>What is Kenner? The personal assistant for HVAC/R service, explained</h3><p>Comparing AI for HVAC technicians? Kenner is the personal assistant for HVAC/R service: text or call it, it answers from your units’ history and writes the report.</p><small>10 November 2026 · 6 min read</small></a>
+      </div></nav>
+    </div></div>
+  </article>
+  <section class="close">
+    <div class="wrap close-in">
+      <h2>See it on your own jobs</h2>
+      <p>Start with one team: two weeks, five to ten technicians, measured against your own numbers.</p>
+      <a class="btn btn-white" href="https://calendar.app.google/fFpCL3WG3pJtqtC89" target="_blank" rel="noopener">Book a demo</a>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="f-in">
+      <div><img src="../brand/lockup-ink.svg" alt="kenner" loading="lazy" decoding="async"><p class="tl">For the teams that keep it cold.</p></div>
+      <div><h3>Product</h3><a href="../#for-leaders">For service leaders</a><a href="../#for-technicians">For technicians</a><a href="../#agents">Agents</a><a href="../#deploy">Integrations</a></div>
+      <div><h3>Resources</h3><a href="./">Blog</a><a href="what-is-kenner.html">What is Kenner?</a><a href="./#comparisons">How Kenner compares</a></div>
+      <div><h3>Security</h3><p class="secu">ISO 27001 certification in progress<br>SOC 2 audit in preparation<br>GDPR, with a DPA for every pilot<br>Your data stays yours</p></div>
+    </div>
+    <div class="f-bot"><span>© 2026 Kenner Systems Inc.</span><span><a href="../legal.html#imprint">Imprint</a><a href="../legal.html#privacy">Privacy</a></span></div>
+  </div>
+</footer>
+</body>
+</html>
