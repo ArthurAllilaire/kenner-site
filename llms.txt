@@ -10,7 +10,7 @@ Service teams that keep equipment running on site, whether contractors, manufact
 
 ### How is this different from a chatbot on our manuals?
 
-A chatbot searches your documents and pastes together an answer. Kenner builds a knowledge graph of your service instead: every unit, every job done on it, its alarms, its parts and its manual, linked together. So it answers for the unit in front of the technician, shows its sources and says when it doesn’t know. And Kenner doesn’t just look up answers. It carries out real tasks for you: it writes the quote, sends the invoice and orders the parts, in the systems you already run. Every job your team finishes adds to the graph.
+A chatbot searches your documents and pastes together an answer. Kenner builds a knowledge graph of your service instead: every unit, every job done on it, its alarms, its parts and its manual, linked together. So it answers for the unit in front of the technician, shows its sources and says when it doesn’t know. Every job your team finishes adds to the graph. And Kenner doesn’t just look up answers. It carries out real tasks for you: it writes the quote, sends the invoice and orders the parts, in the systems you already run.
 
 ### Does Kenner replace our FSM or ERP?
 

@@ -90,7 +90,7 @@
      "name": "How is this different from a chatbot on our manuals?",
      "acceptedAnswer": {
       "@type": "Answer",
-      "text": "A chatbot searches your documents and pastes together an answer. Kenner builds a knowledge graph of your service instead: every unit, every job done on it, its alarms, its parts and its manual, linked together. So it answers for the unit in front of the technician, shows its sources and says when it doesn’t know. And Kenner doesn’t just look up answers. It carries out real tasks for you: it writes the quote, sends the invoice and orders the parts, in the systems you already run. Every job your team finishes adds to the graph."
+      "text": "A chatbot searches your documents and pastes together an answer. Kenner builds a knowledge graph of your service instead: every unit, every job done on it, its alarms, its parts and its manual, linked together. So it answers for the unit in front of the technician, shows its sources and says when it doesn’t know. Every job your team finishes adds to the graph. And Kenner doesn’t just look up answers. It carries out real tasks for you: it writes the quote, sends the invoice and orders the parts, in the systems you already run."
      }
     },
     {
@@ -396,6 +396,8 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
 .q[open] summary i::after{opacity:0}
 @media (hover:hover) and (pointer:fine){.q summary:hover i{opacity:.55}}
 .q p{margin:0;padding:0 44px 26px 0;font-size:16px;line-height:1.6;color:var(--muted);max-width:640px}
+/* an answer in two paragraphs: a paragraph's gap between them, the full space only under the last */
+.q p:not(:last-child){padding-bottom:14px}
 /* the answer fades in under its question while the plus turns; closing stays instant */
 .q[open] p{animation:q-in .2s var(--ease)}
 @keyframes q-in{from{opacity:0;transform:translateY(-4px)}}
@@ -1375,7 +1377,8 @@ footer{background:var(--paper)}
         </details>
         <details class="q">
           <summary>How is this different from a chatbot on our manuals?<i aria-hidden="true"></i></summary>
-          <p>A chatbot searches your documents and pastes together an answer. Kenner builds a knowledge graph of your service instead: every unit, every job done on it, its alarms, its parts and its manual, linked together. So it answers for the unit in front of the technician, shows its sources and says when it doesn’t know. And Kenner doesn’t just look up answers. It carries out real tasks for you: it writes the quote, sends the invoice and orders the parts, in the systems you already run. Every job your team finishes adds to the graph.</p>
+          <p>A chatbot searches your documents and pastes together an answer. Kenner builds a knowledge graph of your service instead: every unit, every job done on it, its alarms, its parts and its manual, linked together. So it answers for the unit in front of the technician, shows its sources and says when it doesn’t know. Every job your team finishes adds to the graph.</p>
+          <p>And Kenner doesn’t just look up answers. It carries out real tasks for you: it writes the quote, sends the invoice and orders the parts, in the systems you already run.</p>
         </details>
         <details class="q">
           <summary>Does Kenner replace our FSM or ERP?<i aria-hidden="true"></i></summary>
