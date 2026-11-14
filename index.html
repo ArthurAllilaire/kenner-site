@@ -288,7 +288,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
 }
 @media (prefers-reduced-motion:reduce){.strip img,.strip .yc{transition:none}}
 /* tablet and phone: the frame sits under the buttons; the messages lie over the foot of the mark, so no gap waits for them */
-@media (max-width:980px){
+@media (max-width:860px){
   .hero-copy{max-width:720px}
   .fin{position:relative;right:auto;top:auto;bottom:auto;width:100%;max-width:440px;max-height:none;container-type:normal;margin:22px 0 0;gap:10px;padding:26px 0 14px}
   .fin-img{object-position:55% 50%}
@@ -711,6 +711,334 @@ footer{background:var(--paper)}
 #showcase .m-in,#showcase .trail .in{animation-name:kn-fade}
 #showcase .b.typ i,#showcase .ib.typ i,#showcase .tb.typ i{animation:none;opacity:.7}}
 </style>
+
+<style>
+/* ---- Draft: the live page with (1) hairline rails and marks down the page, (2) corner marks on the hero frame,
+   (3) the logo strip in hairline cells, (4) "reality" as job photos with the messages sent from them. ---- */
+
+/* 1. rails: one hairline down each edge of the page column, drawn in every section's own background so content stays above it.
+   Where a section starts, a short tick crosses each rail and makes a plus. Off below 900px, where the gutter is too tight. */
+@media (min-width:900px){
+  main>section:not(.close),footer{
+    --rail:rgba(105,109,126,.24);--tick:rgba(10,11,30,.5);--rx:max(12px,calc(50% - 624px));
+    background-image:linear-gradient(var(--tick),var(--tick)),linear-gradient(var(--tick),var(--tick)),linear-gradient(var(--rail),var(--rail)),linear-gradient(var(--rail),var(--rail))!important;
+    background-size:13px 1px,13px 1px,1px 100%,1px 100%!important;
+    background-position:left calc(var(--rx) - 6px) top,right calc(var(--rx) - 6px) top,left var(--rx) top,right var(--rx) top!important;
+    background-repeat:no-repeat!important;
+  }
+  main>section.night{--rail:rgba(255,255,255,.13);--tick:rgba(255,255,255,.62)}
+  main>section.hero{background-size:0 0,0 0,1px 100%,1px 100%!important}
+}
+
+/* 2. the hero frame's corner marks: the same box as the frame, with a plus just outside each corner */
+.fin-marks{display:none}
+@media (min-width:861px){
+  .fin-marks{display:block;position:absolute;z-index:3;right:var(--gr);top:104px;bottom:40px;max-height:760px;margin-block:auto;width:min(628px,52%);pointer-events:none}
+  .fin-marks i{position:absolute;width:13px;height:13px;background:linear-gradient(var(--ink),var(--ink)) center/100% 1px no-repeat,linear-gradient(var(--ink),var(--ink)) center/1px 100% no-repeat;opacity:.5}
+  .fin-marks i:nth-child(1){left:-7px;top:-7px}.fin-marks i:nth-child(2){right:-7px;top:-7px}
+  .fin-marks i:nth-child(3){left:-7px;bottom:-7px}.fin-marks i:nth-child(4){right:-7px;bottom:-7px}
+}
+
+/* 3. the logo strip in hairline cells: eight equal columns, the hairlines drawn behind them */
+@media (min-width:1100px){
+  .strip-in{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));justify-items:center;align-items:center;gap:0;height:76px;padding-block:0;
+    background:linear-gradient(90deg,var(--line-2) 1px,transparent 1px) -1px 0/calc(100%/8) 100% repeat-x content-box content-box}
+  .strip-in>p{justify-self:start}
+  .strip-in>img{max-width:calc(100% - 36px);object-fit:contain}
+}
+
+/* 4. reality: six jobs, each photo with the message sent from it. The photos can be picked up and thrown */
+.stage-r{position:relative;height:545px;margin-top:clamp(36px,4.5vw,56px)}
+.ph{position:absolute;z-index:1;margin:0;cursor:grab;touch-action:pan-y;user-select:none;-webkit-user-select:none;will-change:transform}
+.ph .im{flex:none;overflow:hidden;border-radius:4px;transform-origin:50% 60%;transition:transform .5s var(--ease)}
+.ph img{width:100%;height:100%;max-width:none;object-fit:cover;pointer-events:none}
+.ph.drag{cursor:grabbing;z-index:5}
+.ph.drag .im{transform:scale(1.05);transition-duration:.2s}
+.ph.settle{transition:transform .55s var(--ease)}
+@media (hover:hover) and (pointer:fine){.ph:hover .im{transform:scale(1.04)}}
+.job{display:flex;align-items:flex-end;gap:14px}
+.job.rev{flex-direction:row-reverse}
+.bub{margin:0;max-width:204px;padding:12px 15px;border-radius:16px 16px 16px 4px;background:color-mix(in oklab,var(--ink) 7%,var(--paper));font:500 15px/1.35 var(--text);color:var(--ink)}
+.job.rev .bub{border-radius:16px 16px 4px 16px}
+.bub small{display:block;margin-top:5px;font:400 12px/1.3 "Geist Mono",ui-monospace,monospace;color:var(--muted)}
+/* what Kenner kept from the job: a small record line under the technician's message, the mark in front, the kind of note in ink */
+.cap{display:grid;gap:9px;max-width:204px}
+.kept{position:relative;margin:0;padding-left:21px;font:400 12px/1.45 "Geist Mono",ui-monospace,monospace;color:var(--muted)}
+.kept img{position:absolute;left:1px;top:2px;width:13px;height:13px}
+.kept span{display:block}
+.kept b{font-weight:500;color:var(--ink)}
+.kept .nb{font-style:normal;white-space:nowrap}
+/* five pairs, each with Kenner's note, placed as Lennart dragged them (2026-11-13, measured off his screenshot):
+   freezer top left, sheep top right, pigeons in the middle, forklift bottom left, plant room bottom right */
+.r1{left:12px;top:20px}.r1 .im{width:150px;height:190px}
+.r2{right:6.5%;top:0}.r2 .im{width:176px;height:122px}
+.r4{left:37.6%;top:180px}.r4 .im{width:176px;height:150px}
+.r5{left:46px;top:354px}.r5 .im{width:150px;height:150px}
+.r6{right:2px;top:400px}.r6 .im{width:190px;height:135px}
+/* the moving row of the other messages and its pause button are out: the six jobs stand alone */
+.stage-r~.mq,.stage-r~.mq-ctl{display:none}
+/* phone and small tablet: the pairs become one row you swipe sideways. Native scrolling with snap points; each card is the photo
+   with its message under it, and the next card peeks in at the right edge so the row reads as swipeable. */
+@media (max-width:900px){
+  .stage-r{height:auto;display:flex;align-items:flex-start;gap:12px;margin-top:28px;margin-inline:calc(var(--gl)*-1) calc(var(--gr)*-1);padding-inline:var(--gl) var(--gr);
+    overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding-inline:var(--gl);overscroll-behavior-x:contain;scrollbar-width:none}
+  .stage-r::-webkit-scrollbar{display:none}
+  .ph{position:static;transform:none!important;cursor:default;touch-action:auto}
+  .job,.job.rev{flex:none;flex-direction:column;align-items:stretch;gap:10px;width:min(78vw,300px);scroll-snap-align:start}
+  .job .im{width:auto;height:210px}
+  .bub,.job.rev .bub{max-width:none;border-radius:16px 16px 16px 4px}
+  .cap{max-width:none}
+}
+@media (prefers-reduced-motion:reduce){.ph .im,.ph.settle{transition:none}}
+/* phone: the section fills one screen. The heading keeps its size and the swipe row takes the rest of the height: each card's
+   photo grows to fill what its message and note leave over (never under 210px, so a short screen just runs a little longer) */
+@media (max-width:560px){
+  #reality{display:flex;flex-direction:column;min-height:100vh;min-height:100svh;padding-top:76px}   /* the heading starts under the 60px menu bar, not behind it */
+  #reality>.wrap,#reality .real{flex:1 1 auto;display:flex;flex-direction:column}
+  #reality .stage-r{flex:1 1 auto;align-items:stretch}
+  #reality .job .im{position:relative;flex:1 1 210px;height:auto;min-height:210px}
+  #reality .job .im img{position:absolute;inset:0}
+}
+
+/* 5. the demo, calmer. Arthur's files are untouched; these only restyle it (desktop and tablet).
+   The phone keeps its frame (the frameless chat card was tried and taken back). The channel logos are smaller, the log's header
+   is a small label, its step icons lose their discs, and its source chips are outlined rectangles, not filled pills. */
+@media (min-width:761px){
+  #showcase .dock{gap:16px}
+  #showcase .dock button{width:26px;height:26px}
+  #showcase .look-h{padding-block:16px}
+  #showcase .look-h img{width:18px;height:18px}
+  #showcase .look-h h3{font:400 12.5px/1.4 "Geist Mono",ui-monospace,monospace;color:var(--muted);letter-spacing:0}
+  #showcase .trail .st-i{background:none}
+  #showcase .trail .ch{border-radius:6px;background:none;box-shadow:inset 0 0 0 1px var(--line-2)}
+}
+
+/* 7. the two audience panels on real job photos (the grain is off). The photo fills the top of each panel and fades into the
+   panel's own colour before the product window: leaders stay ultramarine (the photo takes the blue), technicians stay night. */
+#value .aud-bg{display:none}
+.aud::before{content:"";position:absolute;inset:0 0 30% 0;z-index:-1}
+#for-leaders{background:var(--accent)}
+#for-leaders::before{background:linear-gradient(180deg,rgba(20,56,202,.42),rgba(20,56,202,.12) 45%,#1438CA 100%),url(img/job/van-depot.jpg) 50% 60%/cover #1438CA;background-blend-mode:normal,luminosity}
+#for-technicians::before{background:linear-gradient(180deg,rgba(10,11,30,.6),rgba(10,11,30,.1) 45%,var(--night) 100%),url(img/hero-phone.jpg) 64% 50%/cover}
+
+/* 8. no half-empty middle stage. The hero keeps its two columns down to 860px (the generator moves the page's own 980px
+   breakpoint). Below that it is one column, and both parts fill it: the headline is sized from the screen width (one rule for the
+   whole range, so no jump between phone and tablet; a trade wider than the column is still shrunk to fit by the headline script),
+   and the photo frame runs the full width instead of stopping at 440px. */
+@media (max-width:860px){
+  .hero h1{font-size:clamp(40px,14.4vw,64px)}
+  .fin{max-width:none;min-height:min(60vw,500px);justify-content:center}
+}
+/* in the narrow two-column range the frame is a tall slice of the photo: move the slice right, so the technician stays in it */
+@media (min-width:861px) and (max-width:980px){.fin-img{object-position:62% 50%}}
+
+/* 9. a hand holds the demo phone. The photo's own phone is cut out, so the live phone sits in the grip: fingers on its left edge,
+   thumb on its right, wrist and sleeve running down to a hairline where the "What it adds up to" block starts, which cuts them off.
+   The hand is the first child of .hold, the box around the phone, so it lies under the phone and moves with it.
+   The numbers come from make_hand.py and are shares of the phone's width. Only where there is room beside the phone. */
+.hand{display:none}
+.hold{display:contents}
+@media (min-width:761px){
+  .hold{display:block;position:relative;flex:none;z-index:3}
+}
+@media (min-width:1180px){
+  #showcase .work{padding-bottom:172px;clip-path:inset(-80px -80px 0 -80px);border-bottom:1px solid color-mix(in oklab,var(--ink) 16%,transparent)}
+  .hand{display:block;position:absolute;left:-21.5%;bottom:0;width:220.12%;aspect-ratio:1105/1384;transform:translateY(46.24%);background:url(img/job/hand-phone.webp) 0 0/100% 100% no-repeat;pointer-events:none}
+  #showcase .hold{margin-left:84px}
+  #showcase .lap{margin-left:140px}
+  #showcase .stats{margin-top:76px}
+}
+
+/* 10. the demo starts with two questions, at every width: an agent, then an app. State: #showcase.pick = still choosing.
+   Desktop and tablet: only the phone at first, in the middle, with the questions on its screen; on the second answer the phone
+   glides to the left and Kenner's panel comes in beside it, as one movement.
+   Phone: the questions are one card over the whole stage; on the second answer it gives way to the chat and Kenner's panel,
+   which were laid out underneath all along, so nothing below the section moves.
+   The tabs above and the app icons are gone everywhere; one quiet line says what is showing and offers "Change". */
+#showcase .sc-top .agents,#showcase .dock{display:none}
+/* while choosing, Kenner's panel waits 64px to the right, unseen: it must not give the page a sideways scroll on a narrow window */
+#showcase{overflow-x:clip}
+.pk-bar{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:2px 14px;min-height:42px;font:500 15px/1.3 var(--text);color:var(--ink);text-align:center;transition:opacity .4s ease .5s}
+.pk-bar button{appearance:none;border:0;padding:6px 2px;background:none;font:inherit;color:var(--muted);text-decoration:underline;text-underline-offset:4px;text-decoration-color:color-mix(in oklab,var(--ink) 28%,transparent);cursor:pointer}
+.pk-bar button:hover{color:var(--ink)}
+#showcase.pick .pk-bar{opacity:0;visibility:hidden;transition:opacity .2s ease,visibility 0s .2s}
+#showcase.pick .send-cue,#showcase.moving .send-cue{opacity:0!important;pointer-events:none!important}
+
+/* the questions */
+.pk{display:block;position:absolute;z-index:30;overflow:hidden;background:#fff;color:#000;font:400 16px/1.3 var(--font-app);transition:opacity .4s ease,visibility 0s}
+.pk.off{opacity:0;visibility:hidden;transition:opacity .4s ease,visibility 0s .4s}
+.pk-s{position:absolute;padding:0 16px;transition:opacity .26s ease,transform .42s cubic-bezier(.23,1,.32,1),visibility 0s}
+.pk[data-step="agent"] .pk-app{opacity:0;transform:translateX(28px);visibility:hidden;transition:opacity .2s ease,transform .3s ease,visibility 0s .3s}
+.pk[data-step="app"] .pk-agent{opacity:0;transform:translateX(-28px);visibility:hidden;transition:opacity .2s ease,transform .3s ease,visibility 0s .3s}
+.pk h3{margin:0;font:600 23px/1.15 var(--font-app);letter-spacing:-.025em;text-align:center}
+.pk-mk{display:block;width:38px;height:38px;margin:34px auto 12px}
+.pk-agent h3{margin-bottom:22px}
+.pk-list{display:grid;gap:8px}
+.pk-row{appearance:none;display:flex;align-items:center;justify-content:space-between;width:100%;height:50px;padding:0 14px 0 16px;border:0;border-radius:14px;background:#0A0B1E;color:#fff;font:500 16px/1 var(--font-app);letter-spacing:-.01em;text-align:left;cursor:pointer;transition:transform .16s cubic-bezier(.23,1,.32,1),background-color .2s ease}
+.pk-row svg{width:16px;height:16px;opacity:.7;transition:transform .2s cubic-bezier(.23,1,.32,1)}
+.pk-row:active,.pk-apps button:active{transform:scale(.97)}
+.pk-row.off{background:#F1F2F5;color:#A4A7B4;cursor:default}
+.pk-row:focus-visible,.pk-apps button:focus-visible,.pk-back:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+/* "tap one": a ring leaves each of the two live rows three times once the questions are on screen */
+.pk.seen .pk-row:not(.off){animation:pk-ring 1.8s cubic-bezier(.23,1,.32,1) .5s 3}
+.pk.seen .pk-row:not(.off)+.pk-row:not(.off){animation-delay:.72s}
+@keyframes pk-ring{0%{box-shadow:0 0 0 0 rgba(10,11,30,.34)}70%,100%{box-shadow:0 0 0 10px rgba(10,11,30,0)}}
+.pk-back{appearance:none;position:absolute;left:12px;top:6px;display:grid;place-items:center;width:38px;height:38px;border:0;border-radius:50%;background:#F1F2F5;color:#000;cursor:pointer}
+.pk-back svg{width:16px;height:16px}
+.pk-app h3{margin:84px 0 30px}
+.pk-apps{display:grid;grid-template-columns:repeat(2,84px);justify-content:center;gap:24px}
+.pk-apps button{appearance:none;display:grid;place-items:center;width:84px;height:84px;padding:0;border:0;border-radius:21px;background:var(--c);cursor:pointer;box-shadow:0 6px 16px rgba(10,11,30,.12);transition:transform .16s cubic-bezier(.23,1,.32,1)}
+.pk-apps span{display:block;width:100%;height:100%;background:#fff;-webkit-mask:var(--m) center/var(--s,64%) no-repeat;mask:var(--m) center/var(--s,64%) no-repeat}
+.pk-apps .kw{background:#fff;box-shadow:0 6px 16px rgba(10,11,30,.12),inset 0 0 0 1px rgba(10,11,30,.1)}
+.pk-apps .kw img{width:56%;height:56%}
+.pk.seen[data-step="app"] .pk-apps button{animation:pk-ring 1.8s cubic-bezier(.23,1,.32,1) .45s 2}
+@media (hover:hover) and (pointer:fine){
+  .pk-row:not(.off):hover{background:#262A45}
+  .pk-row:not(.off):hover svg{transform:translateX(3px)}
+  .pk-apps button:hover{transform:translateY(-2px)}
+  .pk-apps button:hover:active{transform:scale(.97)}
+}
+
+/* desktop and tablet: the questions are a screen of the phone, over the chat; then the move */
+@media (min-width:761px){
+  .pk{inset:7px;border-radius:calc(var(--pr) - 7px)}
+  .pk::before{content:"";position:absolute;top:10px;left:50%;width:min(84px,27%);height:24px;transform:translateX(-50%);border-radius:14px;background:radial-gradient(circle at calc(100% - 11px) 50%,#1E2748 0 2.5px,#0B0E1C 3px 4.5px,#000 5px);z-index:20}
+  .pk-s{inset:40px 0 0}
+  /* the phone eases across (in-out, it is already on screen), the panel follows a beat later */
+  #showcase.pk-live .hold{transition:transform .9s cubic-bezier(.77,0,.175,1)}   /* only once the phone has been put in the middle: no glide on load */
+  #showcase .lap{transition:opacity .5s ease .34s,transform .8s cubic-bezier(.23,1,.32,1) .26s}
+  #showcase.pick .hold{transform:translateX(var(--pk-dx,0px))}
+  #showcase.pick .lap{opacity:0;transform:translateX(64px);visibility:hidden;transition:opacity .22s ease,transform .5s ease,visibility 0s .5s}
+}
+
+/* phone: the questions are one white card over the whole stage (the chat has no phone frame here; the visitor's own phone is the phone) */
+@media (max-width:760px){
+  .pk-bar{font-size:14px}
+  .pk-w{display:none}
+  #showcase .work .phone{position:static}   /* so the card's box is the stage, not the chat */
+  .pk{inset:0;border-radius:16px}
+  .pk .sbar,.pk .home{display:none}
+  /* while choosing, the stage is only as tall as the questions need, so they sit right under the heading; it takes its full height
+     at the second answer (the chat and panel are still hidden then, so the step is not seen inside the section) */
+  #showcase.pick .work{height:min(var(--mstage),470px)}
+  .pk-s{inset:0;display:flex;flex-direction:column;justify-content:center;padding:16px}
+  .pk-mk{margin-top:0}
+  .pk-agent h3{margin-bottom:18px}
+  .pk-list{gap:7px}
+  .pk-row{height:46px}
+  .pk-app h3{margin-top:0}
+  .pk-back{left:14px;top:14px}
+  /* underneath, the chat and Kenner's panel wait a little lower and rise as the card goes */
+  #showcase .phone .scr{transition:opacity .4s ease .08s,transform .6s cubic-bezier(.23,1,.32,1) .08s}
+  #showcase .lap{transition:opacity .4s ease .2s,transform .6s cubic-bezier(.23,1,.32,1) .2s}
+  #showcase.pick .phone .scr,#showcase.pick .lap{opacity:0;transform:translateY(16px);transition:opacity .2s ease,transform .3s ease}
+  #showcase.pick .lap{visibility:hidden;transition:opacity .2s ease,transform .3s ease,visibility 0s .3s}
+}
+@media (prefers-reduced-motion:reduce){
+  #showcase.pk-live .hold,#showcase .lap,#showcase.pick .lap,#showcase .phone .scr,#showcase.pick .phone .scr,.pk-s,.pk[data-step] .pk-s{transition:opacity .2s ease,visibility 0s}
+  #showcase.pick .lap,#showcase.pick .phone .scr,.pk[data-step="agent"] .pk-app,.pk[data-step="app"] .pk-agent{transform:none}
+  .pk.seen .pk-row:not(.off),.pk.seen[data-step="app"] .pk-apps button{animation:none}
+}
+
+/* ---- Draft variant "cut" (cut.html = lines.html plus this file): the hero centred, with a cut-out foreground.
+   The page's own light ground and dark type stay. Along the foot of the first screen stands the roof (units, pipes, the
+   technician on a call), cut out of its sky (img/job/roofline.webp, made by make_roofkey.py from a 4k photo) and full width.
+   Kenner's mark rises behind it like a sun: ultramarine, its lower half hidden by the units. "Listen to a call" sits on the
+   roof; while the call plays, Kenner's message arrives left of the mark and the action right of it.
+   lines.html keeps the two-column hero and sky.html the photo-sky version. ---- */
+/* the roof's measures, all from its width (--rw): its height, and how high the tops of the units stand above its foot */
+.hero{--rw:100vw;--rh:calc(var(--rw)*.1779);--ru:calc(var(--rw)*.157)}
+.hero-in{align-items:center;justify-content:flex-start;text-align:center;padding-top:calc(60px + clamp(24px,4.4vh,56px));padding-bottom:0}
+.hero-copy{position:relative;z-index:4;max-width:880px;align-items:center;gap:clamp(16px,2.4vh,24px)}
+/* the rotating word is a box as wide as itself, centred in its row (the headline script measures from the box's left edge);
+   the word on its way out is taken out of the row and kept centred */
+.hero .rot-w{display:inline-block;transform-origin:50% 100%}
+.hero .rot-w.out{left:50%;translate:-50% 0}
+.hero .sub{max-width:560px}
+.hero .acts{justify-content:center}
+/* the roof, in front of the mark */
+.hero-in::after{content:"";position:absolute;z-index:3;left:50%;bottom:0;width:var(--rw);margin-left:calc(var(--rw)/-2);aspect-ratio:3840/683;background:url(img/job/roofline.webp) 50% 100%/cover no-repeat;pointer-events:none}
+/* the mark: no frame, pushed to the foot of the screen so the roof covers its lower half. No stacking context of its own here,
+   so the mark can lie behind the roof while the button and the messages lie in front of it */
+.fin{position:relative;right:auto;top:auto;bottom:auto;z-index:auto;width:100%;max-width:none;max-height:none;margin:auto 0 0;padding:clamp(6px,1.6vh,32px) 0 40px;gap:0;border-radius:0;overflow:visible;background:none;container-type:normal;color:var(--ink);--mk:clamp(200px,30vh,330px)}
+.fin::after,.fin-img,.fin-marks{display:none}
+.mk{z-index:2;--mw:var(--mk);margin-top:0}
+#mk-rays{fill:var(--accent)}
+.mk-play{color:var(--accent)}
+.mk-play:focus-visible{outline-color:var(--accent)}
+.mk-foot{position:absolute;z-index:4;left:0;right:0;bottom:34px;gap:0}
+.mk-cta{margin:0;border-color:rgba(255,255,255,.5);background:rgba(10,12,30,.5);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
+.mk-cap{height:48px;text-shadow:0 1px 12px rgba(6,8,22,.8),0 0 2px rgba(6,8,22,.6)}
+.strip{z-index:5;background:var(--ground)}
+/* desktop: the two in-call messages stand beside the visible half of the mark, on the page's ground: the text from Kenner as a
+   dark notification, the action as a white row */
+@media (min-width:861px){
+  /* the roof's height follows the window's width (17.8vw, the tops of the units at about 15.7vw): the mark keeps its centre
+     level with those tops at every size, so it never sinks behind them on a wide monitor */
+  .fin{padding-bottom:max(24px,calc(var(--ru) - var(--mk)*.5));--mk:clamp(180px,26vh,300px)}
+  .mk-foot{bottom:max(28px,calc(var(--rh)*.25))}
+  .mk-msgs{position:absolute;z-index:4;left:0;right:0;top:auto;bottom:calc(100% + var(--mk)*.28);height:60px;display:block;pointer-events:none}
+  .mk-note,.mk-act{position:absolute;top:0}
+  .mk-note{right:calc(50% + var(--mk)/2 + 36px);background:rgba(14,16,38,.9);-webkit-backdrop-filter:none;backdrop-filter:none;box-shadow:0 12px 30px rgba(10,11,30,.18)}
+  .mk-act{left:calc(50% + var(--mk)/2 + 36px);top:3px;background:#fff;box-shadow:0 0 0 1px var(--line-2),0 10px 26px rgba(10,11,30,.08)}
+}
+/* phone and tablet: the roof is cropped at its own scale so the units keep their size; the messages stay over the button */
+@media (max-width:860px){
+  .hero-in::after{aspect-ratio:auto;height:clamp(120px,34vw,170px);background-size:auto 100%;background-position:60% 100%}
+  .fin{--mk:clamp(190px,56vw,250px);padding-bottom:30px}
+  .mk-foot{bottom:20px}
+}
+/* ---- Draft variant "cut-left" (cut-left.html = lines.html plus cut.css plus this file): the cut-out hero with the text
+   back on the left, as on the live page, and the mark with "Listen to a call" on the right. The roof still runs full width
+   along the foot; the mark, larger now that it has the right half to itself, stands clear above it, level with the text
+   (first it rose from behind the units; Lennart moved it up, 2026-11-13). The two in-call messages share one place again,
+   just above the button. ---- */
+.hero-in{align-items:flex-start;text-align:left}
+/* the text block's children take the column's full width: a headline that is only as wide as its content would grow with a
+   long trade ("food equipment") and push it past the screen on a phone, where the headline script could no longer shrink it */
+.hero-copy{align-self:stretch;align-items:stretch}   /* the block itself too: as wide as the column, never as wide as its longest word */
+.hero .rot-w{display:block;transform-origin:0 100%}
+.hero .rot-w.out{left:0;translate:none}
+.hero .sub{max-width:660px}
+.hero .acts{justify-content:flex-start}
+@media (min-width:861px){
+  /* the text sits in the middle of the space above the roof (the roof's height is --rh) */
+  .hero-in{justify-content:center;padding-bottom:var(--rh)}
+  .hero-copy{max-width:min(519px,44%);gap:26px;margin-bottom:clamp(20px,3.4vh,36px)}   /* air between the buttons and the pipes, also on a short window */
+  /* the mark: at the right edge of the page column, clear of the roof, in the middle of the same space as the text; the
+     button right under it. Both stand on the page's light ground here, so the button is a dark outline and the spoken line
+     is dark type. The mark is kept small enough that a message fits between it and the text */
+  .fin{position:absolute;left:auto;right:var(--gr);top:60px;bottom:var(--rh);width:min(628px,52%);height:auto;margin:0;padding:0;align-items:flex-end;justify-content:center;gap:18px;--mk:clamp(220px,min(25vw,42vh),380px)}
+  .mk-foot{position:relative;left:auto;right:auto;bottom:auto;width:var(--mk);align-self:flex-end}
+  .mk-cta{border-color:var(--line-2);background:none;-webkit-backdrop-filter:none;backdrop-filter:none;color:var(--ink)}
+  .mk-cta:focus-visible{outline-color:var(--ink)}
+  .mk-cap{max-width:none;padding:0;color:var(--ink);text-shadow:none}
+  .mk-cap img{filter:none}
+  /* the two in-call messages share one place in the gap between the text and the mark: left of the mark's lower part,
+     level with the sub line. They arrive there and leave with a short step, not across the headline */
+  .mk-msgs{left:auto;right:calc(100% + 28px);bottom:calc(100% + 18px + var(--mk)*.14);width:min(264px,22vw);height:auto;display:grid;justify-items:end;align-items:end}
+  .mk-note,.mk-act{position:relative;top:auto;left:auto;right:auto;width:100%}
+  .mk-note.gone{transform:translateX(-22px)}
+  .mk-act.gone{transform:translateX(22px)}
+}
+@media (min-width:861px) and (hover:hover) and (pointer:fine){.mk-cta:hover{border-color:var(--ink)}}
+
+/* phone and tablet: no second pair of buttons under the text ("Book a demo" is in the menu bar), so the mark moves up and
+   stands clear of the roof, as on desktop, with the button right under it. The spoken line is dark type on the light ground,
+   not white over the pale units, and Kenner's message is the dark notification. Nothing lies over the roof. */
+@media (max-width:860px){
+  .hero{--rhm:clamp(120px,34vw,170px)}
+  .hero .acts{display:none}
+  .fin{margin-top:clamp(18px,3vh,30px);padding:0 0 calc(var(--rhm) + 22px);gap:14px;--mk:clamp(170px,48vw,230px)}
+  .mk-foot{position:relative;left:auto;right:auto;bottom:auto}
+  .mk-cta{border-color:var(--line-2);background:none;-webkit-backdrop-filter:none;backdrop-filter:none;color:var(--ink)}
+  .mk-cta:focus-visible{outline-color:var(--ink)}
+  .mk-cap{height:63px;color:var(--ink);text-shadow:none}   /* room for three lines, as on the live phone page */
+  .mk-cap img{filter:none}
+  .mk-note{background:rgba(14,16,38,.9);-webkit-backdrop-filter:none;backdrop-filter:none;box-shadow:0 12px 30px rgba(10,11,30,.18)}
+  .mk-act{background:#fff;box-shadow:0 0 0 1px var(--line-2),0 10px 26px rgba(10,11,30,.08)}
+}
+</style>
 </head>
 <body>
 <header class="nav" id="nav">
@@ -719,7 +1047,7 @@ footer{background:var(--paper)}
     <nav class="links" aria-label="Main">
       <a href="#for-leaders">For service leaders</a>
       <a href="#for-technicians">For technicians</a>
-      <a href="#agents">Agents</a>
+      <a href="#showcase">Agents</a>
       <a href="#deploy">Integrations</a>
       <a class="btn btn-sm btn-ink" href="https://calendar.app.google/fFpCL3WG3pJtqtC89" target="_blank" rel="noopener">Book a demo</a>
     </nav>
@@ -738,8 +1066,8 @@ footer{background:var(--paper)}
           <a class="btn btn-line" href="#showcase">See how it works</a>
         </div>
       </div>
+      <div class="fin-marks" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
       <div class="fin" id="fin">
-        <img class="fin-img" src="img/hero-roof.jpg" width="2048" height="1152" fetchpriority="high" alt="An HVAC/R technician on his phone between condensing units on a roof at first light">
         <div class="mk" id="mk">
           <svg viewBox="0 0 100 100" aria-hidden="true"><defs><radialGradient id="mk-g" gradientUnits="userSpaceOnUse" cx="50" cy="50" r="50"><stop offset="0" stop-color="#fff"/><stop offset=".7" stop-color="#F1F5FF"/><stop offset="1" stop-color="#DFE8FF"/></radialGradient></defs><g id="mk-rays" fill="url(#mk-g)"></g></svg>
           <button class="mk-play" id="mk-play" type="button" aria-pressed="false" aria-label="Play a technician’s call with Kenner, 47 seconds"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M5 3v10M11 3v10" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg></button>
@@ -879,7 +1207,7 @@ footer{background:var(--paper)}
   </section>
 
   <!-- 3 · agents: "Watch Kenner work" from kenner-site PR #9 (Arthur); styles in agents/agents.css, script in agents/agents.js -->
-  <section class="sec" id="showcase">
+  <section class="sec pick" id="showcase">
     <div class="wrap">
       <div class="sc-top">
       <div class="sc-head">
@@ -893,6 +1221,7 @@ footer{background:var(--paper)}
         <span class="ag-off" aria-disabled="true" title="From a worn part to a quote, drafted from your price book.">Quoting<span class="ag-w"> agent</span></span>
         <span class="ag-off" aria-disabled="true" title="Leads, access notes and new fixes, filed where they belong.">Notes<span class="ag-w"> agent</span></span>
       </div>
+      <div class="pk-bar" id="pk-bar"><span id="pk-now"></span><button type="button" id="pk-change">Change</button></div>
       </div>
       <div class="work" id="work">
         <div class="dock" role="group" aria-label="Messaging app" id="dock">
@@ -901,7 +1230,32 @@ footer{background:var(--paper)}
           <button type="button" data-app="tm" aria-pressed="false" aria-label="Microsoft Teams"><span class="lg" style="--m:url(mono/teams.svg);--c:#4B53BC"></span></button>
           <button type="button" data-app="kw" aria-pressed="false" aria-label="Kenner web chat"><img src="brand/mark-ultramarine.svg" alt="" loading="lazy" decoding="async"></button>
         </div>
-        <div class="phone"><div class="scr" id="ask-scr"></div></div>
+        <div class="hold" id="hold"><i class="hand" aria-hidden="true"></i><div class="phone"><div class="scr" id="ask-scr"></div><div class="pk" id="pk" data-step="agent">
+            <div class="sbar" id="pk-sb"></div>
+            <section class="pk-s pk-agent" aria-labelledby="pk-t1">
+              <img class="pk-mk" src="brand/mark-ultramarine.svg" alt="">
+              <h3 id="pk-t1">Choose an agent</h3>
+              <div class="pk-list">
+                <button type="button" class="pk-row" data-flow="fix" data-name="Troubleshooting agent">Troubleshooting agent<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M6 3l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+                <button type="button" class="pk-row" data-flow="report" data-name="Reporting agent">Reporting agent<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M6 3l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+                <span class="pk-row off" title="Before the van leaves: the unit’s history, what to check first and what to bring.">Briefing agent</span>
+                <span class="pk-row off" title="Photo in, part identified, ordered to the van on a yes.">Parts agent</span>
+                <span class="pk-row off" title="From a worn part to a quote, drafted from your price book.">Quoting agent</span>
+                <span class="pk-row off" title="Leads, access notes and new fixes, filed where they belong.">Notes agent</span>
+              </div>
+            </section>
+            <section class="pk-s pk-app" aria-labelledby="pk-t2">
+              <button type="button" class="pk-back" id="pk-back" aria-label="Back to the agents"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M10 3L5 8l5 5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+              <h3 id="pk-t2">Choose an app</h3>
+              <div class="pk-apps">
+                <button type="button" data-app="im" aria-label="iMessage" title="iMessage" style="--c:linear-gradient(180deg,#5DF777,#0ABE2A)"><span style="--m:url(mono/imessage.svg);--s:108%"></span></button>
+                <button type="button" data-app="wa" aria-label="WhatsApp" title="WhatsApp" style="--c:#25D366"><span style="--m:url(mono/whatsapp.svg);--s:64%"></span></button>
+                <button type="button" data-app="tm" aria-label="Microsoft Teams" title="Microsoft Teams" style="--c:#4B53BC"><span style="--m:url(mono/teams.svg);--s:64%"></span></button>
+                <button type="button" data-app="kw" aria-label="Kenner web chat" title="Kenner web chat" class="kw"><img src="brand/mark-ultramarine.svg" alt=""></button>
+              </div>
+            </section>
+            <span class="home"></span>
+          </div></div></div>
         <div class="lap">
           <div class="lap-s">
             <div class="lap-p">
@@ -909,7 +1263,7 @@ footer{background:var(--paper)}
                 <div class="look-h"><img src="brand/logo-avatar.svg" alt="" loading="lazy" decoding="async"><h3 id="look-t">What Kenner looked up</h3></div>
                 <div class="look-b" id="look-b"><ol class="trail" id="trail"></ol></div>
               </section>
-              <iframe class="wo" id="wo" src="pr/app/work-order.html#0" title="The walk-in cooler’s work order in Kenner" loading="lazy" hidden></iframe>
+              <iframe class="wo" id="wo" src="pr/app/work-order-report.html#0" title="The walk-in cooler’s work order in Kenner" loading="lazy" hidden></iframe>
             </div>
           </div>
         </div>
@@ -933,6 +1287,13 @@ footer{background:var(--paper)}
     <div class="wrap">
       <div class="real">
         <h2 class="h2 center">Reality is not a pre‑recorded video. <span><img src="brand/lockup-ink.svg" alt="Kenner" loading="lazy" decoding="async"> learns from every job, even these…</span></h2>
+        <div class="stage-r">
+          <figure class="ph job r1" data-k="0.04"><div class="im"><img src="img/job/freezer-ebike.jpg" alt="" style="object-position:50% 60%" draggable="false"></div><figcaption class="cap"><div class="bub">Store manager unplugged the freezer to charge his e-bike<small>Carlos, 6:12 AM</small></div><p class="kept"><img src="brand/mark-ultramarine.svg" alt="Kenner kept:"><span><b>Sales note</b> Lockable socket recommended.</span></p></figcaption></figure>
+          <figure class="ph job r2" data-k="-0.03"><div class="im"><img src="img/job/sheep-turbine.jpg" alt="" style="object-position:50% 60%" draggable="false"></div><figcaption class="cap"><div class="bub">Sheep are blocking the door to the turbine again<small>Tyler, 6:48 AM</small></div><p class="kept"><img src="brand/mark-ultramarine.svg" alt="Kenner kept:"><span><b>Access note</b> Call the farmer before the visit.</span></p></figcaption></figure>
+          <figure class="ph job r4" data-k="-0.04"><div class="im"><img src="img/job/pigeons-gascooler.jpg" alt="" style="object-position:50% 35%" draggable="false"></div><figcaption class="cap"><div class="bub">Pigeons are nesting in the gas cooler again<small>Ashley, 7:31 AM</small></div><p class="kept"><img src="brand/mark-ultramarine.svg" alt="Kenner kept:"><span><b>Site note</b> Second nest in the gas cooler.</span></p></figcaption></figure>
+          <figure class="ph job r5" data-k="0.05"><div class="im"><img src="img/job/forklift.jpg" alt="" style="object-position:50% 50%" draggable="false"></div><figcaption class="cap"><div class="bub">Forklift only throws the error when Dave drives it<small>Carlos, 11:18 AM</small></div><p class="kept"><img src="brand/mark-ultramarine.svg" alt="Kenner kept:"><span><b>Training note</b> Upskill potential for Dave.</span></p></figcaption></figure>
+          <figure class="ph job r6 rev" data-k="-0.02"><div class="im"><img src="img/job/plantroom.jpg" alt="" style="object-position:50% 50%" draggable="false"></div><figcaption class="cap"><div class="bub">Who installed this? Asking for a friend<small>Ashley, 2:42 PM</small></div><p class="kept"><img src="brand/mark-ultramarine.svg" alt="Kenner kept:"><span><b>Unit history</b> <i class="nb">Non-standard</i> install.</span></p></figcaption></figure>
+        </div>
         <div class="mq" id="mq" role="group" aria-label="Messages technicians have sent"></div>
         <button class="mq-ctl" id="mq-ctl" type="button" aria-pressed="false" aria-label="Pause the messages"><svg class="pa" viewBox="0 0 18 18" aria-hidden="true"><path d="M6 4v10M12 4v10" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg><svg class="pl" viewBox="0 0 18 18" aria-hidden="true"><path d="M6.5 4.2v9.6L14 9z" fill="currentColor"/></svg></button>
       </div>
@@ -1050,7 +1411,7 @@ footer{background:var(--paper)}
   <div class="wrap">
     <div class="f-in">
       <div><img src="brand/lockup-ink.svg" alt="kenner" loading="lazy" decoding="async"><p class="tl">For the teams that keep the world running.</p></div>
-      <div><h3>Product</h3><a href="#for-leaders">For service leaders</a><a href="#for-technicians">For technicians</a><a href="#agents">Agents</a><a href="#deploy">Integrations</a></div>
+      <div><h3>Product</h3><a href="#for-leaders">For service leaders</a><a href="#for-technicians">For technicians</a><a href="#showcase">Agents</a><a href="#deploy">Integrations</a></div>
       <div><h3>Resources</h3><a href="blog/best-ai-for-hvac-technicians.html">Best AI for HVAC technicians</a></div>
       <div><h3>Security</h3><p class="secu">ISO 27001 certification in progress<br>SOC 2 audit in preparation<br>GDPR, with a DPA for every pilot<br>Your data stays yours</p></div>
     </div>
@@ -1093,7 +1454,7 @@ footer{background:var(--paper)}
     cs.forEach(function(c){ c.style.marginLeft = ''; });
     var d = cs.map(function(c, k){ r.setStart(t, k); r.setEnd(t, k + 1); return (r.getBoundingClientRect().left - p0) - (c.getBoundingClientRect().left - w0); });
     cs.forEach(function(c, k){ c.style.marginLeft = ((d[k] - (k ? d[k - 1] : 0)) / fs) + 'em'; });
-    var k = (rot.clientWidth - (window.innerWidth > 980 ? 64 : 0)) / p.getBoundingClientRect().width; p.remove();
+    var k = (rot.clientWidth - (window.innerWidth > 860 ? 64 : 0)) / p.getBoundingClientRect().width; p.remove();
     if (k < 1) w.style.transform = 'scale(' + k + ')';
   }
   var rotVis = document.createElement('span'); rotVis.setAttribute('aria-hidden', 'true');
@@ -1117,10 +1478,12 @@ footer{background:var(--paper)}
     [['Found the missing sensor, zip-tied to the ceiling','Ashley, 1:36 PM'],['Fire panel shows 43 faults. Customer says that is normal','Luis, 10:27 AM'],['Customer says it has been beeping since Christmas','Mike, 8:55 AM'],['Boiler room key is with the caretaker. The caretaker is on vacation','Carlos, 7:02 AM'],['A mouse chewed the sensor cable. The mouse is fine','Luis, 3:49 PM'],['Compressor sounds like a cement mixer. Is that the noise you meant?','Tyler, 12:20 PM']],
     [['Controller thinks it is 1998. Is that a problem?','Mike, 4:02 PM'],['Combi oven says descale. Chef says not during lunch','Ashley, 11:52 AM'],['Fixed it by switching it off and on. Maybe leave that out of the report','Luis, 9:03 AM'],['Sheep are blocking the door to the turbine again','Tyler, 6:48 AM'],['Who installed this? Asking for a friend','Ashley, 2:42 PM'],['Data hall is overheating. The door is propped open with a fan','Mike, 3:15 PM']]
   ];
+  var WITH_PHOTO = ['Store manager unplugged the freezer to charge his e-bike','Sheep are blocking the door to the turbine again','Pigeons are nesting in the gas cooler again','Forklift only throws the error when Dave drives it','Who installed this? Asking for a friend'];
+  MSGS = [MSGS[0].concat(MSGS[1], MSGS[2]).filter(function(m){ return WITH_PHOTO.indexOf(m[0]) < 0; })];
   var mq = $('mq');
   mq.innerHTML = MSGS.map(function(row, i){
     var chips = row.map(function(m, k){ return '<span class="msg">'+m[0]+'<small>'+m[1]+'</small></span>'; }).join('');
-    return '<div class="mq-row'+(i % 2 ? ' rev' : '')+'" style="--d:'+(114 + i * 22)+'s"><div class="mq-track">'+chips+chips+'</div></div>';
+    return '<div class="mq-row'+(i % 2 ? ' rev' : '')+'" style="--d:'+(228 + i * 22)+'s"><div class="mq-track">'+chips+chips+'</div></div>';
   }).join('');
   mq.querySelectorAll('.mq-track').forEach(function(t){ t.querySelectorAll('.msg').forEach(function(c, k){ if (k >= t.children.length / 2) c.setAttribute('aria-hidden','true'); }); });
   var mqCtl = $('mq-ctl');
@@ -1498,6 +1861,102 @@ footer{background:var(--paper)}
   new MutationObserver(queue).observe(scr, {subtree:true, childList:true, attributes:true, attributeFilter:['class']});
   window.addEventListener('resize', queue);
   queue();
+})();
+</script>
+<script>
+/* Draft: the job photos. They drift slowly against the scroll and can be picked up and thrown. */
+(function(){
+  var still = window.matchMedia('(prefers-reduced-motion: reduce)').matches, wide = window.matchMedia('(min-width:901px)');
+  var phs = [].slice.call(document.querySelectorAll('.ph')), z = 5;
+  function lim(v){ return Math.max(-2, Math.min(2, v)); }
+  /* where a photo sits: where it was dropped, plus the drift (none when its stage is centred on screen) */
+  function place(p){
+    var d = 0;
+    if (wide.matches && !still) { var r = p._stage.getBoundingClientRect(); d = (r.top + r.height / 2 - window.innerHeight / 2) * -p._k; }
+    p.style.transform = wide.matches ? 'translate3d(' + p._x.toFixed(1) + 'px,' + (p._y + d).toFixed(1) + 'px,0)' : '';
+  }
+  phs.forEach(function(p){ p._x = 0; p._y = 0; p._k = +p.dataset.k || 0; p._stage = p.parentNode; });
+  var tick = false;
+  function all(){ tick = false; phs.forEach(place); }
+  window.addEventListener('scroll', function(){ if (!tick) { tick = true; requestAnimationFrame(all); } }, {passive: true});
+  window.addEventListener('resize', all); all();
+  /* one pointer at a time; a thrown photo slows down, and one that leaves its stage comes back in */
+  phs.forEach(function(p){
+    var id = null, sx, sy, ox, oy, lx, ly, lt, vx, vy, moved, raf;
+    p.addEventListener('pointerdown', function(e){
+      if (id !== null || !wide.matches || e.button || e.pointerType === 'touch') return;
+      id = e.pointerId; p.setPointerCapture(id); cancelAnimationFrame(raf); p.classList.remove('settle');
+      sx = lx = e.clientX; sy = ly = e.clientY; lt = e.timeStamp; ox = p._x; oy = p._y; vx = vy = 0; moved = false;
+    });
+    p.addEventListener('pointermove', function(e){
+      if (e.pointerId !== id) return;
+      var dx = e.clientX - sx, dy = e.clientY - sy;
+      if (!moved) { if (Math.abs(dx) + Math.abs(dy) < 4) return; moved = true; p.classList.add('drag'); p.style.zIndex = ++z; }
+      var dt = Math.max(8, e.timeStamp - lt);
+      vx = lim(.6 * vx + .4 * (e.clientX - lx) / dt); vy = lim(.6 * vy + .4 * (e.clientY - ly) / dt); lx = e.clientX; ly = e.clientY; lt = e.timeStamp;
+      p._x = ox + dx; p._y = oy + dy; place(p);
+    });
+    function out(){ var s = p._stage.getBoundingClientRect(), r = p.getBoundingClientRect(); return [Math.max(0, s.left - r.left) - Math.max(0, r.right - s.right), Math.max(0, s.top - r.top) - Math.max(0, r.bottom - s.bottom)]; }
+    function back(){ var o = out(); if (o[0] || o[1]) { p._x += o[0]; p._y += o[1]; p.classList.add('settle'); place(p); setTimeout(function(){ p.classList.remove('settle'); }, 600); } }
+    function end(e){
+      if (e.pointerId !== id) return; id = null; p.classList.remove('drag');
+      if (!moved) return;
+      if (still || e.timeStamp - lt > 80) { back(); return; }
+      var last = performance.now();
+      raf = requestAnimationFrame(function glide(now){
+        var dt = Math.min(32, now - last), f = Math.pow(.88, dt / 16), o; last = now;
+        p._x += vx * dt; p._y += vy * dt; vx *= f; vy *= f; place(p); o = out();
+        if (Math.abs(vx) + Math.abs(vy) > .03 && Math.abs(o[0]) < 60 && Math.abs(o[1]) < 60) raf = requestAnimationFrame(glide); else back();
+      });
+    }
+    p.addEventListener('pointerup', end); p.addEventListener('pointercancel', end);
+  });
+})();
+
+/* The demo starts on the phone: agent, then app, then the phone glides left and Kenner's panel comes in.
+   The page's own tabs and app dock stay in the markup; choosing presses them, so the demo script itself is untouched. */
+(function(){
+  var sc = document.getElementById('showcase'), work = document.getElementById('work'), hold = document.getElementById('hold'), pk = document.getElementById('pk');
+  if (!sc || !work || !hold || !pk) return;
+  var lap = work.querySelector('.lap'), scr = document.getElementById('ask-scr'), agents = document.getElementById('agents'), dock = document.getElementById('dock');
+  var now = document.getElementById('pk-now'), still = window.matchMedia('(prefers-reduced-motion: reduce)').matches, wide = window.matchMedia('(min-width:761px)');
+  var flow = null, flowName = '', timer = 0;
+
+  /* how far the phone is from the middle of the stage, with nothing moved */
+  function centre(){ if (wide.matches) work.style.setProperty('--pk-dx', (work.clientWidth / 2 - hold.offsetLeft - hold.offsetWidth / 2).toFixed(1) + 'px'); }
+  /* what cannot be seen cannot be tabbed into */
+  function sync(){ var picking = sc.classList.contains('pick'); if (lap) lap.inert = picking; pk.inert = !picking; }
+  function press(group, attr, val){ var b = group.querySelector('button[' + attr + '="' + val + '"]'); if (b) b.click(); }
+  function clock(){ var c = document.getElementById('ask-clock'), t = document.getElementById('pk-sb'); if (c && t) t.innerHTML = c.innerHTML; }
+
+  function choose(app, appName){
+    press(dock, 'data-app', app);
+    press(agents, 'data-flow', flow === 'fix' ? 'report' : 'fix'); press(agents, 'data-flow', flow);   /* always from the first message */
+    now.innerHTML = flowName.replace(' agent', '<span class="pk-w"> agent</span>') + ' · ' + appName;   /* the phone drops the word "agent", as the tabs did */
+    pk.classList.add('off'); sc.classList.remove('pick'); sc.classList.add('moving'); sync();
+    clearTimeout(timer);
+    timer = setTimeout(function(){
+      sc.classList.remove('moving'); window.dispatchEvent(new Event('resize'));   /* the "Tap to send" pill finds the phone's new place */
+      if (!still) { var b = scr.querySelector('.snd.cue'); if (b) b.click(); }    /* the first message sends itself, to show how it goes */
+    }, still ? 250 : wide.matches ? 1300 : 900);
+  }
+  pk.addEventListener('click', function(e){
+    var a = e.target.closest('button[data-flow]'), p = e.target.closest('button[data-app]');
+    if (a) { flow = a.dataset.flow; flowName = a.dataset.name; pk.dataset.step = 'app'; }
+    else if (p) choose(p.dataset.app, p.getAttribute('aria-label'));
+    else if (e.target.closest('#pk-back')) pk.dataset.step = 'agent';
+  });
+  document.getElementById('pk-change').addEventListener('click', function(){
+    clearTimeout(timer); clock(); pk.dataset.step = 'agent'; pk.classList.remove('off'); sc.classList.remove('moving'); sc.classList.add('pick'); sync();
+    var first = pk.querySelector('button[data-flow]'); if (first) first.focus({preventScroll: true});
+  });
+
+  clock(); centre(); sync();
+  requestAnimationFrame(function(){ requestAnimationFrame(function(){ sc.classList.add('pk-live'); }); });
+  if ('ResizeObserver' in window) { var ro = new ResizeObserver(centre); ro.observe(work); ro.observe(hold); } else window.addEventListener('resize', centre);
+  wide.addEventListener('change', centre);
+  if ('IntersectionObserver' in window) new IntersectionObserver(function(es, o){ if (es[0].isIntersecting) { o.disconnect(); pk.classList.add('seen'); } }, {threshold: .35}).observe(work);   /* the stage: on a phone the box around the phone has no size of its own */
+  else pk.classList.add('seen');
 })();
 </script>
 </body>
