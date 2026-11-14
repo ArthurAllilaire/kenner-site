@@ -985,7 +985,9 @@ footer{background:var(--paper)}
    (first it rose from behind the units; Lennart moved it up, 2026-11-13). The two in-call messages share one place again,
    just above the button. ---- */
 .hero-in{align-items:flex-start;text-align:left}
-.hero-copy{align-items:flex-start}
+/* the text block's children take the column's full width: a headline that is only as wide as its content would grow with a
+   long trade ("food equipment") and push it past the screen on a phone, where the headline script could no longer shrink it */
+.hero-copy{align-self:stretch;align-items:stretch}   /* the block itself too: as wide as the column, never as wide as its longest word */
 .hero .rot-w{display:block;transform-origin:0 100%}
 .hero .rot-w.out{left:0;translate:none}
 .hero .sub{max-width:660px}
@@ -1011,6 +1013,22 @@ footer{background:var(--paper)}
   .mk-act.gone{transform:translateX(22px)}
 }
 @media (min-width:861px) and (hover:hover) and (pointer:fine){.mk-cta:hover{border-color:var(--ink)}}
+
+/* phone and tablet: no second pair of buttons under the text ("Book a demo" is in the menu bar), so the mark moves up and
+   stands clear of the roof, as on desktop, with the button right under it. The spoken line is dark type on the light ground,
+   not white over the pale units, and Kenner's message is the dark notification. Nothing lies over the roof. */
+@media (max-width:860px){
+  .hero{--rhm:clamp(120px,34vw,170px)}
+  .hero .acts{display:none}
+  .fin{margin-top:clamp(18px,3vh,30px);padding:0 0 calc(var(--rhm) + 22px);gap:14px;--mk:clamp(170px,48vw,230px)}
+  .mk-foot{position:relative;left:auto;right:auto;bottom:auto}
+  .mk-cta{border-color:var(--line-2);background:none;-webkit-backdrop-filter:none;backdrop-filter:none;color:var(--ink)}
+  .mk-cta:focus-visible{outline-color:var(--ink)}
+  .mk-cap{height:63px;color:var(--ink);text-shadow:none}   /* room for three lines, as on the live phone page */
+  .mk-cap img{filter:none}
+  .mk-note{background:rgba(14,16,38,.9);-webkit-backdrop-filter:none;backdrop-filter:none;box-shadow:0 12px 30px rgba(10,11,30,.18)}
+  .mk-act{background:#fff;box-shadow:0 0 0 1px var(--line-2),0 10px 26px rgba(10,11,30,.08)}
+}
 </style>
 </head>
 <body>
