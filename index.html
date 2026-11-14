@@ -1011,15 +1011,6 @@ footer{background:var(--paper)}
   .mk-act.gone{transform:translateX(22px)}
 }
 @media (min-width:861px) and (hover:hover) and (pointer:fine){.mk-cta:hover{border-color:var(--ink)}}
-/* ---- Draft variant "cut-rails" (cut-rails.html = cut-left.html plus this file): the two hairline rails of the page cut the
-   panorama. The roof keeps the size it has in the full-width version (its height still follows the window's width), but it
-   is only shown between the rails: what would run past them is cut off, units and all. Below 900px, where the page has no
-   rails, it stays full width.
-   (First try, 2026-11-13: the whole panorama shrunk to fit between the rails, 222px tall at most. Lennart asked for the full
-   height back.) ---- */
-@media (min-width:900px){
-  .hero-in::after{width:min(calc(100vw - 24px),1248px);margin-left:calc(min(calc(100vw - 24px),1248px)/-2);aspect-ratio:auto;height:var(--rh);background-size:100vw auto}
-}
 </style>
 </head>
 <body>
