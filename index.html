@@ -790,6 +790,15 @@ footer{background:var(--paper)}
   .cap{max-width:none}
 }
 @media (prefers-reduced-motion:reduce){.ph .im,.ph.settle{transition:none}}
+/* phone: the section fills one screen. The heading keeps its size and the swipe row takes the rest of the height: each card's
+   photo grows to fill what its message and note leave over (never under 210px, so a short screen just runs a little longer) */
+@media (max-width:560px){
+  #reality{display:flex;flex-direction:column;min-height:100vh;min-height:100svh;padding-top:76px}   /* the heading starts under the 60px menu bar, not behind it */
+  #reality>.wrap,#reality .real{flex:1 1 auto;display:flex;flex-direction:column}
+  #reality .stage-r{flex:1 1 auto;align-items:stretch}
+  #reality .job .im{position:relative;flex:1 1 210px;height:auto;min-height:210px}
+  #reality .job .im img{position:absolute;inset:0}
+}
 
 /* 5. the demo, calmer. Arthur's files are untouched; these only restyle it (desktop and tablet).
    The phone keeps its frame (the frameless chat card was tried and taken back). The channel logos are smaller, the log's header
