@@ -1072,11 +1072,11 @@ footer{background:var(--paper)}
       <div class="fin" id="fin">
         <div class="mk" id="mk">
           <svg viewBox="0 0 100 100" aria-hidden="true"><defs><radialGradient id="mk-g" gradientUnits="userSpaceOnUse" cx="50" cy="50" r="50"><stop offset="0" stop-color="#fff"/><stop offset=".7" stop-color="#F1F5FF"/><stop offset="1" stop-color="#DFE8FF"/></radialGradient></defs><g id="mk-rays" fill="url(#mk-g)"></g></svg>
-          <button class="mk-play" id="mk-play" type="button" aria-pressed="false" aria-label="Play a technician’s call with Kenner, 47 seconds"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M5 3v10M11 3v10" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg></button>
+          <button class="mk-play" id="mk-play" type="button" aria-pressed="false" aria-label="Play a technician’s call with Kenner, 42 seconds"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M5 3v10M11 3v10" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg></button>
         </div>
         <div class="mk-foot">
           <div class="mk-msgs"><div class="mk-note out" id="mk-note" role="img" aria-label="A message from Kenner during the call: 2 photos attached"><span class="av"><img src="brand/logo-avatar.svg" alt=""><i></i></span><span class="tx"><b>Kenner</b><time>now</time><p>2 photos attached</p></span></div><div class="mk-act out" id="mk-act" role="img" aria-label="Kenner took an action during the call: updated the owner to George"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13.4 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-7.4"/><path d="M2 6h4"/><path d="M2 10h4"/><path d="M2 14h4"/><path d="M2 18h4"/><path d="M21.378 5.626a1 1 0 1 0-3.004-3.004l-5.01 5.012a2 2 0 0 0-.506.854l-.837 2.87a.5.5 0 0 0 .62.62l2.87-.837a2 2 0 0 0 .854-.506z"/></svg><span class="tx"><small>Kenner took an action</small><span>Updated the owner to George.</span></span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></div></div>
-          <button class="mk-cta" id="mk-cta" type="button"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M5.4 3.4v9.2L12.9 8z" fill="currentColor" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>Listen to a call<span>0:47</span></button>
+          <button class="mk-cta" id="mk-cta" type="button"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M5.4 3.4v9.2L12.9 8z" fill="currentColor" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>Listen to a call<span>0:42</span></button>
           <p class="mk-cap" id="mk-cap" aria-hidden="true"></p>
         </div>
         <p class="mk-sr">The call, in words. Kenner: Hey, it’s Kenner. What can I help you with? Technician: Hi Kenner, I’m at the site now and it’s throwing an F74 error. What does that mean again? Kenner: F74 means the boiler is reporting water pressure too low. It locks out the burner and stops heating. Since it’s recurring, compare the boiler reading with an external manometer. Technician: Sure, will do. Do you have any photos from the last visit you can send me, so I can compare? Kenner: I’ll send last visit’s photos. Sent to your iMessage. Technician: Cheers. And one more note before I continue: the owner has changed. It’s now George, no longer Tom, because he’s taken over from his father. Kenner: Got it. I’ll note George as the owner. Noted. Technician: Cheers Kenner, see you later. Kenner: See you later.</p>
@@ -1609,7 +1609,10 @@ footer{background:var(--paper)}
   });
   rays.sort(function(p, q){ return p.a - q.a; });
   function restCap(){ if (!mkPlay){ mkCap.textContent = ''; capAt = -1; } }
-  var mkOn = false, mkPlay = false, mkT = 0, mkLast = 0, mkRaf = 0, mkDur = 46.6, mkSound = false, mkWait = false, mkRot = 0, mkSpin = 0, ptr = null, ptrAng = null, analyser = null, bins = null;
+  var mkOn = false, mkPlay = false, mkT = 0, mkLast = 0, mkRaf = 0, mkDur = 46.6, mkSound = false, mkWait = false, mkRot = 0, mkSpin = 0, ptr = null, ptrAng = null, mkCtx = null, analyser = null, bins = null;
+  /* the call plays a little faster than it was recorded; the cues stay in recording seconds because they follow the audio's own clock */
+  var SPEED = 1.1;
+  mkAud.defaultPlaybackRate = mkAud.playbackRate = SPEED;
   function wrap(a){ while (a > Math.PI) a -= 2 * Math.PI; while (a < -Math.PI) a += 2 * Math.PI; return a; }
   function drawMark(now){
     var t = now / 1000, env = 0;
@@ -1636,7 +1639,7 @@ footer{background:var(--paper)}
   function mkTick(now){
     mkRaf = 0; if (!mkOn && !mkPlay) return;
     if (mkPlay){
-      if (mkSound) mkT = mkAud.currentTime; else if (!mkWait) mkT += (now - mkLast) / 1000;
+      if (mkSound) mkT = mkAud.currentTime; else if (!mkWait) mkT += (now - mkLast) / 1000 * SPEED;
       mkLast = now;
       if (mkT >= mkDur){ mkStop(true); }
       else {
@@ -1657,10 +1660,27 @@ footer{background:var(--paper)}
   /* messages that arrive during the call: element, the second it arrives, how long it stays. Each leaves by its own .gone rule (the text to the left, the action to the right) */
   var MSGS = [['mk-note', 29.5, 2.5], ['mk-act', 41.4, 2.5]].map(function(m){ return {el: document.getElementById(m[0]), at: m[1], stay: m[2], state: 0}; });
   function msgReset(){ MSGS.forEach(function(m){ m.state = 0; m.el.classList.remove('gone'); m.el.classList.add('out'); }); }
+  /* the sound runs through an analyser so the rays can follow the voice. iOS starts an AudioContext only inside the tap that asks for it,
+     and on a first visit the recording can take seconds to arrive: a context made when the sound begins stays suspended and the call is silent.
+     So it is made, and resumed, in the tap. The "playback" session keeps the call audible with the ringer on silent, as a plain <audio> is */
+  function mkVoice(){
+    if (navigator.audioSession) navigator.audioSession.type = 'playback';
+    try {
+      if (!mkCtx){
+        var AC = window.AudioContext || window.webkitAudioContext;
+        mkCtx = new AC();
+        var src = mkCtx.createMediaElementSource(mkAud), an = mkCtx.createAnalyser();
+        an.fftSize = 128; src.connect(an); an.connect(mkCtx.destination);
+        analyser = an; bins = new Uint8Array(an.frequencyBinCount);
+      }
+      if (mkCtx.state !== 'running') mkCtx.resume();
+    } catch (e) {}
+  }
   function mkToggle(){
     mkTip.classList.remove('on');
     if (mkPlay){ mkStop(false); return; }
     if (mkT === 0) msgReset();
+    mkVoice();
     mkPlay = true; mkLast = performance.now(); mk.classList.add('playing'); mkBtn.setAttribute('aria-pressed', 'true');
     /* the words wait for the sound to start (up to a second and a half), so lines and message stay in step with the recording; with no recording they run on the clock */
     mkWait = !mkSound; setTimeout(function(){ mkWait = false; }, 1500);
@@ -1671,7 +1691,6 @@ footer{background:var(--paper)}
   mkAud.addEventListener('playing', function(){
     if (!mkPlay) return;
     mkSound = true; mkWait = false; if (isFinite(mkAud.duration) && mkAud.duration > 1) mkDur = mkAud.duration;
-    try { if (!analyser){ var AC = window.AudioContext || window.webkitAudioContext, ctx = new AC(), src = ctx.createMediaElementSource(mkAud); analyser = ctx.createAnalyser(); analyser.fftSize = 128; bins = new Uint8Array(analyser.frequencyBinCount); src.connect(analyser); analyser.connect(ctx.destination); } } catch (e) { analyser = null; }
   });
   mkAud.addEventListener('ended', function(){ if (mkOn) mkStop(true); });
   mkAud.addEventListener('error', function(){ mkSound = false; mkWait = false; });
