@@ -77,11 +77,11 @@
   }
 
   /* the notice */
-  var CSS = '.kn-ck{position:fixed;z-index:80;left:max(20px,env(safe-area-inset-left,0px));bottom:max(20px,env(safe-area-inset-bottom,0px));width:min(380px,calc(100vw - 40px));padding:20px;border:1px solid #DADDE3;border-radius:16px;background:#fff;color:#0A0B1E;box-shadow:0 18px 48px -12px rgba(10,11,30,.22),0 2px 6px rgba(10,11,30,.05);font:400 14px/1.5 "Geist",system-ui,-apple-system,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased;opacity:0;transform:translateY(12px);transition:opacity .3s,transform .5s cubic-bezier(.16,1,.3,1)}' +
+  var CSS = '.kn-ck{position:fixed;z-index:80;left:max(20px,env(safe-area-inset-left,0px));bottom:max(20px,env(safe-area-inset-bottom,0px));width:min(380px,calc(100vw - 40px));padding:20px;border:1px solid #DADDE3;border-radius:var(--r-lg,16px);background:#fff;color:#0A0B1E;box-shadow:0 18px 48px -12px rgba(10,11,30,.22),0 2px 6px rgba(10,11,30,.05);font:400 14px/1.5 "Geist",system-ui,-apple-system,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased;opacity:0;transform:translateY(12px);transition:opacity .3s,transform .5s cubic-bezier(.16,1,.3,1)}' +
     '.kn-ck.on{opacity:1;transform:none}.kn-ck:focus{outline:none}' +
     '.kn-ck h2{margin:0 0 6px;font:inherit;font-weight:500;font-size:15px;line-height:1.3;letter-spacing:0}.kn-ck p{margin:0;color:#5D6173;text-wrap:pretty}.kn-ck a{color:#0A0B1E;text-underline-offset:2px}' +
     '.kn-ck-acts{display:flex;gap:10px;margin-top:16px}' +
-    '.kn-ck button{flex:1;height:40px;padding:0 16px;border:1px solid #DADDE3;border-radius:10px;background:#fff;color:#0A0B1E;font:inherit;font-weight:500;line-height:1;cursor:pointer;transition:background .2s,border-color .2s,transform .16s cubic-bezier(.16,1,.3,1)}' +
+    '.kn-ck button{flex:1;height:40px;padding:0 16px;border:1px solid #DADDE3;border-radius:var(--r-sm,10px);background:#fff;color:#0A0B1E;font:inherit;font-weight:500;line-height:1;cursor:pointer;transition:background .2s,border-color .2s,transform .16s cubic-bezier(.16,1,.3,1)}' +
     '.kn-ck button:hover{border-color:#0A0B1E}.kn-ck button:active{transform:scale(.97)}' +
     '.kn-ck button[data-v="1"]{border-color:#0A0B1E;background:#0A0B1E;color:#fff}.kn-ck button[data-v="1"]:hover{background:#262A45;border-color:#262A45}' +
     '.kn-ck a:focus-visible,.kn-ck button:focus-visible{outline:2px solid #1438CA;outline-offset:3px}' +
@@ -168,7 +168,8 @@
         track('section_viewed', {section: sectionName(e.target)});
       });
     }, {rootMargin: '-50% 0px -50% 0px'});
-    document.querySelectorAll('main > section').forEach(function(s){ seen.observe(s); });
+    /* the closing call to action is the first part of the footer (partials/footer.html), so it is looked for there */
+    document.querySelectorAll('main > section, footer > section').forEach(function(s){ seen.observe(s); });
   }
 
   /* the recorded call in the hero: started, and how far it was heard */

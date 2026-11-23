@@ -1,0 +1,714 @@
+<!doctype html>
+<html lang="en" data-look="photo" data-vis="plain" data-tone="photo" data-rails="off" data-photo="one">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Technicians | kenner</title>
+<meta name="description" content="Your technicians call or text Kenner for answers from past jobs, and it writes the report from one call.">
+<link rel="canonical" href="https://getkenner.com/technicians.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kenner">
+<meta property="og:url" content="https://getkenner.com/technicians.html">
+<meta property="og:title" content="Technicians | kenner">
+<meta property="og:description" content="Your technicians call or text Kenner for answers from past jobs, and it writes the report from one call.">
+<meta property="og:image" content="https://getkenner.com/og-image.jpg?v=3">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://getkenner.com/og-image.jpg?v=3">
+<link rel="icon" href="favicon.ico" sizes="48x48">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon-96.png" sizes="96x96" type="image/png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&family=Instrument+Sans:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="site.css">
+<link rel="stylesheet" href="pages/technicians.css">
+<link rel="stylesheet" href="pages/intelligence.css">
+<style>
+@keyframes kn-fade{from{opacity:0}to{opacity:1}}
+#showcase{background:var(--ground)}
+#showcase .sc-head{margin-bottom:clamp(32px,4vw,48px)}
+#showcase .agents4{margin-top:clamp(48px,6vw,72px)}
+#showcase .agents4 .src h3{margin-top:0;font-size:19px}
+</style>
+<link rel="stylesheet" href="agents/agents.css">
+<style>
+@media (min-width:1101px){
+#showcase .work{padding-left:40px;padding-right:36px}
+#showcase .dock{margin-right:30px}
+#showcase .lap{margin-left:-110px}
+#showcase .lap-p{padding-left:196px}
+}
+@media (min-width:761px) and (max-width:1100px){
+#showcase .lap{margin-left:-96px}
+#showcase .lap-p{padding-left:160px}
+}
+@media (min-width:761px){
+#showcase .look-h{margin:0 24px;padding:20px 0}
+#showcase .lap-p .look-h{padding-top:24px}
+#showcase .look-b{padding:24px 24px 32px}
+#showcase .run>button{align-items:flex-start}
+#showcase .run>button b{white-space:normal;overflow:visible}
+#showcase .run>button svg{margin-top:2px}
+#showcase .trail li{padding-bottom:22px}
+}
+@media (min-width:761px){
+#showcase{--stage:clamp(540px,calc(100vh - 238px),760px);--phone-w:318px}
+#showcase .agents{scroll-margin-top:156px}
+#showcase .sc-top{margin-bottom:clamp(20px,2.4vw,28px)}
+#showcase .sc-top .sc-head{margin:0 0 20px}
+#showcase .sc-top .agents{display:flex;justify-content:center;gap:clamp(20px,3vw,40px);width:100%;max-width:none;margin:0}
+#showcase .agents button{padding:0 2px;white-space:nowrap}
+#showcase .work{min-height:var(--stage);padding-top:32px}
+#showcase .work .phone{zoom:var(--pz,1);width:var(--phone-w);height:calc((var(--stage) - 56px)/var(--pz,1));margin-bottom:24px}
+#showcase .lap{height:calc(var(--stage) - 112px)}
+}
+@media (min-width:761px) and (max-width:1100px){#showcase{--phone-w:292px}}
+@media (min-width:761px){
+#showcase .work{background:none;border-radius:0;overflow:visible;padding:0;min-height:0;align-items:center;justify-content:center;gap:clamp(20px,2.6vw,36px)}
+#showcase .dock{margin:0}
+#showcase .work .phone{margin:0;box-shadow:0 18px 40px rgba(10,11,30,.14)}
+#showcase .lap{flex:1 1 0;height:calc(var(--stage) - 56px);margin:0;padding:0;border-radius:var(--r-lg);background:var(--paper);box-shadow:none}
+#showcase .lap-s{border-radius:inherit}
+#showcase .lap-p{padding-left:0}
+}
+#showcase .dock button[aria-pressed="true"]::after{display:none}
+#showcase .dock{gap:20px}
+#showcase .dock button{width:34px;height:34px;border-radius:0;opacity:.45;transition:opacity .25s,transform .16s var(--ease)}
+#showcase .dock button:active{transform:scale(.95)}
+@media (hover:hover) and (pointer:fine){#showcase .dock button:hover{opacity:.85}}
+#showcase .dock button[aria-pressed="true"]{opacity:1}
+#showcase .dock .lg{display:block;width:100%;height:100%;background:var(--c);-webkit-mask:var(--m) center/var(--s,contain) no-repeat;mask:var(--m) center/var(--s,contain) no-repeat}
+#showcase .dock img{border-radius:0}
+#showcase .agents{border-radius:0;padding:0;background:none;box-shadow:inset 0 -1px 0 var(--line-2)}
+#showcase .agents button{border-radius:0;height:42px;background:none;box-shadow:none}
+#showcase .agents button[aria-pressed="true"]{background:none;box-shadow:inset 0 -2px 0 var(--ink)}
+#showcase .agents .ag-off{display:block;height:42px;padding:0 2px;font:500 15px/42px var(--text);color:rgba(10,11,30,.3);white-space:nowrap;cursor:default;-webkit-user-select:none;user-select:none}
+@media (max-width:1100px){#showcase .ag-w{display:none}}
+#showcase .dock button:focus-visible{outline-color:var(--accent)}
+@media (max-width:760px){
+#showcase{--mstage:clamp(500px,calc(100vh - 92px),700px)}
+@supports (height:100svh){#showcase{--mstage:clamp(500px,calc(100svh - 92px),700px)}}
+#showcase .agents{scroll-margin-top:72px}
+#showcase .work{display:flex;flex-direction:column;align-items:center;gap:10px;min-height:0;height:var(--mstage);padding:12px;border-radius:var(--r-lg)}
+#showcase .dock{order:0;flex:none;flex-direction:row;justify-content:center;gap:12px;margin:0 0 4px}
+#showcase .dock button{width:44px;height:44px}
+#showcase .chs{gap:8px}
+#showcase .ch{height:36px}
+#showcase .cite{position:relative}
+#showcase .cite::after{content:"";position:absolute;inset:-8px -4px}
+#showcase .dock button[aria-pressed="true"]::after{left:50%;top:auto;bottom:-8px;width:18px;height:3px;margin:0 0 0 -9px}
+#showcase .work .phone{order:1;zoom:1;width:100%;max-width:520px;height:auto;flex:1.5 1 0;min-height:0;margin:0;padding:0;border-radius:16px;background:none;box-shadow:0 14px 34px rgba(0,0,0,.38)}
+#showcase .work .phone::before,#showcase .work .phone::after,#showcase .phone .scr::before,#showcase .phone .sbar,#showcase .phone .home{display:none}
+#showcase .phone .scr{border-radius:16px;clip-path:none;box-shadow:none}
+#showcase .wa-head{padding-top:8px}
+#showcase .im-head{margin-top:8px}
+#showcase .wa-in,#showcase .im-in,#showcase .tm-in,#showcase .kw-in{padding-bottom:10px}
+#showcase .lap{order:2;width:100%;max-width:520px;flex:1 1 0;min-height:0;height:auto;margin:0;padding:0;border-radius:var(--r-lg);background:var(--paper);box-shadow:0 14px 34px rgba(0,0,0,.3)}
+#showcase .lap-s{border-radius:var(--r-lg)}
+#showcase .lap-p{padding:0}
+#showcase .lap-p .look-h{padding:12px 0}
+#showcase .look-b{padding-top:12px;padding-bottom:16px}
+.send-cue{display:none}
+}
+@media (max-width:760px){
+#showcase{--mstage:clamp(460px,calc(100vh - 100px),700px)}
+@supports (height:100svh){#showcase{--mstage:clamp(460px,calc(100svh - 100px),700px)}}
+#showcase .agents{display:flex;flex-wrap:wrap;justify-content:center;gap:0 22px;width:100%}
+#showcase .agents button,#showcase .agents .ag-off{flex:none;height:44px;padding:0 2px;font-size:14px}
+#showcase .agents .ag-off{line-height:44px}
+#showcase .work{background:none;padding:0;border-radius:0;overflow:visible}
+#showcase .work .phone{box-shadow:none}
+#showcase .lap{box-shadow:none}
+}
+#showcase .snd{transition:transform .16s var(--ease)}
+#showcase .snd:active{transform:scale(.95)}
+#showcase .snd.cue{position:relative;isolation:isolate;animation:kn-bump 1.6s var(--ease) 3}
+#showcase .snd.cue::after{content:"";position:absolute;inset:0;z-index:-1;border-radius:inherit;background:var(--cue);pointer-events:none;opacity:0;animation:kn-halo 1.6s var(--ease) 3}
+#showcase .wa-in .snd{--k:2.2}
+#showcase .im-in .snd{--k:2.714}
+#showcase .kw-in .snd{--k:2.286}
+@keyframes kn-bump{0%,70%,100%{scale:1}35%{scale:1.08}}
+@keyframes kn-halo{0%{transform:scale(1);opacity:.7}70%,100%{transform:scale(var(--k,2.2));opacity:0}}
+@media (prefers-reduced-motion:no-preference){#showcase .tm-in .snd.cue{animation-name:kn-cue}}
+#showcase .tm-in .snd.cue::after{content:none}
+@keyframes kn-cue{0%{box-shadow:0 0 0 0 color-mix(in oklab,var(--cue) 70%,transparent);transform:scale(1)}35%{transform:scale(1.08)}70%,100%{box-shadow:0 0 0 18px transparent;transform:scale(1)}}
+.send-cue{position:absolute;z-index:30;display:flex;align-items:center;gap:6px;height:32px;padding:0 13px 0 10px;border-radius:var(--r-sm);background:#0A0B1E;color:#fff;font:500 13px/1 "Geist",system-ui,sans-serif;white-space:nowrap;opacity:0;transform:translateY(-6px);transition:opacity .3s var(--ease),transform .3s var(--ease);pointer-events:none}
+.send-cue.on{opacity:1;transform:none;pointer-events:auto}
+.send-cue.on:active{transform:scale(.97);transition-duration:.16s}
+.send-cue{appearance:none;border:0;cursor:pointer}
+@media (hover:hover) and (pointer:fine){.send-cue:hover{background:#262A45}}
+@media (max-width:760px){.send-cue{display:none}}
+.send-cue{flex-direction:row-reverse;padding:0 10px 0 13px}
+.send-cue svg{width:16px;height:16px;transform:rotate(180deg)}
+.send-cue.up svg{transform:rotate(90deg)}
+@media (prefers-reduced-motion:reduce){#showcase .snd.cue{animation:none;box-shadow:0 0 0 4px color-mix(in oklab,var(--cue) 45%,transparent)}#showcase .snd.cue::after{content:none}.send-cue{transition:none}
+#showcase .m-in,#showcase .trail .in{animation-name:kn-fade}
+#showcase .b.typ i,#showcase .ib.typ i,#showcase .tb.typ i{animation:none;opacity:.7}}
+</style>
+
+<style>
+
+@media (min-width:761px){
+  #showcase .dock{gap:16px}
+  #showcase .dock button{width:26px;height:26px}
+  #showcase .look-h{padding-block:16px}
+  #showcase .look-h img{width:18px;height:18px}
+  #showcase .look-h h3{font:400 12.5px/1.4 "Geist Mono",ui-monospace,monospace;color:var(--muted);letter-spacing:0}
+  #showcase .trail .st-i{background:none}
+  #showcase .trail .ch{border-radius:6px;background:none;box-shadow:inset 0 0 0 1px var(--line-2)}
+}
+
+.hand{display:none}
+.hold{display:contents}
+@media (min-width:761px){
+  .hold{display:block;position:relative;flex:none;z-index:3}
+}
+@media (min-width:1180px){
+  #showcase .work{padding-bottom:172px;clip-path:inset(-80px -80px 0 -80px);border-bottom:1px solid color-mix(in oklab,var(--ink) 16%,transparent)}
+  .hand{display:block;position:absolute;left:-21.5%;bottom:0;width:220.12%;aspect-ratio:1105/1384;transform:translateY(46.24%);background:url(img/job/hand-phone.webp) 0 0/100% 100% no-repeat;pointer-events:none}
+  #showcase .hold{margin-left:84px}
+  #showcase .lap{margin-left:140px}
+  #showcase .stats{margin-top:76px}
+}
+
+#showcase .sc-top .agents,#showcase .dock{display:none}
+#showcase{overflow-x:clip}
+.pk-bar{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:2px 14px;min-height:42px;font:500 15px/1.3 var(--text);color:var(--ink);text-align:center;transition:opacity .4s ease .5s}
+.pk-bar button{appearance:none;border:0;padding:6px 2px;background:none;font:inherit;color:var(--muted);text-decoration:underline;text-underline-offset:4px;text-decoration-color:color-mix(in oklab,var(--ink) 28%,transparent);cursor:pointer}
+.pk-bar button:hover{color:var(--ink)}
+#showcase.pick .pk-bar{opacity:0;visibility:hidden;transition:opacity .2s ease,visibility 0s .2s}
+#showcase.pick .send-cue,#showcase.moving .send-cue{opacity:0!important;pointer-events:none!important}
+
+.pk{display:block;position:absolute;z-index:30;overflow:hidden;background:#fff;color:#000;font:400 16px/1.3 var(--font-app);transition:opacity .4s ease,visibility 0s}
+.pk.off{opacity:0;visibility:hidden;transition:opacity .4s ease,visibility 0s .4s}
+.pk-s{position:absolute;padding:0 16px;transition:opacity .26s ease,transform .42s cubic-bezier(.23,1,.32,1),visibility 0s}
+.pk[data-step="agent"] .pk-app{opacity:0;transform:translateX(28px);visibility:hidden;transition:opacity .2s ease,transform .3s ease,visibility 0s .3s}
+.pk[data-step="app"] .pk-agent{opacity:0;transform:translateX(-28px);visibility:hidden;transition:opacity .2s ease,transform .3s ease,visibility 0s .3s}
+.pk h3{margin:0;font:600 23px/1.15 var(--font-app);letter-spacing:-.025em;text-align:center}
+.pk-mk{display:block;width:38px;height:38px;margin:34px auto 12px}
+.pk-agent h3{margin-bottom:22px}
+.pk-list{display:grid;gap:8px}
+.pk-row{appearance:none;display:flex;align-items:center;justify-content:space-between;width:100%;height:50px;padding:0 14px 0 16px;border:0;border-radius:14px;background:#0A0B1E;color:#fff;font:500 16px/1 var(--font-app);letter-spacing:-.01em;text-align:left;cursor:pointer;transition:transform .16s cubic-bezier(.23,1,.32,1),background-color .2s ease}
+.pk-row svg{width:16px;height:16px;opacity:.7;transition:transform .2s cubic-bezier(.23,1,.32,1)}
+.pk-row:active,.pk-apps button:active{transform:scale(.97)}
+.pk-row.off{background:#F1F2F5;color:#A4A7B4;cursor:default}
+.pk-row:focus-visible,.pk-apps button:focus-visible,.pk-back:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.pk.seen .pk-row:not(.off){animation:pk-ring 1.8s cubic-bezier(.23,1,.32,1) .5s 3}
+@keyframes pk-ring{0%{box-shadow:0 0 0 0 rgba(10,11,30,.34)}70%,100%{box-shadow:0 0 0 10px rgba(10,11,30,0)}}
+.pk-back{appearance:none;position:absolute;left:12px;top:6px;display:grid;place-items:center;width:38px;height:38px;border:0;border-radius:50%;background:#F1F2F5;color:#000;cursor:pointer}
+.pk-back svg{width:16px;height:16px}
+.pk-app h3{margin:84px 0 30px}
+.pk-apps{display:grid;grid-template-columns:repeat(2,84px);justify-content:center;gap:24px}
+.pk-apps button{appearance:none;display:grid;place-items:center;width:84px;height:84px;padding:0;border:0;border-radius:21px;background:var(--c);cursor:pointer;box-shadow:0 6px 16px rgba(10,11,30,.12);transition:transform .16s cubic-bezier(.23,1,.32,1)}
+.pk-apps span{display:block;width:100%;height:100%;background:#fff;-webkit-mask:var(--m) center/var(--s,64%) no-repeat;mask:var(--m) center/var(--s,64%) no-repeat}
+.pk-apps .kw{background:#fff;box-shadow:0 6px 16px rgba(10,11,30,.12),inset 0 0 0 1px rgba(10,11,30,.1)}
+.pk-apps .kw img{width:56%;height:56%}
+.pk.seen[data-step="app"] .pk-apps button{animation:pk-ring 1.8s cubic-bezier(.23,1,.32,1) .45s 2}
+@media (hover:hover) and (pointer:fine){
+  .pk-row:not(.off):hover{background:#262A45}
+  .pk-row:not(.off):hover svg{transform:translateX(3px)}
+  .pk-apps button:hover{transform:translateY(-2px)}
+  .pk-apps button:hover:active{transform:scale(.97)}
+}
+
+@media (min-width:761px){
+  .pk{inset:7px;border-radius:calc(var(--pr) - 7px)}
+  .pk::before{content:"";position:absolute;top:10px;left:50%;width:min(84px,27%);height:24px;transform:translateX(-50%);border-radius:14px;background:radial-gradient(circle at calc(100% - 11px) 50%,#1E2748 0 2.5px,#0B0E1C 3px 4.5px,#000 5px);z-index:20}
+  .pk-s{inset:40px 0 0}
+  #showcase.pk-live .hold{transition:transform .9s cubic-bezier(.77,0,.175,1)}    
+  #showcase .lap{transition:opacity .5s ease .34s,transform .8s cubic-bezier(.23,1,.32,1) .26s}
+  #showcase.pick .hold{transform:translateX(var(--pk-dx,0px))}
+  #showcase.pick .lap{opacity:0;transform:translateX(64px);visibility:hidden;transition:opacity .22s ease,transform .5s ease,visibility 0s .5s}
+}
+
+@media (max-width:760px){
+  .pk-bar{font-size:14px}
+  #showcase .work .phone{position:static}    
+  .pk{inset:0;border-radius:16px}
+  .pk .sbar,.pk .home{display:none}
+  #showcase.pick .work{height:min(var(--mstage),470px)}
+  .pk-s{inset:0;display:flex;flex-direction:column;justify-content:center;padding:16px}
+  .pk-mk{margin-top:0}
+  .pk-agent h3{margin-bottom:18px}
+  .pk-list{gap:7px}
+  .pk-row{height:46px}
+  .pk-app h3{margin-top:0}
+  .pk-back{left:14px;top:14px}
+  #showcase .phone .scr{transition:opacity .4s ease .08s,transform .6s cubic-bezier(.23,1,.32,1) .08s}
+  #showcase .lap{transition:opacity .4s ease .2s,transform .6s cubic-bezier(.23,1,.32,1) .2s}
+  #showcase.pick .phone .scr,#showcase.pick .lap{opacity:0;transform:translateY(16px);transition:opacity .2s ease,transform .3s ease}
+  #showcase.pick .lap{visibility:hidden;transition:opacity .2s ease,transform .3s ease,visibility 0s .3s}
+}
+@media (prefers-reduced-motion:reduce){
+  #showcase.pk-live .hold,#showcase .lap,#showcase.pick .lap,#showcase .phone .scr,#showcase.pick .phone .scr,.pk-s,.pk[data-step] .pk-s{transition:opacity .2s ease,visibility 0s}
+  #showcase.pick .lap,#showcase.pick .phone .scr,.pk[data-step="agent"] .pk-app,.pk[data-step="app"] .pk-agent{transform:none}
+  .pk.seen .pk-row:not(.off),.pk.seen[data-step="app"] .pk-apps button{animation:none}
+}
+
+</style>
+<style>
+.pk.seen .pk-row:not(.off)~.pk-row:not(.off){animation-delay:.72s}
+.pk.seen .pk-row:not(.off)~.pk-row:not(.off)~.pk-row:not(.off){animation-delay:.94s}
+</style>
+<script src="analytics.js" defer></script>
+<script src="site.js" defer></script>
+<script src="pages/technicians.js" defer></script>
+</head>
+<body>
+<header class="nav" id="nav">
+  <div class="wrap nav-in">
+    <a class="logo" href="index.html" aria-label="kenner home"><img src="brand/lockup-ink.svg" alt="kenner"></a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-main" aria-label="Open the menu"><i aria-hidden="true"></i></button>
+    <nav class="nav-main" id="nav-main" aria-label="Main">
+      <div class="nav-item">
+        <button class="nav-trigger is-current" type="button" aria-expanded="false" aria-controls="nav-panel">Platform<svg viewBox="0 0 10 10" aria-hidden="true"><path d="M2 3.75 5 6.75l3-3" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <div class="nav-panel" id="nav-panel">
+          <div class="nav-group">
+            <p>For technicians</p>
+            <a href="technicians.html" aria-current="page"><b>Technicians</b><span>A personal assistant they call or text.</span></a>
+          </div>
+          <div class="nav-group">
+            <p>For the office</p>
+            <a href="agents.html"><b>Agents</b><span>A team that does the work around every job.</span></a>
+            <a href="intelligence.html"><b>Intelligence</b><span>The full history of every machine and every job.</span></a>
+          </div>
+          <div class="nav-group">
+            <p>Connect</p>
+            <a href="integrations.html"><b>Integrations</b><span>Your FSM, CRM, ERP and supplier portals.</span></a>
+          </div>
+        </div>
+      </div>
+      <a class="nav-link" href="security.html">Security</a>
+      <a class="nav-link" href="blog/index.html">Blog</a>
+      <a class="btn btn-sm btn-soft btn-off nav-login" role="link" aria-disabled="true">Log in</a>
+    </nav>
+    <a class="btn btn-sm btn-ink nav-demo" href="https://calendar.app.google/fFpCL3WG3pJtqtC89" target="_blank" rel="noopener">Book a demo</a>
+  </div>
+</header>
+
+<main id="top">
+
+  <section class="p-hero tech-hero">
+    <div class="wrap p-hero-in">
+      <div class="p-hero-copy">
+        <nav class="p-crumb" aria-label="Breadcrumb"><span>Platform</span><i aria-hidden="true">/</i><span aria-current="page">Technicians</span></nav>
+        <h1>Put a senior colleague on&nbsp;every&nbsp;job</h1>
+        <p class="p-sub">Your technicians call or text Kenner for answers from past jobs, and it writes the report from&nbsp;one&nbsp;call.</p>
+        <div class="acts"><a class="btn btn-ink" href="https://calendar.app.google/fFpCL3WG3pJtqtC89" target="_blank" rel="noopener">Get a free demo</a></div>
+      </div>
+      <div class="p-hero-vis p-plain tech-vis" id="tech-vis">
+        <div class="tech-phone" id="tech-phone">
+          <div class="tech-stage" id="tech-stage">
+            <div class="tech-scr">
+              <div class="tech-scr-in">
+                <div class="tech-sb" aria-hidden="true"><span>9:41</span><svg viewBox="0 0 66 12"><g fill="currentColor"><rect x="0" y="8" width="3" height="4" rx="1"/><rect x="5" y="6" width="3" height="6" rx="1"/><rect x="10" y="3.5" width="3" height="8.5" rx="1"/><rect x="15" y="1" width="3" height="11" rx="1"/></g><path d="M24 4.4a8.7 8.7 0 0 1 11.6 0M26.2 6.8a5.4 5.4 0 0 1 7.2 0M28.4 9.2a2.2 2.2 0 0 1 2.8 0" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><rect x="40" y=".5" width="23" height="11" rx="3.6" fill="currentColor"/><path d="M64.6 4.3v3.4" stroke="currentColor" stroke-opacity=".5" stroke-width="1.4" stroke-linecap="round"/></svg></div>
+                <div class="tech-msgs">
+                  <div class="tech-note tech-out" id="tech-note" role="img" aria-label="A message from Kenner during the call: 2 photos attached"><span class="tech-av"><img src="brand/logo-avatar.svg" alt=""><i></i></span><span class="tech-tx"><b>Kenner</b><time>now</time><span>2 photos attached</span></span></div>
+                  <div class="tech-act tech-out" id="tech-act" role="img" aria-label="Kenner took an action during the call: updated the owner to George"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13.4 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-7.4"/><path d="M2 6h4"/><path d="M2 10h4"/><path d="M2 14h4"/><path d="M2 18h4"/><path d="M21.378 5.626a1 1 0 1 0-3.004-3.004l-5.01 5.012a2 2 0 0 0-.506.854l-.837 2.87a.5.5 0 0 0 .62.62l2.87-.837a2 2 0 0 0 .854-.506z"/></svg><span class="tech-tx"><small>Kenner took an action</small><span>Updated the owner to George.</span></span><svg class="tech-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></div>
+                </div>
+                <div class="tech-fold">
+                  <div class="tech-mk" id="tech-mk"><svg viewBox="0 0 100 100" aria-hidden="true"><defs><radialGradient id="tech-g" gradientUnits="userSpaceOnUse" cx="50" cy="50" r="50"><stop offset="0" stop-color="#fff"/><stop offset=".7" stop-color="#F1F5FF"/><stop offset="1" stop-color="#DFE8FF"/></radialGradient></defs><g id="tech-rays" fill="url(#tech-g)"><path fill-rule="evenodd" d="M48.4 36.6L39.8 4.1L36.4 5.0L32.9 6.2L45.9 37.6ZM31.1 7.0L27.8 8.5L24.8 10.3L41.7 39.4L44.1 38.4ZM39.4 41.7L10.3 24.8L8.5 27.8L7.0 31.1L38.4 44.1ZM6.2 32.9L5.0 36.4L4.1 39.8L36.6 48.4L37.6 45.9ZM36.6 51.6L4.1 60.2L5.0 63.6L6.2 67.1L37.6 54.1ZM7.0 68.9L8.5 72.2L10.3 75.2L39.4 58.3L38.4 55.9ZM41.7 60.6L24.8 89.7L27.8 91.5L31.1 93.0L44.1 61.6ZM32.9 93.8L36.4 95.0L39.8 95.9L48.4 63.4L45.9 62.4ZM67.1 6.2L63.6 5.0L60.2 4.1L51.6 36.6L54.1 37.6ZM58.3 39.4L75.2 10.3L72.2 8.5L68.9 7.0L55.9 38.4ZM93.0 31.1L91.5 27.8L89.7 24.8L60.6 41.7L61.6 44.1ZM63.4 48.4L95.9 39.8L95.0 36.4L93.8 32.9L62.4 45.9ZM93.8 67.1L95.0 63.6L95.9 60.2L63.4 51.6L62.4 54.1ZM60.6 58.3L89.7 75.2L91.5 72.2L93.0 68.9L61.6 55.9ZM68.9 93.0L72.2 91.5L75.2 89.7L58.3 60.6L55.9 61.6ZM51.6 63.4L60.2 95.9L63.6 95.0L67.1 93.8L54.1 62.4Z"/></g></svg></div>
+                  <p class="tech-who">Kenner</p>
+                  <p class="tech-cap" id="tech-cap" aria-hidden="true"></p>
+                  <button class="tech-cta" id="tech-cta" type="button" aria-pressed="false" aria-label="Play a technician’s call with Kenner, 42 seconds"><span class="tech-cta-ic" aria-hidden="true"><svg class="tech-i-play" viewBox="0 0 16 16" aria-hidden="true"><path d="M5.4 3.4v9.2L12.9 8z" fill="currentColor" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg><svg class="tech-i-pause" viewBox="0 0 16 16" aria-hidden="true"><path d="M5 3v10M11 3v10" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg></span><span id="tech-cta-l">Listen to a call</span><span class="tech-cta-t" id="tech-cta-t">0:42</span></button>
+                </div>
+              </div>
+            </div>
+            <img class="tech-body" src="img/technicians/phone.webp" alt="" width="934" height="2144" decoding="async">
+          </div>
+        </div>
+        <p class="tech-sr">The call, in words. Kenner: Hey, it’s Kenner. What can I help you with? Technician: Hi Kenner, I’m at the site now and it’s throwing an F74 error. What does that mean again? Kenner: F74 means the boiler is reporting water pressure too low. It locks out the burner and stops heating. Since it’s recurring, compare the boiler reading with an external manometer. Technician: Sure, will do. Do you have any photos from the last visit you can send me, so I can compare? Kenner: I’ll send last visit’s photos. Sent to your iMessage. Technician: Cheers. And one more note before I continue: the owner has changed. It’s now George, no longer Tom, because he’s taken over from his father. Kenner: Got it. I’ll note George as the owner. Noted. Technician: Cheers Kenner, see you later. Kenner: See you later.</p>
+        <audio id="mk-audio" preload="none" src="audio/debrief.mp3"></audio>
+      </div>
+    </div>
+  </section>
+  <div class="tech-tip" id="tech-tip" aria-hidden="true">Click to listen</div>
+
+  <section class="sec" id="day">
+    <div class="wrap">
+      <h2 class="h2 center p-head">A day with Kenner</h2>
+      <div class="p-trio tech-trio">
+        <article>
+          <div class="p-vis tech-pv" role="img" aria-label="A text from Kenner at 5:48 AM: Case 14 next. In April it was the termination sensor. Bring one. Under it: 3 past jobs">
+            <div class="tech-art" aria-hidden="true">
+              <div class="tech-win tech-win-brief p-card">
+                <div class="tech-who-h"><img src="brand/logo-avatar.svg" alt="" loading="lazy" decoding="async"><b>Kenner</b></div>
+                <p class="tech-ts">Today 5:48 AM</p>
+                <p class="tech-b tech-k">Case 14 next. In April it was the termination sensor. Bring one.</p>
+                <span class="tech-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/><path d="M12 7v5l4 2"/></svg>3 past jobs</span>
+              </div>
+            </div>
+          </div>
+          <p class="p-label">Before the job</p>
+          <h3>Briefed on the way</h3>
+          <p>Kenner texts the unit’s history, what fixed it last time and the part to bring. Reply to correct it.</p>
+        </article>
+        <article>
+          <div class="p-vis tech-pv" role="img" aria-label="A message thread with Kenner. Carlos sends a photo and writes: Case 14 is at 10°F and climbing. Coil’s iced up. Kenner answers: Defrost is ending too early. Check the termination sensor first. Its source: Dave’s job in April, same fault">
+            <div class="tech-art" aria-hidden="true">
+              <div class="tech-win tech-win-thread p-card">
+                <img class="tech-pic" src="img/technicians/case-coil.jpg" alt="" width="480" height="360" loading="lazy" decoding="async">
+                <p class="tech-b tech-me">Case 14 is at 10°F and climbing. Coil’s iced up.</p>
+                <p class="tech-b tech-k">Defrost is ending too early. Check the termination sensor first.</p>
+                <span class="tech-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.4"/><path d="M5.5 20a6.5 6.5 0 0 1 13 0"/></svg>Dave’s job in April: same fault</span>
+              </div>
+            </div>
+          </div>
+          <p class="p-label">On the job</p>
+          <h3>Answers at the unit</h3>
+          <p>Send a photo and a question. Kenner answers from past jobs and the manual, and shows the source.</p>
+        </article>
+        <article>
+          <div class="p-vis tech-pv" role="img" aria-label="A service report, filed: Case 14. Defrost was ending early. Replaced the termination sensor. Over it, a call with Kenner at 32 seconds">
+            <div class="tech-art" aria-hidden="true">
+              <div class="tech-win tech-win-report p-card">
+                <div class="tech-rep-h"><b>Service report</b><span class="tech-tag"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 6.3l2.3 2.3 4.7-5"/></svg>Filed</span></div>
+                <p>Case 14. Defrost was ending early. Replaced the termination sensor.</p>
+                <div class="tech-pill"><img src="brand/logo-avatar.svg" alt="" loading="lazy" decoding="async"><span class="tech-wave"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><span class="tech-pill-t">0:32</span></div>
+              </div>
+            </div>
+          </div>
+          <p class="p-label">After the job</p>
+          <h3>Closed out from the van</h3>
+          <p>One call. Kenner reads the report back, files it when you confirm and puts the part on order.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec pick" id="showcase">
+    <div class="wrap">
+      <div class="sc-top">
+      <div class="sc-head">
+        <h2 class="h2 center">Kenner gets it done</h2>
+      </div>
+      <div class="agents" role="group" aria-label="Moment" id="agents">
+        <button type="button" data-flow="brief" aria-pressed="false">Before the job</button>
+        <button type="button" data-flow="fix" aria-pressed="true">On the job</button>
+        <button type="button" data-flow="report" aria-pressed="false">After the job</button>
+      </div>
+      <div class="pk-bar" id="pk-bar"><span id="pk-now"></span><button type="button" id="pk-change">Change</button></div>
+      </div>
+      <div class="work" id="work">
+        <div class="dock" role="group" aria-label="Messaging app" id="dock">
+          <button type="button" data-app="im" aria-pressed="true" aria-label="iMessage"><span class="lg" style="--m:url(mono/imessage.svg);--s:132%;--c:linear-gradient(180deg,#5DF777,#0ABE2A)"></span></button>
+          <button type="button" data-app="wa" aria-pressed="false" aria-label="WhatsApp"><span class="lg" style="--m:url(mono/whatsapp.svg);--c:#25D366"></span></button>
+          <button type="button" data-app="tm" aria-pressed="false" aria-label="Microsoft Teams"><span class="lg" style="--m:url(mono/teams.svg);--c:#4B53BC"></span></button>
+          <button type="button" data-app="kw" aria-pressed="false" aria-label="Kenner web chat"><img src="brand/mark-ultramarine.svg" alt="" loading="lazy" decoding="async"></button>
+        </div>
+        <div class="hold" id="hold"><i class="hand" aria-hidden="true"></i><div class="phone"><div class="scr" id="ask-scr"></div><div class="pk" id="pk" data-step="agent">
+            <div class="sbar" id="pk-sb"></div>
+            <section class="pk-s pk-agent" aria-labelledby="pk-t1">
+              <img class="pk-mk" src="brand/mark-ultramarine.svg" alt="">
+              <h3 id="pk-t1">Choose a moment</h3>
+              <div class="pk-list">
+                <button type="button" class="pk-row" data-flow="brief" data-name="Before the job">Before the job<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M6 3l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+                <button type="button" class="pk-row" data-flow="fix" data-name="On the job">On the job<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M6 3l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+                <button type="button" class="pk-row" data-flow="report" data-name="After the job">After the job<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M6 3l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+              </div>
+            </section>
+            <section class="pk-s pk-app" aria-labelledby="pk-t2">
+              <button type="button" class="pk-back" id="pk-back" aria-label="Back to the moments"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M10 3L5 8l5 5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+              <h3 id="pk-t2">Choose an app</h3>
+              <div class="pk-apps">
+                <button type="button" data-app="im" aria-label="iMessage" title="iMessage" style="--c:linear-gradient(180deg,#5DF777,#0ABE2A)"><span style="--m:url(mono/imessage.svg);--s:108%"></span></button>
+                <button type="button" data-app="wa" aria-label="WhatsApp" title="WhatsApp" style="--c:#25D366"><span style="--m:url(mono/whatsapp.svg);--s:64%"></span></button>
+                <button type="button" data-app="tm" aria-label="Microsoft Teams" title="Microsoft Teams" style="--c:#4B53BC"><span style="--m:url(mono/teams.svg);--s:64%"></span></button>
+                <button type="button" data-app="kw" aria-label="Kenner web chat" title="Kenner web chat" class="kw"><img src="brand/mark-ultramarine.svg" alt=""></button>
+              </div>
+            </section>
+            <span class="home"></span>
+          </div></div></div>
+        <div class="lap">
+          <div class="lap-s">
+            <div class="lap-p">
+              <section class="look" id="look" aria-labelledby="look-t">
+                <div class="look-h"><img src="brand/logo-avatar.svg" alt="" loading="lazy" decoding="async"><h3 id="look-t">What Kenner looked up</h3></div>
+                <div class="look-b" id="look-b"><ol class="trail" id="trail"></ol></div>
+              </section>
+              <iframe class="wo" id="wo" src="pr/app/work-order-report.html#0" title="The walk-in cooler’s work order in Kenner" loading="lazy" hidden></iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <dialog class="pgv" id="pgv" aria-label="Manual page"><div class="pgv-h"><span id="pgv-cap"></span><button type="button" id="pgv-x" aria-label="Close"><i data-i="s-x"></i></button></div><img id="pgv-img" src="pr/media/scotsman-p38.webp" alt="" loading="lazy" decoding="async" width="1000" height="1295"></dialog>
+    <div class="refc" id="refc" aria-hidden="true"></div>
+  </section>
+  <section class="sec" id="reality">
+    <div class="wrap">
+      <div class="real p-light">
+        <h2 class="h2 center">Reality is not a pre‑recorded video. <span><img src="brand/lockup-ink.svg" alt="Kenner" loading="lazy" decoding="async"> learns from every job, even these…</span></h2>
+        <div class="stage-r">
+          <figure class="ph job r1" data-k="0.04"><div class="im"><img src="img/job/freezer-ebike.jpg" alt="" style="object-position:50% 60%" draggable="false"></div><figcaption class="cap"><div class="bub">Store manager unplugged the freezer to charge his e-bike<small>Carlos, 6:12 AM</small></div><p class="kept"><img src="brand/mark-ultramarine.svg" alt="Kenner kept:"><span><b>Sales note</b> Lockable socket recommended.</span></p></figcaption></figure>
+          <figure class="ph job r2" data-k="-0.03"><div class="im"><img src="img/job/sheep-turbine.jpg" alt="" style="object-position:50% 60%" draggable="false"></div><figcaption class="cap"><div class="bub">Sheep are blocking the door to the turbine again<small>Tyler, 6:48 AM</small></div><p class="kept"><img src="brand/mark-ultramarine.svg" alt="Kenner kept:"><span><b>Access note</b> Call the farmer before the visit.</span></p></figcaption></figure>
+          <figure class="ph job r4" data-k="-0.04"><div class="im"><img src="img/job/pigeons-gascooler.jpg" alt="" style="object-position:50% 35%" draggable="false"></div><figcaption class="cap"><div class="bub">Pigeons are nesting in the gas cooler again<small>Ashley, 7:31 AM</small></div><p class="kept"><img src="brand/mark-ultramarine.svg" alt="Kenner kept:"><span><b>Site note</b> Second nest in the gas cooler.</span></p></figcaption></figure>
+          <figure class="ph job r5" data-k="0.05"><div class="im"><img src="img/job/forklift.jpg" alt="" style="object-position:50% 50%" draggable="false"></div><figcaption class="cap"><div class="bub">Forklift only throws the error when Dave drives it<small>Carlos, 11:18 AM</small></div><p class="kept"><img src="brand/mark-ultramarine.svg" alt="Kenner kept:"><span><b>Training note</b> Upskill potential for Dave.</span></p></figcaption></figure>
+          <figure class="ph job r6 rev" data-k="-0.02"><div class="im"><img src="img/job/plantroom.jpg" alt="" style="object-position:50% 50%" draggable="false"></div><figcaption class="cap"><div class="bub">Who installed this? Asking for a friend<small>Ashley, 2:42 PM</small></div><p class="kept"><img src="brand/mark-ultramarine.svg" alt="Kenner kept:"><span><b>Unit history</b> <i class="nb">Non-standard</i> install.</span></p></figcaption></figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="further">
+    <div class="wrap">
+      <h2 class="h2 center p-head">Take it further</h2>
+      <div class="p-further">
+        <a class="p-next" href="agents.html"><b>Agents</b><span>A team that does the work around every job.</span><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h12M11 5l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <a class="p-next" href="intelligence.html"><b>Intelligence</b><span>The full history of every machine and every job.</span><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h12M11 5l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <a class="p-next" href="integrations.html"><b>Integrations</b><span>Your FSM, CRM, ERP and supplier portals.</span><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h12M11 5l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="close">
+  <section class="wrap close-in" id="pilot">
+    <h2>See it on your own jobs</h2>
+    <p class="line">Start with one team: two weeks, five to ten technicians, measured against your own numbers.</p>
+    <div class="acts"><a class="btn btn-white" href="https://calendar.app.google/fFpCL3WG3pJtqtC89" target="_blank" rel="noopener">Get a free demo</a></div>
+  </section>
+  <div class="wrap">
+    <div class="f-in">
+      <div><img src="brand/lockup-white.svg" alt="kenner" width="118" height="22" loading="lazy" decoding="async"><p class="tl">For the teams that keep the world running.</p></div>
+      <div><h3>Product</h3><a href="technicians.html">Technicians</a><a href="agents.html">Agents</a><a href="intelligence.html">Intelligence</a><a href="integrations.html">Integrations</a></div>
+      <div><h3>Resources</h3><a href="blog/best-ai-for-hvac-technicians.html">Best AI for HVAC technicians</a></div>
+      <div><h3>Security</h3><p class="secu">Built to ISO 27001 and SOC 2<br>GDPR, with a DPA for every pilot<br>Your data stays yours</p></div>
+    </div>
+    <div class="f-bot"><span>© 2026 Kenner Systems Inc.</span><span><a href="legal.html#imprint">Imprint</a><a href="legal.html#privacy">Privacy</a><button type="button" data-cookie-settings>Cookie settings</button></span></div>
+  </div>
+</footer>
+<script>
+/* demo phone: when the stage shrinks to fit the window, scale the whole phone (frame and chat together) instead of squeezing the chat into a smaller frame */
+(function(){
+  var sc = document.getElementById('showcase'); if (!sc) return;
+  function fit(){
+    if (window.innerWidth <= 760) { sc.style.removeProperty('--pz'); return; }
+    var stage = Math.max(540, Math.min(window.innerHeight - 238, 760));
+    var pw = window.innerWidth <= 1100 ? 292 : 318;
+    var z = Math.max(.76, Math.min((stage - 56) * .482 / pw, 1));
+    sc.style.setProperty('--pz', z.toFixed(3));
+  }
+  fit(); window.addEventListener('resize', fit);
+})();
+</script>
+<script src="agents/agents.js" charset="utf-8"></script>
+<script>
+/* the demo opens in iMessage: agents.js starts in WhatsApp, so pick iMessage once it has loaded */
+(function(){ function im(){ var b = document.querySelector('#dock [data-app="im"]'); if (b) b.click(); } im(); document.addEventListener('DOMContentLoaded', im); })();
+</script>
+<script>
+/* Reporting agent: the report fills in field by field instead of landing all at once. Arthur's work-order page re-renders a
+   whole stage and flashes every change together; here its show() is wrapped from outside (same origin, his file untouched):
+   each field that changed is emptied, scrolled to and typed in, one after the other. A field that already had text only
+   types the words that are new, and those stay marked, with an "Updated" tag, until the next message. */
+(function(){
+  var wo = document.getElementById('wo'); if (!wo) return;
+  var calm = matchMedia('(prefers-reduced-motion: reduce)').matches, timers = [], LAST = 3;
+  function later(fn, ms){ timers.push(setTimeout(fn, ms)); }
+  function fields(d){
+    var out = [];
+    d.querySelectorAll('label[for^="report-field-"]').forEach(function(l){
+      var box = l.closest('.min-w-0') || l.parentNode.parentNode, dd = box.querySelector('dd');
+      if (dd && box.getClientRects().length) out.push({key:l.htmlFor, label:l, box:box, dd:dd, raw:dd.textContent});
+    });
+    return out;
+  }
+  /* the stretches of b that are not in a, word by word */
+  function added(a, b){
+    var A = a.split(/(\s+)/), B = b.split(/(\s+)/), n = A.length, m = B.length, dp = [], i, j;
+    for (i = 0; i <= n; i++) dp[i] = new Uint16Array(m + 1);
+    for (i = n - 1; i >= 0; i--) for (j = m - 1; j >= 0; j--) dp[i][j] = A[i] === B[j] ? dp[i + 1][j + 1] + 1 : Math.max(dp[i + 1][j], dp[i][j + 1]);
+    var ins = []; i = 0; j = 0;
+    while (j < m){
+      if (i < n && A[i] === B[j]){ ins[j] = false; i++; j++; }
+      else if (i < n && dp[i + 1][j] >= dp[i][j + 1]) i++;
+      else { ins[j] = !/^\s*$/.test(B[j]); j++; }
+    }
+    for (j = 1; j < m - 1; j++) if (/^\s+$/.test(B[j]) && ins[j - 1] && ins[j + 1]) ins[j] = true;
+    var r = [], pos = 0;
+    for (j = 0; j < m; j++){
+      if (ins[j]){ if (r.length && r[r.length - 1][1] === pos) r[r.length - 1][1] = pos + B[j].length; else r.push([pos, pos + B[j].length]); }
+      pos += B[j].length;
+    }
+    return r;
+  }
+  /* put each of those stretches in an empty span that remembers its text */
+  function wrap(d, dd, ranges, chg){
+    var tw = d.createTreeWalker(dd, 4), nodes = [], nd, pos = 0, spans = [];
+    while ((nd = tw.nextNode())) nodes.push(nd);
+    nodes.forEach(function(node){
+      var t = node.nodeValue, s = pos, e = pos + t.length; pos = e;
+      var cuts = ranges.filter(function(r){ return r[1] > s && r[0] < e; });
+      if (!cuts.length) return;
+      var frag = d.createDocumentFragment(), at = s;
+      cuts.forEach(function(r){
+        var a = Math.max(r[0], s), b = Math.min(r[1], e);
+        if (a > at) frag.appendChild(d.createTextNode(t.slice(at - s, a - s)));
+        var sp = d.createElement('span'); sp.className = 'kn-ins' + (chg ? ' kn-chg' : ''); sp.dataset.t = t.slice(a - s, b - s);
+        frag.appendChild(sp); spans.push(sp); at = b;
+      });
+      if (at < e) frag.appendChild(d.createTextNode(t.slice(at - s)));
+      node.parentNode.replaceChild(frag, node);
+    });
+    return spans;
+  }
+  function type(spans, done){
+    var total = spans.reduce(function(n, s){ return n + s.dataset.t.length; }, 0), dur = Math.max(160, Math.min(total * 3.2, 420)), t0 = Date.now();
+    (function step(){
+      var f = Math.min(1, (Date.now() - t0) / dur), n = Math.round(f * total);
+      spans.forEach(function(s){ var L = s.dataset.t.length, k = Math.max(0, Math.min(L, n)); if (s.textContent.length !== k) s.textContent = s.dataset.t.slice(0, k); n -= L; });
+      if (f < 1) later(step, 24); else done();
+    })();
+  }
+  /* the report is filed: fold its card and go back to the top, so the four cards are in view together */
+  function fold(w, smooth){
+    var d = w.document, b = d.querySelector('#job-report h2 > button[aria-expanded="true"]');
+    if (b){ b.click(); if (d.activeElement && d.activeElement.blur) d.activeElement.blur(); }
+    w.scrollTo({top:0, behavior: smooth ? 'smooth' : 'auto'});
+  }
+  /* the briefing comes before the job and the report after it, so the briefing card sits first */
+  function order(d){
+    var r = d.getElementById('job-report'), b = d.getElementById('job-briefing');
+    if (r && b && r.parentNode === b.parentNode && (r.compareDocumentPosition(b) & 4)) r.parentNode.insertBefore(b, r);
+  }
+  function run(w, list, done){
+    var d = w.document, i = 0;
+    (function next(){
+      if (i >= list.length){ if (done) done(); return; }
+      var f = list[i++], r = f.box.getBoundingClientRect();
+      w.scrollTo({top: w.scrollY + r.top - Math.max(16, (w.innerHeight - r.height) / 2 - 40), behavior:'smooth'});
+      later(function(){
+        type(f.spans, function(){
+          f.box.classList.remove('fresh'); void f.box.offsetWidth; f.box.classList.add('fresh');
+          if (f.chg){ var tag = d.createElement('span'); tag.className = 'kn-tag'; tag.textContent = 'Updated'; f.label.parentNode.insertBefore(tag, f.label.nextSibling); }
+          later(next, 60);
+        });
+      }, 90);
+    })();
+  }
+  function hook(){
+    var w = wo.contentWindow;
+    if (!w || !w.show || w.show.kn) return;
+    var orig = w.show, d = w.document, st = d.createElement('style'), seen = null;
+    st.textContent = '.kn-chg{background:color-mix(in oklab,#1438CA 14%,transparent);box-shadow:0 0 0 2px color-mix(in oklab,#1438CA 14%,transparent);border-radius:3px}.kn-chg:empty{background:none;box-shadow:none}.kn-tag{display:inline-flex;align-items:center;height:18px;margin-left:6px;padding:0 7px;border-radius:5px;background:color-mix(in oklab,#1438CA 12%,transparent);color:#1438CA;font-size:11px;font-weight:500;line-height:1}';
+    /* the service report and briefing cards: no preview line when folded. A finished card says so itself, with a dark
+       border in place of the grey hairline and a tag by its title: the briefing from the start ("Done"), the report once it is filed */
+    st.textContent += "#job-report>div:first-child>span.truncate,#job-briefing>div:first-child>span.truncate{display:none}" +
+      "#job-briefing,[data-kn-stage=\"3\"] #job-report{box-shadow:0 0 0 1.5px #0A0B1E}" +
+      "#job-briefing h2,[data-kn-stage=\"3\"] #job-report h2{display:flex;align-items:center;gap:10px}" +
+      "#job-briefing h2::after{content:\"Done\"}[data-kn-stage=\"3\"] #job-report h2::after{content:\"Filed\"}" +
+      "#job-briefing h2::after,[data-kn-stage=\"3\"] #job-report h2::after{display:inline-flex;align-items:center;height:20px;padding:0 8px 0 23px;border-radius:5px;font-size:12px;font-weight:500;line-height:1;color:#0A0B1E;background:rgba(10,11,30,.06) url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' fill='none' stroke='%230A0B1E' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M2.5 6.3l2.3 2.3 4.7-5'/%3E%3C/svg%3E\") 7px 50%/12px no-repeat}";
+    d.head.appendChild(st);
+    order(d);
+    w.show = function(n, animate){
+      d.documentElement.setAttribute('data-kn-stage', n);
+      /* what each field said after the last message: kept here, since a fill cut short leaves half-typed text on the page */
+      var before = seen || {};
+      if (!seen) fields(d).forEach(function(f){ before[f.key] = f.raw; });
+      timers.forEach(clearTimeout); timers = [];
+      orig(n, animate);
+      order(d);
+      seen = {};
+      fields(d).forEach(function(f){ seen[f.key] = f.raw; });
+      if (n === LAST && (!animate || calm)) fold(w, false);
+      if (!animate || calm) return;
+      var list = [];
+      fields(d).forEach(function(f){
+        var prev = before[f.key], was = (prev || '').trim(), now = f.raw.trim();
+        if (!now || now === 'Not filled' || prev === f.raw) return;
+        /* a field counts as updated only when most of it was already there; a placeholder turning into an answer is a new fill */
+        var ranges = was && was !== 'Not filled' ? added(prev, f.raw) : null;
+        if (ranges && ranges.reduce(function(n, r){ return n + r[1] - r[0]; }, 0) > f.raw.length * .7) ranges = null;
+        f.chg = !!ranges;
+        f.spans = wrap(d, f.dd, ranges || [[0, f.raw.length]], f.chg);
+        if (!f.spans.length) return;
+        f.box.classList.remove('fresh'); list.push(f);
+      });
+      run(w, list, n === LAST ? function(){ later(function(){ fold(w, true); }, 900); } : null);
+    };
+    w.show.kn = true;
+  }
+  wo.addEventListener('load', hook); hook();
+})();
+</script>
+<script>
+/* "Tap to send": a pill beside the phone's send button whenever the technician's next message is ready */
+(function(){
+  var work = document.getElementById('work'), scr = document.getElementById('ask-scr');
+  if (!work || !scr) return;
+  var pill = document.createElement('button'); pill.type = 'button'; pill.className = 'send-cue'; pill.setAttribute('aria-label', 'Send the message');
+  pill.addEventListener('click', function(){ var b = scr.querySelector('.snd.cue'); if (b) b.click(); });
+  pill.innerHTML = '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M13 8H3M7 4L3 8l4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Tap to send';
+  work.appendChild(pill);
+  var raf = 0;
+  function place(){
+    raf = 0;
+    var b = scr.querySelector('.snd.cue');
+    if (!b || !b.offsetParent) { pill.classList.remove('on'); return; }
+    var wr = work.getBoundingClientRect(), br = b.getBoundingClientRect(), pw = pill.offsetWidth, ph = pill.offsetHeight;
+    /* under the phone, below the send button and pointing up at it: inside the column at every width, and never over the chat or Kenner's panel */
+    var phone = scr.closest('.phone'), pr = phone ? phone.getBoundingClientRect() : br;
+    var left = br.left - wr.left + br.width / 2 - pw / 2, top = pr.bottom - wr.top + 10, up = true;
+    left = Math.max(pr.left - wr.left, Math.min(left, pr.right - wr.left - pw));
+    pill.style.left = left + 'px'; pill.style.top = top + 'px';
+    pill.classList.toggle('up', up); pill.classList.add('on');
+  }
+  function queue(){ if (!raf) raf = requestAnimationFrame(place); }
+  new MutationObserver(queue).observe(scr, {subtree:true, childList:true, attributes:true, attributeFilter:['class']});
+  window.addEventListener('resize', queue);
+  queue();
+})();
+</script>
+<script>
+/* The demo starts on the phone: a moment of the day, then an app, then the phone glides left and Kenner's panel comes in.
+   The demo script's flow buttons and its app dock stay in the markup; choosing presses them, so the demo script needs no picker of its own. */
+(function(){
+  var sc = document.getElementById('showcase'), work = document.getElementById('work'), hold = document.getElementById('hold'), pk = document.getElementById('pk');
+  if (!sc || !work || !hold || !pk) return;
+  var lap = work.querySelector('.lap'), scr = document.getElementById('ask-scr'), agents = document.getElementById('agents'), dock = document.getElementById('dock');
+  var now = document.getElementById('pk-now'), still = window.matchMedia('(prefers-reduced-motion: reduce)').matches, wide = window.matchMedia('(min-width:761px)');
+  var flow = null, flowName = '', timer = 0;
+
+  /* how far the phone is from the middle of the stage, with nothing moved */
+  function centre(){ if (wide.matches) work.style.setProperty('--pk-dx', (work.clientWidth / 2 - hold.offsetLeft - hold.offsetWidth / 2).toFixed(1) + 'px'); }
+  /* what cannot be seen cannot be tabbed into */
+  function sync(){ var picking = sc.classList.contains('pick'); if (lap) lap.inert = picking; pk.inert = !picking; }
+  function press(group, attr, val){ var b = group.querySelector('button[' + attr + '="' + val + '"]'); if (b) b.click(); }
+  function clock(){ var c = document.getElementById('ask-clock'), t = document.getElementById('pk-sb'); if (c && t) t.innerHTML = c.innerHTML; }
+
+  function choose(app, appName){
+    press(dock, 'data-app', app);
+    press(agents, 'data-flow', flow === 'fix' ? 'report' : 'fix'); press(agents, 'data-flow', flow);   /* always from the first message */
+    now.textContent = flowName + ' · ' + appName;   /* the line above the phone: the moment, then the app */
+    pk.classList.add('off'); sc.classList.remove('pick'); sc.classList.add('moving'); sync();
+    clearTimeout(timer);
+    timer = setTimeout(function(){
+      sc.classList.remove('moving'); window.dispatchEvent(new Event('resize'));   /* the "Tap to send" pill finds the phone's new place */
+      if (!still) { var b = scr.querySelector('.snd.cue'); if (b) b.click(); }    /* the first message sends itself, to show how it goes ("Before the job" has none to send: Kenner writes first, by itself) */
+    }, still ? 250 : wide.matches ? 1300 : 900);
+  }
+  pk.addEventListener('click', function(e){
+    var a = e.target.closest('button[data-flow]'), p = e.target.closest('button[data-app]');
+    if (a) { flow = a.dataset.flow; flowName = a.dataset.name; pk.dataset.step = 'app'; }
+    else if (p) choose(p.dataset.app, p.getAttribute('aria-label'));
+    else if (e.target.closest('#pk-back')) pk.dataset.step = 'agent';
+  });
+  document.getElementById('pk-change').addEventListener('click', function(){
+    clearTimeout(timer); clock(); pk.dataset.step = 'agent'; pk.classList.remove('off'); sc.classList.remove('moving'); sc.classList.add('pick'); sync();
+    var first = pk.querySelector('button[data-flow]'); if (first) first.focus({preventScroll: true});
+  });
+
+  clock(); centre(); sync();
+  requestAnimationFrame(function(){ requestAnimationFrame(function(){ sc.classList.add('pk-live'); }); });
+  if ('ResizeObserver' in window) { var ro = new ResizeObserver(centre); ro.observe(work); ro.observe(hold); } else window.addEventListener('resize', centre);
+  wide.addEventListener('change', centre);
+  if ('IntersectionObserver' in window) new IntersectionObserver(function(es, o){ if (es[0].isIntersecting) { o.disconnect(); pk.classList.add('seen'); } }, {threshold: .35}).observe(work);   /* the stage: on a phone the box around the phone has no size of its own */
+  else pk.classList.add('seen');
+})();
+</script>
+</body>
+</html>
