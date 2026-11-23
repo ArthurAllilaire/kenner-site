@@ -81,12 +81,18 @@
      records; the Scotsman manual and its pages are real. A step: its icon, what it is doing, what it did, what it asked,
      what came back, and the sources it cited. */
   var FLOWS = {
-    fix: { start:'09:37', pre:[],
+    /* before the job Kenner writes first: the briefing is the run, a is what it sends, and the technician's reply needs no answer */
+    brief: { start:'09:02', pre:[],
       briefing:{ t:'09:02', done:'Wrote the briefing', steps:[
         ['s-clip','Reading the work order','Read the work order','WO-RF-2046','Two harvest stops this morning. Bin running low before lunch.',['wo']],
         ['s-act','Reading IM-01’s data','Read IM-01’s data','','Both stops hit the harvest time limit.',['data']],
         ['s-hist','Looking up IM-01’s history','Looked up IM-01’s history','','Cleaned on 25 Oct. Water filter changed on 9 Sep.',['r2038','r2011']],
-        ['s-cap','Checking company knowledge','Checked company knowledge','','After a clean, check the curtain first.',['kcurtain']] ] },
+        ['s-cap','Checking company knowledge','Checked company knowledge','','After a clean, check the curtain first.',['kcurtain']] ],
+        a:[ {h:'Morning. IM-01 at Harbor Kitchen stopped twice during harvest today, both times at the time limit. The bin is running low before lunch.', src:[['wo','WO-RF-2046'],['data','IM-01 data']]},
+            {h:'It was cleaned on 25 Oct. After a clean, <b>check the curtain first.</b>', src:[['r2038','WO-RF-2038'],['kcurtain','Lee in Teams']]} ] },
+      turns:[
+        { out:{h:'Got it, heading over.'}, t:'09:04', a:[] } ] },
+    fix: { start:'09:37', pre:[],
       turns:[
         { out:{h:'IM-01 stopped on max harvest time. What should I check?'}, t:'09:38', done:'Answered', steps:[
             ['s-act','Reading IM-01’s data','Read IM-01’s data','','Two harvests hit the time limit, at 6:12 and 7:48. Freeze cycles normal.',['data']],
@@ -177,7 +183,7 @@
       } },
     /* Kenner's own chat, as the web app's Thread draws it: Kenner's turns beside its picture with their sources as chips */
     kw: { cls:'kw', body:'kw-body',
-      head: function(){ return '<div class="kw-head"><img src="'+AV+'" alt=""><b>Kenner</b><span class="kw-job">WO-RF-'+(flow === 'fix' ? '2046' : '2047')+ICONS['s-down']+'</span>'+ICONS.phone.replace('class="i"','class="i kw-call"')+ICONS['s-chev']+'</div>'; },
+      head: function(){ return '<div class="kw-head"><img src="'+AV+'" alt=""><b>Kenner</b><span class="kw-job">WO-RF-'+(flow === 'report' ? '2047' : '2046')+ICONS['s-down']+'</span>'+ICONS.phone.replace('class="i"','class="i kw-call"')+ICONS['s-chev']+'</div>'; },
       day: function(){ return '<p class="kw-day">8 Nov</p>'; },
       bubble: function(m, gf, tl){
         if (m.typ) return '<div class="ktyp" role="status"><img src="'+AV+'" alt="">Kenner is typing…</div>';
@@ -285,10 +291,12 @@
   function paintLook(upTo){
     trail.innerHTML = '';
     for (var r = 0; r <= upTo; r++){
-      var els = runEls(r, r === upTo && r > 0);
+      if (!(runOf(r) || {}).steps) continue;   /* a flow without a briefing, or a message Kenner looked nothing up for */
+      var els = runEls(r, false);
       fillRun(els[1], r);
       trail.appendChild(els[0]); trail.appendChild(els[1]);
     }
+    if (trail.lastChild) foldRun(trail.lastChild, true);   /* the latest run is unfolded, the briefing too */
     markEnd();
     var open = trail.querySelector('.grp.open'), head = open && open.previousElementSibling;
     lookB.scrollTop = narrow() && head ? Math.max(0, lookB.scrollTop + head.getBoundingClientRect().top - lookB.getBoundingClientRect().top - 8) : lookB.scrollHeight;
@@ -309,21 +317,22 @@
 
   function settle(i){
     halt(); typing = false; log = F.pre.slice();
-    F.turns.slice(0, i+1).forEach(function(T){ log.push(message(T.out, T.t)); T.a.forEach(function(m){ log.push({f:'in', h:m.h, img:m.img, src:m.src, t:T.t}); }); });
+    (F.briefing ? [F.briefing] : []).concat(F.turns.slice(0, i+1)).forEach(function(T){ if (T.out) log.push(message(T.out, T.t)); T.a.forEach(function(m){ log.push({f:'in', h:m.h, img:m.img, src:m.src, t:T.t}); }); });
     turn = i+1; busy = false;
-    if (flow === 'fix') paintLook(i+1); else report(i+1, true);
+    if (flow !== 'report') paintLook(i+1); else report(i+1, true);
     draft = null; paint(); offer(turn, true);
   }
   /* a message sent: the troubleshooter's run joins the timeline and its steps come in one at a time, each turning from
      what it is doing to what it found, before the answer; the report fills in what the technician said */
   function run(i){
-    var T = F.turns[i];
+    var T = runOf(i+1);   /* run(-1) is the briefing: Kenner's own run, with no message from the technician */
     if (still){ settle(i); return; }
     busy = true; hideCard();
-    draft = null; paintComposer(); say(message(T.out, T.t));
+    draft = null; paintComposer(); if (T.out) say(message(T.out, T.t));
+    if (!T.a.length){ turn = i+1; busy = false; offer(turn); return; }   /* a message that needs no answer */
     var t = 600;
     at(function(){ setTyping(true); }, t);
-    if (flow === 'fix'){
+    if (flow !== 'report'){
       var grp, ol;
       at(function(){
         trail.querySelectorAll('.grp.open').forEach(function(g){ foldRun(g, false); });
@@ -345,17 +354,19 @@
     T.a.forEach(function(m, j){
       if (j){ at(function(){ setTyping(true); }, t); t += 900; }
       at(function(){ say({f:'in', h:m.h, img:m.img, src:m.src, t:T.t}); }, t);
-      if (!j && flow === 'fix') at(function(){ var li = doneEl(i+1); li.classList.add('in'); trail.querySelector('.grp:last-child ol').appendChild(li); markEnd(); toEnd(lookB); }, t);
+      if (!j && flow !== 'report') at(function(){ var li = doneEl(i+1); li.classList.add('in'); trail.querySelector('.grp:last-child ol').appendChild(li); markEnd(); toEnd(lookB); }, t);
       t += 1000;
     });
     at(function(){ turn = i+1; busy = false; offer(turn); }, t - 400);
   }
   function start(key){
     halt(); hideCard();
-    flow = key; F = FLOWS[key]; turn = 0; busy = false; typing = false; log = F.pre.slice(); draft = null;
-    look.hidden = key !== 'fix'; wo.hidden = key === 'fix';
-    if (key === 'fix') paintLook(0); else report(0, false);
-    paint(); offer(0, true);
+    flow = key; F = FLOWS[key]; turn = F.briefing ? -1 : 0; busy = false; typing = false; log = F.pre.slice(); draft = null;
+    look.hidden = key === 'report'; wo.hidden = key !== 'report';
+    if (key !== 'report') paintLook(turn); else report(0, false);
+    paint(); offer(turn, true);
+    /* a flow that opens with a briefing plays it by itself, a beat after it is chosen; without motion it stands there finished */
+    if (F.briefing){ if (still) settle(-1); else at(function(){ run(-1); }, 1300); }
   }
 
   askScr.addEventListener('click', function(e){ if (e.target.closest('.snd.cue') && !busy && draft && draft.ready) run(turn); });

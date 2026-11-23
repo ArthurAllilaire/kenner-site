@@ -1,0 +1,118 @@
+
+.f6-sub{max-width:44em;margin:18px auto clamp(40px,5vw,64px);text-align:center;font-size:clamp(16px,1.35vw,18px);line-height:1.5;color:var(--muted);text-wrap:balance}
+
+.f6-pill h3{font:400 clamp(24px,2.4vw,32px)/1.1 var(--display);letter-spacing:-.025em}
+.f6-pill p{margin-top:12px;max-width:27em;font-size:clamp(16px,1.25vw,17px);line-height:1.55;color:var(--muted)}
+
+.f6-trio{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,clamp(430px,40vw,500px)) minmax(0,1fr);align-items:center;gap:clamp(28px,3.6vw,52px)}
+.f6-left p,.f6-right p{max-width:22em}
+.f6-left,.f6-right{align-self:start}
+@media (min-width:1161px){.f6-left,.f6-right{padding-top:clamp(138px,12.6vw,162px)}}
+
+.f6-sprite{position:absolute}
+.f6-ic{flex:none;width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round}
+.f6-loop{position:relative;aspect-ratio:1;width:100%;border-radius:var(--r-lg);overflow:hidden;overflow:clip;color:var(--ink);--p-wx:50%;--p-wy:118%;--p-a:180deg;
+  --p-lift:0 1px 2px rgba(var(--fl-shade,46,52,84),.08),0 12px 26px -16px rgba(var(--fl-shade,46,52,84),.45)}
+.f6-ring{position:absolute;inset:0;width:100%;height:100%}
+.f6-arc{fill:none;stroke:rgba(10,11,30,.26);stroke-width:1.25;vector-effect:non-scaling-stroke}
+.f6-chev{fill:none;stroke:rgba(10,11,30,.5);stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;vector-effect:non-scaling-stroke}
+.f6-run{fill:var(--accent)}
+.f6-orbit{transform-origin:260px 260px;animation:f6-orbit 16s infinite}
+.f6-off .f6-orbit{animation-play-state:paused}
+@keyframes f6-orbit{
+  0%{transform:rotate(0deg);animation-timing-function:cubic-bezier(.45,0,.55,1)}
+  19%,25%{transform:rotate(90deg);animation-timing-function:cubic-bezier(.45,0,.55,1)}
+  44%,50%{transform:rotate(180deg);animation-timing-function:cubic-bezier(.45,0,.55,1)}
+  69%,75%{transform:rotate(270deg);animation-timing-function:cubic-bezier(.45,0,.55,1)}
+  94%,100%{transform:rotate(360deg)}
+}
+.f6-core{position:relative;z-index:2;flex:none;width:68px;height:68px;display:flex;align-items:center;justify-content:center}
+.f6-core img{width:58px;height:58px}
+.f6-mid{position:absolute;left:50%;top:50%;margin:-34px 0 0 -34px}
+.f6-st{position:absolute;z-index:1;transform:translate(-50%,-50%);display:flex;flex-direction:column;align-items:center;gap:9px;padding:13px 16px;border-radius:var(--r-sm);font:500 15px/1.15 var(--text);text-align:center;white-space:nowrap}
+.f6-ics{display:flex;gap:10px}
+.f6-st .f6-ic{color:var(--grey)}
+.f6-st-t{left:50%;top:17.3%}
+.f6-st-r{left:82.7%;top:50%}
+.f6-st-b{left:50%;top:82.7%}
+.f6-st-l{left:17.3%;top:50%}
+
+@media (max-width:1160px){
+  .f6-trio{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:36px}
+  .f6-loop{grid-column:1/-1;grid-row:1;max-width:500px;margin:0 auto}
+}
+@media (max-width:640px){
+  .f6-trio{grid-template-columns:minmax(0,1fr);row-gap:28px}
+  .f6-left p,.f6-right p{max-width:none}
+  .f6-st{padding:10px 11px;font-size:13px;gap:7px}
+  .f6-st .f6-ic{width:17px;height:17px}
+  .f6-st-r{left:80.5%}
+  .f6-st-l{left:19.5%}
+  .f6-ics{gap:8px}
+  .f6-mid{width:56px;height:56px;margin:-28px 0 0 -28px}
+  .f6-mid img{width:48px;height:48px}
+}
+@media (max-width:380px){
+  .f6-st{padding:9px;font-size:12.5px}
+  .f6-st-r{left:79.5%}
+  .f6-st-l{left:20.5%}
+  .f6-mid{width:48px;height:48px;margin:-24px 0 0 -24px}
+  .f6-mid img{width:41px;height:41px}
+}
+
+@media (prefers-reduced-motion:reduce){
+  .f6-orbit{animation:none;display:none}
+}
+
+.f6-pc,.f6-alt{display:none}
+@media (min-width:641px){
+  html[data-found="pieces"] .f6-st{padding:0;border-radius:0;background:none;-webkit-backdrop-filter:none;backdrop-filter:none;box-shadow:none;white-space:normal;width:max-content}
+  html[data-found="pieces"] .f6-st>.f6-ic,html[data-found="pieces"] .f6-ics,html[data-found="pieces"] .f6-lab{display:none}
+  html[data-found="pieces"] .f6-pc{display:flex}
+  .f6-pc-call{align-items:center;gap:11px;padding:10px 16px 10px 13px;border-radius:999px;background:var(--ink);box-shadow:var(--p-lift)}
+  .f6-pc-call .f6-ic{width:16px;height:16px;color:#fff}
+  .f6-pc-call b{font:500 12.5px/1 var(--text);font-variant-numeric:tabular-nums;color:rgba(255,255,255,.72)}
+  .f6-wave{display:flex;align-items:center;gap:2.5px;height:20px}
+  .f6-wave i{width:2px;height:var(--h,40%);border-radius:1px;background:#fff}
+  .f6-wave i:nth-child(1){--h:28%}.f6-wave i:nth-child(2){--h:62%}.f6-wave i:nth-child(3){--h:44%}.f6-wave i:nth-child(4){--h:88%}
+  .f6-wave i:nth-child(5){--h:58%}.f6-wave i:nth-child(6){--h:100%}.f6-wave i:nth-child(7){--h:70%}.f6-wave i:nth-child(8){--h:36%}
+  .f6-wave i:nth-child(9){--h:76%}.f6-wave i:nth-child(10){--h:52%}.f6-wave i:nth-child(11){--h:84%}.f6-wave i:nth-child(12){--h:40%}
+  .f6-wave i:nth-child(13){--h:64%}.f6-wave i:nth-child(14){--h:30%}.f6-wave i:nth-child(15){--h:48%}.f6-wave i:nth-child(16){--h:22%}
+  .f6-pc-rec{flex-direction:column;align-items:flex-start;gap:5px;padding:12px 15px 13px;border-radius:var(--r-sm);text-align:left}
+  .f6-pc-rec small{display:flex;align-items:center;gap:6px;font:500 11.5px/1 ui-monospace,SFMono-Regular,Menlo,monospace;color:var(--muted)}
+  .f6-pc-rec small .f6-ic{width:14px;height:14px}
+  .f6-pc-rec b{font:500 15px/1.15 var(--text)}
+  .f6-pc-rec span{font:400 12.5px/1.2 var(--text);color:var(--muted)}
+  .f6-pc-ins{flex-direction:column;align-items:flex-start;gap:9px;padding:13px 15px;border-radius:var(--r-sm);font:500 13px/1 var(--text)}
+  .f6-sq{display:flex;gap:4px}
+  .f6-sq i{width:13px;height:13px;border-radius:2px;background:var(--ink)}
+  .f6-sq i:nth-child(n+8){background:none;box-shadow:inset 0 0 0 1.25px rgba(10,11,30,.34)}
+  .f6-pc-ans{max-width:152px;padding:10px 14px;border-radius:16px 16px 16px 4px;background:#fff;font:500 14px/1.3 var(--text);text-align:left;box-shadow:var(--p-lift)}
+  html[data-found="story"] .f6-pill p:not(.f6-alt){display:none}
+  html[data-found="story"] .f6-pill p.f6-alt{display:block}
+}
+@media (min-width:641px) and (prefers-reduced-motion:no-preference){
+  html[data-found="pieces"] .f6-pc{animation:16s cubic-bezier(.4,0,.2,1) infinite both}
+  html[data-found="pieces"] .f6-st-t .f6-pc{animation-name:f6-lit-t}
+  html[data-found="pieces"] .f6-st-r .f6-pc{animation-name:f6-lit-r}
+  html[data-found="pieces"] .f6-st-b .f6-pc{animation-name:f6-lit-b}
+  html[data-found="pieces"] .f6-st-l .f6-pc{animation-name:f6-lit-l}
+  html[data-found="pieces"] .f6-off .f6-pc{animation-play-state:paused}
+}
+@keyframes f6-lit-t{0%,17%{opacity:1;transform:scale(1)}20%,92%{opacity:.42;transform:scale(.97)}95%,100%{opacity:1;transform:scale(1)}}
+@keyframes f6-lit-r{0%,17%{opacity:.42;transform:scale(.97)}20%,42%{opacity:1;transform:scale(1)}45%,100%{opacity:.42;transform:scale(.97)}}
+@keyframes f6-lit-b{0%,42%{opacity:.42;transform:scale(.97)}45%,67%{opacity:1;transform:scale(1)}70%,100%{opacity:.42;transform:scale(.97)}}
+@keyframes f6-lit-l{0%,67%{opacity:.42;transform:scale(.97)}70%,92%{opacity:1;transform:scale(1)}95%,100%{opacity:.42;transform:scale(.97)}}
+
+@media (prefers-reduced-motion:no-preference){
+  html:not([data-found="pieces"]) .f6-st{animation:16s cubic-bezier(.4,0,.2,1) infinite both}
+  html:not([data-found="pieces"]) .f6-st-t{animation-name:f6-on-t}
+  html:not([data-found="pieces"]) .f6-st-r{animation-name:f6-on-r}
+  html:not([data-found="pieces"]) .f6-st-b{animation-name:f6-on-b}
+  html:not([data-found="pieces"]) .f6-st-l{animation-name:f6-on-l}
+  html:not([data-found="pieces"]) .f6-off .f6-st{animation-play-state:paused}
+}
+@keyframes f6-on-t{0%,17%{opacity:1;transform:translate(-50%,-50%) scale(1)}20%,92%{opacity:.45;transform:translate(-50%,-50%) scale(.97)}95%,100%{opacity:1;transform:translate(-50%,-50%) scale(1)}}
+@keyframes f6-on-r{0%,17%{opacity:.45;transform:translate(-50%,-50%) scale(.97)}20%,42%{opacity:1;transform:translate(-50%,-50%) scale(1)}45%,100%{opacity:.45;transform:translate(-50%,-50%) scale(.97)}}
+@keyframes f6-on-b{0%,42%{opacity:.45;transform:translate(-50%,-50%) scale(.97)}45%,67%{opacity:1;transform:translate(-50%,-50%) scale(1)}70%,100%{opacity:.45;transform:translate(-50%,-50%) scale(.97)}}
+@keyframes f6-on-l{0%,67%{opacity:.45;transform:translate(-50%,-50%) scale(.97)}70%,92%{opacity:1;transform:translate(-50%,-50%) scale(1)}95%,100%{opacity:.45;transform:translate(-50%,-50%) scale(.97)}}

@@ -1,21 +1,21 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-look="photo" data-vis="plain" data-tone="photo" data-rails="off" data-photo="one">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>kenner: The personal assistant for service</title>
-<meta name="description" content="We activate your full service knowledge, answer every technician in seconds and take the paperwork off their hands.">
+<title>kenner | The AI operating system for field service</title>
+<meta name="description" content="A personal assistant for every technician. A team of agents for the office.">
 <link rel="canonical" href="https://getkenner.com/">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://getkenner.com/">
-<meta property="og:title" content="kenner: The personal assistant for service">
-<meta property="og:description" content="We activate your full service knowledge, answer every technician in seconds and take the paperwork off their hands.">
-<meta property="og:image" content="https://getkenner.com/og-image.jpg?v=2">
+<meta property="og:title" content="kenner | The AI operating system for field service">
+<meta property="og:description" content="A personal assistant for every technician. A team of agents for the office.">
+<meta property="og:image" content="https://getkenner.com/og-image.jpg?v=3">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="kenner: The personal assistant for service. kenner's mark in the sky over rooftop units at first light, where a technician checks a phone.">
+<meta property="og:image:alt" content="kenner: The AI operating system for field service. kenner's mark in the sky over rooftop units at first light, where a technician checks a phone.">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://getkenner.com/og-image.jpg?v=2">
+<meta name="twitter:image" content="https://getkenner.com/og-image.jpg?v=3">
 <link rel="icon" href="favicon.ico" sizes="48x48">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="icon" href="favicon-96.png" sizes="96x96" type="image/png">
@@ -32,7 +32,7 @@
    "legalName": "Kenner Systems Inc.",
    "url": "https://getkenner.com/",
    "logo": "https://getkenner.com/brand/logo-avatar.svg",
-   "description": "We activate your full service knowledge, answer every technician in seconds and take the paperwork off their hands.",
+   "description": "A personal assistant for every technician. A team of agents for the office.",
    "founder": [
     {
      "@type": "Person",
@@ -64,7 +64,7 @@
    "url": "https://getkenner.com/",
    "applicationCategory": "BusinessApplication",
    "operatingSystem": "iOS, Android",
-   "description": "The personal assistant for service. We activate your full service knowledge, answer every technician in seconds and take the paperwork off their hands.",
+   "description": "The AI operating system for field service. A personal assistant for every technician. A team of agents for the office.",
    "publisher": {
     "@id": "https://getkenner.com/#organization"
    },
@@ -103,6 +103,14 @@
     },
     {
      "@type": "Question",
+     "name": "What does Kenner do without asking?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Anything that costs money or speaks for your company waits for a yes: part orders, quotes, claims and customer messages are drafted first and go out only once someone approves. You decide who gives that yes, and what may run without one. Every action shows with its sources."
+     }
+    },
+    {
+     "@type": "Question",
      "name": "Do our technicians have to learn a new app?",
      "acceptedAnswer": {
       "@type": "Answer",
@@ -114,7 +122,7 @@
      "name": "Is our data secure?",
      "acceptedAnswer": {
       "@type": "Answer",
-      "text": "Your data stays yours and stays in your systems. Every pilot comes with a data processing agreement under GDPR, ISO 27001 certification is in progress and our SOC 2 audit is in preparation."
+      "text": "Your data stays yours and stays in your systems. Every pilot comes with a data processing agreement under GDPR, and Kenner is built to the requirements of ISO 27001 and SOC 2."
      }
     },
     {
@@ -133,257 +141,19 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&family=Instrument+Sans:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="site.css">
 <script src="analytics.js" defer></script>
+<script src="site.js" defer></script>
+<script src="pages/home.js" defer></script>
+<script src="pages/home-hero.js" defer></script>
+<script src="pages/home-hero8.js" defer></script>
+<script src="pages/home-found.js" defer></script>
 <style>
-/* Layout: light hero with the rooftop photograph in a frame (kenner's mark is the voice in it), then light grey and white bands with white product fragments (two-tone headlines, hairline numbered rows), one night band for the hub, a photo close. Single light look by design. */
-:root{
-  --ink:#0A0B1E; --muted:#5D6173; --grey:#696D7E; --grey-lg:#7C8091; --line:#E5E7EC; --line-2:#DADDE3;
-  --ground:#F4F5F7; --paper:#FFFFFF; --accent:#1438CA;
-  --night:#0A0B1E; --night-card:#11142B; --night-tile:#181C38; --on-night:#FFFFFF; --on-night-muted:#9DA3C2; --night-line:rgba(255,255,255,.12);
-  --good:#1F7A48; --good-bg:#E6F6EC;
-  --display:"Instrument Sans","Geist",system-ui,sans-serif;
-  --text:"Geist",system-ui,-apple-system,"Segoe UI",sans-serif;
-  --ease:cubic-bezier(.16,1,.3,1);
-  --gl:max(20px,env(safe-area-inset-left,0px)); --gr:max(20px,env(safe-area-inset-right,0px));
-  --sec:clamp(84px,10vw,140px);
-  --r-lg:16px; --r-sm:10px; /* two radii: cards and panels, and controls (buttons, tabs, tiles) */
-  color-scheme:light;
-}
-@media (min-width:900px){:root{--gl:max(40px,env(safe-area-inset-left,0px));--gr:max(40px,env(safe-area-inset-right,0px))}}
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
-body{margin:0;background:var(--paper);color:var(--ink);font:400 16px/1.55 var(--text);-webkit-font-smoothing:antialiased;overflow-x:hidden}
-body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:60;background:var(--ground)}
-h1,h2,h3,p{margin:0}
-p{text-wrap:pretty}
-a{color:inherit}
-img{max-width:100%;height:auto;display:block}
-[hidden]{display:none!important}
-.wrap{max-width:1200px;margin:0 auto;padding-left:var(--gl);padding-right:var(--gr)}
-.sec{padding-block:var(--sec)}
-.h2{font:400 clamp(30px,3.7vw,50px)/1.06 var(--display);letter-spacing:-.032em;text-wrap:balance}
-.h2 span{color:var(--grey-lg)}
-.night .h2 span,.close .h2 span{color:var(--on-night-muted)}
-.center{text-align:center}
-.h2.center>span{display:block}
 .lead-in{max-width:980px}
-a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
-.night a:focus-visible,.night button:focus-visible,.close a:focus-visible,.aud a:focus-visible,.aud button:focus-visible{outline-color:#fff}
 
-/* buttons */
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:48px;padding:0 22px;border-radius:var(--r-sm);border:1px solid transparent;font:500 15.5px/1 var(--text);text-decoration:none;white-space:nowrap;cursor:pointer;transition:background .2s,border-color .2s,color .2s,transform .16s var(--ease)}
-.btn:active{transform:scale(.97)}
-.btn-sm{height:36px;padding:0 16px;font-size:14px}
-.btn-white{background:#fff;color:var(--ink)}
-.btn-ghost{border-color:rgba(255,255,255,.28);color:#fff}
-.btn-ink{background:var(--ink);color:#fff}
-.btn-line{border-color:var(--line-2);color:var(--ink)}
-/* hover states only for a pointer that can hover: on a touch screen a tap would leave them stuck */
-@media (hover:hover) and (pointer:fine){
-.btn-white:hover{background:#E9ECF6}
-.btn-ghost:hover{border-color:rgba(255,255,255,.6)}
-.btn-ink:hover{background:#262A45}
-.btn-line:hover{border-color:var(--ink)}
-}
-
-/* nav: ink on the light hero; a light glass bar once the page moves, plain white past the hero */
-.nav{position:fixed;top:env(safe-area-inset-top,0px);left:0;right:0;z-index:50;transition:background .3s,box-shadow .3s}
-.nav-in{display:flex;align-items:center;justify-content:space-between;gap:16px;height:60px}
-.logo{display:block}
-.logo img{height:21px;width:auto}
-.links{display:flex;align-items:center;gap:30px;font-size:14.5px}
-.links a:not(.btn){color:var(--muted);text-decoration:none;transition:color .2s}
-.nav.dim{background:rgba(244,245,247,.86);-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);box-shadow:0 1px 0 var(--line)}
-.nav.solid{background:#fff;box-shadow:0 1px 0 var(--line)}
-@media (hover:hover) and (pointer:fine){.links a:not(.btn):hover{color:var(--ink)}}
-@media (max-width:860px){.links a:not(.btn){display:none}.nav .btn-sm{height:44px}}
-
-/* hero: light ground and ink words on the left; on the right the rooftop photograph in a rounded frame, with kenner's mark as the voice.
-   One control: click the mark (or the button under it) to hear a real call. The rays move with the sound and reach for the pointer,
-   and two messages arrive while it plays, as they do on the technician's phone. The hero fills the first screen, the logo strip at its foot */
-.hero{position:relative;display:flex;flex-direction:column;min-height:min(100vh,1040px);background:var(--ground);color:var(--ink);overflow:hidden}
-@supports (height:100svh){.hero{min-height:min(100svh,1040px)}}
-.hero-in{position:relative;flex:1 0 auto;width:100%;display:flex;flex-direction:column;justify-content:center;padding-top:calc(60px + clamp(32px,5vw,72px));padding-bottom:clamp(32px,5vw,72px)}
-.hero-copy{max-width:min(519px,44%);display:flex;flex-direction:column;gap:26px}
-.hero h1{font:400 clamp(40px,4.5vw,65px)/.98 var(--display);letter-spacing:-.042em;text-wrap:balance}
-/* the industry in the headline: one fixed row, so the lines around it never move. Each word comes in letter by letter */
-.rot{display:block;position:relative;white-space:nowrap}
-.rot-w{display:block;transform-origin:0 100%}
-.rot-w.out{position:absolute;left:0;top:0}
-.rot-c{display:inline-block;white-space:pre}
-.rot-w.in .rot-c{animation:rot-in .8s var(--ease) both,rot-sweep 1.6s var(--ease) both;animation-delay:calc(var(--i)*32ms)}
-.rot-w.out .rot-c{animation:rot-out .4s var(--ease) both;animation-delay:calc(var(--i)*12ms)}
-@keyframes rot-in{from{opacity:0;transform:translateY(.36em);filter:blur(8px)}}
-@keyframes rot-out{to{opacity:0;transform:translateY(-.28em);filter:blur(8px)}}
-/* colour: each letter lands in ultramarine and settles to ink */
-@keyframes rot-sweep{from,35%{color:var(--accent)}}
-@media (prefers-reduced-motion:reduce){
-  .rot-w.in .rot-c,.rot-w.out .rot-c{animation-name:kn-fade;animation-duration:.5s;animation-delay:0s}
-  .rot-w.out .rot-c{animation-direction:reverse}
-}
-.hero .sub{font-size:clamp(17px,1.45vw,20px);line-height:1.5;color:var(--muted);max-width:660px;text-wrap:balance}
-.acts{display:flex;flex-wrap:wrap;gap:12px;margin-top:4px}
-/* the frame: between the nav and the hero's foot, never taller than 760px (on a tall monitor it stays a near-square and sits centred) */
-.fin{position:absolute;z-index:2;right:var(--gr);top:104px;bottom:40px;max-height:760px;margin-block:auto;width:min(628px,52%);container-type:size;display:flex;flex-direction:column;align-items:center;gap:18px;padding-top:48px;border-radius:var(--r-lg);overflow:hidden;background:var(--night);color:#fff}
-.fin-img{position:absolute;inset:0;width:100%;height:100%;max-width:none;object-fit:cover;object-position:50% 50%}
-.fin::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,11,30,.34),rgba(10,11,30,.12) 46%,rgba(10,11,30,.56));pointer-events:none}
-/* the mark: its size also answers to the frame's height, so it stays in the sky on a short window */
-.mk{position:relative;z-index:1;flex:none;--mw:min(46cqw,40cqh,280px);width:var(--mw);aspect-ratio:1;margin-top:calc(var(--mw)*-.041);touch-action:none}
-.mk svg{display:block;width:100%;height:100%;overflow:visible}
-.mk-play{appearance:none;border:0;position:absolute;inset:0;width:100%;height:100%;margin:0;padding:0;border-radius:50%;background:none;color:#fff;display:grid;place-items:center;cursor:pointer}
-.mk-play svg{display:none;width:9.5%;height:9.5%}
-.mk.playing .mk-play svg{display:block}
-.mk-play:focus-visible{outline:2px solid #fff;outline-offset:4px}
-.mk.by-ptr .mk-play:focus-visible{outline:none}
-/* under the mark: the slot the two messages arrive in, then the button, which gives way to the spoken line while the call plays.
-   Button and line share one fixed height, so nothing above them moves when a line wraps */
-.mk-foot{position:absolute;z-index:1;left:48px;right:48px;bottom:44px;display:flex;flex-direction:column;align-items:center;gap:12px}
-.mk-cta{appearance:none;display:inline-flex;align-items:center;gap:9px;height:44px;margin:2px 0;padding:0 16px 0 13px;border-radius:var(--r-sm);border:1px solid rgba(255,255,255,.36);background:none;color:#fff;font:500 15px/1 var(--text);white-space:nowrap;cursor:pointer;transition:border-color .2s,transform .16s var(--ease)}
-.mk-cta:active{transform:scale(.97)}
-.mk-cta svg{width:14px;height:14px}
-.mk-cta span{font-weight:400;font-variant-numeric:tabular-nums}
-.mk-cta:focus-visible{outline:2px solid #fff;outline-offset:3px}
-@media (hover:hover) and (pointer:fine){.mk-cta:hover{border-color:#fff}}
-.mk-cap{height:48px;max-width:44ch;margin:0;padding:0 12px;display:flex;align-items:center;justify-content:center;overflow:hidden;font-size:15px;line-height:24px;color:#fff;text-align:center;text-wrap:balance}
-.mk-cap img{display:inline-block;width:13px;height:13px;margin:0 7px 0 0;vertical-align:-1.5px;filter:brightness(0) invert(1)}
-.mk.playing ~ .mk-foot .mk-cta,.mk:not(.playing) ~ .mk-foot .mk-cap{display:none}
-.mk-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
-/* the two messages share one place. The text from Kenner is an iPhone notification in liquid glass (clear glass, a sheen from the top left,
-   a bright hairline rim) and leaves to the left; the action is the app's own quiet grey row and leaves to the right */
-.mk-msgs{display:grid;justify-items:center;align-items:end}
-.mk-note,.mk-act{grid-area:1/1;display:flex;align-items:center;width:min(264px,calc(100cqw - 48px));text-align:left;transition:opacity .45s var(--ease),transform .6s var(--ease)}
-.mk-note{position:relative;isolation:isolate;gap:9px;padding:10px 15px 10px 10px;border-radius:24px;background:linear-gradient(135deg,rgba(255,255,255,.2),rgba(255,255,255,.06) 46%,rgba(255,255,255,.12)),rgba(12,14,34,.26);-webkit-backdrop-filter:blur(12px) saturate(1.9) brightness(1.08);backdrop-filter:blur(12px) saturate(1.9) brightness(1.08);box-shadow:0 10px 28px rgba(5,8,25,.24);color:#fff;text-shadow:0 1px 2px rgba(5,8,25,.35);font:400 13.5px/1.3 -apple-system,BlinkMacSystemFont,"SF Pro Text",var(--text)}
-.mk-note::before{content:"";position:absolute;inset:0;z-index:-1;border-radius:inherit;background:radial-gradient(130% 90% at 8% 0%,rgba(255,255,255,.32),transparent 52%),radial-gradient(90% 70% at 100% 100%,rgba(255,255,255,.13),transparent 60%);pointer-events:none}
-.mk-note::after{content:"";position:absolute;inset:0;border-radius:inherit;padding:1px;background:linear-gradient(135deg,rgba(255,255,255,.95),rgba(255,255,255,.2) 30%,rgba(255,255,255,.08) 62%,rgba(255,255,255,.7));-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none}
-.mk-note .av{position:relative;flex:none;width:30px;height:30px}
-.mk-note .av img{width:30px;height:30px;border-radius:50%}
-.mk-note .av i{position:absolute;right:-3px;bottom:-3px;width:14px;height:14px;border-radius:4px;background:url(logos/tiles/imessage.svg) center/cover no-repeat;box-shadow:0 0 0 1.5px rgba(255,255,255,.45)}
-.mk-note .tx{flex:1;min-width:0;display:grid;grid-template-columns:minmax(0,1fr) auto;column-gap:8px;align-items:baseline}
-.mk-note b{font-weight:600}
-.mk-note time{font-size:12px;color:rgba(255,255,255,.76)}
-.mk-note p{grid-column:1/-1;margin:0;text-wrap:wrap}
-.mk-act{gap:10px;padding:9px 9px 9px 12px;border-radius:10px;background:#F2F3F7;color:var(--ink);font:400 13.5px/1.35 var(--text)}
-.mk-act svg{flex:none;width:17px;height:17px;color:var(--grey)}
-.mk-act .chev{width:15px;height:15px}
-.mk-act .tx{flex:1;min-width:0;display:flex;flex-direction:column}
-.mk-act small{font-size:12.5px;color:var(--grey)}
-.mk-note.out,.mk-act.out{opacity:0;transform:translateY(14px) scale(.95);transition:opacity .3s ease,transform 0s .3s}
-.mk-note.gone,.mk-act.gone{opacity:0;transition:transform .5s cubic-bezier(.5,0,.85,.45),opacity .18s ease .34s}
-.mk-note.gone{transform:translateX(calc(-50cqw - 100%))}
-.mk-act.gone{transform:translateX(calc(50cqw + 100%))}
-/* over the mark, a small tag at the pointer says a click plays the call; it goes once the call runs */
-.mk-tip{position:fixed;z-index:60;left:0;top:0;padding:8px 11px;border-radius:8px;background:var(--ink);color:#fff;font:500 13px/1 var(--text);white-space:nowrap;pointer-events:none;opacity:0;transition:opacity .15s}
-.mk-tip.on{opacity:1}
-@media (prefers-reduced-motion:reduce){.mk-note,.mk-act,.mk-note.out,.mk-act.out,.mk-note.gone,.mk-act.gone{transition:none}}
-.strip{position:relative;border-top:1px solid var(--line-2)}
-.strip-in{display:flex;flex-wrap:wrap;align-items:center;gap:14px 34px;padding-block:24px}
-.strip p{font-size:13px;color:var(--grey);white-space:nowrap}
-/* the logos rest in one grey; under the pointer each takes its own colours. The padding only makes the thin ones easier to hit */
-.strip img{box-sizing:content-box;width:auto;padding-block:10px;margin-block:-10px;filter:brightness(0);opacity:.6;transition:filter .25s ease,opacity .25s ease}
-.strip .yc{display:flex;align-items:center;gap:6px;font-weight:600;font-size:16px;letter-spacing:-.02em;color:rgba(10,11,30,.62);transition:color .25s ease}
-@media (hover:hover) and (pointer:fine){
-  .strip img:hover,.strip .yc:hover img{filter:brightness(1);opacity:1}
-  .strip .yc:hover{color:#F0652F}
-}
-@media (prefers-reduced-motion:reduce){.strip img,.strip .yc{transition:none}}
-/* tablet and phone: the frame sits under the buttons; the messages lie over the foot of the mark, so no gap waits for them */
-@media (max-width:860px){
-  .hero-copy{max-width:720px}
-  .fin{position:relative;right:auto;top:auto;bottom:auto;width:100%;max-width:440px;max-height:none;container-type:normal;margin:22px 0 0;gap:10px;padding:26px 0 14px}
-  .fin-img{object-position:55% 50%}
-  .mk{--mw:min(62vw,260px);margin-top:0}
-  .mk-foot{position:relative;left:auto;right:auto;bottom:auto;gap:0}
-  .mk-msgs{position:absolute;left:0;right:0;bottom:calc(100% + 2px)}
-  .mk-cta{margin:9.5px 0}
-  .mk-cap{height:63px;font-size:14px;line-height:21px}
-}
-@media (max-width:760px){
-  .hero-in{justify-content:flex-start;padding-top:calc(60px + 28px);padding-bottom:24px}
-  .hero-copy{gap:18px}
-  .strip-in{gap:10px 24px;padding-block:16px}
-  .strip img{zoom:.82}
-  .strip .yc{font-size:13.5px}
-}
-
-/* value: two audience panels in the night tones, each with a product window rising from the bottom edge and running off the right */
 .panel{margin-top:clamp(40px,5vw,64px);display:grid;gap:16px}
-.duo{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;max-width:1200px;margin:clamp(40px,5vw,64px) auto 0;padding-left:var(--gl);padding-right:var(--gr)}
-.aud{position:relative;isolation:isolate;container-type:inline-size;overflow:hidden;border-radius:var(--r-lg);background:var(--night);color:#fff;display:flex;flex-direction:column;min-width:0;height:clamp(520px,42vw,600px);scroll-margin-top:230px}
-.aud-bg{position:absolute;inset:0;width:100%;height:100%;z-index:-1;pointer-events:none}
-.aud::after{content:"";position:absolute;inset:0;border-radius:inherit;box-shadow:inset 0 0 0 1px rgba(10,11,30,.16);pointer-events:none}
-.aud-copy{padding:clamp(28px,3.4vw,52px) clamp(24px,3.4vw,52px) 0;display:flex;flex-direction:column;align-items:flex-start;gap:14px}
-.aud-copy h3{font:400 clamp(28px,2.9vw,40px)/1.05 var(--display);letter-spacing:-.03em}
-.aud-copy p{font-size:clamp(16px,1.3vw,18px);line-height:1.5;color:rgba(255,255,255,.84);max-width:430px;text-wrap:pretty}
-.aud-copy .btn{margin-top:10px;height:46px}
-.win{--ml:clamp(24px,10cqw,72px);flex:0 0 50%;min-height:0;align-self:flex-start;width:max(760px,100%);margin:auto 0 0 var(--ml);display:flex;overflow:hidden;background:#fff;color:var(--ink);border-radius:var(--r-sm) 0 0 0;box-shadow:0 0 0 1px rgba(255,255,255,.1),0 24px 70px rgba(0,0,0,.5);font:400 13px/1.4 var(--text);position:relative}
-/* the last visible row fades out instead of being cut through its letters at the panel's edge */
-.win::after{content:"";position:absolute;left:52px;right:0;bottom:0;height:52px;background:linear-gradient(180deg,rgba(255,255,255,0),#fff);pointer-events:none}
-.win-chat::after{left:0}
-/* leaders: the web app */
-.rail{flex:none;width:52px;background:var(--night);display:flex;flex-direction:column;align-items:center;gap:17px;padding:16px 0;color:rgba(255,255,255,.5);font-size:9.5px;line-height:1}
-.rail img{width:21px;height:21px;margin-bottom:8px;filter:brightness(0) invert(1)}
-.rail span{display:flex;flex-direction:column;align-items:center;gap:5px}
-.rail svg{width:17px;height:17px}
-.rail .on{color:#fff}
-.wb{flex:1;min-width:0;padding:22px 24px;display:flex;flex-direction:column;gap:18px}
-.w-top{display:flex;align-items:baseline;gap:12px}
-.w-top h4{margin:0;font:500 22px/1.2 var(--display);letter-spacing:-.02em}
-.w-top small{font-size:12.5px;color:var(--grey)}
-.kts{display:grid;grid-template-columns:repeat(4,132px);gap:8px}
-.kts .kt{background:var(--ground);border-radius:10px;padding:13px 15px 14px;display:flex;flex-direction:column;gap:3px}
-.kts .kt b{font:400 26px/1.1 var(--display);letter-spacing:-.025em;font-variant-numeric:tabular-nums}
-.kts .kt span{font-size:12px;color:var(--muted)}
-.kts .kt em{font:500 11.5px/1 var(--text);letter-spacing:0;margin-left:8px;color:var(--good)}
-.w-tabs{display:flex;gap:4px;font-size:12.5px;color:var(--muted)}
-.w-tabs span{padding:6px 11px;border-radius:8px}
-.w-tabs .on{background:var(--ground);color:var(--ink);font-weight:500}
-.w-tb{display:flex;flex-direction:column;font-size:12.5px;margin-top:-6px}
-.w-tb>div{display:grid;grid-template-columns:130px 124px 50px 84px;padding:11px 12px;border-bottom:1px solid var(--line)}
-.w-tb .w-th{background:var(--ground);border-radius:8px;border-bottom:0;padding-block:8px;color:var(--grey);font-size:12px}
-.w-tb b{font-weight:500}
-.w-tb span:nth-child(n+3){font-variant-numeric:tabular-nums}
-/* technicians: the message thread */
-.win-chat{flex-direction:column}
-.ch-h{flex:none;display:flex;align-items:center;gap:10px;padding:14px 22px;border-bottom:1px solid var(--line)}
-.ch-h img{width:28px;height:28px;border-radius:50%}
-.ch-h b{font-weight:500;font-size:14px}
-.ch-b{width:calc(100cqw - var(--ml));padding:20px 22px;display:flex;flex-direction:column;gap:14px}
-.ch-me{align-self:flex-end;max-width:84%;display:flex;flex-direction:column;align-items:flex-end;gap:5px}
-.ch-me span,.ch-k p{padding:10px 14px;font:400 15px/1.4 -apple-system,BlinkMacSystemFont,"SF Pro Text",var(--text)}
-.ch-me span{background:#0B84FE;color:#fff;border-radius:18px 18px 6px 18px}
-.ch-me small{font-size:11.5px;color:var(--grey)}
-.ch-k{align-self:flex-start;width:min(88%,460px);display:flex;flex-direction:column;align-items:flex-start;gap:8px}
-.ch-k p{background:#EDEEF2;border-radius:18px 18px 18px 6px}
-.ch-src{align-self:stretch;list-style:none;margin:0;padding:3px 14px;border-radius:var(--r-sm);box-shadow:0 0 0 1px var(--line);display:flex;flex-direction:column}
-.ch-src li{display:flex;align-items:center;gap:10px;padding:9px 0;border-top:1px solid var(--line);font-size:13px;color:var(--muted)}
-.ch-src li:first-child{border-top:0}
-.ch-src svg{width:15px;height:15px;flex:none;color:var(--grey)}
-@media (max-width:860px){
-.duo{grid-template-columns:minmax(0,1fr)}
-.aud{height:auto;scroll-margin-top:76px}
-.win{flex:none;height:300px;width:max(640px,100%);margin-top:32px}
-}
-/* hover, as on harvey.ai: the panel under the pointer widens and the other one steps back */
-@media (hover:hover) and (min-width:861px){
-.duo{display:flex}
-.aud{flex:1 1 0;transition:flex-grow .5s var(--ease),opacity .5s ease}
-/* the grain background keeps one size (a little over the widened panel) on its own layer, pinned to the panel's outer edge:
-   widening only uncovers more of it, and the filter is not drawn again on every frame */
-.aud-bg{right:auto;width:calc(var(--pw)*1.1);will-change:transform}
-#for-technicians .aud-bg{left:auto;right:0}
-.duo:has(.aud:hover) .aud:not(:hover):not(:focus-within),.duo:has(.aud:focus-within) .aud:not(:focus-within):not(:hover){opacity:.45}
-.duo .aud:hover,.duo:not(:has(.aud:hover)) .aud:focus-within{flex-grow:1.2}
-/* nothing inside a panel may re-wrap while it widens or narrows: sizes come from the panel's resting width, not its current one */
-.duo{--pw:calc((min(100vw,1200px) - var(--gl) - var(--gr) - 16px)/2);--pad:clamp(24px,3.4vw,52px)}
-.aud-copy p{max-width:min(430px,calc(var(--pw)*.909 - 2*var(--pad)))}
-.win{--ml:clamp(24px,calc(var(--pw)*.1),72px)}
-.ch-b{width:calc(var(--pw) - var(--ml))}
-}
-@media (prefers-reduced-motion:reduce){.aud{transition:none}}
 .q summary:focus{outline:none}
 .q summary:focus-visible{outline:2px solid var(--accent);outline-offset:4px;border-radius:6px}
-/* questions */
 .faq{display:flex;flex-direction:column;align-items:center;gap:clamp(36px,4.5vw,56px)}
 .qs{width:100%;max-width:820px;border-top:1px solid var(--line)}
 .q{border-bottom:1px solid var(--line)}
@@ -396,15 +166,12 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
 .q[open] summary i::after{opacity:0}
 @media (hover:hover) and (pointer:fine){.q summary:hover i{opacity:.55}}
 .q p{margin:0;padding:0 44px 26px 0;font-size:16px;line-height:1.6;color:var(--muted);max-width:640px}
-/* an answer in two paragraphs: a paragraph's gap between them, the full space only under the last */
 .q p:not(:last-child){padding-bottom:14px}
-/* the answer fades in under its question while the plus turns; closing stays instant */
 .q[open] p{animation:q-in .2s var(--ease)}
 @keyframes q-in{from{opacity:0;transform:translateY(-4px)}}
 @keyframes kn-fade{from{opacity:0}to{opacity:1}}
 @media (prefers-reduced-motion:reduce){.q[open] p{animation-name:kn-fade}}
 @media (max-width:860px){.q p{padding-right:0}}
-/* phone: the four outcomes are one card with four short rows, instead of four tall boxes */
 @media (max-width:760px){
 .stats .panel.g4{grid-template-columns:minmax(0,1fr);gap:0}
 .stats .g4 .stat{padding:18px 0;gap:4px}
@@ -413,7 +180,6 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
 .stats .g4 .stat p{max-width:none}
 }
 
-/* stats */
 .stats{margin-top:clamp(96px,11vw,150px)}
 .stats>.h2{margin-bottom:clamp(36px,4.5vw,56px)}
 .stats .g4{gap:36px 0}
@@ -421,28 +187,14 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
 .stat b{font:400 clamp(34px,3.6vw,48px)/1 var(--display);letter-spacing:-.035em}
 .stat p{font-size:15px;line-height:1.5;color:var(--muted);max-width:320px}
 
-/* agents: Arthur's "Watch Kenner work" (agents/agents.css, scoped to #showcase); the old iMessage mockup below is switched off */
 #showcase{background:var(--ground)}
 #showcase .sc-head{margin-bottom:clamp(32px,4vw,48px)}
 #showcase .agents4{margin-top:clamp(48px,6vw,72px)}
 #showcase .agents4 .src h3{margin-top:0;font-size:19px}
 
-/* hub: real colours on hover */
-.tile{position:relative}
-.tile .c{position:absolute;opacity:0;transition:opacity .2s}
-.tile .m{transition:opacity .2s}
-#hub .chs .tile .c{top:16px;left:50%;width:36px;height:36px;margin-left:-18px;border-radius:9px}
-.sys .tile .c{top:50%;left:50%;width:44px;height:44px;margin:-22px 0 0 -22px;border-radius:11px}
-.hub .tile.on,.hub .tile:focus-visible{background:#fff;opacity:1}
-.hub .tile.on .c,.hub .tile:focus-visible .c{opacity:1}
-.hub .tile.on .m,.hub .tile:focus-visible .m{opacity:0}
-.hub .tile.on span{color:var(--muted)}
-#hub .chs .tile .m{height:28px;width:auto}
-
-/* hairline columns (agents) */
 .src4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));margin-top:clamp(44px,5vw,64px)}
 .src4 .src{position:relative;padding:30px 28px 0 0;border-top:1px solid var(--line)}
-.src4 .src::before,.col+.col::before{content:"";position:absolute;width:11px;height:11px;background:linear-gradient(var(--grey-lg),var(--grey-lg)) center/1px 100% no-repeat,linear-gradient(var(--grey-lg),var(--grey-lg)) center/100% 1px no-repeat;opacity:.7}
+.src4 .src::before{content:"";position:absolute;width:11px;height:11px;background:linear-gradient(var(--grey-lg),var(--grey-lg)) center/1px 100% no-repeat,linear-gradient(var(--grey-lg),var(--grey-lg)) center/100% 1px no-repeat;opacity:.7}
 .src4 .src::before{top:-6px;left:-5px}
 .src4 .src svg{width:22px;height:22px;color:var(--ink)}
 .src4 .src h3{font:500 17px/1.3 var(--display);letter-spacing:-.01em;margin:18px 0 6px}
@@ -450,95 +202,16 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
 @media (max-width:980px){.src4{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:36px}}
 @media (max-width:520px){.src4{grid-template-columns:minmax(0,1fr)}}
 
-/* the messages section fills one screen under the nav (capped on tall monitors), content centred */
-#reality{overflow-x:clip;scroll-margin-top:60px}
-#reality>.wrap{width:100%}
-/* reality: drifting technician messages */
-.real{margin-top:0}
-.real .h2{max-width:1000px;margin:0 auto}
-.real .h2>span{display:block}
-.real .h2 img{display:inline-block;height:.7em;width:auto;vertical-align:.04em;margin-right:.08em}
-.mq{display:flex;flex-direction:column;gap:4px;padding-bottom:16px;margin-top:clamp(40px,5vw,60px);margin-inline:calc(50% - 50vw);-webkit-mask-image:linear-gradient(90deg,transparent,#000 9%,#000 91%,transparent);mask-image:linear-gradient(90deg,transparent,#000 9%,#000 91%,transparent)}
-.mq-row{overflow-x:clip;overflow-y:visible;padding-block:14px}
-.mq-track{display:flex;gap:16px;width:max-content;animation:mq var(--d,90s) linear infinite}
-.mq-row.rev .mq-track{animation-direction:reverse}
-@media (hover:hover) and (pointer:fine){.mq:hover .mq-track{animation-play-state:paused}}
-@keyframes mq{to{transform:translateX(calc(-50% - 8px))}}
-.mq.paused .mq-track{animation-play-state:paused}
-@media (prefers-reduced-motion:reduce){.mq-track{animation:none}.mq-ctl{display:none}}
-.mq-ctl{appearance:none;border:0;display:flex;align-items:center;justify-content:center;width:44px;height:44px;margin:4px auto 0;border-radius:var(--r-sm);background:none;color:var(--muted);cursor:pointer;transition:background .2s,color .2s,transform .16s var(--ease)}
-.mq-ctl:active{transform:scale(.95)}
-.mq-ctl svg{width:18px;height:18px}
-.mq-ctl .pl,.mq-ctl[aria-pressed="true"] .pa{display:none}
-.mq-ctl[aria-pressed="true"] .pl{display:block}
-@media (hover:hover) and (pointer:fine){.mq-ctl:hover{background:var(--ground);color:var(--ink)}}
-.msg{flex:none;display:flex;align-items:baseline;gap:12px;padding:14px 20px;background:color-mix(in oklab,var(--ink) 7%,var(--paper));border-radius:var(--r-lg) var(--r-lg) var(--r-lg) 4px;font-size:16px;font-weight:500;line-height:1.35;white-space:nowrap}
-.msg small{font-size:13px;font-weight:400;color:var(--muted);font-variant-numeric:tabular-nums}
-/* phone: each message wraps into a bubble that fits the screen (name and time under it), and the section is short enough to see whole */
-@media (max-width:760px){
-#reality{padding-block:48px}
-.mq{gap:0;margin-top:40px;-webkit-mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent);mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent)}
-.mq-row{padding-block:10px}
-.msg{flex-direction:column;align-items:flex-start;gap:4px;white-space:normal;width:min(74vw,300px);padding:12px 16px;font-size:15px}
-.msg small{font-size:12.5px}
-}
-
-
-/* deploy (night) */
-.night{position:relative;background:var(--night);color:#fff;overflow:hidden}
-.night .wrap{position:relative}
-.cols3{display:grid;grid-template-columns:repeat(2,minmax(0,400px));justify-content:center;margin-top:clamp(40px,5vw,60px)}
-.col{position:relative;padding:0 clamp(16px,3vw,40px)}
-.col:first-child{padding-left:0}
-.col+.col::before{top:50%;left:-5px;margin-top:-5px;background:linear-gradient(var(--on-night-muted),var(--on-night-muted)) center/1px 100% no-repeat,linear-gradient(var(--on-night-muted),var(--on-night-muted)) center/100% 1px no-repeat}
-.col h3{font:500 18px/1.3 var(--display);letter-spacing:-.01em}
-.col p{font-size:15px;line-height:1.55;color:var(--on-night-muted);margin-top:8px;max-width:330px}
-@media (max-width:1080px){.cols3{grid-template-columns:repeat(2,minmax(0,1fr));gap:32px 0}.col:nth-child(3){padding-left:0}.col:nth-child(3)::before{display:none}}
-@media (max-width:860px){.cols3{grid-template-columns:minmax(0,1fr);gap:28px}.col{padding:0}.col+.col::before{display:none}}
-.hub{position:relative;margin-top:clamp(48px,6vw,76px)}
-#hub .chs{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:10px}
-.kapp{background:var(--accent);display:flex;align-items:center;justify-content:center}
-.tile .kapp img{width:20px;height:20px;opacity:1;filter:brightness(0) invert(1)}
-.sys{display:grid;grid-template-columns:repeat(9,minmax(0,1fr));gap:10px}
-.sys .tile img.em{height:30px}
-.sys .tile img.df{height:auto;width:66%}
-.sys .tile img.cr{height:auto;width:62%}
-.sys .tile .c.cw{width:72%;height:40px;margin:-20px 0 0 -36%;border-radius:0;object-fit:contain}
 .g4{grid-template-columns:repeat(4,minmax(0,1fr))}
 .g4 .stat b{font-size:clamp(30px,2.8vw,40px)}
 @media (max-width:980px){.g4{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:520px){.g4{grid-template-columns:minmax(0,1fr)}}
-.tile{appearance:none;border:0;border-radius:var(--r-sm);background:var(--night-tile);color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;cursor:default;font:inherit;transition:background .25s,opacity .25s;min-width:0}
-#hub .chs .tile{height:92px}
-.sys .tile{aspect-ratio:1.2/1}
-.tile img{height:28px;width:auto;opacity:.9}
-.tile img.wm{height:15px;max-width:76%}
-.sys .tile img.m:not(.wm):not(.df):not(.cr):not(.em){height:32px}
-.sys .tile img.wm{height:17px;max-width:80%}
-.tile img.sil{filter:brightness(0) invert(1)}
-.tile span{font-size:12.5px;color:var(--on-night-muted)}
-.hub.hov .tile{opacity:.32}
-.hub.hov .tile.on{opacity:1;background:#fff}
-/* hub: thin lines run from the channels into Kenner and out to the systems, one small dot travelling each line (drawn by script from the tiles' positions) */
-.core-wrap{display:flex;flex-direction:column;align-items:center;padding:clamp(40px,4.4vw,60px) 0}
-.core{position:relative;z-index:1;width:64px;height:64px;border-radius:var(--r-lg);background:#fff;display:flex;align-items:center;justify-content:center}
-.core img{width:42px;height:42px;transition:transform .4s var(--ease)}
-.hub-lines{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;overflow:visible}
-.hub-lines path{fill:none;stroke:rgba(255,255,255,.14);stroke-width:1.25;transition:stroke .35s}
-.hub-lines path.on{stroke:rgba(255,255,255,.6)}
-.hub-lines circle{fill:#fff}
-.tip{position:absolute;z-index:5;width:280px;padding:15px 17px;border-radius:var(--r-sm);background:#1B1F3F;color:#fff;box-shadow:0 24px 60px rgba(0,0,0,.55),inset 0 0 0 1px rgba(255,255,255,.08);pointer-events:none;display:flex;flex-direction:column;gap:6px;transition:opacity .2s}
-.tip.off{opacity:0}
-.tip b{font-size:15.5px;font-weight:500}
-.tip p{font-size:14px;line-height:1.5;color:var(--on-night-muted)}
-.tip p:empty{display:none}
-.tile .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
-.sys .tile .kapp{display:flex;align-items:center;justify-content:center}
-@media (max-width:1100px){.sys{grid-template-columns:repeat(6,minmax(0,1fr))}.sys .tile{aspect-ratio:1.5/1}.sys .tile img.m:not(.wm):not(.df):not(.cr):not(.em){height:38px}.sys .tile img.wm{height:20px}.sys .tile img.em{height:36px}}
-@media (max-width:860px){#hub .chs{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}.tip{width:240px}}
-@media (max-width:640px){.sys{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}.sys .tile{aspect-ratio:1.6/1}.sys .tile img.m:not(.wm):not(.df):not(.cr):not(.em){height:30px}.sys .tile img.wm{height:13px;max-width:84%}.sys .tile img.em{height:28px}}
+.panel.imp-four{display:none}
+html[data-impact="four"] .panel.imp-six{display:none}
+html[data-impact="four"] .panel.imp-four{display:grid}
+@media (min-width:761px){.stats .imp-six .stat{border-top:0;padding-top:0}.stats .panel.imp-six{gap:56px 0}}
+@media (min-width:981px){.g4.g3{grid-template-columns:repeat(3,minmax(0,320px));justify-content:space-between}.stats .imp-six .stat{padding-right:0}}
 
-/* start: how a team starts, and who it works with */
 #start{background:var(--ground)}
 .start{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:clamp(36px,5vw,80px);align-items:start;margin-top:clamp(40px,5vw,64px)}
 .steps{list-style:none;margin:0;padding:0;border-top:1px solid var(--line-2)}
@@ -551,7 +224,6 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
 .fnd h3 span{color:var(--grey)}
 .fnd-p{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
 .fnd figure{margin:0;display:flex;flex-direction:column;gap:14px;min-width:0}
-/* each headshot opens that founder's LinkedIn profile; under the pointer the photo moves in a little inside its circle */
 .fnd figure a{display:block;align-self:flex-start;border-radius:50%;overflow:hidden}
 .fnd figure img{width:clamp(96px,10vw,128px);height:auto;aspect-ratio:1;object-fit:cover;border-radius:50%;background:var(--ground);transition:transform .35s var(--ease)}
 @media (hover:hover) and (pointer:fine){.fnd figure a:hover img{transform:scale(1.06)}}
@@ -563,32 +235,9 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
 @media (max-width:980px){.start{grid-template-columns:minmax(0,1fr)}}
 @media (max-width:520px){.steps li{grid-template-columns:minmax(0,1fr)}}
 
-/* close */
-.close{position:relative;background:var(--night) url(img/roof.jpg) 50% 62%/cover no-repeat;color:#fff;overflow:hidden}
-.close::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,11,30,.74) 0%,rgba(10,11,30,.6) 45%,rgba(10,11,30,.76) 100%)}
-.close-in{position:relative;display:flex;flex-direction:column;align-items:center;text-align:center;gap:20px;padding-block:clamp(110px,13vw,190px)}
-.close h2{font:400 clamp(30px,3.7vw,50px)/1.06 var(--display);letter-spacing:-.032em;text-wrap:balance}
-.close p.line{font-size:17px;color:rgba(255,255,255,.92);max-width:480px}
-
-/* footer */
-footer{background:var(--paper)}
-.f-in{display:grid;grid-template-columns:1.6fr 1fr 1fr 1.4fr;gap:32px;padding-block:56px 36px}
-.f-in img{height:22px;width:auto}
-.f-in .tl{margin-top:14px;font-size:15px;color:var(--muted)}
-.f-in h3{margin:0 0 12px;font-size:13px;font-weight:500;color:var(--grey)}
-.f-in a{display:block;text-decoration:none;font-size:15px;color:var(--muted);padding:3px 0}
-@media (hover:hover) and (pointer:fine){.f-in a:hover{color:var(--ink)}}
-.f-in .secu{font-size:14px;line-height:1.7;color:var(--muted)}
-.f-bot{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;padding-block:20px 40px;border-top:1px solid var(--line);font-size:13px;color:var(--grey)}
-.f-bot span+span{display:flex;flex-wrap:wrap;column-gap:18px}
-.f-bot a,.f-bot button{color:inherit;text-decoration:none}
-.f-bot button{padding:0;border:0;background:none;font:inherit;cursor:pointer}
-@media (max-width:900px){.f-in{grid-template-columns:1.4fr 1fr 1fr}.f-in>div:last-child{grid-column:1/-1}}
-@media (max-width:760px){.f-in{grid-template-columns:minmax(0,1fr)}.f-in a{display:flex;align-items:center;min-height:44px;padding:0}.f-in h3{margin-bottom:4px}.f-bot{align-items:center}.f-bot a,.f-bot button{display:inline-flex;align-items:center;min-height:44px}}
 </style>
 <link rel="stylesheet" href="agents/agents.css">
 <style>
-/* demo stage, roomier: more sky above, a clear gutter between the phone and Kenner's panel, looser steps (agents.css itself is untouched) */
 @media (min-width:1101px){
 #showcase .work{padding-left:40px;padding-right:36px}
 #showcase .dock{margin-right:30px}
@@ -608,7 +257,6 @@ footer{background:var(--paper)}
 #showcase .run>button svg{margin-top:2px}
 #showcase .trail li{padding-bottom:22px}
 }
-/* the demo fits one screen: agent tabs and the whole stage together under the nav, whatever the laptop's height */
 @media (min-width:761px){
 #showcase{--stage:clamp(540px,calc(100vh - 238px),760px);--phone-w:318px}
 #showcase .agents{scroll-margin-top:156px}
@@ -621,7 +269,6 @@ footer{background:var(--paper)}
 #showcase .lap{height:calc(var(--stage) - 112px)}
 }
 @media (min-width:761px) and (max-width:1100px){#showcase{--phone-w:292px}}
-/* light stage: no dark box and no laptop. The phone and Kenner's panel sit on the section's grey ground; the panel is a plain white card */
 @media (min-width:761px){
 #showcase .work{background:none;border-radius:0;overflow:visible;padding:0;min-height:0;align-items:center;justify-content:center;gap:clamp(20px,2.6vw,36px)}
 #showcase .dock{margin:0}
@@ -630,7 +277,6 @@ footer{background:var(--paper)}
 #showcase .lap-s{border-radius:inherit}
 #showcase .lap-p{padding-left:0}
 }
-/* app picker: bare logos, no tiles and no marker bar; the chosen one is at full strength, the others dimmed but still in colour (grey is kept for the agents without a demo) */
 #showcase .dock button[aria-pressed="true"]::after{display:none}
 #showcase .dock{gap:20px}
 #showcase .dock button{width:34px;height:34px;border-radius:0;opacity:.45;transition:opacity .25s,transform .16s var(--ease)}
@@ -639,20 +285,17 @@ footer{background:var(--paper)}
 #showcase .dock button[aria-pressed="true"]{opacity:1}
 #showcase .dock .lg{display:block;width:100%;height:100%;background:var(--c);-webkit-mask:var(--m) center/var(--s,contain) no-repeat;mask:var(--m) center/var(--s,contain) no-repeat}
 #showcase .dock img{border-radius:0}
-/* agent tabs: rounded rectangles instead of full pills; all six agents in one bar, the four without a demo greyed and not clickable */
-/* text tabs on a hairline; the chosen one is underlined */
 #showcase .agents{border-radius:0;padding:0;background:none;box-shadow:inset 0 -1px 0 var(--line-2)}
 #showcase .agents button{border-radius:0;height:42px;background:none;box-shadow:none}
 #showcase .agents button[aria-pressed="true"]{background:none;box-shadow:inset 0 -2px 0 var(--ink)}
 #showcase .agents .ag-off{display:block;height:42px;padding:0 2px;font:500 15px/42px var(--text);color:rgba(10,11,30,.3);white-space:nowrap;cursor:default;-webkit-user-select:none;user-select:none}
 @media (max-width:1100px){#showcase .ag-w{display:none}}
 #showcase .dock button:focus-visible{outline-color:var(--accent)}
-/* demo on a phone: no phone-in-a-phone. The chat and Kenner's lookups are two plain cards that fit one screen together, apps in a row on top */
 @media (max-width:760px){
 #showcase{--mstage:clamp(500px,calc(100vh - 92px),700px)}
 @supports (height:100svh){#showcase{--mstage:clamp(500px,calc(100svh - 92px),700px)}}
 #showcase .agents{scroll-margin-top:72px}
-#showcase .work{display:flex;flex-direction:column;align-items:center;gap:10px;min-height:0;height:var(--mstage);padding:12px;border-radius:20px}
+#showcase .work{display:flex;flex-direction:column;align-items:center;gap:10px;min-height:0;height:var(--mstage);padding:12px;border-radius:var(--r-lg)}
 #showcase .dock{order:0;flex:none;flex-direction:row;justify-content:center;gap:12px;margin:0 0 4px}
 #showcase .dock button{width:44px;height:44px}
 #showcase .chs{gap:8px}
@@ -666,8 +309,8 @@ footer{background:var(--paper)}
 #showcase .wa-head{padding-top:8px}
 #showcase .im-head{margin-top:8px}
 #showcase .wa-in,#showcase .im-in,#showcase .tm-in,#showcase .kw-in{padding-bottom:10px}
-#showcase .lap{order:2;width:100%;max-width:520px;flex:1 1 0;min-height:0;height:auto;margin:0;padding:0;border-radius:16px;background:var(--paper);box-shadow:0 14px 34px rgba(0,0,0,.3)}
-#showcase .lap-s{border-radius:16px}
+#showcase .lap{order:2;width:100%;max-width:520px;flex:1 1 0;min-height:0;height:auto;margin:0;padding:0;border-radius:var(--r-lg);background:var(--paper);box-shadow:0 14px 34px rgba(0,0,0,.3)}
+#showcase .lap-s{border-radius:var(--r-lg)}
 #showcase .lap-p{padding:0}
 #showcase .lap-p .look-h{padding:12px 0}
 #showcase .look-b{padding-top:12px;padding-bottom:16px}
@@ -683,8 +326,6 @@ footer{background:var(--paper)}
 #showcase .work .phone{box-shadow:none}
 #showcase .lap{box-shadow:none}
 }
-/* make the send button impossible to miss: a stronger pulse, and a pill pointing at it.
-   The halo is a disc behind the button's icon that only scales and fades (nothing is repainted); --k takes it 18px past the button's edge */
 #showcase .snd{transition:transform .16s var(--ease)}
 #showcase .snd:active{transform:scale(.95)}
 #showcase .snd.cue{position:relative;isolation:isolate;animation:kn-bump 1.6s var(--ease) 3}
@@ -694,7 +335,6 @@ footer{background:var(--paper)}
 #showcase .kw-in .snd{--k:2.286}
 @keyframes kn-bump{0%,70%,100%{scale:1}35%{scale:1.08}}
 @keyframes kn-halo{0%{transform:scale(1);opacity:.7}70%,100%{transform:scale(var(--k,2.2));opacity:0}}
-/* the Teams send button has no fill, so a disc would cover its icon: it keeps the outline halo */
 @media (prefers-reduced-motion:no-preference){#showcase .tm-in .snd.cue{animation-name:kn-cue}}
 #showcase .tm-in .snd.cue::after{content:none}
 @keyframes kn-cue{0%{box-shadow:0 0 0 0 color-mix(in oklab,var(--cue) 70%,transparent);transform:scale(1)}35%{transform:scale(1.08)}70%,100%{box-shadow:0 0 0 18px transparent;transform:scale(1)}}
@@ -703,108 +343,17 @@ footer{background:var(--paper)}
 .send-cue.on:active{transform:scale(.97);transition-duration:.16s}
 .send-cue{appearance:none;border:0;cursor:pointer}
 @media (hover:hover) and (pointer:fine){.send-cue:hover{background:#262A45}}
-/* phones: no room beside the chat, so the pill is off and the pulsing send button carries it alone */
 @media (max-width:760px){.send-cue{display:none}}
 .send-cue{flex-direction:row-reverse;padding:0 10px 0 13px}
 .send-cue svg{width:16px;height:16px;transform:rotate(180deg)}
 .send-cue.up svg{transform:rotate(90deg)}
 @media (prefers-reduced-motion:reduce){#showcase .snd.cue{animation:none;box-shadow:0 0 0 4px color-mix(in oklab,var(--cue) 45%,transparent)}#showcase .snd.cue::after{content:none}.send-cue{transition:none}
-/* the demo's messages and steps fade in without the slide; the typing dots rest */
 #showcase .m-in,#showcase .trail .in{animation-name:kn-fade}
 #showcase .b.typ i,#showcase .ib.typ i,#showcase .tb.typ i{animation:none;opacity:.7}}
 </style>
 
 <style>
-/* ---- Draft: the live page with (1) hairline rails and marks down the page, (2) corner marks on the hero frame,
-   (3) the logo strip in hairline cells, (4) "reality" as job photos with the messages sent from them. ---- */
 
-/* 1. rails: one hairline down each edge of the page column, drawn in every section's own background so content stays above it.
-   Where a section starts, a short tick crosses each rail and makes a plus. Off below 900px, where the gutter is too tight. */
-@media (min-width:900px){
-  main>section:not(.close),footer{
-    --rail:rgba(105,109,126,.24);--tick:rgba(10,11,30,.5);--rx:max(12px,calc(50% - 624px));
-    background-image:linear-gradient(var(--tick),var(--tick)),linear-gradient(var(--tick),var(--tick)),linear-gradient(var(--rail),var(--rail)),linear-gradient(var(--rail),var(--rail))!important;
-    background-size:13px 1px,13px 1px,1px 100%,1px 100%!important;
-    background-position:left calc(var(--rx) - 6px) top,right calc(var(--rx) - 6px) top,left var(--rx) top,right var(--rx) top!important;
-    background-repeat:no-repeat!important;
-  }
-  main>section.night{--rail:rgba(255,255,255,.13);--tick:rgba(255,255,255,.62)}
-  main>section.hero{background-size:0 0,0 0,1px 100%,1px 100%!important}
-}
-
-/* 2. the hero frame's corner marks: the same box as the frame, with a plus just outside each corner */
-.fin-marks{display:none}
-@media (min-width:861px){
-  .fin-marks{display:block;position:absolute;z-index:3;right:var(--gr);top:104px;bottom:40px;max-height:760px;margin-block:auto;width:min(628px,52%);pointer-events:none}
-  .fin-marks i{position:absolute;width:13px;height:13px;background:linear-gradient(var(--ink),var(--ink)) center/100% 1px no-repeat,linear-gradient(var(--ink),var(--ink)) center/1px 100% no-repeat;opacity:.5}
-  .fin-marks i:nth-child(1){left:-7px;top:-7px}.fin-marks i:nth-child(2){right:-7px;top:-7px}
-  .fin-marks i:nth-child(3){left:-7px;bottom:-7px}.fin-marks i:nth-child(4){right:-7px;bottom:-7px}
-}
-
-/* 3. the logo strip in hairline cells: eight equal columns, the hairlines drawn behind them */
-@media (min-width:1100px){
-  .strip-in{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));justify-items:center;align-items:center;gap:0;height:76px;padding-block:0;
-    background:linear-gradient(90deg,var(--line-2) 1px,transparent 1px) -1px 0/calc(100%/8) 100% repeat-x content-box content-box}
-  .strip-in>p{justify-self:start}
-  .strip-in>img{max-width:calc(100% - 36px);object-fit:contain}
-}
-
-/* 4. reality: six jobs, each photo with the message sent from it. The photos can be picked up and thrown */
-.stage-r{position:relative;height:545px;margin-top:clamp(36px,4.5vw,56px)}
-.ph{position:absolute;z-index:1;margin:0;cursor:grab;touch-action:pan-y;user-select:none;-webkit-user-select:none;will-change:transform}
-.ph .im{flex:none;overflow:hidden;border-radius:4px;transform-origin:50% 60%;transition:transform .5s var(--ease)}
-.ph img{width:100%;height:100%;max-width:none;object-fit:cover;pointer-events:none}
-.ph.drag{cursor:grabbing;z-index:5}
-.ph.drag .im{transform:scale(1.05);transition-duration:.2s}
-.ph.settle{transition:transform .55s var(--ease)}
-@media (hover:hover) and (pointer:fine){.ph:hover .im{transform:scale(1.04)}}
-.job{display:flex;align-items:flex-end;gap:14px}
-.job.rev{flex-direction:row-reverse}
-.bub{margin:0;max-width:204px;padding:12px 15px;border-radius:16px 16px 16px 4px;background:color-mix(in oklab,var(--ink) 7%,var(--paper));font:500 15px/1.35 var(--text);color:var(--ink)}
-.job.rev .bub{border-radius:16px 16px 4px 16px}
-.bub small{display:block;margin-top:5px;font:400 12px/1.3 "Geist Mono",ui-monospace,monospace;color:var(--muted)}
-/* what Kenner kept from the job: a small record line under the technician's message, the mark in front, the kind of note in ink */
-.cap{display:grid;gap:9px;max-width:204px}
-.kept{position:relative;margin:0;padding-left:21px;font:400 12px/1.45 "Geist Mono",ui-monospace,monospace;color:var(--muted)}
-.kept img{position:absolute;left:1px;top:2px;width:13px;height:13px}
-.kept span{display:block}
-.kept b{font-weight:500;color:var(--ink)}
-.kept .nb{font-style:normal;white-space:nowrap}
-/* five pairs, each with Kenner's note, placed as Lennart dragged them (2026-11-13, measured off his screenshot):
-   freezer top left, sheep top right, pigeons in the middle, forklift bottom left, plant room bottom right */
-.r1{left:12px;top:20px}.r1 .im{width:150px;height:190px}
-.r2{right:6.5%;top:0}.r2 .im{width:176px;height:122px}
-.r4{left:37.6%;top:180px}.r4 .im{width:176px;height:150px}
-.r5{left:46px;top:354px}.r5 .im{width:150px;height:150px}
-.r6{right:2px;top:400px}.r6 .im{width:190px;height:135px}
-/* the moving row of the other messages and its pause button are out: the six jobs stand alone */
-.stage-r~.mq,.stage-r~.mq-ctl{display:none}
-/* phone and small tablet: the pairs become one row you swipe sideways. Native scrolling with snap points; each card is the photo
-   with its message under it, and the next card peeks in at the right edge so the row reads as swipeable. */
-@media (max-width:900px){
-  .stage-r{height:auto;display:flex;align-items:flex-start;gap:12px;margin-top:28px;margin-inline:calc(var(--gl)*-1) calc(var(--gr)*-1);padding-inline:var(--gl) var(--gr);
-    overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding-inline:var(--gl);overscroll-behavior-x:contain;scrollbar-width:none}
-  .stage-r::-webkit-scrollbar{display:none}
-  .ph{position:static;transform:none!important;cursor:default;touch-action:auto}
-  .job,.job.rev{flex:none;flex-direction:column;align-items:stretch;gap:10px;width:min(78vw,300px);scroll-snap-align:start}
-  .job .im{width:auto;height:210px}
-  .bub,.job.rev .bub{max-width:none;border-radius:16px 16px 16px 4px}
-  .cap{max-width:none}
-}
-@media (prefers-reduced-motion:reduce){.ph .im,.ph.settle{transition:none}}
-/* phone: the section fills one screen. The heading keeps its size and the swipe row takes the rest of the height: each card's
-   photo grows to fill what its message and note leave over (never under 210px, so a short screen just runs a little longer) */
-@media (max-width:560px){
-  #reality{display:flex;flex-direction:column;min-height:100vh;min-height:100svh;padding-top:76px}   /* the heading starts under the 60px menu bar, not behind it */
-  #reality>.wrap,#reality .real{flex:1 1 auto;display:flex;flex-direction:column}
-  #reality .stage-r{flex:1 1 auto;align-items:stretch}
-  #reality .job .im{position:relative;flex:1 1 210px;height:auto;min-height:210px}
-  #reality .job .im img{position:absolute;inset:0}
-}
-
-/* 5. the demo, calmer. Arthur's files are untouched; these only restyle it (desktop and tablet).
-   The phone keeps its frame (the frameless chat card was tried and taken back). The channel logos are smaller, the log's header
-   is a small label, its step icons lose their discs, and its source chips are outlined rectangles, not filled pills. */
 @media (min-width:761px){
   #showcase .dock{gap:16px}
   #showcase .dock button{width:26px;height:26px}
@@ -815,29 +364,6 @@ footer{background:var(--paper)}
   #showcase .trail .ch{border-radius:6px;background:none;box-shadow:inset 0 0 0 1px var(--line-2)}
 }
 
-/* 7. the two audience panels on real job photos (the grain is off). The photo fills the top of each panel and fades into the
-   panel's own colour before the product window: leaders stay ultramarine (the photo takes the blue), technicians stay night. */
-#value .aud-bg{display:none}
-.aud::before{content:"";position:absolute;inset:0 0 30% 0;z-index:-1}
-#for-leaders{background:var(--accent)}
-#for-leaders::before{background:linear-gradient(180deg,rgba(20,56,202,.42),rgba(20,56,202,.12) 45%,#1438CA 100%),url(img/job/van-depot.jpg) 50% 60%/cover #1438CA;background-blend-mode:normal,luminosity}
-#for-technicians::before{background:linear-gradient(180deg,rgba(10,11,30,.6),rgba(10,11,30,.1) 45%,var(--night) 100%),url(img/hero-phone.jpg) 64% 50%/cover}
-
-/* 8. no half-empty middle stage. The hero keeps its two columns down to 860px (the generator moves the page's own 980px
-   breakpoint). Below that it is one column, and both parts fill it: the headline is sized from the screen width (one rule for the
-   whole range, so no jump between phone and tablet; a trade wider than the column is still shrunk to fit by the headline script),
-   and the photo frame runs the full width instead of stopping at 440px. */
-@media (max-width:860px){
-  .hero h1{font-size:clamp(40px,14.4vw,64px)}
-  .fin{max-width:none;min-height:min(60vw,500px);justify-content:center}
-}
-/* in the narrow two-column range the frame is a tall slice of the photo: move the slice right, so the technician stays in it */
-@media (min-width:861px) and (max-width:980px){.fin-img{object-position:62% 50%}}
-
-/* 9. a hand holds the demo phone. The photo's own phone is cut out, so the live phone sits in the grip: fingers on its left edge,
-   thumb on its right, wrist and sleeve running down to a hairline where the "What it adds up to" block starts, which cuts them off.
-   The hand is the first child of .hold, the box around the phone, so it lies under the phone and moves with it.
-   The numbers come from make_hand.py and are shares of the phone's width. Only where there is room beside the phone. */
 .hand{display:none}
 .hold{display:contents}
 @media (min-width:761px){
@@ -851,14 +377,7 @@ footer{background:var(--paper)}
   #showcase .stats{margin-top:76px}
 }
 
-/* 10. the demo starts with two questions, at every width: an agent, then an app. State: #showcase.pick = still choosing.
-   Desktop and tablet: only the phone at first, in the middle, with the questions on its screen; on the second answer the phone
-   glides to the left and Kenner's panel comes in beside it, as one movement.
-   Phone: the questions are one card over the whole stage; on the second answer it gives way to the chat and Kenner's panel,
-   which were laid out underneath all along, so nothing below the section moves.
-   The tabs above and the app icons are gone everywhere; one quiet line says what is showing and offers "Change". */
 #showcase .sc-top .agents,#showcase .dock{display:none}
-/* while choosing, Kenner's panel waits 64px to the right, unseen: it must not give the page a sideways scroll on a narrow window */
 #showcase{overflow-x:clip}
 .pk-bar{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:2px 14px;min-height:42px;font:500 15px/1.3 var(--text);color:var(--ink);text-align:center;transition:opacity .4s ease .5s}
 .pk-bar button{appearance:none;border:0;padding:6px 2px;background:none;font:inherit;color:var(--muted);text-decoration:underline;text-underline-offset:4px;text-decoration-color:color-mix(in oklab,var(--ink) 28%,transparent);cursor:pointer}
@@ -866,7 +385,6 @@ footer{background:var(--paper)}
 #showcase.pick .pk-bar{opacity:0;visibility:hidden;transition:opacity .2s ease,visibility 0s .2s}
 #showcase.pick .send-cue,#showcase.moving .send-cue{opacity:0!important;pointer-events:none!important}
 
-/* the questions */
 .pk{display:block;position:absolute;z-index:30;overflow:hidden;background:#fff;color:#000;font:400 16px/1.3 var(--font-app);transition:opacity .4s ease,visibility 0s}
 .pk.off{opacity:0;visibility:hidden;transition:opacity .4s ease,visibility 0s .4s}
 .pk-s{position:absolute;padding:0 16px;transition:opacity .26s ease,transform .42s cubic-bezier(.23,1,.32,1),visibility 0s}
@@ -881,9 +399,7 @@ footer{background:var(--paper)}
 .pk-row:active,.pk-apps button:active{transform:scale(.97)}
 .pk-row.off{background:#F1F2F5;color:#A4A7B4;cursor:default}
 .pk-row:focus-visible,.pk-apps button:focus-visible,.pk-back:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
-/* "tap one": a ring leaves each of the two live rows three times once the questions are on screen */
 .pk.seen .pk-row:not(.off){animation:pk-ring 1.8s cubic-bezier(.23,1,.32,1) .5s 3}
-.pk.seen .pk-row:not(.off)+.pk-row:not(.off){animation-delay:.72s}
 @keyframes pk-ring{0%{box-shadow:0 0 0 0 rgba(10,11,30,.34)}70%,100%{box-shadow:0 0 0 10px rgba(10,11,30,0)}}
 .pk-back{appearance:none;position:absolute;left:12px;top:6px;display:grid;place-items:center;width:38px;height:38px;border:0;border-radius:50%;background:#F1F2F5;color:#000;cursor:pointer}
 .pk-back svg{width:16px;height:16px}
@@ -901,27 +417,21 @@ footer{background:var(--paper)}
   .pk-apps button:hover:active{transform:scale(.97)}
 }
 
-/* desktop and tablet: the questions are a screen of the phone, over the chat; then the move */
 @media (min-width:761px){
   .pk{inset:7px;border-radius:calc(var(--pr) - 7px)}
   .pk::before{content:"";position:absolute;top:10px;left:50%;width:min(84px,27%);height:24px;transform:translateX(-50%);border-radius:14px;background:radial-gradient(circle at calc(100% - 11px) 50%,#1E2748 0 2.5px,#0B0E1C 3px 4.5px,#000 5px);z-index:20}
   .pk-s{inset:40px 0 0}
-  /* the phone eases across (in-out, it is already on screen), the panel follows a beat later */
-  #showcase.pk-live .hold{transition:transform .9s cubic-bezier(.77,0,.175,1)}   /* only once the phone has been put in the middle: no glide on load */
+  #showcase.pk-live .hold{transition:transform .9s cubic-bezier(.77,0,.175,1)}    
   #showcase .lap{transition:opacity .5s ease .34s,transform .8s cubic-bezier(.23,1,.32,1) .26s}
   #showcase.pick .hold{transform:translateX(var(--pk-dx,0px))}
   #showcase.pick .lap{opacity:0;transform:translateX(64px);visibility:hidden;transition:opacity .22s ease,transform .5s ease,visibility 0s .5s}
 }
 
-/* phone: the questions are one white card over the whole stage (the chat has no phone frame here; the visitor's own phone is the phone) */
 @media (max-width:760px){
   .pk-bar{font-size:14px}
-  .pk-w{display:none}
-  #showcase .work .phone{position:static}   /* so the card's box is the stage, not the chat */
+  #showcase .work .phone{position:static}    
   .pk{inset:0;border-radius:16px}
   .pk .sbar,.pk .home{display:none}
-  /* while choosing, the stage is only as tall as the questions need, so they sit right under the heading; it takes its full height
-     at the second answer (the chat and panel are still hidden then, so the step is not seen inside the section) */
   #showcase.pick .work{height:min(var(--mstage),470px)}
   .pk-s{inset:0;display:flex;flex-direction:column;justify-content:center;padding:16px}
   .pk-mk{margin-top:0}
@@ -930,7 +440,6 @@ footer{background:var(--paper)}
   .pk-row{height:46px}
   .pk-app h3{margin-top:0}
   .pk-back{left:14px;top:14px}
-  /* underneath, the chat and Kenner's panel wait a little lower and rise as the card goes */
   #showcase .phone .scr{transition:opacity .4s ease .08s,transform .6s cubic-bezier(.23,1,.32,1) .08s}
   #showcase .lap{transition:opacity .4s ease .2s,transform .6s cubic-bezier(.23,1,.32,1) .2s}
   #showcase.pick .phone .scr,#showcase.pick .lap{opacity:0;transform:translateY(16px);transition:opacity .2s ease,transform .3s ease}
@@ -942,150 +451,160 @@ footer{background:var(--paper)}
   .pk.seen .pk-row:not(.off),.pk.seen[data-step="app"] .pk-apps button{animation:none}
 }
 
-/* ---- Draft variant "cut" (cut.html = lines.html plus this file): the hero centred, with a cut-out foreground.
-   The page's own light ground and dark type stay. Along the foot of the first screen stands the roof (units, pipes, the
-   technician on a call), cut out of its sky (img/job/roofline.webp, made by make_roofkey.py from a 4k photo) and full width.
-   Kenner's mark rises behind it like a sun: ultramarine, its lower half hidden by the units. "Listen to a call" sits on the
-   roof; while the call plays, Kenner's message arrives left of the mark and the action right of it.
-   lines.html keeps the two-column hero and sky.html the photo-sky version. ---- */
-/* the roof's measures, all from its width (--rw): its height, and how high the tops of the units stand above its foot */
-.hero{--rw:100vw;--rh:calc(var(--rw)*.1779);--ru:calc(var(--rw)*.157)}
-.hero-in{align-items:center;justify-content:flex-start;text-align:center;padding-top:calc(60px + clamp(24px,4.4vh,56px));padding-bottom:0}
-.hero-copy{position:relative;z-index:4;max-width:880px;align-items:center;gap:clamp(16px,2.4vh,24px)}
-/* the rotating word is a box as wide as itself, centred in its row (the headline script measures from the box's left edge);
-   the word on its way out is taken out of the row and kept centred */
-.hero .rot-w{display:inline-block;transform-origin:50% 100%}
-.hero .rot-w.out{left:50%;translate:-50% 0}
-.hero .sub{max-width:560px}
-.hero .acts{justify-content:center}
-/* the roof, in front of the mark */
-.hero-in::after{content:"";position:absolute;z-index:3;left:50%;bottom:0;width:var(--rw);margin-left:calc(var(--rw)/-2);aspect-ratio:3840/683;background:url(img/job/roofline.webp) 50% 100%/cover no-repeat;pointer-events:none}
-/* the mark: no frame, pushed to the foot of the screen so the roof covers its lower half. No stacking context of its own here,
-   so the mark can lie behind the roof while the button and the messages lie in front of it */
-.fin{position:relative;right:auto;top:auto;bottom:auto;z-index:auto;width:100%;max-width:none;max-height:none;margin:auto 0 0;padding:clamp(6px,1.6vh,32px) 0 40px;gap:0;border-radius:0;overflow:visible;background:none;container-type:normal;color:var(--ink);--mk:clamp(200px,30vh,330px)}
-.fin::after,.fin-img,.fin-marks{display:none}
-.mk{z-index:2;--mw:var(--mk);margin-top:0}
-#mk-rays{fill:var(--accent)}
-.mk-play{color:var(--accent)}
-.mk-play:focus-visible{outline-color:var(--accent)}
-.mk-foot{position:absolute;z-index:4;left:0;right:0;bottom:34px;gap:0}
-.mk-cta{margin:0;border-color:rgba(255,255,255,.5);background:rgba(10,12,30,.5);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
-.mk-cap{height:48px;text-shadow:0 1px 12px rgba(6,8,22,.8),0 0 2px rgba(6,8,22,.6)}
-.strip{z-index:5;background:var(--ground)}
-/* desktop: the two in-call messages stand beside the visible half of the mark, on the page's ground: the text from Kenner as a
-   dark notification, the action as a white row */
-@media (min-width:861px){
-  /* the roof's height follows the window's width (17.8vw, the tops of the units at about 15.7vw): the mark keeps its centre
-     level with those tops at every size, so it never sinks behind them on a wide monitor */
-  .fin{padding-bottom:max(24px,calc(var(--ru) - var(--mk)*.5));--mk:clamp(180px,26vh,300px)}
-  .mk-foot{bottom:max(28px,calc(var(--rh)*.25))}
-  .mk-msgs{position:absolute;z-index:4;left:0;right:0;top:auto;bottom:calc(100% + var(--mk)*.28);height:60px;display:block;pointer-events:none}
-  .mk-note,.mk-act{position:absolute;top:0}
-  .mk-note{right:calc(50% + var(--mk)/2 + 36px);background:rgba(14,16,38,.9);-webkit-backdrop-filter:none;backdrop-filter:none;box-shadow:0 12px 30px rgba(10,11,30,.18)}
-  .mk-act{left:calc(50% + var(--mk)/2 + 36px);top:3px;background:#fff;box-shadow:0 0 0 1px var(--line-2),0 10px 26px rgba(10,11,30,.08)}
-}
-/* phone and tablet: the roof is cropped at its own scale so the units keep their size; the messages stay over the button */
-@media (max-width:860px){
-  .hero-in::after{aspect-ratio:auto;height:clamp(120px,34vw,170px);background-size:auto 100%;background-position:60% 100%}
-  .fin{--mk:clamp(190px,56vw,250px);padding-bottom:30px}
-  .mk-foot{bottom:20px}
-}
-/* ---- Draft variant "cut-left" (cut-left.html = lines.html plus cut.css plus this file): the cut-out hero with the text
-   back on the left, as on the live page, and the mark with "Listen to a call" on the right. The roof still runs full width
-   along the foot; the mark, larger now that it has the right half to itself, stands clear above it, level with the text
-   (first it rose from behind the units; Lennart moved it up, 2026-11-13). The two in-call messages share one place again,
-   just above the button. ---- */
-.hero-in{align-items:flex-start;text-align:left}
-/* the text block's children take the column's full width: a headline that is only as wide as its content would grow with a
-   long trade ("food equipment") and push it past the screen on a phone, where the headline script could no longer shrink it */
-.hero-copy{align-self:stretch;align-items:stretch}   /* the block itself too: as wide as the column, never as wide as its longest word */
-.hero .rot-w{display:block;transform-origin:0 100%}
-.hero .rot-w.out{left:0;translate:none}
-.hero .sub{max-width:660px}
-.hero .acts{justify-content:flex-start}
-@media (min-width:861px){
-  /* the text sits in the middle of the space above the roof (the roof's height is --rh) */
-  .hero-in{justify-content:center;padding-bottom:var(--rh)}
-  .hero-copy{max-width:min(519px,44%);gap:26px;margin-bottom:clamp(20px,3.4vh,36px)}   /* air between the buttons and the pipes, also on a short window */
-  /* the mark: at the right edge of the page column, clear of the roof, in the middle of the same space as the text; the
-     button right under it. Both stand on the page's light ground here, so the button is a dark outline and the spoken line
-     is dark type. The mark is kept small enough that a message fits between it and the text */
-  .fin{position:absolute;left:auto;right:var(--gr);top:60px;bottom:var(--rh);width:min(628px,52%);height:auto;margin:0;padding:0;align-items:flex-end;justify-content:center;gap:18px;--mk:clamp(220px,min(25vw,42vh),380px)}
-  .mk-foot{position:relative;left:auto;right:auto;bottom:auto;width:var(--mk);align-self:flex-end}
-  .mk-cta{border-color:var(--line-2);background:none;-webkit-backdrop-filter:none;backdrop-filter:none;color:var(--ink)}
-  .mk-cta:focus-visible{outline-color:var(--ink)}
-  .mk-cap{max-width:none;padding:0;color:var(--ink);text-shadow:none}
-  .mk-cap img{filter:none}
-  /* the two in-call messages share one place in the gap between the text and the mark: left of the mark's lower part,
-     level with the sub line. They arrive there and leave with a short step, not across the headline */
-  .mk-msgs{left:auto;right:calc(100% + 28px);bottom:calc(100% + 18px + var(--mk)*.14);width:min(264px,22vw);height:auto;display:grid;justify-items:end;align-items:end}
-  .mk-note,.mk-act{position:relative;top:auto;left:auto;right:auto;width:100%}
-  .mk-note.gone{transform:translateX(-22px)}
-  .mk-act.gone{transform:translateX(22px)}
-}
-@media (min-width:861px) and (hover:hover) and (pointer:fine){.mk-cta:hover{border-color:var(--ink)}}
-
-/* phone and tablet: no second pair of buttons under the text ("Book a demo" is in the menu bar), so the mark moves up and
-   stands clear of the roof, as on desktop, with the button right under it. The spoken line is dark type on the light ground,
-   not white over the pale units, and Kenner's message is the dark notification. Nothing lies over the roof. */
-@media (max-width:860px){
-  .hero{--rhm:clamp(120px,34vw,170px)}
-  .hero .acts{display:none}
-  .fin{margin-top:clamp(18px,3vh,30px);padding:0 0 calc(var(--rhm) + 22px);gap:14px;--mk:clamp(170px,48vw,230px)}
-  .mk-foot{position:relative;left:auto;right:auto;bottom:auto}
-  .mk-cta{border-color:var(--line-2);background:none;-webkit-backdrop-filter:none;backdrop-filter:none;color:var(--ink)}
-  .mk-cta:focus-visible{outline-color:var(--ink)}
-  .mk-cap{height:63px;color:var(--ink);text-shadow:none}   /* room for three lines, as on the live phone page */
-  .mk-cap img{filter:none}
-  .mk-note{background:rgba(14,16,38,.9);-webkit-backdrop-filter:none;backdrop-filter:none;box-shadow:0 12px 30px rgba(10,11,30,.18)}
-  .mk-act{background:#fff;box-shadow:0 0 0 1px var(--line-2),0 10px 26px rgba(10,11,30,.08)}
-}
 </style>
+<link rel="stylesheet" href="pages/home.css">
+<link rel="stylesheet" href="pages/home-hero.css">
+<link rel="stylesheet" href="pages/home-hero8.css">
+<link rel="stylesheet" href="pages/home-found.css">
 </head>
 <body>
 <header class="nav" id="nav">
   <div class="wrap nav-in">
     <a class="logo" href="#top" aria-label="kenner home"><img src="brand/lockup-ink.svg" alt="kenner"></a>
-    <nav class="links" aria-label="Main">
-      <a href="#for-leaders">For service leaders</a>
-      <a href="#for-technicians">For technicians</a>
-      <a href="#showcase">Agents</a>
-      <a href="#deploy">Integrations</a>
-      <a class="btn btn-sm btn-ink" href="https://calendar.app.google/fFpCL3WG3pJtqtC89" target="_blank" rel="noopener">Book a demo</a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-main" aria-label="Open the menu"><i aria-hidden="true"></i></button>
+    <nav class="nav-main" id="nav-main" aria-label="Main">
+      <div class="nav-item">
+        <button class="nav-trigger" type="button" aria-expanded="false" aria-controls="nav-panel">Platform<svg viewBox="0 0 10 10" aria-hidden="true"><path d="M2 3.75 5 6.75l3-3" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <div class="nav-panel" id="nav-panel">
+          <div class="nav-group">
+            <p>For technicians</p>
+            <a href="technicians.html"><b>Technicians</b><span>A personal assistant they call or text.</span></a>
+          </div>
+          <div class="nav-group">
+            <p>For the office</p>
+            <a href="agents.html"><b>Agents</b><span>A team that does the work around every job.</span></a>
+            <a href="intelligence.html"><b>Intelligence</b><span>The full history of every machine and every job.</span></a>
+          </div>
+          <div class="nav-group">
+            <p>Connect</p>
+            <a href="integrations.html"><b>Integrations</b><span>Your FSM, CRM, ERP and supplier portals.</span></a>
+          </div>
+        </div>
+      </div>
+      <a class="nav-link" href="security.html">Security</a>
+      <a class="nav-link" href="blog/index.html">Blog</a>
+      <a class="btn btn-sm btn-soft btn-off nav-login" role="link" aria-disabled="true">Log in</a>
     </nav>
+    <a class="btn btn-sm btn-ink nav-demo" href="https://calendar.app.google/fFpCL3WG3pJtqtC89" target="_blank" rel="noopener">Book a demo</a>
   </div>
 </header>
 
 <main id="top">
-  <!-- 1 · hero -->
-  <section class="hero">
-    <div class="wrap hero-in">
-      <div class="hero-copy">
-        <h1 aria-label="The personal assistant for HVAC/R service">The personal assistant for <span class="rot" id="rot">HVAC/R</span> service</h1>
-        <p class="sub">We activate your full service knowledge, answer every technician in seconds and take the paperwork off their hands.</p>
-        <div class="acts">
-          <a class="btn btn-ink" href="https://calendar.app.google/fFpCL3WG3pJtqtC89" target="_blank" rel="noopener">Book a demo</a>
-          <a class="btn btn-line" href="#showcase">See how it works</a>
-        </div>
-      </div>
-      <div class="fin-marks" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
-      <div class="fin" id="fin">
-        <div class="mk" id="mk">
-          <svg viewBox="0 0 100 100" aria-hidden="true"><defs><radialGradient id="mk-g" gradientUnits="userSpaceOnUse" cx="50" cy="50" r="50"><stop offset="0" stop-color="#fff"/><stop offset=".7" stop-color="#F1F5FF"/><stop offset="1" stop-color="#DFE8FF"/></radialGradient></defs><g id="mk-rays" fill="url(#mk-g)"></g></svg>
-          <button class="mk-play" id="mk-play" type="button" aria-pressed="false" aria-label="Play a technician’s call with Kenner, 42 seconds"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M5 3v10M11 3v10" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg></button>
-        </div>
-        <div class="mk-foot">
-          <div class="mk-msgs"><div class="mk-note out" id="mk-note" role="img" aria-label="A message from Kenner during the call: 2 photos attached"><span class="av"><img src="brand/logo-avatar.svg" alt=""><i></i></span><span class="tx"><b>Kenner</b><time>now</time><p>2 photos attached</p></span></div><div class="mk-act out" id="mk-act" role="img" aria-label="Kenner took an action during the call: updated the owner to George"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13.4 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-7.4"/><path d="M2 6h4"/><path d="M2 10h4"/><path d="M2 14h4"/><path d="M2 18h4"/><path d="M21.378 5.626a1 1 0 1 0-3.004-3.004l-5.01 5.012a2 2 0 0 0-.506.854l-.837 2.87a.5.5 0 0 0 .62.62l2.87-.837a2 2 0 0 0 .854-.506z"/></svg><span class="tx"><small>Kenner took an action</small><span>Updated the owner to George.</span></span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></div></div>
-          <button class="mk-cta" id="mk-cta" type="button"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M5.4 3.4v9.2L12.9 8z" fill="currentColor" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>Listen to a call<span>0:42</span></button>
-          <p class="mk-cap" id="mk-cap" aria-hidden="true"></p>
-        </div>
-        <p class="mk-sr">The call, in words. Kenner: Hey, it’s Kenner. What can I help you with? Technician: Hi Kenner, I’m at the site now and it’s throwing an F74 error. What does that mean again? Kenner: F74 means the boiler is reporting water pressure too low. It locks out the burner and stops heating. Since it’s recurring, compare the boiler reading with an external manometer. Technician: Sure, will do. Do you have any photos from the last visit you can send me, so I can compare? Kenner: I’ll send last visit’s photos. Sent to your iMessage. Technician: Cheers. And one more note before I continue: the owner has changed. It’s now George, no longer Tom, because he’s taken over from his father. Kenner: Got it. I’ll note George as the owner. Noted. Technician: Cheers Kenner, see you later. Kenner: See you later.</p>
-        <!-- the recorded call. Without the file, Play still runs the lines and the two messages, silently -->
-        <audio id="mk-audio" preload="none" src="audio/debrief.mp3"></audio>
+  <section class="hero h8" data-h8>
+    <div class="h8-copy">
+      <h1 class="h8-h1"><span>The AI operating system</span> <span>for field service</span></h1>
+      <p class="h8-sub">A personal assistant for every technician. A team of agents for the office.</p>
+      <div class="h8-acts">
+        <a class="btn btn-ink" href="https://calendar.app.google/fFpCL3WG3pJtqtC89" target="_blank" rel="noopener">Get a free demo</a>
+        <a class="btn h8-btn-line" href="technicians.html#showcase">See how it works</a>
       </div>
     </div>
-    <div class="strip">
-      <div class="wrap strip-in">
+    <div class="h8-stage">
+      <div class="h8-recs" aria-hidden="true">
+        <div class="h8-rec" data-sys data-x="0.085" data-y="-150" data-p="0.12"><img src="pr/logos/avatar/servicetitan.svg" alt=""><span><small>Work order</small><b>Job LV-2119</b></span></div>
+        <div class="h8-rec h8-rec-doc" data-x="0.085" data-y="-150" data-p="0.62"><i class="h8-pdf"><em>PDF</em></i><span><small>Wiring diagram</small><b>Rack B</b></span></div>
+        <div class="h8-rec h8-rec-pic" data-x="0.07" data-y="-20" data-p="0.30"><i class="h8-th"><img src="img/hero8/case-coil.jpg" alt=""></i><span><small>Photo</small><b>Case 14, iced coil</b></span></div>
+        <div class="h8-rec" data-sys data-x="0.07" data-y="-20" data-p="0.80"><img src="logos/sys/oracle.svg" alt=""><span><small>Part</small><b>Termination sensor</b></span></div>
+        <div class="h8-rec" data-sys data-x="0.095" data-y="110" data-p="0.20"><img class="h8-wide" src="logos/sys/sap.svg" alt=""><span><small>Invoice</small><b>$402.60, job LV-2119</b></span></div>
+        <div class="h8-rec h8-rec-av" data-x="0.095" data-y="110" data-p="0.70"><i class="h8-play"><svg viewBox="0 0 12 12"><path d="M3.5 2v8l6.5-4z"/></svg></i><span><small>Voice note, 0:42</small><svg class="h8-wave" viewBox="0 0 86 20"><rect x="0" y="5.0" width="2" height="10" rx="1"/><rect x="4" y="6.5" width="2" height="7" rx="1"/><rect x="8" y="6.0" width="2" height="8" rx="1"/><rect x="12" y="2.0" width="2" height="16" rx="1"/><rect x="16" y="4.0" width="2" height="12" rx="1"/><rect x="20" y="7.0" width="2" height="6" rx="1"/><rect x="24" y="8.0" width="2" height="4" rx="1"/><rect x="28" y="4.0" width="2" height="12" rx="1"/><rect x="32" y="3.5" width="2" height="13" rx="1"/><rect x="36" y="6.5" width="2" height="7" rx="1"/><rect x="40" y="5.0" width="2" height="10" rx="1"/><rect x="44" y="5.0" width="2" height="10" rx="1"/><rect x="48" y="4.0" width="2" height="12" rx="1"/><rect x="52" y="6.5" width="2" height="7" rx="1"/><rect x="56" y="6.5" width="2" height="7" rx="1"/><rect x="60" y="4.0" width="2" height="12" rx="1"/><rect x="64" y="1.0" width="2" height="18" rx="1"/><rect x="68" y="6.0" width="2" height="8" rx="1"/><rect x="72" y="5.0" width="2" height="10" rx="1"/><rect x="76" y="6.0" width="2" height="8" rx="1"/><rect x="80" y="6.5" width="2" height="7" rx="1"/><rect x="84" y="1.0" width="2" height="18" rx="1"/></svg></span></div>
+        <div class="h8-rec" data-sys data-x="0.07" data-y="240" data-p="0.05"><img class="h8-mono" src="mono/zendesk.svg" alt=""><span><small>Ticket</small><b>Case 14, coil iced up</b></span></div>
+        <div class="h8-rec h8-rec-doc" data-x="0.07" data-y="240" data-p="0.55"><i class="h8-xls"></i><span><small>Spreadsheet</small><b>Price book</b></span></div>
+        <div class="h8-rec h8-rec-doc" data-x="0.11" data-y="370" data-p="0.38"><i class="h8-pdf"><em>PDF</em></i><span><small>Service manual</small><b>Page 34, defrost</b></span></div>
+        <div class="h8-rec" data-sys data-x="0.11" data-y="370" data-p="0.88"><img class="h8-mono" src="mono/dynamics.svg" alt=""><span><small>Stock</small><b>2 capacitors, van 2</b></span></div>
+        <div class="h8-rec" data-sys data-x="0.915" data-y="-150" data-p="0.22"><img class="h8-wide" src="logos/sys/salesforce.svg" alt=""><span><small>Service contract</small><b>Renewal quote, $4,260.00</b></span></div>
+        <div class="h8-rec h8-rec-pic" data-x="0.915" data-y="-150" data-p="0.72"><i class="h8-th h8-th-vid"><img src="img/hero8/rooftop-unit.jpg" alt=""></i><span><small>Video, 0:18</small><b>Rooftop unit 3</b></span></div>
+        <div class="h8-rec h8-rec-av" data-x="0.93" data-y="-20" data-p="0.10"><i class="h8-play"><svg class="h8-play-ph" viewBox="0 0 24 24"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1z"/></svg></i><span><small>Close-out call, 3:10</small><svg class="h8-wave" viewBox="0 0 86 20"><rect x="0" y="4.0" width="2" height="12" rx="1"/><rect x="4" y="6.5" width="2" height="7" rx="1"/><rect x="8" y="4.0" width="2" height="12" rx="1"/><rect x="12" y="4.0" width="2" height="12" rx="1"/><rect x="16" y="6.5" width="2" height="7" rx="1"/><rect x="20" y="5.0" width="2" height="10" rx="1"/><rect x="24" y="6.0" width="2" height="8" rx="1"/><rect x="28" y="6.5" width="2" height="7" rx="1"/><rect x="32" y="4.0" width="2" height="12" rx="1"/><rect x="36" y="6.0" width="2" height="8" rx="1"/><rect x="40" y="7.0" width="2" height="6" rx="1"/><rect x="44" y="4.0" width="2" height="12" rx="1"/><rect x="48" y="3.5" width="2" height="13" rx="1"/><rect x="52" y="6.0" width="2" height="8" rx="1"/><rect x="56" y="7.0" width="2" height="6" rx="1"/><rect x="60" y="6.5" width="2" height="7" rx="1"/><rect x="64" y="8.0" width="2" height="4" rx="1"/><rect x="68" y="1.0" width="2" height="18" rx="1"/><rect x="72" y="4.0" width="2" height="12" rx="1"/><rect x="76" y="6.0" width="2" height="8" rx="1"/><rect x="80" y="8.0" width="2" height="4" rx="1"/><rect x="84" y="6.5" width="2" height="7" rx="1"/></svg></span></div>
+        <div class="h8-rec" data-sys data-x="0.93" data-y="-20" data-p="0.60"><img src="logos/sys/confluence.svg" alt=""><span><small>How-to</small><b>Defrost ends early</b></span></div>
+        <div class="h8-rec h8-rec-pic" data-x="0.905" data-y="110" data-p="0.34"><i class="h8-th"><img src="img/hero8/hands-sensor.jpg" alt=""></i><span><small>Photo</small><b>Sensor, Case 14</b></span></div>
+        <div class="h8-rec" data-sys data-x="0.905" data-y="110" data-p="0.84"><img src="logos/sys/servicemax.png" alt=""><span><small>Warranty claim</small><b>$207.10, dual sensor</b></span></div>
+        <div class="h8-rec" data-sys data-x="0.93" data-y="240" data-p="0.16"><img class="h8-mono" src="mono/hubspot.svg" alt=""><span><small>Quote</small><b>Expansion vessel</b></span></div>
+        <div class="h8-rec h8-rec-av" data-x="0.93" data-y="240" data-p="0.66"><i class="h8-play"><svg viewBox="0 0 12 12"><path d="M3.5 2v8l6.5-4z"/></svg></i><span><small>Voice note, 1:05</small><svg class="h8-wave" viewBox="0 0 86 20"><rect x="0" y="2.0" width="2" height="16" rx="1"/><rect x="4" y="6.0" width="2" height="8" rx="1"/><rect x="8" y="1.0" width="2" height="18" rx="1"/><rect x="12" y="8.0" width="2" height="4" rx="1"/><rect x="16" y="7.0" width="2" height="6" rx="1"/><rect x="20" y="6.5" width="2" height="7" rx="1"/><rect x="24" y="7.0" width="2" height="6" rx="1"/><rect x="28" y="2.0" width="2" height="16" rx="1"/><rect x="32" y="8.0" width="2" height="4" rx="1"/><rect x="36" y="6.5" width="2" height="7" rx="1"/><rect x="40" y="5.0" width="2" height="10" rx="1"/><rect x="44" y="8.0" width="2" height="4" rx="1"/><rect x="48" y="7.0" width="2" height="6" rx="1"/><rect x="52" y="1.0" width="2" height="18" rx="1"/><rect x="56" y="1.0" width="2" height="18" rx="1"/><rect x="60" y="7.0" width="2" height="6" rx="1"/><rect x="64" y="5.0" width="2" height="10" rx="1"/><rect x="68" y="7.0" width="2" height="6" rx="1"/><rect x="72" y="6.5" width="2" height="7" rx="1"/><rect x="76" y="1.0" width="2" height="18" rx="1"/><rect x="80" y="8.0" width="2" height="4" rx="1"/><rect x="84" y="7.0" width="2" height="6" rx="1"/></svg></span></div>
+        <div class="h8-rec h8-rec-doc" data-x="0.89" data-y="370" data-p="0.02"><svg class="h8-gl" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3.5 7 8.5 6 8.5-6"/></svg><span><small>Email</small><b>Riverside Centre: unit down</b></span></div>
+        <div class="h8-rec h8-rec-pic" data-x="0.89" data-y="370" data-p="0.52"><i class="h8-th"><img src="img/hero8/van-inside.jpg" alt=""></i><span><small>Photo</small><b>Van 2 shelves</b></span></div>
+      </div>
+      <div class="h8-chat" role="img" aria-label="The Kenner chat: How can I help? Work orders, invoices, contracts, photos, voice notes and documents from the connected systems flow into its ask box, where a question is typed">
+        <p class="h8-hello" aria-hidden="true"><img src="brand/mark-ultramarine.svg" alt="">How can I help?</p>
+        <div class="h8-ask" aria-hidden="true">
+          <p class="h8-ask-tx" data-ph="Ask Kenner, or say what you need done">Ask Kenner, or say what you need done</p>
+          <div class="h8-ask-row">
+            <span class="h8-ib"><svg class="h8-ic" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M12 5v14"/></svg></span>
+            <span class="h8-chip"><img src="brand/mark-ultramarine.svg" alt="">Kenner<svg class="h8-ic h8-ic-s" viewBox="0 0 24 24"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></span>
+            <span class="h8-plug"><svg class="h8-ic" viewBox="0 0 24 24"><path d="M12 22v-5"/><path d="M9 8V2"/><path d="M15 8V2"/><path d="M18 8v5a4 4 0 0 1-4 4h-4a4 4 0 0 1-4-4V8Z"/></svg><span data-h8-count>Service work orders and 8 more</span></span>
+            <span class="h8-go"><svg class="h8-ic" viewBox="0 0 24 24"><path d="m5 12 7-7 7 7"/><path d="M12 19V5"/></svg></span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="h8-strip">
+      <p>Built by people from</p>
+      <img src="logos/team/palantir.svg" alt="Palantir" style="height:19px">
+      <img src="logos/team/bayer.svg" alt="Bayer" style="height:26px">
+      <img src="logos/team/enbw.svg" alt="EnBW" style="height:17px">
+      <img src="logos/team/imperial.svg" alt="Imperial College London" style="height:21px">
+      <img src="logos/team/escp.png" alt="ESCP Business School" style="height:24px">
+      <img src="logos/team/ef.svg" alt="Entrepreneurs First" style="height:10px">
+    </div>
+  </section>
+
+  <section class="hero h6" data-h6>
+    <svg class="h6-sprite" aria-hidden="true">
+      <symbol id="h6-i-shield" viewBox="0 0 24 24"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></symbol>
+      <symbol id="h6-i-truck" viewBox="0 0 24 24"><path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"/><path d="M15 18H9"/><path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.624l-3.48-4.35A1 1 0 0 0 17.52 8H14"/><circle cx="17" cy="18" r="2"/><circle cx="7" cy="18" r="2"/></symbol>
+      <symbol id="h6-i-renew" viewBox="0 0 24 24"><path d="M11 10v4h4"/><path d="m11 14 1.535-1.605a5 5 0 0 1 8 1.5"/><path d="M16 2v4"/><path d="m21 18-1.535 1.605a5 5 0 0 1-8-1.5"/><path d="M21 22v-4h-4"/><path d="M21 8.5V6a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h4.3"/><path d="M3 10h4"/><path d="M8 2v4"/></symbol>
+      <symbol id="h6-i-file" viewBox="0 0 24 24"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></symbol>
+      <symbol id="h6-i-quote" viewBox="0 0 24 24"><path d="M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V2l-2 1-2-1-2 1-2-1-2 1-2-1-2 1Z"/><path d="M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8"/><path d="M12 17.5v-11"/></symbol>
+      <symbol id="h6-i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
+      <symbol id="h6-i-x" viewBox="0 0 24 24"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></symbol>
+      <symbol id="h6-i-pen" viewBox="0 0 24 24"><path d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z"/></symbol>
+      <symbol id="h6-i-up" viewBox="0 0 24 24"><path d="m5 12 7-7 7 7"/><path d="M12 19V5"/></symbol>
+    </svg>
+    <div class="h6-sky" aria-hidden="true"></div>
+
+    <div class="h6-copy">
+      <h1 class="h6-h1" aria-label="The AI operating system for field service"><span class="h6-l">The AI operating system</span> <span class="h6-l"><span class="h6-rot-a">for</span> <span class="h6-rot" data-h6-rot>field</span> <span class="h6-rot-b">service</span></span></h1>
+      <p class="h6-sub">A personal assistant for every technician. A team of agents for the office.</p>
+      <div class="h6-acts">
+        <a class="btn btn-ink" href="https://calendar.app.google/fFpCL3WG3pJtqtC89" target="_blank" rel="noopener">Get a free demo</a>
+        <a class="btn h6-btn-sky" href="technicians.html#showcase">See how it works</a>
+      </div>
+    </div>
+
+    <div class="h6-stage">
+      <div class="h6-win" role="group" aria-label="Home in the kenner app: the ask box and the agents' posts">
+        <div class="h6-ask" data-h6-ask role="img" aria-label="The ask box: Ask Kenner, or say what you need done">
+          <img class="h6-ask-mk" src="brand/mark-ultramarine.svg" alt="">
+          <span class="h6-ask-tx" aria-hidden="true"><span class="h6-ask-ph" data-h6-ph>Ask Kenner, or say what you need done</span><i class="h6-caret"></i></span>
+          <span class="h6-ask-go" aria-hidden="true"><svg class="h6-ic"><use href="#h6-i-up"/></svg></span>
+        </div>
+        <div class="h6-feed" data-h6-feed>
+          <article class="h6-post h6-open" data-h6-post>
+            <div class="h6-post-fold"><div>
+              <button class="h6-post-head" type="button" aria-expanded="true" data-h6-toggle><svg class="h6-ic" aria-hidden="true"><use href="#h6-i-renew"/></svg><b class="h6-post-name">Contract renewals</b><span class="h6-sr">:</span><span class="h6-post-text">Put a renewal quote of $4,260.00 a year on Riverside Centre’s account</span></button>
+              <div class="h6-post-more"><div><div class="h6-post-acts"><button class="btn btn-ink h6-btn-sm" type="button" data-h6-act="approve">Approve</button><button class="btn h6-btn-line h6-btn-sm" type="button" data-h6-act="change">Change</button><button class="btn h6-btn-line h6-btn-sm" type="button" data-h6-act="decline">Decline</button></div></div></div>
+            </div></div>
+          </article>
+          <article class="h6-post" data-h6-post>
+            <div class="h6-post-fold"><div>
+              <button class="h6-post-head" type="button" aria-expanded="false" data-h6-toggle><svg class="h6-ic" aria-hidden="true"><use href="#h6-i-file"/></svg><b class="h6-post-name">Projects and contracts</b><span class="h6-sr">:</span><span class="h6-post-text">Send the $402.60 invoice for job LV-2119, which was never billed</span></button>
+              <div class="h6-post-more"><div><div class="h6-post-acts"><button class="btn btn-ink h6-btn-sm" type="button" data-h6-act="approve">Approve</button><button class="btn h6-btn-line h6-btn-sm" type="button" data-h6-act="change">Change</button><button class="btn h6-btn-line h6-btn-sm" type="button" data-h6-act="decline">Decline</button></div></div></div>
+            </div></div>
+          </article>
+          <template data-h6-tpl>
+            <article class="h6-post" data-h6-post>
+              <div class="h6-post-fold"><div>
+                <button class="h6-post-head" type="button" aria-expanded="false" data-h6-toggle><svg class="h6-ic" aria-hidden="true"><use href=""/></svg><b class="h6-post-name"></b><span class="h6-sr">:</span><span class="h6-post-text"></span></button>
+                <div class="h6-post-more"><div><div class="h6-post-acts"><button class="btn btn-ink h6-btn-sm" type="button" data-h6-act="approve">Approve</button><button class="btn h6-btn-line h6-btn-sm" type="button" data-h6-act="change">Change</button><button class="btn h6-btn-line h6-btn-sm" type="button" data-h6-act="decline">Decline</button></div></div></div>
+              </div></div>
+            </article>
+          </template>
+        </div>
+        <p class="h6-sr" aria-live="polite" data-h6-live></p>
+      </div>
+      <div class="h6-roof" role="img" aria-label="A row of service vans from behind at dusk, a technician on the phone between two of them"></div>
+    </div>
+
+    <div class="h6-strip">
+      <div class="h6-strip-in">
         <p>Built by people from</p>
         <img src="logos/team/palantir.svg" alt="Palantir" style="height:19px">
         <img src="logos/team/bayer.svg" alt="Bayer" style="height:26px">
@@ -1093,135 +612,131 @@ footer{background:var(--paper)}
         <img src="logos/team/imperial.svg" alt="Imperial College London" style="height:21px">
         <img src="logos/team/escp.png" alt="ESCP Business School" style="height:24px">
         <img src="logos/team/ef.svg" alt="Entrepreneurs First" style="height:10px">
-        <span class="yc" role="img" aria-label="Y Combinator"><img src="logos/team/ycombinator.svg" alt="" style="height:19px">Combinator</span>
       </div>
     </div>
   </section>
-  <div class="mk-tip" id="mk-tip" aria-hidden="true">Click to listen</div>
 
-  <!-- 2 · value split + impact -->
-  <section class="sec" id="value">
+  <section class="sec" id="pillars">
     <div class="wrap">
-      <div class="center">
-        <h2 class="h2">Help on every job. Insight across all of them.</h2>
-      </div>
-    </div>
-
-    <div class="duo">
-      <article class="aud" id="for-leaders">
-        <svg class="aud-bg" viewBox="0 0 800 800" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-          <defs>
-            <linearGradient id="au-g1" x1="0" y1="0" x2=".7" y2="1"><stop offset="0" stop-color="#1438CA"/><stop offset="1" stop-color="#0B1C72"/></linearGradient>
-            <filter id="au-s1" x="-25%" y="-25%" width="150%" height="150%" color-interpolation-filters="sRGB">
-              <feTurbulence type="fractalNoise" baseFrequency=".005 .011" numOctaves="3" seed="7" result="warp"/>
-              <feDisplacementMap in="SourceAlpha" in2="warp" scale="190" xChannelSelector="R" yChannelSelector="G" result="shape"/>
-              <feGaussianBlur in="shape" stdDeviation="34" result="soft"/>
-              <feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" seed="11" result="noise"/>
-              <feColorMatrix in="noise" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  1 0 0 0 0" result="na"/>
-              <feComposite in="soft" in2="na" operator="arithmetic" k1="0" k2="1" k3="-1" k4=".5"/>
-              <feComponentTransfer result="dots"><feFuncA type="discrete" tableValues="0 1"/></feComponentTransfer>
-              <feFlood flood-color="#070818"/>
-              <feComposite in2="dots" operator="in"/>
-            </filter>
-            <filter id="au-n1" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency=".8" numOctaves="2" seed="16"/><feColorMatrix type="matrix" values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 .5 -.14"/></filter>
-          </defs>
-          <rect width="800" height="800" fill="url(#au-g1)"/>
-          <path d="M470 -120 L940 -120 L940 940 L700 940 C640 640 560 360 470 -120Z" filter="url(#au-s1)"/>
-          <rect width="800" height="800" filter="url(#au-n1)" opacity=".22"/>
-        </svg>
-        <div class="aud-copy">
-          <h3>For service leaders</h3>
-          <p>Your best engineer’s know‑how at every site. First-time fix by team and fault type.</p>
-          <a class="btn btn-ghost" href="#start">Start with one team</a>
-        </div>
-        <div class="win" role="img" aria-label="Kenner’s web app on the first-time fix page: 76% across all teams, up 9 points since June, with North at 81%, South at 74% and the night shift at 66%, and a table of the faults where jobs come back">
-          <div class="rail">
-            <img src="brand/mark-ultramarine.svg" alt="" loading="lazy" decoding="async">
-            <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 11l8-7 8 7v8a1 1 0 0 1-1 1h-4v-6H9v6H5a1 1 0 0 1-1-1z"/></svg>Home</span>
-            <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="5" width="14" height="16" rx="2"/><path d="M9 3.5h6v3H9zM9 12h6M9 16h4"/></svg>Jobs</span>
-            <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8l8-4 8 4v8l-8 4-8-4zM4 8l8 4 8-4M12 12v8"/></svg>Units</span>
-            <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15H6.5A2.5 2.5 0 0 0 4 20.5z"/><path d="M4 20.5A2.5 2.5 0 0 0 6.5 23H20v-5"/></svg>Fixes</span>
-            <span class="on"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 20V11M12 20V4M19 20v-6"/></svg>Insights</span>
-          </div>
-          <div class="wb">
-            <div class="w-top"><h4>First-time fix</h4><small>All sites · June to October</small></div>
-            <div class="kts">
-              <div class="kt"><b>76%<em>+9 pts</em></b><span>All teams</span></div>
-              <div class="kt"><b>81%</b><span>North</span></div>
-              <div class="kt"><b>74%</b><span>South</span></div>
-              <div class="kt"><b>66%</b><span>Night shift</span></div>
-            </div>
-            <div class="w-tabs"><span class="on">By fault</span><span>By model</span><span>By site</span></div>
-            <div class="w-tb">
-              <div class="w-th"><span>Fault</span><span>Equipment</span><span>Jobs</span><span>Came back</span></div>
-              <div><b>Gas cooler fans</b><span>CO2 booster racks</span><span>115</span><span>31%</span></div>
-              <div><b>Condensate switch</b><span>Rooftop units</span><span>86</span><span>24%</span></div>
-              <div><b>Termination sensor</b><span>Display cases</span><span>64</span><span>19%</span></div>
-              <div><b>High pressure valve</b><span>CO2 booster racks</span><span>78</span><span>17%</span></div>
-              <div><b>Economizer actuator</b><span>Rooftop units</span><span>52</span><span>14%</span></div>
-            </div>
-          </div>
-        </div>
-      </article>
-      <article class="aud" id="for-technicians">
-        <svg class="aud-bg" viewBox="0 0 800 800" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-          <defs>
-            <linearGradient id="au-g2" x1="0" y1="0" x2=".7" y2="1"><stop offset="0" stop-color="#3D4873"/><stop offset="1" stop-color="#20274A"/></linearGradient>
-            <filter id="au-s2" x="-25%" y="-25%" width="150%" height="150%" color-interpolation-filters="sRGB">
-              <feTurbulence type="fractalNoise" baseFrequency=".005 .011" numOctaves="3" seed="23" result="warp"/>
-              <feDisplacementMap in="SourceAlpha" in2="warp" scale="190" xChannelSelector="R" yChannelSelector="G" result="shape"/>
-              <feGaussianBlur in="shape" stdDeviation="34" result="soft"/>
-              <feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" seed="27" result="noise"/>
-              <feColorMatrix in="noise" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  1 0 0 0 0" result="na"/>
-              <feComposite in="soft" in2="na" operator="arithmetic" k1="0" k2="1" k3="-1" k4=".5"/>
-              <feComponentTransfer result="dots"><feFuncA type="discrete" tableValues="0 1"/></feComponentTransfer>
-              <feFlood flood-color="#0A0C17"/>
-              <feComposite in2="dots" operator="in"/>
-            </filter>
-            <filter id="au-n2" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency=".8" numOctaves="2" seed="32"/><feColorMatrix type="matrix" values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 .5 -.14"/></filter>
-          </defs>
-          <rect width="800" height="800" fill="url(#au-g2)"/>
-          <path d="M560 -120 L940 -120 L940 940 L380 940 C470 660 610 380 560 -120Z" filter="url(#au-s2)"/>
-          <rect width="800" height="800" filter="url(#au-n2)" opacity=".22"/>
-        </svg>
-        <div class="aud-copy">
-          <h3>For technicians</h3>
-          <p>Answers in seconds: what fixed this fault on this unit before, and what to check first. Say what you did and Kenner writes the report.</p>
-          <a class="btn btn-ghost" href="#showcase">Watch Kenner work</a>
-        </div>
-        <div class="win win-chat" role="img" aria-label="A message thread with Kenner. Carlos writes: Case 14 is at 10°F and climbing, coil’s iced up. Kenner answers: Defrost is ending too early, check the termination sensor first, with the alarm log, Dave’s job in April and the manual as sources">
-          <div class="ch-h"><img src="brand/logo-avatar.svg" alt="" loading="lazy" decoding="async"><b>Kenner</b></div>
-          <div class="ch-b">
-            <div class="ch-me"><span>Case 14 is at 10°F and climbing. Coil’s iced up.</span><small>Carlos, 6:12 AM</small></div>
-            <div class="ch-k">
-              <p>Defrost is ending too early. Check the termination sensor first.</p>
-              <ul class="ch-src">
-                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 14.5V5a2 2 0 1 1 4 0v9.5a4 4 0 1 1-4 0z"/><path d="M12 11v6"/></svg>Alarm log: defrost ended at 18 of 35 min</li>
-                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="3.4"/><path d="M5.5 20a6.5 6.5 0 0 1 13 0"/></svg>Dave’s job in April: same fault, sensor 11°F low</li>
-                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15H6.5A2.5 2.5 0 0 0 4 20.5z"/><path d="M4 20.5A2.5 2.5 0 0 0 6.5 23H20v-5"/></svg>Manual p. 34: sensor tolerance ±2°F</li>
+      <h2 class="h2 center home-p-title">One system for the field and the office</h2>
+      <div class="home-p" id="home-p">
+        <div class="home-p-item is-on">
+          <div class="home-p-vis p-light" role="img" aria-label="Kenner at work in the connected systems, one after another: reading the manual in SharePoint, filing the service report in ServiceTitan, booking the parts used in SAP, drafting a quote in HubSpot">
+            <div class="home-v" aria-hidden="true">
+              <ul class="home-stack home-v-new" id="home-stack">
+                <li class="p-card" data-d="-3"><span><img src="logos/sys/dynamics365.svg" alt="" loading="lazy" decoding="async"></span>Updating the machine’s history</li>
+                <li class="p-card" data-d="-2"><span><img src="logos/sys/gdrive.svg" alt="" loading="lazy" decoding="async"></span>Pulling photos from the last visit</li>
+                <li class="p-card" data-d="-1"><span><img src="logos/sys/sharepoint.svg" alt="" loading="lazy" decoding="async"></span>Reading the manual for Case 14</li>
+                <li class="p-card" data-d="0"><span><img src="pr/logos/avatar/servicetitan.svg" alt="" loading="lazy" decoding="async"></span>Filing the service report</li>
+                <li class="p-card" data-d="1"><span><img src="logos/sys/sap.svg" alt="" loading="lazy" decoding="async"></span>Booking the parts used</li>
+                <li class="p-card" data-d="2"><span><i class="home-feed-hs"></i></span>Drafting the quote for a new sensor</li>
+                <li class="p-card" data-d="3"><span><img src="logos/sys/salesforce.svg" alt="" loading="lazy" decoding="async"></span>Checking the service contract</li>
+              </ul>
+              <ul class="home-feed home-v-old">
+                <li class="p-card"><img src="logos/sys/sharepoint.svg" alt="" loading="lazy" decoding="async">Read the manual, p. 34<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></li>
+                <li class="p-card"><img src="pr/logos/avatar/servicetitan.svg" alt="" loading="lazy" decoding="async">Filed the service report<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></li>
+                <li class="p-card"><img src="logos/sys/sap.svg" alt="" loading="lazy" decoding="async">Booked the parts used<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></li>
+                <li class="p-card"><i class="home-feed-hs"></i>Drafted the quote<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></li>
               </ul>
             </div>
           </div>
+          <div class="home-p-text">
+            <h3>Unify your data in one place</h3>
+            <p>Secure connections across your FSM, CRM, ERP and supplier portals.</p>
+            <a class="home-p-go" href="integrations.html">Integrations<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h12M11 5l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          </div>
         </div>
-      </article>
+        <div class="home-p-item">
+          <div class="home-p-vis p-light" role="img" aria-label="The record of every machine, with its last fault and its number of jobs, while Kenner searches past jobs">
+            <div class="home-v" aria-hidden="true">
+              <div class="home-kb home-v-new">
+                <div class="home-kb-win p-card">
+                  <p class="home-kb-tabs"><b>Machines</b><span>Parts</span><span>Faults</span><span>Customers</span></p>
+                  <ul class="home-kb-rows">
+                    <li class="home-kb-h"><span>Machine</span><span>Last fault</span><span>Jobs</span></li>
+                    <li><span><u>Case 14</u></span><span><u>Defrost ending too early</u></span><span>9</span></li>
+                    <li><span><u>Walk-in 2</u></span><span><u>Door heater out</u></span><span>4</span></li>
+                    <li><span><u>Rack B</u></span><span><u>Low suction pressure</u></span><span>12</span></li>
+                    <li><span><u>Ice machine 1</u></span><span><u>Scale on the evaporator</u></span><span>6</span></li>
+                    <li><span><u>Rooftop unit 3</u></span><span><u>Condenser fan motor</u></span><span>7</span></li>
+                    <li><span><u>Case 9</u></span><span><u>Drain line frozen</u></span><span>3</span></li>
+                    <li><span><u>Walk-in 1</u></span><span><u>High head pressure</u></span><span>5</span></li>
+                    <li><span><u>Case 22</u></span><span><u>Fan cycling</u></span><span>2</span></li>
+                  </ul>
+                </div>
+                <p class="home-kb-ask p-card"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 3v4"/><path d="m18.36 5.64-2.83 2.83" opacity=".25"/><path d="M21 12h-4" opacity=".25"/><path d="m18.36 18.36-2.83-2.83" opacity=".35"/><path d="M12 21v-4" opacity=".45"/><path d="m5.64 18.36 2.83-2.83" opacity=".55"/><path d="M3 12h4" opacity=".7"/><path d="m5.64 5.64 2.83 2.83" opacity=".85"/></svg>Searching past jobs</p>
+              </div>
+              <div class="home-fault p-card home-v-old">
+                <p class="home-fault-what"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 14.5V5a2 2 0 1 1 4 0v9.5a4 4 0 1 1-4 0z"/><path d="M12 11v6"/></svg>Defrost ending too early</p>
+                <p class="home-fault-fix">Termination sensor</p>
+                <p class="home-fault-held"><span><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i class="no"></i><i class="no"></i></span>held in 7 of 9 jobs</p>
+              </div>
+            </div>
+          </div>
+          <div class="home-p-text">
+            <h3>Build knowledge that compounds</h3>
+            <p>Turn every call, photo and close-out into the full history of every machine, for the whole company to use.</p>
+            <a class="home-p-go" href="intelligence.html">Intelligence<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h12M11 5l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          </div>
+        </div>
+        <div class="home-p-item">
+          <div class="home-p-vis p-light" role="img" aria-label="Agent posts waiting for a yes, one behind the other. In front, from Projects and contracts: send the $402.60 invoice for job LV-2119, which was never billed. Under it are Approve, Change and Decline">
+            <div class="home-v" aria-hidden="true">
+              <ul class="home-queue home-v-new" id="home-queue">
+                <li class="p-card" data-d="0"><p class="home-post-who"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h6"/></svg>Projects and contracts<i></i></p><p class="home-post-say">Send the $402.60 invoice for job LV-2119, which was never billed</p><p class="home-post-acts"><b><span>Approve</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></b><span>Change</span><span>Decline</span></p></li>
+                <li class="p-card" data-d="1"><p class="home-post-who"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 0 1 15.5-6.2L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-15.5 6.2L3 16"/><path d="M3 21v-5h5"/></svg>Contract renewals<i></i></p><p class="home-post-say">Put a renewal quote of $4,260.00 a year on Riverside Centre’s account</p><p class="home-post-acts"><b><span>Approve</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></b><span>Change</span><span>Decline</span></p></li>
+                <li class="p-card" data-d="2"><p class="home-post-who"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7h11v9H3z"/><path d="M14 10h4l3 3v3h-7z"/><circle cx="7.5" cy="17.5" r="1.8"/><circle cx="17.5" cy="17.5" r="1.8"/></svg>Inventory and fleet<i></i></p><p class="home-post-say">Move 2 capacitors to van 2 for tomorrow’s jobs</p><p class="home-post-acts"><b><span>Approve</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></b><span>Change</span><span>Decline</span></p></li>
+              </ul>
+              <div class="home-post p-card home-v-old">
+                <p class="home-post-who"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg>Warranty recovery<i></i></p>
+                <p class="home-post-say">File a $186 warranty claim for Case 14’s sensor</p>
+                <p class="home-post-acts"><b>Approve</b><span>Change</span><span>Decline</span></p>
+              </div>
+            </div>
+          </div>
+          <div class="home-p-text">
+            <h3>Accelerate your output</h3>
+            <p>Run the work around every job end to end with agents built for field service: the warranty claim, the missing invoice, the van restock.</p>
+            <a class="home-p-go" href="agents.html">Agents<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h12M11 5l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          </div>
+        </div>
+        <div class="home-p-item">
+          <div class="home-p-vis p-light" role="img" aria-label="A technician’s message to Kenner: Case 14 is at 10°F and climbing, coil’s iced up. Kenner answers: Defrost is ending too early, check the termination sensor first. Its source: Dave’s job in April, same fault, sensor 11°F low. In front of the phone: service report filed">
+            <div class="home-v" aria-hidden="true">
+              <div class="home-talk">
+              <div class="home-chat p-card">
+                <p class="home-chat-me">Case 14 is at 10°F and climbing. Coil’s iced up.</p>
+                <div class="home-chat-k">
+                  <img src="brand/logo-avatar.svg" alt="" loading="lazy" decoding="async">
+                  <i class="home-chat-dots"><i></i><i></i><i></i></i>
+                  <p>Defrost is ending too early. Check the termination sensor first.</p>
+                  <p class="home-chat-src"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="3.4"/><path d="M5.5 20a6.5 6.5 0 0 1 13 0"/></svg>Dave’s job in April: same fault, sensor 11°F low</p>
+                </div>
+              </div>
+              <p class="home-talk-done p-card home-v-new"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></i>Service report filed</p>
+              </div>
+            </div>
+          </div>
+          <div class="home-p-text">
+            <h3>Give every technician a personal assistant</h3>
+            <p>They call or text Kenner on the phone they already have. It answers from past jobs and files the report from one call.</p>
+            <a class="home-p-go" href="technicians.html">Technicians<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h12M11 5l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          </div>
+        </div>
+      </div>
     </div>
-
   </section>
 
-  <!-- 3 · agents: "Watch Kenner work" from kenner-site PR #9 (Arthur); styles in agents/agents.css, script in agents/agents.js -->
   <section class="sec pick" id="showcase">
     <div class="wrap">
       <div class="sc-top">
       <div class="sc-head">
         <h2 class="h2 center">Kenner gets it done</h2>
       </div>
-      <div class="agents" role="group" aria-label="Agent" id="agents">
-        <button type="button" data-flow="fix" aria-pressed="true">Troubleshooting<span class="ag-w"> agent</span></button>
-        <button type="button" data-flow="report" aria-pressed="false">Reporting<span class="ag-w"> agent</span></button>
-        <span class="ag-off" aria-disabled="true" title="Before the van leaves: the unit’s history, what to check first and what to bring.">Briefing<span class="ag-w"> agent</span></span>
-        <span class="ag-off" aria-disabled="true" title="Photo in, part identified, ordered to the van on a yes.">Parts<span class="ag-w"> agent</span></span>
-        <span class="ag-off" aria-disabled="true" title="From a worn part to a quote, drafted from your price book.">Quoting<span class="ag-w"> agent</span></span>
-        <span class="ag-off" aria-disabled="true" title="Leads, access notes and new fixes, filed where they belong.">Notes<span class="ag-w"> agent</span></span>
+      <div class="agents" role="group" aria-label="Moment" id="agents">
+        <button type="button" data-flow="brief" aria-pressed="false">Before the job</button>
+        <button type="button" data-flow="fix" aria-pressed="true">On the job</button>
+        <button type="button" data-flow="report" aria-pressed="false">After the job</button>
       </div>
       <div class="pk-bar" id="pk-bar"><span id="pk-now"></span><button type="button" id="pk-change">Change</button></div>
       </div>
@@ -1236,18 +751,15 @@ footer{background:var(--paper)}
             <div class="sbar" id="pk-sb"></div>
             <section class="pk-s pk-agent" aria-labelledby="pk-t1">
               <img class="pk-mk" src="brand/mark-ultramarine.svg" alt="">
-              <h3 id="pk-t1">Choose an agent</h3>
+              <h3 id="pk-t1">Choose a moment</h3>
               <div class="pk-list">
-                <button type="button" class="pk-row" data-flow="fix" data-name="Troubleshooting agent">Troubleshooting agent<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M6 3l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-                <button type="button" class="pk-row" data-flow="report" data-name="Reporting agent">Reporting agent<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M6 3l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-                <span class="pk-row off" title="Before the van leaves: the unit’s history, what to check first and what to bring.">Briefing agent</span>
-                <span class="pk-row off" title="Photo in, part identified, ordered to the van on a yes.">Parts agent</span>
-                <span class="pk-row off" title="From a worn part to a quote, drafted from your price book.">Quoting agent</span>
-                <span class="pk-row off" title="Leads, access notes and new fixes, filed where they belong.">Notes agent</span>
+                <button type="button" class="pk-row" data-flow="brief" data-name="Before the job">Before the job<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M6 3l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+                <button type="button" class="pk-row" data-flow="fix" data-name="On the job">On the job<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M6 3l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+                <button type="button" class="pk-row" data-flow="report" data-name="After the job">After the job<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M6 3l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
               </div>
             </section>
             <section class="pk-s pk-app" aria-labelledby="pk-t2">
-              <button type="button" class="pk-back" id="pk-back" aria-label="Back to the agents"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M10 3L5 8l5 5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+              <button type="button" class="pk-back" id="pk-back" aria-label="Back to the moments"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M10 3L5 8l5 5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
               <h3 id="pk-t2">Choose an app</h3>
               <div class="pk-apps">
                 <button type="button" data-app="im" aria-label="iMessage" title="iMessage" style="--c:linear-gradient(180deg,#5DF777,#0ABE2A)"><span style="--m:url(mono/imessage.svg);--s:108%"></span></button>
@@ -1270,13 +782,21 @@ footer{background:var(--paper)}
           </div>
         </div>
       </div>
-      <div class="stats">
-        <h2 class="h2 center">What it adds up to. <span>Real service metric impact.</span></h2>
-        <div class="panel g4" style="margin-top:0">
-          <div class="stat"><b>More <br>jobs</b><p>per technician, every week. Less searching, calling around and typing reports.</p></div>
+      <div class="stats" id="impact">
+        <h2 class="h2 center">What it adds up to. <span>More revenue from the same team.</span></h2>
+        <div class="panel g4 imp-four" style="margin-top:0">
+          <div class="stat"><b>More <br>revenue</b><p>Unbilled work gets invoiced. Quotes and contract proposals go out the day your technician spots the work.</p></div>
+          <div class="stat"><b>More <br>jobs</b><p>per technician, every week. Less time troubleshooting, calling around and typing reports.</p></div>
+          <div class="stat"><b>Fewer <br>repeat visits</b><p>The fix holds the first time, so the same unit doesn’t bring you back.</p></div>
           <div class="stat"><b>Less <br>downtime</b><p>Units are back up sooner, so your customers lose less time.</p></div>
-          <div class="stat"><b>Fewer <br>callbacks</b><p>The fix holds the first time, so the same unit doesn’t bring you back.</p></div>
-          <div class="stat"><b>Fewer <br>escalations</b><p>Kenner answers the questions that used to be a call to your most experienced engineer.</p></div>
+        </div>
+        <div class="panel g4 g3 imp-six" style="margin-top:0">
+          <div class="stat"><b>More <br>billed work</b><p>Work that was never invoiced, or fell outside the contract, is found, with the invoice ready to send.</p></div>
+          <div class="stat"><b>More <br>follow-on work</b><p>What your technicians notice on site, a worn part or an ageing unit, goes out as a quote or contract proposal the same day.</p></div>
+          <div class="stat"><b>More <br>jobs</b><p>per technician, every week. Less time troubleshooting, calling around and typing reports.</p></div>
+          <div class="stat"><b>Fewer <br>repeat visits</b><p>The fix holds the first time, so the same unit doesn’t bring you back.</p></div>
+          <div class="stat"><b>Faster <br>ramp-up</b><p>New technicians go out alone sooner, because what your experienced people know is one call away.</p></div>
+          <div class="stat"><b>Less <br>downtime</b><p>Units are back up sooner, so your customers lose less time.</p></div>
         </div>
       </div>
     </div>
@@ -1284,65 +804,90 @@ footer{background:var(--paper)}
     <div class="refc" id="refc" aria-hidden="true"></div>
   </section>
 
-  <!-- 4b · reality -->
-  <section class="sec" id="reality">
+  <section class="sec" id="foundation">
+    <svg class="f6-sprite" width="0" height="0" aria-hidden="true" focusable="false">
+      <symbol id="f6-i-phone" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></symbol>
+      <symbol id="f6-i-text" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></symbol>
+      <symbol id="f6-i-photo" viewBox="0 0 24 24"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"/><circle cx="12" cy="13" r="3"/></symbol>
+      <symbol id="f6-i-file" viewBox="0 0 24 24"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></symbol>
+      <symbol id="f6-i-grid" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/></symbol>
+      <symbol id="f6-i-chart" viewBox="0 0 24 24"><path d="M3 3v16a2 2 0 0 0 2 2h16"/><path d="M18 17V9"/><path d="M13 17V5"/><path d="M8 17v-3"/></symbol>
+      <symbol id="f6-i-wrench" viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></symbol>
+    </svg>
     <div class="wrap">
-      <div class="real">
-        <h2 class="h2 center">Reality is not a pre‑recorded video. <span><img src="brand/lockup-ink.svg" alt="Kenner" loading="lazy" decoding="async"> learns from every job, even these…</span></h2>
-        <div class="stage-r">
-          <figure class="ph job r1" data-k="0.04"><div class="im"><img src="img/job/freezer-ebike.jpg" alt="" style="object-position:50% 60%" draggable="false"></div><figcaption class="cap"><div class="bub">Store manager unplugged the freezer to charge his e-bike<small>Carlos, 6:12 AM</small></div><p class="kept"><img src="brand/mark-ultramarine.svg" alt="Kenner kept:"><span><b>Sales note</b> Lockable socket recommended.</span></p></figcaption></figure>
-          <figure class="ph job r2" data-k="-0.03"><div class="im"><img src="img/job/sheep-turbine.jpg" alt="" style="object-position:50% 60%" draggable="false"></div><figcaption class="cap"><div class="bub">Sheep are blocking the door to the turbine again<small>Tyler, 6:48 AM</small></div><p class="kept"><img src="brand/mark-ultramarine.svg" alt="Kenner kept:"><span><b>Access note</b> Call the farmer before the visit.</span></p></figcaption></figure>
-          <figure class="ph job r4" data-k="-0.04"><div class="im"><img src="img/job/pigeons-gascooler.jpg" alt="" style="object-position:50% 35%" draggable="false"></div><figcaption class="cap"><div class="bub">Pigeons are nesting in the gas cooler again<small>Ashley, 7:31 AM</small></div><p class="kept"><img src="brand/mark-ultramarine.svg" alt="Kenner kept:"><span><b>Site note</b> Second nest in the gas cooler.</span></p></figcaption></figure>
-          <figure class="ph job r5" data-k="0.05"><div class="im"><img src="img/job/forklift.jpg" alt="" style="object-position:50% 50%" draggable="false"></div><figcaption class="cap"><div class="bub">Forklift only throws the error when Dave drives it<small>Carlos, 11:18 AM</small></div><p class="kept"><img src="brand/mark-ultramarine.svg" alt="Kenner kept:"><span><b>Training note</b> Upskill potential for Dave.</span></p></figcaption></figure>
-          <figure class="ph job r6 rev" data-k="-0.02"><div class="im"><img src="img/job/plantroom.jpg" alt="" style="object-position:50% 50%" draggable="false"></div><figcaption class="cap"><div class="bub">Who installed this? Asking for a friend<small>Ashley, 2:42 PM</small></div><p class="kept"><img src="brand/mark-ultramarine.svg" alt="Kenner kept:"><span><b>Unit history</b> <i class="nb">Non-standard</i> install.</span></p></figcaption></figure>
+      <h2 class="h2 center">Adoption first. The data follows.</h2>
+      <p class="f6-sub">Only with strong adoption in the field can you build the data foundation for the future.</p>
+
+      <div class="f6-trio">
+        <div class="f6-pill f6-left">
+          <h3>Adoption</h3>
+          <p>Technicians don't open a new app. They call or text Kenner, because it helps on the job and does their admin.</p>
+          <p class="f6-alt">No new app and no training day. Technicians call or text Kenner, because it helps on the job and does their admin.</p>
         </div>
-        <div class="mq" id="mq" role="group" aria-label="Messages technicians have sent"></div>
-        <button class="mq-ctl" id="mq-ctl" type="button" aria-pressed="false" aria-label="Pause the messages"><svg class="pa" viewBox="0 0 18 18" aria-hidden="true"><path d="M6 4v10M12 4v10" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg><svg class="pl" viewBox="0 0 18 18" aria-hidden="true"><path d="M6.5 4.2v9.6L14 9z" fill="currentColor"/></svg></button>
+
+        <div class="f6-loop p-light" role="img" aria-label="A loop around Kenner. Technicians call, text and send photos. Those become job records. The office's agents and insights run on the records. Technicians get better answers on the next job, so they keep calling.">
+          <svg class="f6-ring" viewBox="0 0 520 520" aria-hidden="true">
+            <path class="f6-arc" d="M355.1 119.1A170 170 0 0 1 422.6 210.3"/><path class="f6-arc" d="M422.6 309.7A170 170 0 0 1 362.3 395.8"/><path class="f6-arc" d="M157.7 395.8A170 170 0 0 1 95.0 301.1"/><path class="f6-arc" d="M95.0 218.9A170 170 0 0 1 164.9 119.1"/>
+            <path class="f6-chev" d="M-6 -3.5 0 0-6 3.5" transform="translate(380.2 139.8) rotate(45)"/>
+            <path class="f6-chev" d="M-6 -3.5 0 0-6 3.5" transform="translate(380.2 380.2) rotate(135)"/>
+            <path class="f6-chev" d="M-6 -3.5 0 0-6 3.5" transform="translate(139.8 380.2) rotate(225)"/>
+            <path class="f6-chev" d="M-6 -3.5 0 0-6 3.5" transform="translate(139.8 139.8) rotate(315)"/>
+            <g class="f6-orbit"><circle class="f6-run" cx="260" cy="90" r="3.5"/></g>
+          </svg>
+          <div class="f6-core f6-mid" aria-hidden="true"><img src="brand/mark-ultramarine.svg" alt="" loading="lazy" decoding="async"></div>
+          <div class="f6-st f6-st-t p-card" aria-hidden="true">
+            <span class="f6-ics"><svg class="f6-ic"><use href="#f6-i-phone"/></svg><svg class="f6-ic"><use href="#f6-i-text"/></svg><svg class="f6-ic"><use href="#f6-i-photo"/></svg></span>
+            <span class="f6-lab">Calls, texts, photos</span>
+            <span class="f6-pc f6-pc-call"><svg class="f6-ic"><use href="#f6-i-phone"/></svg><span class="f6-wave"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><b>0:42</b></span>
+          </div>
+          <div class="f6-st f6-st-r p-card" aria-hidden="true"><svg class="f6-ic"><use href="#f6-i-file"/></svg><span class="f6-lab">Job records</span>
+            <span class="f6-pc f6-pc-rec p-card"><small><svg class="f6-ic"><use href="#f6-i-file"/></svg>WO-2051</small><b>Case 14</b><span>Sensor replaced</span></span>
+          </div>
+          <div class="f6-st f6-st-b p-card" aria-hidden="true">
+            <span class="f6-ics"><svg class="f6-ic"><use href="#f6-i-grid"/></svg><svg class="f6-ic"><use href="#f6-i-chart"/></svg></span>
+            <span class="f6-lab">Agents and insights</span>
+            <span class="f6-pc f6-pc-ins p-card"><span class="f6-sq"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><span>held in 7 of 9 jobs</span></span>
+          </div>
+          <div class="f6-st f6-st-l p-card" aria-hidden="true"><svg class="f6-ic"><use href="#f6-i-wrench"/></svg><span class="f6-lab">Better answers</span>
+            <span class="f6-pc f6-pc-ans">Check the sensor first.</span>
+          </div>
+        </div>
+
+        <div class="f6-pill f6-right">
+          <h3>Data</h3>
+          <p>Every call, text and photo becomes a job record, linked to the machine, the part, the fault and the customer. The whole company runs on it.</p>
+          <p class="f6-alt">Most of what happens on a job is never written down. Here every call, text and photo becomes a job record, linked to the machine, the part, the fault and the customer.</p>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- 5 · deploy -->
-  <section class="night" id="deploy">
-    <div class="wrap sec">
-      <h2 class="h2 center">Connected to everything. <span>On every phone.</span></h2>
-      <div class="hub" id="hub">
-        <svg class="hub-lines" id="hub-lines" aria-hidden="true"></svg>
-        <div class="chs">
-          <button class="tile" type="button" data-n="WhatsApp" data-d="Text, voice notes, photos and calls."><img class="m" src="mono/whatsapp.svg" alt="" loading="lazy" decoding="async"><img class="c" src="logos/tiles/whatsapp.svg" alt="" loading="lazy" decoding="async"><span>WhatsApp</span></button>
-          <button class="tile" type="button" data-n="iMessage" data-d="The same conversation for iPhone teams."><img class="m" src="mono/imessage.svg" alt="" loading="lazy" decoding="async"><img class="c" src="logos/tiles/imessage.svg" alt="" loading="lazy" decoding="async"><span>iMessage</span></button>
-          <button class="tile" type="button" data-n="Microsoft Teams" data-d="For companies that keep WhatsApp off work phones."><img class="m" src="mono/teams.svg" alt="" loading="lazy" decoding="async"><img class="c" src="logos/tiles/teams.svg" alt="" loading="lazy" decoding="async"><span>Teams</span></button>
-          <button class="tile" type="button" data-n="RCS" data-d="Rich messaging on Android, no extra app."><img class="m" src="mono/rcs.svg" alt="" loading="lazy" decoding="async"><img class="c" src="logos/tiles/rcs.svg" alt="" loading="lazy" decoding="async"><span>RCS</span></button>
-          <button class="tile" type="button" data-n="Phone call" data-d="A normal number. Hands busy on the roof? Just call."><svg class="m" viewBox="0 0 24 24" width="28" height="28" fill="#fff" aria-hidden="true" style="opacity:.9"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1z"/></svg><span class="c" style="background:linear-gradient(180deg,#5BF675,#0ABE2A);display:flex;align-items:center;justify-content:center"><svg viewBox="0 0 24 24" width="20" height="20" fill="#fff" aria-hidden="true"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1z"/></svg></span><span>Phone call</span></button>
-          <button class="tile" type="button" data-n="The Kenner app" data-d="Our own app, for companies that want Kenner outside personal messengers. Same conversation, same history."><img class="m sil" src="brand/mark-ultramarine.svg" alt="" loading="lazy" decoding="async"><span class="c kapp"><img src="brand/mark-ultramarine.svg" alt="" loading="lazy" decoding="async"></span><span>Kenner</span></button>
-        </div>
-        <div class="core-wrap" aria-hidden="true"><div class="core"><img src="brand/mark-ultramarine.svg" alt="" loading="lazy" decoding="async"></div></div>
-        <div class="sys">
-          <button class="tile" type="button" data-n="ServiceTitan" data-d="Jobs, equipment history and estimates. Reports and quotes go back to the job."><img class="m wm sil" src="logos/sys/servicetitan.svg" alt="ServiceTitan" loading="lazy" decoding="async"><img class="c" src="logos/grid/servicetitan.svg" alt="" loading="lazy" decoding="async"></button>
-          <button class="tile" type="button" data-n="Salesforce Field Service" data-d="Work orders, assets and past visits. The record goes to the work order and the asset."><img class="m" src="mono/salesforce.svg" alt="Salesforce" loading="lazy" decoding="async"><img class="c" src="logos/grid/salesforce.svg" alt="" loading="lazy" decoding="async"></button>
-          <button class="tile" type="button" data-n="SAP" data-d="Work orders, parts and stock. Parts used go back to the order."><img class="m" src="mono/sap.svg" alt="SAP" loading="lazy" decoding="async"><img class="c" src="logos/grid/sap.svg" alt="" loading="lazy" decoding="async"></button>
-          <button class="tile" type="button" data-n="Dynamics 365 Field Service" data-d="Work orders, assets and bookings, written back to both."><img class="m" src="mono/dynamics.svg" alt="Dynamics 365" loading="lazy" decoding="async"><img class="c" src="logos/grid/dynamics.svg" alt="" loading="lazy" decoding="async"></button>
-          <button class="tile" type="button" data-n="IFS" data-d="Work orders and assets, written back to both."><img class="m sil" src="logos/sys/ifs-icon.png" alt="IFS" loading="lazy" decoding="async" width="190" height="186"><img class="c" src="logos/grid/ifs.svg" alt="" loading="lazy" decoding="async"></button>
-          <button class="tile" type="button" data-n="ServiceNow" data-d="Work orders and the knowledge base. New field fixes go back as articles."><img class="m wm sil" src="logos/sys/servicenow.svg" alt="ServiceNow" loading="lazy" decoding="async"><img class="c" src="logos/grid/servicenow.svg" alt="" loading="lazy" decoding="async"></button>
-          <button class="tile" type="button" data-n="ServiceMax" data-d="Work orders and installed base."><img class="m sil" src="logos/sys/servicemax.png" alt="ServiceMax" loading="lazy" decoding="async" width="96" height="96"><img class="c" src="logos/grid/servicemax.svg" alt="" loading="lazy" decoding="async"></button>
-          <button class="tile" type="button" data-n="Oracle Field Service" data-d="Activities and past visits."><img class="m" src="mono/oracle.svg" alt="Oracle" loading="lazy" decoding="async"><img class="c" src="logos/grid/oracle.svg" alt="" loading="lazy" decoding="async"></button>
-          <button class="tile" type="button" data-n="HubSpot" data-d="Notes and quote drafts land on the contact and the deal."><img class="m" src="mono/hubspot.svg" alt="HubSpot" loading="lazy" decoding="async"><img class="c" src="logos/grid/hubspot.svg" alt="" loading="lazy" decoding="async"></button>
-          <button class="tile" type="button" data-n="Zoho" data-d="Notes and quote drafts go back to the account."><img class="m" src="mono/zoho.svg" alt="Zoho" loading="lazy" decoding="async"><img class="c" src="logos/grid/zoho.svg" alt="" loading="lazy" decoding="async"></button>
-          <button class="tile" type="button" data-n="Odoo" data-d="Parts, stock and quotes."><img class="m" src="mono/odoo.svg" alt="Odoo" loading="lazy" decoding="async"><img class="c" src="logos/grid/odoo.svg" alt="" loading="lazy" decoding="async"></button>
-          <button class="tile" type="button" data-n="Zendesk" data-d="Store tickets, linked to the visit."><img class="m" src="mono/zendesk.svg" alt="Zendesk" loading="lazy" decoding="async"><img class="c" src="logos/grid/zendesk.svg" alt="" loading="lazy" decoding="async"></button>
-          <button class="tile" type="button" data-n="Jira" data-d="Repeat failures go to engineering, with the jobs attached."><img class="m" src="mono/jira.svg" alt="Jira" loading="lazy" decoding="async"><img class="c" src="logos/grid/jira.svg" alt="" loading="lazy" decoding="async"></button>
-          <button class="tile" type="button" data-n="SharePoint" data-d="Manuals, bulletins and old reports, read where they are."><img class="m sil" src="logos/sys/sharepoint.svg" alt="SharePoint" loading="lazy" decoding="async"><img class="c" src="logos/grid/sharepoint.svg" alt="" loading="lazy" decoding="async"></button>
-          <button class="tile" type="button" data-n="Confluence" data-d="Your own how-tos, read alongside field fixes."><img class="m" src="mono/confluence.svg" alt="Confluence" loading="lazy" decoding="async"><img class="c" src="logos/grid/confluence.svg" alt="" loading="lazy" decoding="async"></button>
-          <button class="tile" type="button" data-n="Danfoss" data-d="Controller alarms and readings, read before the technician arrives."><img class="m sil df" src="pr/logos/refrig/danfoss.svg" alt="Danfoss" loading="lazy" decoding="async"><img class="c cw" src="pr/logos/refrig/danfoss.svg" alt="" loading="lazy" decoding="async"></button>
-          <button class="tile" type="button" data-n="Copeland" data-d="Alarms, setpoints and history from the site’s controller."><img class="m wm sil" src="pr/logos/refrig/copeland.png" alt="Copeland" loading="lazy" decoding="async" width="600" height="54"><img class="c cw" src="pr/logos/refrig/copeland.png" alt="" loading="lazy" decoding="async" width="600" height="54"></button>
-          <button class="tile tplus" type="button" data-n="And everything else" data-d="Equipment controllers, building automation, remote monitoring, old work orders and any other system with an API."><svg class="m" viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg><span class="c kapp"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></span><span class="sr">More systems</span></button>
-        </div>
-        <div class="tip off" id="tip" aria-hidden="true"><b></b><p></p></div>
+  <section class="night" id="security">
+    <div class="wrap sec home-secu">
+      <div class="home-secu-text">
+        <h2 class="h2">Built for the know&#8209;how you guard most. <span>Your data stays yours.</span></h2>
+        <p class="home-secu-sub">Bring in manuals, service reports, price lists and what your best technicians know, without worrying where it goes.</p>
+        <ul class="home-secu-points">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span><b>You own the data.</b> Job contents stay yours and are written into your systems.</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span><b>Kenner asks first.</b> Nothing that costs money or speaks for your company goes out without a yes.</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span><b>Every action is visible.</b> Each one shows with its sources.</span></li>
+        </ul>
+        <a class="home-secu-go" href="security.html">Security<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h12M11 5l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
       </div>
+      <div class="home-secu-vis" role="img" aria-label="Your company’s material, a service manual, a price book, a wiring diagram and a voice note, inside one locked frame together with Kenner">
+        <div class="home-secu-frame" aria-hidden="true">
+          <p class="home-secu-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="4.5" y="10.5" width="15" height="10.5" rx="2"/><path d="M8 10.5V7a4 4 0 0 1 8 0v3.5"/></svg>Your company</p>
+          <span class="home-secu-chip c1"><i class="h8-pdf"><em>PDF</em></i><span><small>Service manual</small><b>Page 34, defrost</b></span></span>
+          <span class="home-secu-chip c2"><i class="h8-xls"></i><span><small>Spreadsheet</small><b>Price book</b></span></span>
+          <span class="home-secu-mark"><img src="brand/mark-ultramarine.svg" alt=""></span>
+          <span class="home-secu-chip c3"><i class="h8-play"><svg viewBox="0 0 12 12"><path d="M3.5 2v8l6.5-4z"/></svg></i><span><small>Voice note, 0:42</small><svg class="h8-wave" viewBox="0 0 86 20"><rect x="0" y="5.0" width="2" height="10" rx="1"/><rect x="4" y="6.5" width="2" height="7" rx="1"/><rect x="8" y="6.0" width="2" height="8" rx="1"/><rect x="12" y="2.0" width="2" height="16" rx="1"/><rect x="16" y="4.0" width="2" height="12" rx="1"/><rect x="20" y="7.0" width="2" height="6" rx="1"/><rect x="24" y="8.0" width="2" height="4" rx="1"/><rect x="28" y="4.0" width="2" height="12" rx="1"/><rect x="32" y="3.5" width="2" height="13" rx="1"/><rect x="36" y="6.5" width="2" height="7" rx="1"/><rect x="40" y="5.0" width="2" height="10" rx="1"/><rect x="44" y="5.0" width="2" height="10" rx="1"/><rect x="48" y="4.0" width="2" height="12" rx="1"/><rect x="52" y="6.5" width="2" height="7" rx="1"/><rect x="56" y="6.5" width="2" height="7" rx="1"/><rect x="60" y="4.0" width="2" height="12" rx="1"/><rect x="64" y="1.0" width="2" height="18" rx="1"/><rect x="68" y="6.0" width="2" height="8" rx="1"/><rect x="72" y="5.0" width="2" height="10" rx="1"/><rect x="76" y="6.0" width="2" height="8" rx="1"/><rect x="80" y="6.5" width="2" height="7" rx="1"/><rect x="84" y="1.0" width="2" height="18" rx="1"/></svg></span></span>
+          <span class="home-secu-chip c4"><i class="h8-pdf"><em>PDF</em></i><span><small>Wiring diagram</small><b>Rack B</b></span></span>
+        </div>
+      </div>
+      <p class="home-secu-certs"><span><b>ISO 27001</b>Built to its requirements</span><span><b>SOC 2</b>Built to its criteria</span><span><b>GDPR</b>A data processing agreement with every pilot</span></p>
     </div>
   </section>
 
-  <!-- 5a · start: how a team starts, and who it works with -->
   <section class="sec" id="start">
     <div class="wrap">
       <h2 class="h2 center">Start with one team. <span>Live in a week.</span></h2>
@@ -1366,7 +911,6 @@ footer{background:var(--paper)}
     </div>
   </section>
 
-  <!-- 5b · questions -->
   <section class="sec" id="faq">
     <div class="wrap faq">
       <h2 class="h2 center">Common questions. <span>Straight answers.</span></h2>
@@ -1385,12 +929,16 @@ footer{background:var(--paper)}
           <p>No. Kenner works with the FSM, ERP and CRM you already run. It reads from them before the job and writes the report, parts and follow-ups back to them after it.</p>
         </details>
         <details class="q">
+          <summary>What does Kenner do without asking?<i aria-hidden="true"></i></summary>
+          <p>Anything that costs money or speaks for your company waits for a yes: part orders, quotes, claims and customer messages are drafted first and go out only once someone approves. You decide who gives that yes, and what may run without one. Every action shows with its sources.</p>
+        </details>
+        <details class="q">
           <summary>Do our technicians have to learn a new app?<i aria-hidden="true"></i></summary>
           <p>No. They save Kenner as a contact and use WhatsApp, iMessage, Teams or a normal phone call, so it works on the phone they already have. A voice note after the job is enough for the report.</p>
         </details>
         <details class="q">
           <summary>Is our data secure?<i aria-hidden="true"></i></summary>
-          <p>Your data stays yours and stays in your systems. Every pilot comes with a data processing agreement under GDPR, ISO 27001 certification is in progress and our SOC 2 audit is in preparation.</p>
+          <p>Your data stays yours and stays in your systems. Every pilot comes with a data processing agreement under GDPR, and Kenner is built to the requirements of ISO 27001 and SOC 2.</p>
         </details>
         <details class="q">
           <summary>How fast can we start?<i aria-hidden="true"></i></summary>
@@ -1400,168 +948,25 @@ footer{background:var(--paper)}
     </div>
   </section>
 
-  <!-- 6 · close -->
-  <section class="close" id="pilot">
-    <div class="wrap close-in">
-      <h2>See it on your own jobs</h2>
-      <p class="line">Start with one team: two weeks, five to ten technicians, measured against your own numbers.</p>
-      <div class="acts"><a class="btn btn-white" href="https://calendar.app.google/fFpCL3WG3pJtqtC89" target="_blank" rel="noopener">Book a demo</a></div>
-    </div>
-  </section>
 </main>
 
-<footer>
+<footer class="close">
+  <section class="wrap close-in" id="pilot">
+    <h2>See it on your own jobs</h2>
+    <p class="line">Start with one team: two weeks, five to ten technicians, measured against your own numbers.</p>
+    <div class="acts"><a class="btn btn-white" href="https://calendar.app.google/fFpCL3WG3pJtqtC89" target="_blank" rel="noopener">Get a free demo</a></div>
+  </section>
   <div class="wrap">
     <div class="f-in">
-      <div><img src="brand/lockup-ink.svg" alt="kenner" loading="lazy" decoding="async"><p class="tl">For the teams that keep the world running.</p></div>
-      <div><h3>Product</h3><a href="#for-leaders">For service leaders</a><a href="#for-technicians">For technicians</a><a href="#showcase">Agents</a><a href="#deploy">Integrations</a></div>
+      <div><img src="brand/lockup-white.svg" alt="kenner" width="118" height="22" loading="lazy" decoding="async"><p class="tl">For the teams that keep the world running.</p></div>
+      <div><h3>Product</h3><a href="technicians.html">Technicians</a><a href="agents.html">Agents</a><a href="intelligence.html">Intelligence</a><a href="integrations.html">Integrations</a></div>
       <div><h3>Resources</h3><a href="blog/best-ai-for-hvac-technicians.html">Best AI for HVAC technicians</a></div>
-      <div><h3>Security</h3><p class="secu">ISO 27001 certification in progress<br>SOC 2 audit in preparation<br>GDPR, with a DPA for every pilot<br>Your data stays yours</p></div>
+      <div><h3>Security</h3><p class="secu">Built to ISO 27001 and SOC 2<br>GDPR, with a DPA for every pilot<br>Your data stays yours</p></div>
     </div>
     <div class="f-bot"><span>© 2026 Kenner Systems Inc.</span><span><a href="legal.html#imprint">Imprint</a><a href="legal.html#privacy">Privacy</a><button type="button" data-cookie-settings>Cookie settings</button></span></div>
   </div>
 </footer>
 
-<script>
-(function(){
-  var still = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var $ = function(id){ return document.getElementById(id); };
-  function onView(el, fn, th){
-    if (!('IntersectionObserver' in window)) { fn(true); return; }
-    new IntersectionObserver(function(es){ es.forEach(function(e){ fn(e.isIntersecting); }); }, {threshold: th || .3}).observe(el);
-  }
-
-  /* nav */
-  var nav = $('nav');
-  var heroEl = document.querySelector('.hero');
-  function navState(){ var y = window.scrollY, end = heroEl.offsetTop + heroEl.offsetHeight - 60; nav.classList.toggle('solid', y >= end); nav.classList.toggle('dim', y > 40 && y < end); }
-  navState(); window.addEventListener('scroll', navState, {passive:true}); window.addEventListener('resize', navState);
-
-  /* hero: the industry in the headline flicks through the trades we serve.
-     The page loads with HVAC/R as plain text; nothing moves until the first hold is over.
-     It waits while the headline is off screen, the tab is hidden or the call plays. */
-  var rot = $('rot');
-  var INDS = ['HVAC/R','elevator','fire protection','heat pump','medical device','forklift','data center','food equipment','wind turbine','machinery'];
-  var ROT_HOLD = still ? 5200 : 3300, rotI = 0, rotSeen = true, rotT, mkEl = $('mk');
-  function rotWord(i, cls){
-    var w = document.createElement('span'); w.className = 'rot-w' + (cls ? ' ' + cls : '');
-    INDS[i].split('').forEach(function(ch, k){ var c = document.createElement('span'); c.className = 'rot-c'; c.style.setProperty('--i', k); c.textContent = ch; w.appendChild(c); });
-    return w;
-  }
-  /* letters in their own boxes lose the font's kerning (HVAC/R sets 15px wider); put it back from the plain word.
-     Beside the picture the column ends where the picture starts, so a word keeps 64px clear of it and shrinks if it has to */
-  function rotFit(w, i){
-    var p = document.createElement('span'); p.style.cssText = 'position:absolute;left:0;top:0;visibility:hidden;white-space:pre'; p.textContent = INDS[i];
-    w.style.transform = ''; rotVis.appendChild(p);
-    var r = document.createRange(), t = p.firstChild, p0 = p.getBoundingClientRect().left, w0 = w.getBoundingClientRect().left, fs = parseFloat(getComputedStyle(w).fontSize), cs = [].slice.call(w.children);
-    cs.forEach(function(c){ c.style.marginLeft = ''; });
-    var d = cs.map(function(c, k){ r.setStart(t, k); r.setEnd(t, k + 1); return (r.getBoundingClientRect().left - p0) - (c.getBoundingClientRect().left - w0); });
-    cs.forEach(function(c, k){ c.style.marginLeft = ((d[k] - (k ? d[k - 1] : 0)) / fs) + 'em'; });
-    var k = (rot.clientWidth - (window.innerWidth > 860 ? 64 : 0)) / p.getBoundingClientRect().width; p.remove();
-    if (k < 1) w.style.transform = 'scale(' + k + ')';
-  }
-  var rotVis = document.createElement('span'); rotVis.setAttribute('aria-hidden', 'true');
-  var rotCur = rotWord(0); rotVis.appendChild(rotCur);
-  rot.textContent = ''; rot.appendChild(rotVis); rotFit(rotCur, 0);
-  if (document.fonts && document.fonts.ready) document.fonts.ready.then(function(){ rotFit(rotCur, rotI); });
-  function rotStep(){
-    if (!rotSeen || document.hidden || mkEl.classList.contains('playing')) { rotT = setTimeout(rotStep, 500); return; }
-    var old = rotCur; rotI = (rotI + 1) % INDS.length;
-    rotCur = rotWord(rotI, 'in'); old.classList.remove('in'); old.classList.add('out');
-    rotVis.appendChild(rotCur); rotFit(rotCur, rotI);
-    setTimeout(function(){ old.remove(); }, 900);
-    rotT = setTimeout(rotStep, ROT_HOLD);
-  }
-  onView(rot, function(v){ rotSeen = v; }, .5);
-  window.addEventListener('resize', function(){ rotFit(rotCur, rotI); });
-  rotT = setTimeout(rotStep, ROT_HOLD);
-  /* reality: technician messages, from every trade */
-  var MSGS = [
-    [['Store manager unplugged the freezer to charge his e-bike','Carlos, 6:12 AM'],['The out of order sign has been up since 2019. The elevator works','Mike, 9:40 AM'],['Manual says the sensor is behind panel B. There is no panel B','Luis, 2:05 PM'],['Smoke detector kept beeping, so they put a shower cap on it','Tyler, 12:04 PM'],['Pigeons are nesting in the gas cooler again','Ashley, 7:31 AM'],['Forklift only throws the error when Dave drives it','Carlos, 11:18 AM']],
-    [['Found the missing sensor, zip-tied to the ceiling','Ashley, 1:36 PM'],['Fire panel shows 43 faults. Customer says that is normal','Luis, 10:27 AM'],['Customer says it has been beeping since Christmas','Mike, 8:55 AM'],['Boiler room key is with the caretaker. The caretaker is on vacation','Carlos, 7:02 AM'],['A mouse chewed the sensor cable. The mouse is fine','Luis, 3:49 PM'],['Compressor sounds like a cement mixer. Is that the noise you meant?','Tyler, 12:20 PM']],
-    [['Controller thinks it is 1998. Is that a problem?','Mike, 4:02 PM'],['Combi oven says descale. Chef says not during lunch','Ashley, 11:52 AM'],['Fixed it by switching it off and on. Maybe leave that out of the report','Luis, 9:03 AM'],['Sheep are blocking the door to the turbine again','Tyler, 6:48 AM'],['Who installed this? Asking for a friend','Ashley, 2:42 PM'],['Data hall is overheating. The door is propped open with a fan','Mike, 3:15 PM']]
-  ];
-  var WITH_PHOTO = ['Store manager unplugged the freezer to charge his e-bike','Sheep are blocking the door to the turbine again','Pigeons are nesting in the gas cooler again','Forklift only throws the error when Dave drives it','Who installed this? Asking for a friend'];
-  MSGS = [MSGS[0].concat(MSGS[1], MSGS[2]).filter(function(m){ return WITH_PHOTO.indexOf(m[0]) < 0; })];
-  var mq = $('mq');
-  mq.innerHTML = MSGS.map(function(row, i){
-    var chips = row.map(function(m, k){ return '<span class="msg">'+m[0]+'<small>'+m[1]+'</small></span>'; }).join('');
-    return '<div class="mq-row'+(i % 2 ? ' rev' : '')+'" style="--d:'+(228 + i * 22)+'s"><div class="mq-track">'+chips+chips+'</div></div>';
-  }).join('');
-  mq.querySelectorAll('.mq-track').forEach(function(t){ t.querySelectorAll('.msg').forEach(function(c, k){ if (k >= t.children.length / 2) c.setAttribute('aria-hidden','true'); }); });
-  var mqCtl = $('mq-ctl');
-  mqCtl.addEventListener('click', function(){ var on = mq.classList.toggle('paused'); mqCtl.setAttribute('aria-pressed', on ? 'true' : 'false'); mqCtl.setAttribute('aria-label', on ? 'Play the messages' : 'Pause the messages'); });
-
-  /* hub tooltips */
-  var hub = $('hub'), tip = $('tip');
-  function tipOn(g){
-    hub.classList.add('hov'); hub.querySelectorAll('.tile').forEach(function(x){ x.classList.toggle('on', x === g); });
-    tip.querySelector('b').textContent = g.dataset.n; tip.querySelector('p').textContent = g.dataset.d;
-    tip.classList.remove('off');
-    var hr = hub.getBoundingClientRect(), gr = g.getBoundingClientRect(), w = tip.offsetWidth, h = tip.offsetHeight;
-    var left = Math.max(8, Math.min(gr.left - hr.left + gr.width / 2 - w / 2, hub.clientWidth - w - 8));
-    var top = gr.bottom - hr.top + 8; if (top + h > hub.clientHeight + 20) top = gr.top - hr.top - h - 8;
-    tip.style.left = left + 'px'; tip.style.top = top + 'px';
-  }
-  function tipOff(){ hub.classList.remove('hov'); tip.classList.add('off'); hub.querySelectorAll('.tile.on').forEach(function(x){ x.classList.remove('on'); }); }
-  hub.querySelectorAll('.tile').forEach(function(g){
-    if (g.dataset.d){ var sr = document.createElement('span'); sr.className = 'sr'; sr.textContent = (g.querySelector('span:not(.c)') ? '' : g.dataset.n + '. ') + g.dataset.d; g.appendChild(sr); }
-    g.addEventListener('mouseenter', function(){ tipOn(g); }); g.addEventListener('focus', function(){ tipOn(g); });
-    g.addEventListener('click', function(){ tipOn(g); }); g.addEventListener('blur', tipOff);
-  });
-  hub.addEventListener('mouseleave', tipOff);
-
-  /* hub lines: from each channel in the row above Kenner into the mark, and from the mark out to each system in the row below.
-     One dot at a time: it leaves a channel picked at random, runs into Kenner, then on to a system picked at random. */
-  var hl = $('hub-lines'), hcore = hub.querySelector('.core'), hIn = [], hOut = [], hDot = null, hA = null, hB = null, hT0 = 0, hRaf = 0, hSeen = false;
-  function hubRow(sel, last){
-    var t = [].slice.call(hub.querySelectorAll(sel)), ys = t.map(function(e){ return e.offsetTop; });
-    var y = last ? Math.max.apply(null, ys) : Math.min.apply(null, ys);
-    return t.filter(function(e){ return e.offsetTop === y; });
-  }
-  function hubLine(x1, y1, x2, y2, cls){
-    var m = (y2 - y1) * .62;
-    return '<path class="' + cls + '" d="M' + x1.toFixed(1) + ' ' + y1.toFixed(1) + 'C' + x1.toFixed(1) + ' ' + (y1 + m).toFixed(1) + ' ' + x2.toFixed(1) + ' ' + (y2 - m).toFixed(1) + ' ' + x2.toFixed(1) + ' ' + y2.toFixed(1) + '"/>';
-  }
-  function hubLines(){
-    var hr = hub.getBoundingClientRect(), cr = hcore.getBoundingClientRect(), h = '';
-    var cx = cr.left - hr.left + cr.width / 2, ct = cr.top - hr.top, cb = cr.bottom - hr.top;
-    hl.setAttribute('viewBox', '0 0 ' + hr.width + ' ' + hr.height);
-    hubRow('.chs .tile', true).forEach(function(t){ var r = t.getBoundingClientRect(); h += hubLine(r.left - hr.left + r.width / 2, r.bottom - hr.top, cx, ct, 'in'); });
-    hubRow('.sys .tile', false).forEach(function(t){ var r = t.getBoundingClientRect(); h += hubLine(cx, cb, r.left - hr.left + r.width / 2, r.top - hr.top, 'out'); });
-    hl.innerHTML = h + (still ? '' : '<circle r="3" opacity="0"/>');
-    hIn = [].slice.call(hl.querySelectorAll('.in')); hOut = [].slice.call(hl.querySelectorAll('.out')); hDot = hl.querySelector('circle'); hA = hB = null;
-  }
-  function hubPick(list, prev){ var p; do { p = list[Math.floor(Math.random() * list.length)]; } while (list.length > 1 && p === prev); return p; }
-  var hRot = 0, hTicked = false, hMark = hcore.querySelector('img'), HSTEP = 45; /* the mark repeats every 45 degrees, so each notch lands on the same shape */
-  function hubTick(now){
-    hRaf = 0;
-    if (!hSeen || !hDot || !hIn.length || !hOut.length) return;
-    var LEG = 1250, TICK = 560, REST = 450, t = now - hT0;
-    if (!hA || t >= LEG * 2 + TICK + REST) {
-      if (hA) hA.classList.remove('on'); if (hB) hB.classList.remove('on');
-      hA = hubPick(hIn, hA); hB = hubPick(hOut, hB); hT0 = now; t = 0; hTicked = false;
-    }
-    var out = t >= LEG + TICK;
-    if (t >= LEG && !out) {
-      /* the dot has arrived: Kenner's mark turns one notch, like a tick, before the dot leaves again */
-      hDot.setAttribute('opacity', 0); hA.classList.remove('on');
-      if (!hTicked) { hTicked = true; hRot += HSTEP; hMark.style.transform = 'rotate(' + hRot + 'deg)'; }
-    }
-    else if (t >= LEG * 2 + TICK) { hDot.setAttribute('opacity', 0); hB.classList.remove('on'); }
-    else {
-      var leg = out ? hB : hA, f = (out ? t - LEG - TICK : t) / LEG;
-      f = f < .5 ? 2 * f * f : 1 - Math.pow(2 - 2 * f, 2) / 2;
-      var pt = leg.getPointAtLength(f * leg.getTotalLength());
-      hDot.setAttribute('cx', pt.x.toFixed(1)); hDot.setAttribute('cy', pt.y.toFixed(1)); hDot.setAttribute('opacity', 1);
-      hA.classList.toggle('on', !out); hB.classList.toggle('on', out);
-    }
-    hRaf = requestAnimationFrame(hubTick);
-  }
-  hubLines(); window.addEventListener('resize', hubLines); window.addEventListener('load', hubLines);
-  onView(hub, function(v){ hSeen = v; if (v && !hRaf && !still) hRaf = requestAnimationFrame(hubTick); }, .15);
-})();
-</script>
 <script>
 /* demo phone: when the stage shrinks to fit the window, scale the whole phone (frame and chat together) instead of squeezing the chat into a smaller frame */
 (function(){
@@ -1574,147 +979,6 @@ footer{background:var(--paper)}
     sc.style.setProperty('--pz', z.toFixed(3));
   }
   fit(); window.addEventListener('resize', fit);
-})();
-</script>
-<script>
-/* hero */
-(function(){
-  var still = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  /* the mark as the voice. Its sixteen rays are the logo's own shapes; each keeps its inner end and changes length.
-     At rest they breathe; while the debrief plays they move with the voice (the recording's own spectrum once audio/debrief.mp3 exists,
-     a speech-like rhythm until then). The rays nearest the pointer reach for it, and moving the pointer round the mark spins it. */
-  var MARK = 'M48.4 36.6L39.8 4.1L36.4 5.0L32.9 6.2L45.9 37.6ZM31.1 7.0L27.8 8.5L24.8 10.3L41.7 39.4L44.1 38.4ZM39.4 41.7L10.3 24.8L8.5 27.8L7.0 31.1L38.4 44.1ZM6.2 32.9L5.0 36.4L4.1 39.8L36.6 48.4L37.6 45.9ZM36.6 51.6L4.1 60.2L5.0 63.6L6.2 67.1L37.6 54.1ZM7.0 68.9L8.5 72.2L10.3 75.2L39.4 58.3L38.4 55.9ZM41.7 60.6L24.8 89.7L27.8 91.5L31.1 93.0L44.1 61.6ZM32.9 93.8L36.4 95.0L39.8 95.9L48.4 63.4L45.9 62.4ZM67.1 6.2L63.6 5.0L60.2 4.1L51.6 36.6L54.1 37.6ZM58.3 39.4L75.2 10.3L72.2 8.5L68.9 7.0L55.9 38.4ZM93.0 31.1L91.5 27.8L89.7 24.8L60.6 41.7L61.6 44.1ZM63.4 48.4L95.9 39.8L95.0 36.4L93.8 32.9L62.4 45.9ZM93.8 67.1L95.0 63.6L95.9 60.2L63.4 51.6L62.4 54.1ZM60.6 58.3L89.7 75.2L91.5 72.2L93.0 68.9L61.6 55.9ZM68.9 93.0L72.2 91.5L75.2 89.7L58.3 60.6L55.9 61.6ZM51.6 63.4L60.2 95.9L63.6 95.0L67.1 93.8L54.1 62.4Z';
-  /* the recorded call (audio/debrief.mp3), line by line: start in seconds, who speaks (K for Kenner), the words */
-  var CUES = [
-    [0, 'K', 'Hey, it’s Kenner. What can I help you with?'],
-    [2.5, '', 'Hi Kenner, I’m at the site now and it’s throwing an F74 error. What does that mean again?'],
-    [8.7, 'K', 'F74 means the boiler is reporting water pressure too low.'],
-    [12.9, 'K', 'It locks out the burner and stops heating.'],
-    [15.2, 'K', 'Since it’s recurring, compare the boiler reading with an external manometer.'],
-    [19.9, '', 'Sure, will do. Do you have any photos from the last visit you can send me, so I can compare?'],
-    [26.2, 'K', 'I’ll send last visit’s photos. Sent to your iMessage.'],
-    [31.0, '', 'Cheers. And one more note before I continue: the owner has changed.'],
-    [34.5, '', 'It’s now George, no longer Tom, because he’s taken over from his father.'],
-    [39.2, 'K', 'Got it. I’ll note George as the owner. Noted.'],
-    [42.7, '', 'Cheers Kenner, see you later.'],
-    [45.2, 'K', 'See you later.']
-  ], capAt = -1;
-  var mk = document.getElementById('mk'), mkG = document.getElementById('mk-rays'), mkBtn = document.getElementById('mk-play'), mkCap = document.getElementById('mk-cap'), mkAud = document.getElementById('mk-audio');
-  var mkTip = document.getElementById('mk-tip'), finePtr = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
-  var RIN = 13.8, rays = MARK.split('Z').filter(Boolean).map(function(d){
-    var pts = d.slice(1).split('L').map(function(p){ var xy = p.trim().split(/\s+/), x = +xy[0] - 50, y = +xy[1] - 50; return {r: Math.hypot(x, y), a: Math.atan2(y, x)}; });
-    var mid = pts.reduce(function(m, p){ return p.r > m.r ? p : m; }, pts[0]).a, el = document.createElementNS('http://www.w3.org/2000/svg', 'polygon');
-    mkG.appendChild(el);
-    return {pts: pts, a: mid, el: el, s: 1};
-  });
-  rays.sort(function(p, q){ return p.a - q.a; });
-  function restCap(){ if (!mkPlay){ mkCap.textContent = ''; capAt = -1; } }
-  var mkOn = false, mkPlay = false, mkT = 0, mkLast = 0, mkRaf = 0, mkDur = 46.6, mkSound = false, mkWait = false, mkRot = 0, mkSpin = 0, ptr = null, ptrAng = null, mkCtx = null, analyser = null, bins = null;
-  /* the call plays a little faster than it was recorded; the cues stay in recording seconds because they follow the audio's own clock */
-  var SPEED = 1.1;
-  mkAud.defaultPlaybackRate = mkAud.playbackRate = SPEED;
-  function wrap(a){ while (a > Math.PI) a -= 2 * Math.PI; while (a < -Math.PI) a += 2 * Math.PI; return a; }
-  function drawMark(now){
-    var t = now / 1000, env = 0;
-    if (mkPlay){
-      /* without a recording: syllables in bursts, a breath between sentences */
-      env = Math.max(0, Math.sin(t * 5.2) * .5 + .5) * (.55 + .45 * Math.sin(t * 13.7 + 1)) * (Math.sin(t * 1.3) > -.86 ? 1 : .15);
-      if (mkSound && analyser){ analyser.getByteFrequencyData(bins); }
-    }
-    rays.forEach(function(r, i){
-      var want = 1;
-      if (!still) want += .03 * Math.sin(t * 1.15 + i * .9);
-      if (!still && !mkPlay){ var ph = wrap(r.a + mkRot - t * 1.4); want += .07 * Math.exp(-(ph * ph) / .5); }
-      if (mkPlay) want += mkSound && analyser ? (bins[2 + (i * 3) % 40] / 255) * .42 - .08 : env * (.1 + .26 * (Math.sin(t * 8.3 + i * 2.4) * .5 + .5)) - .05;
-      if (ptr){
-        var diff = wrap(ptr.a - (r.a + mkRot)), near = Math.max(0, 1 - Math.abs(ptr.d - .8) / 1.7);
-        want += Math.exp(-(diff * diff) / .28) * near * (mkPlay ? .34 : .13);
-      }
-      r.s += (want - r.s) * (still ? 1 : .2);
-      r.el.setAttribute('points', r.pts.map(function(p){ var rr = RIN + (p.r - RIN) * r.s; return (50 + rr * Math.cos(p.a)).toFixed(2) + ',' + (50 + rr * Math.sin(p.a)).toFixed(2); }).join(' '));
-    });
-    if (!still){ mkRot += mkSpin + (mkPlay ? .0016 : 0); mkSpin *= .94; }
-    mkG.setAttribute('transform', 'rotate(' + (mkRot * 180 / Math.PI).toFixed(2) + ' 50 50)');
-  }
-  function mkTick(now){
-    mkRaf = 0; if (!mkOn && !mkPlay) return;
-    if (mkPlay){
-      if (mkSound) mkT = mkAud.currentTime; else if (!mkWait) mkT += (now - mkLast) / 1000 * SPEED;
-      mkLast = now;
-      if (mkT >= mkDur){ mkStop(true); }
-      else {
-        /* the message arrives as Kenner says the photos are sent, stays a moment, and is swiped away */
-        MSGS.forEach(function(m){ if (m.state === 0 && mkT >= m.at){ m.state = 1; m.el.classList.remove('out'); } if (m.state === 1 && mkT >= m.at + m.stay){ m.state = 2; m.el.classList.add('gone'); } });
-        var k = 0; while (k < CUES.length - 1 && CUES[k + 1][0] <= mkT) k++;
-        if (k !== capAt){ capAt = k; mkCap.innerHTML = '<span>' + (CUES[k][1] === 'K' ? '<img src="brand/mark-ultramarine.svg" alt="Kenner: ">' : '') + CUES[k][2] + '</span>'; }
-      }
-    }
-    drawMark(now);
-    if (!still || mkPlay) mkRaf = requestAnimationFrame(mkTick);
-  }
-  function mkStop(reset){
-    mkPlay = false; if (mkSound) mkAud.pause();
-    mk.classList.remove('playing'); mkBtn.setAttribute('aria-pressed', 'false');
-    if (reset){ mkT = 0; restCap(); msgReset(); }
-  }
-  /* messages that arrive during the call: element, the second it arrives, how long it stays. Each leaves by its own .gone rule (the text to the left, the action to the right) */
-  var MSGS = [['mk-note', 29.5, 2.5], ['mk-act', 41.4, 2.5]].map(function(m){ return {el: document.getElementById(m[0]), at: m[1], stay: m[2], state: 0}; });
-  function msgReset(){ MSGS.forEach(function(m){ m.state = 0; m.el.classList.remove('gone'); m.el.classList.add('out'); }); }
-  /* the sound runs through an analyser so the rays can follow the voice. iOS starts an AudioContext only inside the tap that asks for it,
-     and on a first visit the recording can take seconds to arrive: a context made when the sound begins stays suspended and the call is silent.
-     So it is made, and resumed, in the tap. The "playback" session keeps the call audible with the ringer on silent, as a plain <audio> is */
-  function mkVoice(){
-    if (navigator.audioSession) navigator.audioSession.type = 'playback';
-    try {
-      if (!mkCtx){
-        var AC = window.AudioContext || window.webkitAudioContext;
-        mkCtx = new AC();
-        var src = mkCtx.createMediaElementSource(mkAud), an = mkCtx.createAnalyser();
-        an.fftSize = 128; src.connect(an); an.connect(mkCtx.destination);
-        analyser = an; bins = new Uint8Array(an.frequencyBinCount);
-      }
-      if (mkCtx.state !== 'running') mkCtx.resume();
-    } catch (e) {}
-  }
-  function mkToggle(){
-    mkTip.classList.remove('on');
-    if (mkPlay){ mkStop(false); return; }
-    if (mkT === 0) msgReset();
-    mkVoice();
-    mkPlay = true; mkLast = performance.now(); mk.classList.add('playing'); mkBtn.setAttribute('aria-pressed', 'true');
-    /* the words wait for the sound to start (up to a second and a half), so lines and message stay in step with the recording; with no recording they run on the clock */
-    mkWait = !mkSound; setTimeout(function(){ mkWait = false; }, 1500);
-    try { mkAud.currentTime = mkT; var p = mkAud.play(); if (p && p.catch) p.catch(function(){ mkSound = false; mkWait = false; }); } catch (e) { mkWait = false; }
-    if (!mkRaf) mkRaf = requestAnimationFrame(mkTick);
-  }
-  mkBtn.addEventListener('click', mkToggle); document.getElementById('mk-cta').addEventListener('click', mkToggle);
-  mkAud.addEventListener('playing', function(){
-    if (!mkPlay) return;
-    mkSound = true; mkWait = false; if (isFinite(mkAud.duration) && mkAud.duration > 1) mkDur = mkAud.duration;
-  });
-  mkAud.addEventListener('ended', function(){ if (mkOn) mkStop(true); });
-  mkAud.addEventListener('error', function(){ mkSound = false; mkWait = false; });
-  /* the pointer, measured from the mark's centre in units of its radius */
-  function onPtr(e){
-    if (!mkOn) return;
-    var b = mk.getBoundingClientRect(), R = b.width / 2, x = (e.clientX - b.left - R) / R, y = (e.clientY - b.top - R) / R, d = Math.hypot(x, y), a = Math.atan2(y, x);
-    var hint = finePtr && !mkPlay && d <= 1.05 && e.type === 'pointermove';
-    mkTip.classList.toggle('on', hint); if (hint) mkTip.style.transform = 'translate(' + (e.clientX + 14) + 'px,' + (e.clientY + 18) + 'px)';
-    if (d > 2.6){ ptr = null; ptrAng = null; return; }
-    if (ptrAng !== null && d > .25 && !still) mkSpin = Math.max(-.02, Math.min(.02, mkSpin + wrap(a - ptrAng) * (mkPlay ? .045 : .018)));
-    ptrAng = a; ptr = {a: a, d: d};
-  }
-  window.addEventListener('pointermove', onPtr, {passive: true});
-  mk.addEventListener('pointerdown', onPtr);
-  /* the focus ring is for the keyboard: a click or tap on the mark never draws it */
-  mk.addEventListener('pointerdown', function(){ mk.classList.add('by-ptr'); });
-  window.addEventListener('keydown', function(e){ if (e.key === 'Tab') mk.classList.remove('by-ptr'); });
-  document.addEventListener('pointerleave', function(){ ptr = null; ptrAng = null; });
-  /* the rays rest while the hero is off screen; a call that is playing carries on */
-  function mkRun(on){ mkOn = on; if (on){ drawMark(performance.now()); if (!mkRaf && !still) mkRaf = requestAnimationFrame(mkTick); } }
-  if ('IntersectionObserver' in window) new IntersectionObserver(function(es){ es.forEach(function(e){ mkRun(e.isIntersecting); }); }, {threshold: .05}).observe(document.getElementById('fin'));
-  else mkRun(true);
-  drawMark(performance.now());
 })();
 </script>
 <script src="agents/agents.js" charset="utf-8"></script>
@@ -1886,57 +1150,8 @@ footer{background:var(--paper)}
 })();
 </script>
 <script>
-/* Draft: the job photos. They drift slowly against the scroll and can be picked up and thrown. */
-(function(){
-  var still = window.matchMedia('(prefers-reduced-motion: reduce)').matches, wide = window.matchMedia('(min-width:901px)');
-  var phs = [].slice.call(document.querySelectorAll('.ph')), z = 5;
-  function lim(v){ return Math.max(-2, Math.min(2, v)); }
-  /* where a photo sits: where it was dropped, plus the drift (none when its stage is centred on screen) */
-  function place(p){
-    var d = 0;
-    if (wide.matches && !still) { var r = p._stage.getBoundingClientRect(); d = (r.top + r.height / 2 - window.innerHeight / 2) * -p._k; }
-    p.style.transform = wide.matches ? 'translate3d(' + p._x.toFixed(1) + 'px,' + (p._y + d).toFixed(1) + 'px,0)' : '';
-  }
-  phs.forEach(function(p){ p._x = 0; p._y = 0; p._k = +p.dataset.k || 0; p._stage = p.parentNode; });
-  var tick = false;
-  function all(){ tick = false; phs.forEach(place); }
-  window.addEventListener('scroll', function(){ if (!tick) { tick = true; requestAnimationFrame(all); } }, {passive: true});
-  window.addEventListener('resize', all); all();
-  /* one pointer at a time; a thrown photo slows down, and one that leaves its stage comes back in */
-  phs.forEach(function(p){
-    var id = null, sx, sy, ox, oy, lx, ly, lt, vx, vy, moved, raf;
-    p.addEventListener('pointerdown', function(e){
-      if (id !== null || !wide.matches || e.button || e.pointerType === 'touch') return;
-      id = e.pointerId; p.setPointerCapture(id); cancelAnimationFrame(raf); p.classList.remove('settle');
-      sx = lx = e.clientX; sy = ly = e.clientY; lt = e.timeStamp; ox = p._x; oy = p._y; vx = vy = 0; moved = false;
-    });
-    p.addEventListener('pointermove', function(e){
-      if (e.pointerId !== id) return;
-      var dx = e.clientX - sx, dy = e.clientY - sy;
-      if (!moved) { if (Math.abs(dx) + Math.abs(dy) < 4) return; moved = true; p.classList.add('drag'); p.style.zIndex = ++z; }
-      var dt = Math.max(8, e.timeStamp - lt);
-      vx = lim(.6 * vx + .4 * (e.clientX - lx) / dt); vy = lim(.6 * vy + .4 * (e.clientY - ly) / dt); lx = e.clientX; ly = e.clientY; lt = e.timeStamp;
-      p._x = ox + dx; p._y = oy + dy; place(p);
-    });
-    function out(){ var s = p._stage.getBoundingClientRect(), r = p.getBoundingClientRect(); return [Math.max(0, s.left - r.left) - Math.max(0, r.right - s.right), Math.max(0, s.top - r.top) - Math.max(0, r.bottom - s.bottom)]; }
-    function back(){ var o = out(); if (o[0] || o[1]) { p._x += o[0]; p._y += o[1]; p.classList.add('settle'); place(p); setTimeout(function(){ p.classList.remove('settle'); }, 600); } }
-    function end(e){
-      if (e.pointerId !== id) return; id = null; p.classList.remove('drag');
-      if (!moved) return;
-      if (still || e.timeStamp - lt > 80) { back(); return; }
-      var last = performance.now();
-      raf = requestAnimationFrame(function glide(now){
-        var dt = Math.min(32, now - last), f = Math.pow(.88, dt / 16), o; last = now;
-        p._x += vx * dt; p._y += vy * dt; vx *= f; vy *= f; place(p); o = out();
-        if (Math.abs(vx) + Math.abs(vy) > .03 && Math.abs(o[0]) < 60 && Math.abs(o[1]) < 60) raf = requestAnimationFrame(glide); else back();
-      });
-    }
-    p.addEventListener('pointerup', end); p.addEventListener('pointercancel', end);
-  });
-})();
-
-/* The demo starts on the phone: agent, then app, then the phone glides left and Kenner's panel comes in.
-   The page's own tabs and app dock stay in the markup; choosing presses them, so the demo script itself is untouched. */
+/* The demo starts on the phone: a moment of the day, then an app, then the phone glides left and Kenner's panel comes in.
+   The demo script's flow buttons and its app dock stay in the markup; choosing presses them, so the demo script needs no picker of its own. */
 (function(){
   var sc = document.getElementById('showcase'), work = document.getElementById('work'), hold = document.getElementById('hold'), pk = document.getElementById('pk');
   if (!sc || !work || !hold || !pk) return;
@@ -1954,12 +1169,12 @@ footer{background:var(--paper)}
   function choose(app, appName){
     press(dock, 'data-app', app);
     press(agents, 'data-flow', flow === 'fix' ? 'report' : 'fix'); press(agents, 'data-flow', flow);   /* always from the first message */
-    now.innerHTML = flowName.replace(' agent', '<span class="pk-w"> agent</span>') + ' · ' + appName;   /* the phone drops the word "agent", as the tabs did */
+    now.textContent = flowName + ' · ' + appName;   /* the line above the phone: the moment, then the app */
     pk.classList.add('off'); sc.classList.remove('pick'); sc.classList.add('moving'); sync();
     clearTimeout(timer);
     timer = setTimeout(function(){
       sc.classList.remove('moving'); window.dispatchEvent(new Event('resize'));   /* the "Tap to send" pill finds the phone's new place */
-      if (!still) { var b = scr.querySelector('.snd.cue'); if (b) b.click(); }    /* the first message sends itself, to show how it goes */
+      if (!still) { var b = scr.querySelector('.snd.cue'); if (b) b.click(); }    /* the first message sends itself, to show how it goes ("Before the job" has none to send: Kenner writes first, by itself) */
     }, still ? 250 : wide.matches ? 1300 : 900);
   }
   pk.addEventListener('click', function(e){
